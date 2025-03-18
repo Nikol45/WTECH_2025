@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Zdvora.sk – Základné údaje</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header>
+    <div class="top-bar">
+        <div class="logo">LOGO</div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#">Zľavy</a></li>
+                <li><a href="#">Akcie</a></li>
+                <li><a href="#">Kontakt</a></li>
+            </ul>
+        </nav>
+
+        <div class="search-container">
+            <input type="text" placeholder="Vyhľadávanie..." />
+            <button class="btn-search">Hľadať</button>
+        </div>
+
+        <div class="icon-container">
+            <div class="icon-wrapper">
+                <button class="icon-button" id="profileBtn">
+                    <img src="icons/profile.svg" alt="Profil" />
+                </button>
+                <div class="dropdown" id="profileDropdown">
+                    <ul>
+                        <li><a href="#">Môj profil</a></li>
+                        <li><a href="#">Objednávky</a></li>
+                        <li><a href="#">Odhlásiť</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="icon-wrapper">
+                <button class="icon-button" id="heartBtn">
+                    <img src="icons/heart.svg" alt="Obľúbené" />
+                </button>
+                <div class="dropdown" id="heartDropdown">
+                    <p>Vaše obľúbené produkty</p>
+                </div>
+            </div>
+
+            <div class="icon-wrapper">
+                <button class="icon-button" id="cartBtn">
+                    <img src="icons/cart.svg" alt="Košík" />
+                </button>
+                <div class="dropdown" id="cartDropdown">
+                    <p>Váš nákupný košík je prázdny</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ========== KROKY (CHECKOUT STEPS) ========== -->
+<div class="checkout-steps">
+    <button class="step-btn" data-step="kosik">Košík</button>
+    <button class="step-btn active" data-step="udaje">Údaje</button>
+    <button class="step-btn" data-step="doprava">Doprava a platba</button>
+    <button class="step-btn" data-step="sumar">Sumarizácia</button>
+</div>
+
+<!-- ========== OBSAH – FORMULÁR ZÁKLADNÉ ÚDAJE ========== -->
+<main>
+    <a href="#" class="back-link">
+        <span class="back-arrow">←</span>
+        Späť do košíka
+    </a>
+
+    <form class="checkout-form">
+        <div class="form-section">
+            <h2>Základné údaje</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">Meno *</label>
+                    <input type="text" id="firstName" placeholder="Meno" required />
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Priezvisko *</label>
+                    <input type="text" id="lastName" placeholder="Priezvisko" required />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" placeholder="email@domena.sk" required />
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefónne číslo *</label>
+                    <input type="tel" id="phone" placeholder="0900 123 456" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="note">Poznámka pre kuriéra</label>
+                <textarea id="note" rows="3" placeholder="Ak máte špeciálnu požiadavku..."></textarea>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Fakturačná adresa</h2>
+            <div class="form-group">
+                <label for="street">Ulica *</label>
+                <input type="text" id="street" placeholder="Názov ulice a číslo" required />
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="city">Mesto *</label>
+                    <input type="text" id="city" placeholder="Mesto" required />
+                </div>
+                <div class="form-group">
+                    <label for="zip">PSČ *</label>
+                    <input type="text" id="zip" placeholder="PSČ" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="country">Krajina *</label>
+                <input type="text" id="country" placeholder="Slovensko" required />
+            </div>
+        </div>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="differentAddress" />
+            <label for="differentAddress">Doručiť na inú adresu</label>
+        </div>
+
+        <div class="additional-address" id="additionalAddress" style="display: none;">
+            <div class="form-section">
+                <h2>Dodacia adresa</h2>
+                <div class="form-group">
+                    <label for="shipStreet">Ulica *</label>
+                    <input type="text" id="shipStreet" placeholder="Názov ulice a číslo" />
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="shipCity">Mesto *</label>
+                        <input type="text" id="shipCity" placeholder="Mesto" />
+                    </div>
+                    <div class="form-group">
+                        <label for="shipZip">PSČ *</label>
+                        <input type="text" id="shipZip" placeholder="PSČ" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="shipCountry">Krajina *</label>
+                    <input type="text" id="shipCountry" placeholder="Slovensko" />
+                </div>
+            </div>
+        </div>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="companyPurchase" />
+            <label for="companyPurchase">Nákup na firmu</label>
+        </div>
+
+        <div class="company-fields" id="companyFields" style="display: none;">
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="companyName">Názov spoločnosti *</label>
+                    <input type="text" id="companyName" placeholder="Názov firmy" />
+                </div>
+                <div class="form-group">
+                    <label for="companyVat">IČ DPH</label>
+                    <input type="text" id="companyVat" placeholder="IČ DPH" />
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-next-step">Prejsť k doprave a platbe</button>
+    </form>
+</main>
+
+<section class="ads">
+    <div class="ad-banner"><p>Reklama</p></div>
+    <div class="ad-banner"><p>Reklama</p></div>
+</section>
+
+<footer>
+    <div class="footer-links">
+        <a href="#">O nás</a>
+        <a href="#">Obchodné podmienky</a>
+        <a href="#">Doprava</a>
+        <a href="#">Platba</a>
+    </div>
+    <div class="footer-bottom">
+        <p>Copyright © 2023 Zdvora.sk</p>
+    </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Zdvora.sk – Sumár/review s klikateľnými krokmi</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header>
+    <div class="top-bar">
+        <div class="logo">LOGO</div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#">Zľavy</a></li>
+                <li><a href="#">Akcie</a></li>
+                <li><a href="#">Kontakt</a></li>
+            </ul>
+        </nav>
+
+        <div class="search-container">
+            <input type="text" placeholder="Vyhľadávanie..." />
+            <button class="btn-search">Hľadať</button>
+        </div>
+
+        <div class="icon-container">
+            <div class="icon-wrapper">
+                <button class="icon-button" id="profileBtn">
+                    <img src="icons/profile.svg" alt="Profil" />
+                </button>
+                <div class="dropdown" id="profileDropdown">
+                    <ul>
+                        <li><a href="#">Môj profil</a></li>
+                        <li><a href="#">Objednávky</a></li>
+                        <li><a href="#">Odhlásiť</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="icon-wrapper">
+                <button class="icon-button" id="heartBtn">
+                    <img src="icons/heart.svg" alt="Obľúbené" />
+                </button>
+                <div class="dropdown" id="heartDropdown">
+                    <p>Vaše obľúbené produkty</p>
+                </div>
+            </div>
+            <div class="icon-wrapper">
+                <button class="icon-button" id="cartBtn">
+                    <img src="icons/cart.svg" alt="Košík" />
+                </button>
+                <div class="dropdown" id="cartDropdown">
+                    <p>Váš nákupný košík je prázdny</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ========== KROKY (CHECKOUT STEPS) – KLIKATEĽNÉ TLAČIDLÁ ========== -->
+<div class="checkout-steps">
+    <button class="step-btn" data-step="kosik">Košík</button>
+    <button class="step-btn" data-step="udaje">Údaje</button>
+    <button class="step-btn" data-step="doprava">Doprava a platba</button>
+    <button class="step-btn active" data-step="sumar">Sumarizácia</button>
+</div>
+
+<!-- ========== OBSAH – SUMÁR OBJEDNÁVKY ========== -->
+<main>
+    <a href="#" class="back-link">
+        <span class="back-arrow">←</span>
+        Späť na dopravu a platbu
+    </a>
+
+    <div class="summary-container">
+        <!-- Ľavý stĺpec: Osobné údaje... -->
+        <div class="summary-left">
+            <h3>Osobné údaje</h3>
+            <div class="summary-block">
+                <div class="summary-block-title">Meno:</div>
+                <p>Jana Tichá</p>
+            </div>
+            <div class="summary-block">
+                <div class="summary-block-title">Email:</div>
+                <p>janaticha@zdravomail.com</p>
+            </div>
+            <div class="summary-block">
+                <div class="summary-block-title">Telefónne číslo:</div>
+                <p>+421 111 222 333</p>
+            </div>
+
+            <hr />
+
+            <h3>Fakturačná adresa</h3>
+            <p>Ulica 12, 841 01</p>
+            <p>Bratislava</p>
+            <p>Slovensko</p>
+
+            <hr />
+
+            <h3>Dodacia adresa</h3>
+            <p>Ulica Medová, 24</p>
+            <p>821 02 Košice, Slovensko</p>
+
+            <hr />
+
+            <h3>Nákup na firmu</h3>
+            <p>IČO: 99988877, Názov spoločnosti: Zdravo s.r.o.</p>
+
+            <hr />
+
+            <h3>Poznámka pre kuriéra</h3>
+            <p>Prosím zvoniť 2x...</p>
+
+            <hr />
+
+            <h3>Upraviť údaje</h3>
+            <p><a href="#">Kliknite sem, ak chcete zmeniť svoje údaje</a></p>
+        </div>
+
+        <!-- Pravý stĺpec: Sumár objednávky -->
+        <div class="summary-right">
+            <div class="order-summary">
+                <h3>Sumarizácia objednávky</h3>
+
+                <!-- 1. Farma -->
+                <div class="farm-summary-block">
+                    <h4>Názov farmy</h4>
+                    <div class="farm-product-line">
+                        <span class="product-name">5 ks Granátové jablko</span>
+                        <span class="price">cena €</span>
+                    </div>
+                    <div class="farm-product-line">
+                        <span class="product-name">x ks Názov produktu</span>
+                        <span class="price">cena €</span>
+                    </div>
+                    <p class="farm-delivery">Doprava: Osobný odber</p>
+                </div>
+
+                <!-- 2. Farma -->
+                <div class="farm-summary-block">
+                    <h4>Názov farmy</h4>
+                    <div class="farm-product-line">
+                        <span class="product-name">x ks Názov produktu</span>
+                        <span class="price">cena €</span>
+                    </div>
+                    <div class="farm-product-line">
+                        <span class="product-name">x ks Názov produktu</span>
+                        <span class="price">cena €</span>
+                    </div>
+                    <div class="farm-product-line">
+                        <span class="product-name">x ks Názov produktu</span>
+                        <span class="price">cena €</span>
+                    </div>
+                    <p class="farm-delivery">Doprava: Doručenie na adresu s GLS</p>
+                </div>
+
+                <!-- 3. Farma -->
+                <div class="farm-summary-block">
+                    <h4>Názov farmy</h4>
+                    <div class="farm-product-line">
+                        <span class="product-name">x ks Názov produktu</span>
+                        <span class="price">cena €</span>
+                    </div>
+                    <div class="farm-product-line">
+                        <span class="product-name">x ks Názov produktu</span>
+                        <span class="price">cena €</span>
+                    </div>
+                    <p class="farm-delivery">Doprava: Typ doručenia</p>
+                </div>
+
+                <!-- Súhrn cien -->
+                <div class="summary-footer">
+                    <p>Cena bez DPH: 18,23 €</p>
+                    <p>Cena dopravy: cena €</p>
+                    <p class="summary-total">Celkom: cena €</p>
+                </div>
+            </div>
+
+            <button class="btn-confirm">Objednať</button>
+        </div>
+    </div>
+</main>
+
+<section class="ads">
+    <div class="ad-banner"><p>Reklama</p></div>
+    <div class="ad-banner"><p>Reklama</p></div>
+</section>
+
+<footer>
+    <div class="footer-links">
+        <a href="#">O nás</a>
+        <a href="#">Obchodné podmienky</a>
+        <a href="#">Doprava</a>
+        <a href="#">Platba</a>
+    </div>
+    <div class="footer-bottom">
+        <p>Copyright © 2023 Zdvora.sk</p>
+    </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

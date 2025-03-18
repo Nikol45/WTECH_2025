@@ -1,0 +1,1612 @@
+/* Reset a základné nastavenia */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Arial", sans-serif; /* prípadne 'Open Sans', ... */
+    color: #333;
+    background-color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* ========== HEADER ========== */
+header {
+    width: 100%;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Horný pruh s logom, navigáciou, vyhľadávaním a ikonkami */
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 2rem;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+/* Navigácia */
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.main-nav a {
+    color: #333;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.main-nav a:hover {
+    color: #007BFF;
+}
+
+/* Vyhľadávacie pole */
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.search-container input {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-search {
+    padding: 0.4rem 0.8rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-search:hover {
+    background-color: #555;
+}
+
+/* Ikonky vpravo (profil, srdce, košík) */
+.icon-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.icon-wrapper {
+    position: relative;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.icon-button img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Dropdown pre ikonky */
+.dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    display: none;
+    min-width: 150px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+.dropdown.active {
+    display: block;
+}
+
+.dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown li {
+    margin-bottom: 0.5rem;
+}
+
+.dropdown li:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown a {
+    color: #333;
+}
+
+/* Kategórie – panel kategórií */
+.categories-bar {
+    background-color: #f0f0f0;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid #ddd;
+}
+
+.categories-list {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+    list-style: none;
+}
+
+.category-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.25rem;
+}
+
+.category-btn img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.category-btn span {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.category-btn:hover span {
+    color: #007BFF;
+}
+
+/* Tlačidlo pre rozbalenie/zbalenie kategórií */
+.toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-btn img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s ease;
+}
+
+.categories-bar.collapsed .categories-list {
+    display: none;
+}
+
+.categories-bar.collapsed .toggle-btn img {
+    transform: rotate(180deg);
+}
+
+/* Kroky objednávky */
+.checkout-steps {
+    display: flex;
+    gap: 0.5rem;
+    margin: 2rem 0 1rem;
+    justify-content: center;
+}
+
+.step-btn {
+    background-color: #ddd;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.step-btn:hover {
+    background-color: #ccc;
+}
+
+.step-btn.active {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+/* Hero sekcia */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    background-color: #eaeaea;
+}
+
+.hero-text {
+    max-width: 50%;
+}
+
+.hero-text h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.btn-location {
+    padding: 0.6rem 1rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-location:hover {
+    background-color: #555;
+}
+
+.hero-image img {
+    max-width: 400px;
+    height: auto;
+    display: block;
+}
+
+/* Hlavný obsah a produkty */
+main {
+    padding: 2rem;
+}
+
+/* Pridané: Breadcrumb (chýbajúce v pôvodnom kóde) */
+.breadcrumb {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+.breadcrumb a {
+    color: #007BFF;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.section-header h2 {
+    font-size: 1.5rem;
+}
+
+/* Šípky na carousel */
+.arrows {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.arrow-left,
+.arrow-right {
+    background: #ddd;
+    border: none;
+    padding: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.arrow-left:hover,
+.arrow-right:hover {
+    background: #bbb;
+}
+
+/* Grid produktov */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
+}
+
+.product-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.product-card p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+.price {
+    font-weight: bold;
+    color: #d9534f;
+}
+
+/* Detail produktu */
+.product-detail {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.product-gallery {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+}
+
+.main-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.thumbnail-list {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.thumbnail-list img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.product-info {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.product-info h1 {
+    font-size: 1.8rem;
+}
+
+/* Hodnotenie a recenzie */
+.rating-and-reviews {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.stars {
+    color: #FFD700;
+    font-size: 1rem;
+}
+
+.short-description {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.4;
+}
+
+.farms {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Tlačidlo pridania do košíka */
+.btn-add-cart {
+    padding: 0.6rem 1.2rem;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    margin-top: 1rem;
+    width: fit-content;
+}
+
+.btn-add-cart:hover {
+    background-color: #218838;
+}
+
+/* Taby – sekcia s obsahom (Popis, Recenzie, atď.) */
+.tabs-container {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 2rem;
+}
+
+.tab-header {
+    display: flex;
+    gap: 2rem;
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 0;
+}
+
+.tab-header button {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+    position: relative;
+    padding-bottom: 0.25rem;
+    transition: color 0.2s ease;
+}
+
+.tab-header button.active {
+    font-weight: bold;
+    color: #007BFF;
+}
+
+.tab-content {
+    padding: 1rem 0;
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+/* Pridané: Produktový popis a hodnotiaca sekcia */
+.product-description {
+    line-height: 1.4;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+.rating-summary {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.rating-score {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #d9534f;
+}
+
+.reviews-list {
+    margin-top: 1rem;
+}
+
+.review-item {
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+    margin-top: 1rem;
+}
+
+.review-title {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.review-stars {
+    color: #FFD700;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.review-text {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Pridané: Formulár na novú recenziu */
+.review-form {
+    margin-top: 1rem;
+}
+
+.review-form label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+
+.review-form input[type="text"],
+.review-form textarea {
+    width: 100%;
+    padding: 0.4rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.review-form .stars-input {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.review-form .stars-input input {
+    cursor: pointer;
+}
+
+.review-form button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.review-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Nákupný košík */
+.cart-section {
+    padding: 0 2rem 2rem;
+}
+
+.cart-header {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+}
+
+.cart-header input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.cart-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.cart-group {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.cart-group-header {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.item-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 3;
+}
+
+.item-info img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.item-name {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.item-quantity {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.quantity-button {
+    background-color: #eee;
+    border: none;
+    border-radius: 4px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}
+
+.item-price {
+    flex: 1;
+    text-align: right;
+    font-weight: bold;
+    color: #d9534f;
+}
+
+.remove-item {
+    flex: 0.2;
+    text-align: right;
+    color: #999;
+    cursor: pointer;
+}
+
+.remove-item:hover {
+    color: #333;
+}
+
+.cart-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 1rem;
+    gap: 0.5rem;
+}
+
+.cart-total {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #d9534f;
+}
+
+.cart-total-label {
+    margin-right: 0.5rem;
+}
+
+.cart-dph {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.btn-checkout {
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-checkout:hover {
+    background-color: #0056b3;
+}
+
+/* Doplňkové produkty / Mohlo by vás zaujať */
+.upsell-section {
+    padding: 0 2rem;
+    margin-bottom: 2rem;
+}
+
+.upsell-section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.upsell-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.upsell-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    text-align: center;
+}
+
+.upsell-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
+}
+
+.upsell-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Reklamné bannery */
+.ads {
+    padding: 0 2rem;
+    margin-bottom: 2rem;
+}
+
+.ad-banner {
+    background-color: #ccc;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.step {
+    position: relative;
+    padding-bottom: 0.25rem;
+    color: #666;
+}
+
+.step.active {
+    color: #007BFF;
+    font-weight: bold;
+}
+
+/* Štýly pre formuláre – sekcie, skupiny, checkboxy */
+.checkout-form {
+    /* ďalšie štýly pre formulár podľa potreby */
+}
+
+.form-section {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.form-section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.form-group label {
+    font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group textarea {
+    padding: 0.4rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.additional-address,
+.company-fields {
+    margin-top: 1rem;
+    border-left: 2px solid #ddd;
+    padding-left: 1rem;
+}
+
+.btn-next-step {
+    margin-top: 1.5rem;
+    padding: 0.6rem 1.2rem;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-next-step:hover {
+    background-color: #0056b3;
+}
+
+/* Sumár a prehľad objednávky */
+.summary-container {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.summary-left,
+.summary-right {
+    flex: 1;
+    min-width: 280px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 1rem;
+}
+
+.summary-block {
+    margin-bottom: 1rem;
+}
+
+.summary-block-title {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.order-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.order-summary h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.farm-summary-block {
+    border: 1px solid #eee;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    background-color: #fafafa;
+}
+
+.farm-summary-block h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.farm-product-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+}
+
+.product-name {
+    flex: 1;
+}
+
+.price {
+    color: #d9534f;
+    font-weight: bold;
+    margin-left: 1rem;
+    white-space: nowrap;
+}
+
+.farm-delivery {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.summary-footer {
+    margin-top: 1rem;
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+}
+
+.summary-footer p {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.summary-total {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #d9534f;
+    margin-top: 0.5rem;
+}
+
+.btn-confirm {
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-confirm:hover {
+    background-color: #0056b3;
+}
+
+/* Footer */
+footer {
+    background-color: #f8f8f8;
+    padding: 1rem 2rem;
+    border-top: 1px solid #ddd;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer-links a {
+    font-size: 0.9rem;
+    color: #333;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #007BFF;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Responzívne nastavenia */
+@media (max-width: 992px) {
+    .listing-container {
+        flex-direction: column;
+    }
+    .filter-section {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .top-bar {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .search-container {
+        order: 3;
+        width: 100%;
+    }
+    .main-nav {
+        order: 2;
+    }
+    .icon-container {
+        order: 4;
+        margin-left: auto;
+    }
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .listing-container {
+        padding: 1rem;
+    }
+    .filter-section {
+        order: 1;
+    }
+    .products-section {
+        order: 2;
+    }
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    .might-interest,
+    .ads {
+        padding: 0 1rem;
+    }
+}
+
+/* ========== (LISTING) ========== */
+.listing-container {
+    display: flex;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+/* ========== FILTER SEKCIA ========== */
+.filter-section {
+    width: 250px; /* pevná šírka, prípadne prispôsobte */
+}
+
+.filter-section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.filter-block {
+    margin-bottom: 1.5rem;
+}
+
+.filter-block h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.filter-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.filter-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-list input[type="checkbox"],
+.filter-list input[type="radio"] {
+    cursor: pointer;
+}
+
+.price-range {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.price-range input {
+    width: 80px;
+    padding: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Hviezdičky (len ilustračné) */
+.stars {
+    color: #FFD700; /* zlatá */
+}
+
+/* Tlačidlá vo filtri */
+.filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.btn-filter {
+    flex: 1;
+    padding: 0.4rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    transition: background-color 0.2s ease;
+}
+
+.btn-filter:hover {
+    background-color: #555;
+}
+
+.btn-clear {
+    flex: 1;
+    padding: 0.4rem;
+    background-color: #ccc;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-clear:hover {
+    background-color: #aaa;
+}
+
+/* ========== PRODUKTY (HLAVNÁ ČASŤ) ========== */
+.products-section {
+    flex: 1; /* vyplní zvyšok priestoru vedľa filtra */
+}
+
+/* Horná lišta so zobrazením počtu výsledkov a zoradením */
+.products-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.products-header h2 {
+    font-size: 1.4rem;
+}
+
+.sort-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sort-container select {
+    padding: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Grid produktov */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
+}
+
+.product-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.product-card p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+.product-card .stars {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.price {
+    font-weight: bold;
+    color: #d9534f;
+    margin-bottom: 0.5rem;
+}
+
+.product-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.btn-add-cart,
+.btn-detail {
+    flex: 1;
+    padding: 0.4rem 0.6rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-add-cart {
+    background-color: #28a745; /* zelená */
+    color: #fff;
+}
+
+.btn-add-cart:hover {
+    background-color: #218838;
+}
+
+.btn-detail {
+    background-color: #007BFF; /* modrá */
+    color: #fff;
+}
+
+.btn-detail:hover {
+    background-color: #0056b3;
+}
+
+/* ========== PAGINATION ========== */
+.pagination {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #333;
+    transition: background-color 0.2s ease;
+}
+
+.pagination a:hover {
+    background-color: #eee;
+}
+
+.pagination .active {
+    background-color: #007BFF;
+    color: #fff;
+    border-color: #007BFF;
+}
+
+.pagination .next {
+    font-weight: bold;
+}
+
+/* ========== MOHLO BY VÁS ZAUJAŤ ========== */
+.might-interest {
+    padding: 0 2rem;
+    margin-bottom: 2rem;
+}
+
+.might-interest h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.article-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    text-align: center;
+}
+
+.article-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
+}
+
+.article-card h3 {
+    font-size: 1rem;
+}
+
+/* ========== REKLAMA ========== */
+.ads {
+    padding: 0 2rem;
+    margin-bottom: 2rem;
+}
+
+.ad-banner {
+    background-color: #ccc;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+/* ========== FOOTER ========== */
+footer {
+    background-color: #f8f8f8;
+    padding: 1rem 2rem;
+    border-top: 1px solid #ddd;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer-links a {
+    font-size: 0.9rem;
+    color: #333;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #007BFF;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* ========== RESPONZÍVNE NASTAVENIA ========== */
+@media (max-width: 992px) {
+    .listing-container {
+        flex-direction: column;
+    }
+    .filter-section {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .top-bar {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .search-container {
+        order: 3;
+        width: 100%;
+    }
+    .main-nav {
+        order: 2;
+    }
+    .icon-container {
+        order: 4;
+        margin-left: auto;
+    }
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .listing-container {
+        padding: 1rem;
+    }
+    .filter-section {
+        order: 1;
+    }
+    .products-section {
+        order: 2;
+    }
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    .might-interest,
+    .ads {
+        padding: 0 1rem;
+    }
+}
+
+/* ========== ADDITIONAL CHECKOUT & SHIPPING STYLES ========== */
+main {
+    padding: 0 2rem 2rem;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.back-arrow {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.shipping-payment-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.shipping-block {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.shipping-block h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.shipping-farm-group {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+}
+
+.farm-group-header {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.farm-items {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+}
+
+.farm-item-card {
+    flex: 1 1 100px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    background-color: #fff;
+}
+
+.farm-delivery-info {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+.shipping-price {
+    font-weight: bold;
+    color: #d9534f;
+    margin-left: auto;
+}
+
+.shipping-price-block {
+    text-align: right;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #d9534f;
+}
+
+/* ========== SPÔSOB DOPRAVY ========== */
+.delivery-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.delivery-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.delivery-option input[type="radio"] {
+    cursor: pointer;
+}
+
+.delivery-info {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* ========== SPÔSOB PLATBY ========== */
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.payment-option input[type="radio"] {
+    cursor: pointer;
+}
+
+/* ========== RESPONZÍVNE NASTAVENIA (ADDITIONAL) ========== */
+@media (max-width: 992px) {
+    .farm-items {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .farm-item-card {
+        font-size: 0.8rem;
+    }
+}
+
+/* ========== ADDITIONAL RESPONZÍVNE PRAVIDLÁ PRE DETAIL PRODUKTU ========== */
+@media (max-width: 992px) {
+    main {
+        padding: 1rem;
+    }
+    .product-detail {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .product-gallery,
+    .product-info {
+        max-width: 100%;
+    }
+    .thumbnail-list img {
+        width: 50px;
+        height: 50px;
+    }
+    .article-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .article-grid {
+        grid-template-columns: 1fr;
+    }
+    .tabs-container {
+        font-size: 0.9rem;
+    }
+}
