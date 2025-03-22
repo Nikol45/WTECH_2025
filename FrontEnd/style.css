@@ -5,7 +5,7 @@ header {
 }
 
 body {
-    font-family: "Arial", sans-serif; /* prípadne 'Open Sans', ... */
+    font-family: "Inknut Antiqua", serif;
     color: #333;
 }
 
@@ -17,9 +17,8 @@ a {
 /* ------------------------------- NAVIGATION ------------------------------------- */
 
 .search-container {
-    gap: 0.5rem;
+    gap: 0.4rem;
 }
-
 .search-container input {
     padding: 0.5rem 0.8rem;
     border: 1px solid #ccc;
@@ -33,42 +32,20 @@ a {
     border: none;
     border-radius: 4px;
 }
-
 .btn-search:hover {
     background-color: #666;
 }
 
-/*.icon-button img {*/
-/*    width: 24px;*/
-/*    height: 24px;*/
-/*}*/
-
 .dropdown li {
     margin-bottom: 0.5rem;
 }
-
 .dropdown li:last-child {
     margin-bottom: 0;
 }
-
 .dropdown a {
     color: #333;
 }
 
-/* Dropdown menu - základné nastavenia */
-.dropdown-menu {
-    display: none;               /* Skryté štandardne */
-    position: absolute;          /* Absolútne pozicovanie vo vnútri rodiča */
-    top: 100%;                   /* Pod rodičovským prvkom */
-    right: 0;                    /* Zarovnané vpravo */
-    background-color: #fff;      /* Biela farba pozadia */
-    border: 1px solid #ddd;      /* Svetlo sivé orámovanie */
-    padding: 0.5rem;             /* Vnútorné odsadenie */
-    z-index: 10;                 /* Zabezpečí, že bude nad ostatnými prvkami */
-    min-width: 150px;            /* Minimálna šírka dropdownu */
-}
-
-/* Dropdown menu - zobrazenie po pridaní triedy "active" */
 .dropdown-menu.active {
     display: block !important;
 }
@@ -76,26 +53,23 @@ a {
 
 /* ------------------------------- CATEGORIES ------------------------------------- */
 
-/* Celý zoznam kategórií (vodorovne) */
 .categories-list {
     display: flex;
     justify-content: space-between;
-
     width: 100%;
     gap: 0.5rem;
     padding: 5px 5px;
 }
 
-
-/* Jednotlivé "kartičky" kategórií */
+/* Kategória: tlačidlo s obrázkom a textom */
 .category-btn {
     margin: 0;
     padding: 10px;
-    display: flex;             /* Použitie flexboxu */
+    display: flex;
     flex-direction: column; /* vertikalne */
-    align-items: center;    /* obrazok v strede */
-    /*justify-content: center; !* Stále centrovanie na výšku *!*/
-    gap: 0.025rem;             /* medzera medzi obrázkom a textom */
+    align-items: center;
+    /*!justify-content: center; */
+    gap: 0.0025rem;             /* medzera medzi obrázkom a textom */
 
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -104,14 +78,11 @@ a {
     height: 70px; /* pevná výška */
 }
 
-/* Ikona kategórie */
 .category-btn img {
     width: 50px;
     height: 50px;
     object-fit: contain;  /* zachová proporcie */
 }
-
-/* Názov kategórie pod ikonou */
 .category-btn span {
     font-size: 0.5rem;
     display: -webkit-box;
@@ -119,7 +90,6 @@ a {
     text-align: center;
 }
 
-/* Hover efekt: jemne zmeníme pozadie a okraj */
 .category-btn:hover {
     background-color: #e6e6e6;
     border-color: #bbb;
@@ -134,15 +104,13 @@ a {
     /*border: none;*/
     padding: 0.25rem;
 }
-
-/* Ikonka v toggle-btn (šípka) */
 .toggle-btn img {
     width: 24px;
     height: 24px;
     transition: transform 0.2s ease;
 }
 
-/* Po zbalení: skryjeme celý zoznam */
+/* Po zbalení: skryjeme zoznam */
 .categories-bar.collapsed .categories-list {
     display: none !important;
 }
@@ -154,129 +122,64 @@ a {
 
 /* ------------------------------- BODY ------------------------------------- */
 
-/* ---- HERO SECTION (zadanie lokacie) ---- */
+/* Zadanie polohy */
 .hero-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2rem;
     background-color: #eaeaea;
 }
 
-.hero-text {
-    max-width: 100%;
+.hero-subtitle {
+    font-size: 1.4rem;      /* Mierne väčší text než bežný odstavec */
+    margin-bottom: 1rem;   /* Odsadenie podnadpisu */
 }
 
-.hero-text h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
     line-height: 1.2;
+    margin-bottom: 1.5rem;
 }
 
-.btn-location {
+.hero-search .form-control {
+    padding: 0.6rem 0.8rem;
+    border: 2px solid #333;
+    max-width: 65%;
+}
+
+.hero-search .btn {
+    white-space: nowrap; /* Zabránime zalomeniu textu */
     padding: 0.6rem 1rem;
     background-color: #333;
-    color: #fff;
     border: none;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
 }
-
-.btn-location:hover {
+.hero-search .btn:hover {
     background-color: #555;
 }
 
-/*.hero-image img {*/
-/*}*/
-
-/* ---- MAIN CONTENT & BREADCRUMB ---- */
-/*.breadcrumb {*/
-/*    font-size: 0.9rem;*/
-/*    color: #666;*/
-/*    margin-bottom: 1rem;*/
-/*}*/
-/*.breadcrumb a {*/
-/*    color: #007BFF;*/
-/*}*/
-
-/* ---- SECTION HEADER ---- */
-/*.section-header {*/
-/*    display: flex;*/
-/*    justify-content: space-between;*/
-/*    align-items: center;*/
-/*    margin-bottom: 1rem;*/
-/*}*/
-.section-header h2 {
-    font-size: 2.5rem;
-}
-
-/* ---- CAROUSEL ARROWS ---- */
 .arrows {
     display: flex;
     gap: 0.6rem;
 }
 
-.arrow-left,
-.arrow-right {
+.arrow-left, .arrow-right {
     background: #ddd;
     border: none;
     padding: 0.5rem;
+    padding-inline: 1rem;
     transition: background-color 0.2s ease;
 }
-
-.arrow-left:hover,
-.arrow-right:hover {
+.arrow-left:hover, .arrow-right:hover {
     background: #bbb;
 }
 
 /* ---- PRODUCT GRID & CARDS ---- */
 
-.card {
-}
-
 .card.product-card {
-    border: 1px solid #ddd;        /* Vlastný okraj, Bootstrap .card má default, ale môžete ho prepísať */
-    background-color: #ccc;        /* Ak chcete zachovať biely podklad */
+    border: 1px solid #ddd;
+    background-color: #ccc;
     padding-inline: 20px;
 }
 
-/*.product-card h3 {*/
-/*    font-size: 1rem;*/
-/*    margin-bottom: 0.25rem;*/
-/*}*/
-
-/*.product-card p {*/
-/*    font-size: 0.9rem;*/
-/*    margin-bottom: 0.5rem;*/
-/*    color: #666;*/
-/*}*/
-
-/*.product-card .stars {*/
-/*    margin-bottom: 0.5rem;*/
-/*    font-size: 0.9rem;*/
-/*}*/
-
-/*.product-actions {*/
-/*    display: flex;*/
-/*    gap: 0.5rem;*/
-/*    margin-top: 0.5rem;*/
-/*}*/
-
-.btn-detail {
-    flex: 1;
-    padding: 0.4rem 0.6rem;
-    border: none;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    transition: background-color 0.2s ease;
-}
-
-.btn-detail:hover {
-    background-color: #0056b3;
-}
-
 .card.product-card .card-img {
-    /*vlavo: */
     width: 50%;
     height: auto;
     margin-top: 0.5rem;
@@ -284,7 +187,7 @@ a {
 
 .card.product-card .card-body {
     text-align: left;
-    padding: 0;                 /* Môžete meniť, ak chcete väčšie alebo menšie medzery */
+    padding: 0;
 }
 
 .card-title {
@@ -300,25 +203,16 @@ a {
     margin-top: 5px;
 }
 
-/* Prvý span - cena */
-.price {
+/* cena */
+.price-container .price {
     font-weight: bold;
-    color: #504090;  /* podobné ako .text-danger */
+    color: #504070;
     font-size: 1.5rem;
 }
-
-/* Druhý span - cena za kus */
-.price-per {
+/* cena za kus */
+.price-container .price-per {
     font-size: 1rem;
     color: #666;
-}
-
-/* Kontajner pre ikonku a názov farmy */
-.location-container {
-    display: flex;
-    /*justify-content: center;*/
-    align-items: center;
-    gap: 8px; /* Malá medzera medzi ikonou a textom */
 }
 
 .card-location {
@@ -327,17 +221,25 @@ a {
     margin-top: 1rem;
 }
 
-/* Ikonka umiestnenia */
+.icon_text-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .small-icon {
-    width: 20px;  /* Prispôsob veľkosť ikonky podľa potreby */
+    width: 20px;  
     height: 20px;
 }
 
+.medium-icon {
+    width: 25px;  
+    height: 25px;
+}
 
-.autor-container {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Malá medzera medzi ikonou a textom */
+.big-icon {
+    width: 30px;
+    height: 30px;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~------------- TU SOM SKONČILA!!! ------------~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -1322,15 +1224,7 @@ footer {
 }
 
 /* ========== MOHLO BY VÁS ZAUJAŤ ========== */
-.might-interest {
-    padding: 0 2rem;
-    margin-bottom: 2rem;
-}
 
-.might-interest h2 {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-}
 
 .article-grid {
     display: grid;
@@ -1352,12 +1246,6 @@ footer {
 
 .article-card h3 {
     font-size: 1rem;
-}
-
-/* ========== REKLAMA ========== */
-.ads {
-    padding: 0 2rem;
-    margin-bottom: 2rem;
 }
 
 /* ========== FOOTER ========== */
@@ -1498,3 +1386,5 @@ main {
 .payment-option input[type="radio"] {
     cursor: pointer;
 }
+
+
