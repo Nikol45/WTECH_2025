@@ -30,9 +30,6 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="#">Akcie</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">Kontakt</a>
-                    </li>
                 </ul>
             </nav>
 
@@ -51,7 +48,7 @@
                 <!-- Profil -->
                 <div class="icon-wrapper dropdown me-2">
                     <button
-                            class="btn btn-light dropdown-toggle"
+                            class="btn btn-light"
                             type="button"
                             id="profileBtn"
                             data-bs-toggle="dropdown"
@@ -74,7 +71,7 @@
                 <!-- Obľúbené (srdce) -->
                 <div class="icon-wrapper dropdown me-2">
                     <button
-                            class="btn btn-light dropdown-toggle"
+                            class="btn btn-light "
                             type="button"
                             id="heartBtn"
                             data-bs-toggle="dropdown"
@@ -95,7 +92,7 @@
                 <!-- Košík -->
                 <div class="icon-wrapper dropdown">
                     <button
-                            class="btn btn-light dropdown-toggle"
+                            class="btn btn-light"
                             type="button"
                             id="cartBtn"
                             data-bs-toggle="dropdown"
@@ -211,20 +208,30 @@
 <div class="hero-section py-5">
     <div class="container">
         <div class="row align-items-center">
-            <!-- Text -->
+            <!-- Textový stĺpec -->
             <div class="col-md-6 mb-4 mb-md-0">
                 <div class="hero-text">
-                    <h1 class="display-4">
+                    <h2 class="hero-subtitle">
+                        Podporte lokálnu výrobu a vychutnajte si skutočnú kvalitu.
+                    </h2>
+                    <h1 class="hero-title">
                         Objavte farmy vo svojom okolí a nakupujte priamo z prvej ruky!
                     </h1>
-                    <button class="btn btn-primary btn-lg btn-location mt-3">
-                        Zadajte svoju polohu
-                    </button>
+
+                    <div class="hero-search d-flex align-items-center">
+                        <img src="images/icons/search.png" alt="Hľadať" class="big-icon me-2">
+                        <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Zadajte svoju polohu..."
+                        >
+                        <button class="btn btn-primary ms-2">Hľadať</button>
+                    </div>
                 </div>
             </div>
-            <!-- Obrázok -->
+            <!-- Obrázok vpravo -->
             <div class="col-md-6">
-                <div class="hero-image">
+                <div class="hero-image text-center text-md-end">
                     <img
                             src="images/big/hero-placeholder.png"
                             alt="Fruit-basket"
@@ -240,20 +247,20 @@
 <main>
     <div class="container">
         <!-- Odporúčané produkty -->
-        <section class="recommended-products my-5">
-            <div class="section-header d-flex justify-content-between align-items-center mb-4">
+        <section class="products-section my-5">
+            <div class="section-header d-flex justify-content-between mb-4">
                 <h2>Odporúčané produkty</h2>
                 <div class="arrows">
                     <button class="btn btn-outline-secondary arrow-left">&lt;</button>
                     <button class="btn btn-outline-secondary arrow-right">&gt;</button>
                 </div>
             </div>
-            <!-- Produktová mriežka -->
+
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 product-grid">
                 <!-- 1. produkt -->
                 <div class="col">
                     <div class="card product-card text-center h-100">
-                        <img src="images/tovar/vajcia.png" class="card-img" alt="Produkt">
+                        <img src="images/tovar/fruit/maliny.png" class="card-img" alt="Produkt">
                         <div class="card-body">
                             <h5 class="card-title">Názov produktu</h5>
 
@@ -264,7 +271,7 @@
                             </div>
 
                             <!-- Riadok pre lokáciu -->
-                            <div class="location-container">
+                            <div class="icon_text-container">
                                 <img src="images/icons/location.png" alt="Poloha" class="small-icon">
                                 <p class="card-location">Názov farmy, sídlo</p>
                             </div>
@@ -274,7 +281,7 @@
                 <!-- 2. produkt -->
                 <div class="col">
                     <div class="card product-card text-center h-100">
-                        <img src="images/tovar/zemiaky.png" class="card-img" alt="Produkt">
+                        <img src="images/tovar/fruit/hrozno-ruzove.png" class="card-img" alt="Produkt">
                         <div class="card-body">
                             <h5 class="card-title">Názov produktu</h5>
 
@@ -285,7 +292,7 @@
                             </div>
 
                             <!-- Riadok pre lokáciu -->
-                            <div class="location-container">
+                            <div class="icon_text-container">
                                 <img src="images/icons/location.png" alt="Poloha" class="small-icon">
                                 <p class="card-location">Názov farmy, sídlo</p>
                             </div>
@@ -295,7 +302,7 @@
                 <!-- 3. produkt -->
                 <div class="col">
                     <div class="card product-card text-center h-100">
-                        <img src="images/tovar/orechy.png" class="card-img" alt="Produkt">
+                        <img src="images/tovar/fruit/cucoriedky.png" class="card-img" alt="Produkt">
                         <div class="card-body">
                             <h5 class="card-title">Názov produktu</h5>
 
@@ -306,7 +313,7 @@
                             </div>
 
                             <!-- Riadok pre lokáciu -->
-                            <div class="location-container">
+                            <div class="icon_text-container">
                                 <img src="images/icons/location.png" alt="Poloha" class="small-icon">
                                 <p class="card-location">Názov farmy, sídlo</p>
                             </div>
@@ -316,7 +323,7 @@
                 <!-- 4. produkt -->
                 <div class="col">
                     <div class="card product-card text-center h-100">
-                        <img src="images/tovar/med.png" class="card-img" alt="Produkt">
+                        <img src="images/tovar/fruit/jahody.png" class="card-img" alt="Produkt">
                         <div class="card-body">
                             <h5 class="card-title">Názov produktu</h5>
 
@@ -327,7 +334,7 @@
                             </div>
 
                             <!-- Riadok pre lokáciu -->
-                            <div class="location-container">
+                            <div class="icon_text-container">
                                 <img src="images/icons/location.png" alt="Poloha" class="small-icon">
                                 <p class="card-location">Názov farmy, sídlo</p>
                             </div>
@@ -338,7 +345,7 @@
         </section>
 
         <!-- Novinky -->
-        <section class="new-products my-5">
+        <section class="products-section my-5">
             <div class="section-header d-flex justify-content-between align-items-center mb-4">
                 <h2>Novinky</h2>
                 <div class="arrows">
@@ -346,8 +353,7 @@
                     <button class="btn btn-outline-secondary arrow-right">&gt;</button>
                 </div>
             </div>
-            <!-- Produktová mriežka -->
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 product-grid">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 product-grid">
                 <div class="col">
                     <div class="card product-card text-center h-100">
                         <img src="images/empty.png" class="card-img" alt="Produkt">
@@ -361,7 +367,7 @@
                             </div>
 
                             <!-- Riadok pre lokáciu -->
-                            <div class="location-container">
+                            <div class="icon_text-container">
                                 <img src="images/icons/location.png" alt="Poloha" class="small-icon">
                                 <p class="card-location">Názov farmy, sídlo</p>
                             </div>
@@ -381,7 +387,7 @@
                             </div>
 
                             <!-- Riadok pre lokáciu -->
-                            <div class="location-container">
+                            <div class="icon_text-container">
                                 <img src="images/icons/location.png" alt="Poloha" class="small-icon">
                                 <p class="card-location">Názov farmy, sídlo</p>
                             </div>
@@ -401,7 +407,7 @@
                             </div>
 
                             <!-- Riadok pre lokáciu -->
-                            <div class="location-container">
+                            <div class="icon_text-container">
                                 <img src="images/icons/location.png" alt="Poloha" class="small-icon">
                                 <p class="card-location">Názov farmy, sídlo</p>
                             </div>
@@ -421,7 +427,7 @@
                             </div>
 
                             <!-- Riadok pre lokáciu -->
-                            <div class="location-container">
+                            <div class="icon_text-container">
                                 <img src="images/icons/location.png" alt="Poloha" class="small-icon">
                                 <p class="card-location">Názov farmy, sídlo</p>
                             </div>
@@ -432,7 +438,7 @@
         </section>
 
         <!-- Výhodná ponuka -->
-        <section class="special-offer my-5">
+        <section class="products-section my-5">
             <div class="section-header d-flex justify-content-between align-items-center mb-4">
                 <h2>Výhodná ponuka</h2>
                 <div class="arrows">
@@ -440,8 +446,7 @@
                     <button class="btn btn-outline-secondary arrow-right">&gt;</button>
                 </div>
             </div>
-            <!-- Produktová mriežka -->
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 product-grid">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 product-grid">
                 <div class="col">
                     <div class="card product-card text-center h-100">
                         <img src="images/empty.png" class="card-img" alt="Produkt">
@@ -455,7 +460,7 @@
                             </div>
 
                             <!-- Riadok pre lokáciu -->
-                            <div class="location-container">
+                            <div class="icon_text-container">
                                 <img src="images/icons/location.png" alt="Poloha" class="small-icon">
                                 <p class="card-location">Názov farmy, sídlo</p>
                             </div>
@@ -475,7 +480,7 @@
                             </div>
 
                             <!-- Riadok pre lokáciu -->
-                            <div class="location-container">
+                            <div class="icon_text-container">
                                 <img src="images/icons/location.png" alt="Poloha" class="small-icon">
                                 <p class="card-location">Názov farmy, sídlo</p>
                             </div>
@@ -495,7 +500,7 @@
                             </div>
 
                             <!-- Riadok pre lokáciu -->
-                            <div class="location-container">
+                            <div class="icon_text-container">
                                 <img src="images/icons/location.png" alt="Poloha" class="small-icon">
                                 <p class="card-location">Názov farmy, sídlo</p>
                             </div>
@@ -515,7 +520,7 @@
                             </div>
 
                             <!-- Riadok pre lokáciu -->
-                            <div class="location-container">
+                            <div class="icon_text-container">
                                 <img src="images/icons/location.png" alt="Poloha" class="small-icon">
                                 <p class="card-location">Názov farmy, sídlo</p>
                             </div>
@@ -526,7 +531,7 @@
         </section>
 
         <!-- Sezónne produkty -->
-        <section class="season-products my-5">
+        <section class="products-section my-5">
             <div class="section-header d-flex justify-content-between align-items-center mb-4">
                 <h2>Sezónne produkty</h2>
                 <div class="arrows">
@@ -534,8 +539,7 @@
                     <button class="btn btn-outline-secondary arrow-right">&gt;</button>
                 </div>
             </div>
-            <!-- Produktová mriežka -->
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 product-grid">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 product-grid">
                 <div class="col">
                     <div class="card product-card text-center h-100">
                         <img src="images/empty.png" class="card-img" alt="Produkt">
@@ -549,7 +553,7 @@
                             </div>
 
                             <!-- Riadok pre lokáciu -->
-                            <div class="location-container">
+                            <div class="icon_text-container">
                                 <img src="images/icons/location.png" alt="Poloha" class="small-icon">
                                 <p class="card-location">Názov farmy, sídlo</p>
                             </div>
@@ -569,7 +573,7 @@
                             </div>
 
                             <!-- Riadok pre lokáciu -->
-                            <div class="location-container">
+                            <div class="icon_text-container">
                                 <img src="images/icons/location.png" alt="Poloha" class="small-icon">
                                 <p class="card-location">Názov farmy, sídlo</p>
                             </div>
@@ -589,7 +593,7 @@
                             </div>
 
                             <!-- Riadok pre lokáciu -->
-                            <div class="location-container">
+                            <div class="icon_text-container">
                                 <img src="images/icons/location.png" alt="Poloha" class="small-icon">
                                 <p class="card-location">Názov farmy, sídlo</p>
                             </div>
@@ -609,7 +613,7 @@
                             </div>
 
                             <!-- Riadok pre lokáciu -->
-                            <div class="location-container">
+                            <div class="icon_text-container">
                                 <img src="images/icons/location.png" alt="Poloha" class="small-icon">
                                 <p class="card-location">Názov farmy, sídlo</p>
                             </div>
@@ -620,7 +624,7 @@
         </section>
 
         <!-- Mohlo by vás zaujať -->
-        <section class="might-interest my-5">
+        <section class="article-section my-5">
             <div class="section-header d-flex justify-content-between align-items-center mb-4">
                 <h2>Mohlo by vás zaujímať</h2>
                 <div class="arrows">
@@ -628,15 +632,14 @@
                     <button class="btn btn-outline-secondary arrow-right">&gt;</button>
                 </div>
             </div>
-            <!-- Produktová mriežka -->
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 product-grid">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 product-grid">
                 <div class="col">
                     <div class="card product-card text-center h-100">
                         <img src="images/empty.png" class="card-img" alt="Article">
                         <div class="card-body">
                             <h5 class="card-title">Názov článku</h5>
                             <!-- Riadok pre autora -->
-                            <div class="autor-container">
+                            <div class="icon_text-container">
                                 <img src="images/icons/profile.png" alt="Autor" class="small-icon">
                                 <p class="card-location">Meno autora, farma</p>
                             </div>
@@ -649,7 +652,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Názov článku</h5>
                             <!-- Riadok pre autora -->
-                            <div class="autor-container">
+                            <div class="icon_text-container">
                                 <img src="images/icons/profile.png" alt="Autor" class="small-icon">
                                 <p class="card-location">Meno autora, farma</p>
                             </div>
@@ -662,7 +665,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Názov článku</h5>
                             <!-- Riadok pre autora -->
-                            <div class="autor-container">
+                            <div class="icon_text-container">
                                 <img src="images/icons/profile.png" alt="Autor" class="small-icon">
                                 <p class="card-location">Meno autora, farma</p>
                             </div>
@@ -675,7 +678,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Názov článku</h5>
                             <!-- Riadok pre autora -->
-                            <div class="autor-container">
+                            <div class="icon_text-container">
                                 <img src="images/icons/profile.png" alt="Autor" class="small-icon">
                                 <p class="card-location">Meno autora, farma</p>
                             </div>
@@ -686,7 +689,7 @@
         </section>
 
         <!-- Reklamné bannery -->
-        <section class="ads my-5">
+        <section class="ads-section my-5">
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="card ad-banner text-center h-100">
@@ -709,17 +712,20 @@
 </main>
 
 <!-- ===================== FOOTER ===================== -->
-<footer class="bg-light py-3">
-    <div class="container text-center">
-        <div class="footer-links mb-2">
-            <a href="#" class="me-3 text-decoration-none text-muted">Obchodné podmienky</a>
-            <a href="#" class="me-3 text-decoration-none text-muted">FAQ</a>
-            <a href="#" class="text-decoration-none text-muted">Kontakt</a>
-        </div>
-        <div class="footer-bottom">
-            <p class="mb-0">
-                Copyright © 2025 Zdvora.sk
-            </p>
+<footer class="bg-light py-4">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-4">
+
+            <!-- Ľavá časť s odkazmi -->
+            <div class="d-flex align-items-center gap-4 flex-wrap">
+                <a href="#" class="btn btn-secondary px-4 py-3 rounded-3">O nás</a>
+                <a href="#" class="text-decoration-none text-dark">Obchodné podmienky</a>
+                <a href="#" class="text-decoration-none text-dark">Doprava</a>
+                <a href="#" class="text-decoration-none text-dark">Platba</a>
+            </div>
+
+            <!-- Pravá časť s copyrightom -->
+            <div class="text-dark">  Copyright © 2025 Zdvora.sk </div>
         </div>
     </div>
 </footer>

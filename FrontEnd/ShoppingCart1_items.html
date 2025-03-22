@@ -30,9 +30,6 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="#">Akcie</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">Kontakt</a>
-                    </li>
                 </ul>
             </nav>
 
@@ -50,19 +47,9 @@
             <div class="icon-container d-flex align-items-center">
                 <!-- Profil -->
                 <div class="icon-wrapper dropdown me-2">
-                    <button
-                            class="btn btn-light dropdown-toggle"
-                            type="button"
-                            id="profileBtn"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                    >
-                        <img
-                                src="images/icons/profile.png"
-                                alt="Profil"
-                                width="24"
-                                height="24"
-                        >
+                    <button class="btn btn-light dropdown-toggle" type="button"
+                            id="profileBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="images/icons/profile.png" alt="Profil" width="24" height="24">
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="profileBtn" id="profileDropdown">
                         <li><a class="dropdown-item" href="#">Môj profil</a></li>
@@ -207,193 +194,307 @@
     </div>
 </header>
 
-<div class="checkout-steps">
-    <button class="step-btn active" data-step="kosik">Košík</button>
-    <button class="step-btn" data-step="udaje">Údaje</button>
-    <button class="step-btn" data-step="doprava">Doprava a platba</button>
-    <button class="step-btn" data-step="sumar">Sumarizácia</button>
-</div>
 
-<main class="cart-section">
-    <!-- Link "Späť do obchodu" s ľavou šípkou -->
-    <a href="#" class="back-link">
-        <span class="back-arrow">←</span>
-        Späť do obchodu
+<main class="cart-section container py-4">
+
+    <!-- Kroky košíka -->
+    <div class="checkout-steps mb-4">
+        <button class="step-btn active" data-step="kosik">Košík</button>
+        <button class="step-btn" data-step="udaje">Údaje</button>
+        <button class="step-btn" data-step="doprava">Doprava a platba</button>
+        <button class="step-btn" data-step="sumar">Sumarizácia</button>
+    </div>
+
+    <!-- Link "Späť do obchodu" -->
+    <a href="#" class="back-link d-inline-flex align-items-center mb-3">
+        <span class="me-1">←</span> Späť do obchodu
     </a>
 
-    <!-- Horný riadok s checkboxom "celý košík" a odkazom "Odstrániť zvýraznené" -->
-    <div class="cart-header">
-        <input type="checkbox" id="combineShops" />
-        <label for="combineShops">celý košík</label>
+    <!-- Horný riadok: "celý košík" + "Odstrániť zvýraznené" -->
+    <div class="cart-header d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <input type="checkbox" id="combineShops" />
+            <label for="combineShops" class="ms-1">celý košík</label>
+        </div>
+        <a href="#" class="text-danger d-flex align-items-center">
+            Odstrániť zvýraznené
+        </a>
     </div>
 
+    <!-- Začiatok skupín košíka -->
     <div class="cart-groups">
 
-        <!-- Skupina 1: Farma A -->
-        <div class="cart-group">
-            <div class="cart-group-header">
+        <!-- Skupina 1 -->
+        <div class="cart-group mb-4 p-3 border">
+            <div class="cart-group-header fw-bold mb-2">
                 Zásielka od Farma pod Lipou
             </div>
+
+            <!-- Položky v skupine -->
             <div class="cart-items">
 
                 <!-- Položka 1 -->
-                <div class="cart-item">
-                    <!-- Checkbox pre každý produkt -->
-                    <input type="checkbox" class="item-check" />
-                    <div class="item-info">
-                        <img src="images/product-placeholder.png" alt="Granátové jablko" />
-                        <div class="item-name">Granátové jablko</div>
+                <div class="cart-item d-flex align-items-center mb-2">
+                    <input type="checkbox" class="item-check me-3" />
+                    <img src="images/product-placeholder.png" alt="Granátové jablko" class="me-3" width="60" height="60">
+                    <div class="item-name flex-grow-1">Granátové jablko</div>
+                    <div class="item-quantity d-flex align-items-center me-3">
+                        <button class="quantity-button btn btn-outline-secondary">-</button>
+                        <span class="mx-2">2</span>
+                        <button class="quantity-button btn btn-outline-secondary">+</button>
                     </div>
-                    <div class="item-quantity">
-                        <button class="quantity-button">-</button>
-                        <span>1</span>
-                        <button class="quantity-button">+</button>
+                    <div class="item-price me-3">4.59 €</div>
+                    <div class="remove-item">
+                        <img src="images/icons/close.png" alt="Odstrániť" width="24" height="24">
                     </div>
-                    <div class="item-price">4.50 €</div>
-                    <div class="remove-item">x</div>
                 </div>
 
                 <!-- Položka 2 -->
-                <div class="cart-item">
-                    <input type="checkbox" class="item-check" />
-                    <div class="item-info">
-                        <img src="images/product-placeholder.png" alt="Produkt" />
-                        <div class="item-name">Názov produktu</div>
+                <div class="cart-item d-flex align-items-center mb-2">
+                    <input type="checkbox" class="item-check me-3" />
+                    <img src="images/product-placeholder.png" alt="Produkt" class="me-3" width="60" height="60">
+                    <div class="item-name flex-grow-1">Názov produktu</div>
+                    <div class="item-quantity d-flex align-items-center me-3">
+                        <button class="quantity-button btn btn-outline-secondary">-</button>
+                        <span class="mx-2">1</span>
+                        <button class="quantity-button btn btn-outline-secondary">+</button>
                     </div>
-                    <div class="item-quantity">
-                        <button class="quantity-button">-</button>
-                        <span>2</span>
-                        <button class="quantity-button">+</button>
+                    <div class="item-price me-3">cena €</div>
+                    <div class="remove-item">
+                        <img src="images/icons/close.png" alt="Odstrániť" width="24" height="24">
                     </div>
-                    <div class="item-price">cena €</div>
-                    <div class="remove-item">x</div>
                 </div>
             </div>
-            <span class="delivery-note">Doručenie od 1,39 €</span>
+
+            <!-- Poznámka ku doručeniu -->
+            <div class="delivery-note mt-2 text-muted">Doručenie od 3,39 €</div>
         </div>
 
-        <!-- Skupina 2: Farma B -->
-        <div class="cart-group">
-            <div class="cart-group-header">
+        <!-- Skupina 2 -->
+        <div class="cart-group mb-4 p-3 border">
+            <div class="cart-group-header fw-bold mb-2">
                 Zásielka od Názov farmy
             </div>
+
             <div class="cart-items">
-                <!-- Položka 1 -->
-                <div class="cart-item">
-                    <input type="checkbox" class="item-check" />
-                    <div class="item-info">
-                        <img src="images/product-placeholder.png" alt="Produkt" />
-                        <div class="item-name">Názov produktu</div>
+                <div class="cart-item d-flex align-items-center mb-2">
+                    <input type="checkbox" class="item-check me-3" />
+                    <img src="images/product-placeholder.png" alt="Produkt" class="me-3" width="60" height="60">
+                    <div class="item-name flex-grow-1">Názov produktu</div>
+                    <div class="item-quantity d-flex align-items-center me-3">
+                        <button class="quantity-button btn btn-outline-secondary">-</button>
+                        <span class="mx-2">1</span>
+                        <button class="quantity-button btn btn-outline-secondary">+</button>
                     </div>
-                    <div class="item-quantity">
-                        <button class="quantity-button">-</button>
-                        <span>3</span>
-                        <button class="quantity-button">+</button>
+                    <div class="item-price me-3">cena €</div>
+                    <div class="remove-item">
+                        <img src="images/icons/close.png" alt="Odstrániť" width="24" height="24">
                     </div>
-                    <div class="item-price">cena €</div>
-                    <div class="remove-item">x</div>
-                </div>
-                <!-- Položka 2 -->
-                <div class="cart-item">
-                    <input type="checkbox" class="item-check" />
-                    <div class="item-info">
-                        <img src="images/product-placeholder.png" alt="Produkt" />
-                        <div class="item-name">Názov produktu</div>
-                    </div>
-                    <div class="item-quantity">
-                        <button class="quantity-button">-</button>
-                        <span>1</span>
-                        <button class="quantity-button">+</button>
-                    </div>
-                    <div class="item-price">cena €</div>
-                    <div class="remove-item">x</div>
                 </div>
             </div>
-            <span class="delivery-note">Doručenie od 1,39 €</span>
+
+            <div class="delivery-note mt-2 text-muted">Doručenie od 3,39 €</div>
         </div>
 
-        <!-- Skupina 3: Farma C -->
-        <div class="cart-group">
-            <div class="cart-group-header">
+        <!-- Skupina 3 (osobný odber) -->
+        <div class="cart-group mb-4 p-3 border">
+            <div class="cart-group-header fw-bold mb-2">
                 Zásielka od Názov farmy
             </div>
+
             <div class="cart-items">
-                <!-- Položka 1 -->
-                <div class="cart-item">
-                    <input type="checkbox" class="item-check" />
-                    <div class="item-info">
-                        <img src="images/product-placeholder.png" alt="Produkt" />
-                        <div class="item-name">Názov produktu</div>
+                <div class="cart-item d-flex align-items-center mb-2">
+                    <input type="checkbox" class="item-check me-3" />
+                    <img src="images/product-placeholder.png" alt="Produkt" class="me-3" width="60" height="60">
+                    <div class="item-name flex-grow-1">Názov produktu</div>
+                    <div class="item-quantity d-flex align-items-center me-3">
+                        <button class="quantity-button btn btn-outline-secondary">-</button>
+                        <span class="mx-2">2</span>
+                        <button class="quantity-button btn btn-outline-secondary">+</button>
                     </div>
-                    <div class="item-quantity">
-                        <button class="quantity-button">-</button>
-                        <span>2</span>
-                        <button class="quantity-button">+</button>
+                    <div class="item-price me-3">cena €</div>
+                    <div class="remove-item">
+                        <img src="images/icons/close.png" alt="Odstrániť" width="24" height="24">
                     </div>
-                    <div class="item-price">cena €</div>
-                    <div class="remove-item">x</div>
                 </div>
             </div>
-            <span class="delivery-note">!! LEN OSOBNÝ ODBER !!</span>
+
+            <div class="delivery-note mt-2 text-danger">
+                !! LEN OSOBNÝ ODBER !!
+            </div>
+        </div>
+
+        <!-- Skupina 4 (napr. doručovateľ) -->
+        <div class="cart-group mb-4 p-3 border">
+            <div class="cart-group-header fw-bold mb-2">
+                Zásielka od doručovateľa
+            </div>
+
+            <div class="cart-items">
+                <div class="cart-item d-flex align-items-center mb-2">
+                    <input type="checkbox" class="item-check me-3" />
+                    <img src="images/product-placeholder.png" alt="Produkt" class="me-3" width="60" height="60">
+                    <div class="item-name flex-grow-1">Názov produktu</div>
+                    <div class="item-quantity d-flex align-items-center me-3">
+                        <button class="quantity-button btn btn-outline-secondary">-</button>
+                        <span class="mx-2">1</span>
+                        <button class="quantity-button btn btn-outline-secondary">+</button>
+                    </div>
+                    <div class="item-price me-3">cena €</div>
+                    <div class="remove-item">
+                        <img src="images/icons/close.png" alt="Odstrániť" width="24" height="24">
+                    </div>
+                </div>
+            </div>
+
+            <div class="delivery-note mt-2 text-muted">Doručenie od cena €</div>
         </div>
     </div>
+    <!-- Koniec skupín košíka -->
 
     <!-- Súhrn košíka -->
-    <div class="cart-summary">
-        <div class="cart-total">
-            <span class="cart-total-label">Celkom na úhradu:</span>
-            21.42 €
+    <div class="cart-summary p-3 border">
+        <div class="cart-total d-flex justify-content-between align-items-center mb-2">
+            <span class="cart-total-label fw-bold">Celkom na úhradu:</span>
+            <span class="fs-5">21,42 €</span>
         </div>
-        <div class="cart-dph">Ceny bez DPH: 15.28 €</div>
-        <button class="btn-checkout">Prejsť k údajom</button>
+        <div class="cart-dph text-muted mb-3">Cena bez DPH: 18,23 €</div>
+        <button class="btn-checkout btn btn-primary w-100 py-3">
+            Prejsť k údajom
+        </button>
     </div>
+
+    <!-- Last minute add to cart -->
+    <section class="upsell-section my-5">
+        <div class="section-header d-flex justify-content-between align-items-center mb-4">
+            <h2>Pridajte do svojej objednávky!</h2>
+            <div class="arrows">
+                <button class="btn btn-outline-secondary arrow-left">&lt;</button>
+                <button class="btn btn-outline-secondary arrow-right">&gt;</button>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 product-grid">
+            <div class="col">
+                <div class="card product-card text-center h-100">
+                    <img src="images/empty.png" class="card-img" alt="Produkt">
+                    <div class="card-body">
+                        <h5 class="card-title">Názov produktu</h5>
+
+                        <!-- Riadok pre cenu -->
+                        <div class="price-container">
+                            <span class="price fw-bold">cena €</span>
+                            <span class="price-per">cena €/kg</span>
+                        </div>
+
+                        <!-- Riadok pre lokáciu -->
+                        <div class="icon_text-container">
+                            <img src="images/icons/location.png" alt="Poloha" class="small-icon">
+                            <p class="card-location">Názov farmy, sídlo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card product-card text-center h-100">
+                    <img src="images/empty.png" class="card-img" alt="Produkt">
+                    <div class="card-body">
+                        <h5 class="card-title">Názov produktu</h5>
+
+                        <!-- Riadok pre cenu -->
+                        <div class="price-container">
+                            <span class="price fw-bold">cena €</span>
+                            <span class="price-per">cena €/kg</span>
+                        </div>
+
+                        <!-- Riadok pre lokáciu -->
+                        <div class="icon_text-container">
+                            <img src="images/icons/location.png" alt="Poloha" class="small-icon">
+                            <p class="card-location">Názov farmy, sídlo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card product-card text-center h-100">
+                    <img src="images/empty.png" class="card-img" alt="Produkt">
+                    <div class="card-body">
+                        <h5 class="card-title">Názov produktu</h5>
+
+                        <!-- Riadok pre cenu -->
+                        <div class="price-container">
+                            <span class="price fw-bold">cena €</span>
+                            <span class="price-per">cena €/kg</span>
+                        </div>
+
+                        <!-- Riadok pre lokáciu -->
+                        <div class="icon_text-container">
+                            <img src="images/icons/location.png" alt="Poloha" class="small-icon">
+                            <p class="card-location">Názov farmy, sídlo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card product-card text-center h-100">
+                    <img src="images/empty.png" class="card-img" alt="Produkt">
+                    <div class="card-body">
+                        <h5 class="card-title">Názov produktu</h5>
+
+                        <!-- Riadok pre cenu -->
+                        <div class="price-container">
+                            <span class="price fw-bold">cena €</span>
+                            <span class="price-per">cena €/kg</span>
+                        </div>
+
+                        <!-- Riadok pre lokáciu -->
+                        <div class="icon_text-container">
+                            <img src="images/icons/location.png" alt="Poloha" class="small-icon">
+                            <p class="card-location">Názov farmy, sídlo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reklamné bannery -->
+    <section class="ads-section my-5">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card ad-banner text-center h-100">
+                    <div class="card-body d-flex align-items-center justify-content-center">
+                        <p class="mb-0">Reklama</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card ad-banner text-center h-100">
+                    <div class="card-body d-flex align-items-center justify-content-center">
+                        <p class="mb-0">Reklama</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
 
-<!-- Doplňkové produkty (Upsell) -->
-<section class="upsell-section">
-    <h2>Pridajte do svojej objednávky!</h2>
-    <div class="upsell-grid">
-        <div class="upsell-card">
-            <img src="images/product-placeholder.png" alt="Produkt" />
-            <h3>Názov produktu</h3>
-        </div>
-        <div class="upsell-card">
-            <img src="images/product-placeholder.png" alt="Produkt" />
-            <h3>Názov produktu</h3>
-        </div>
-        <div class="upsell-card">
-            <img src="images/product-placeholder.png" alt="Produkt" />
-            <h3>Názov produktu</h3>
-        </div>
-        <div class="upsell-card">
-            <img src="images/product-placeholder.png" alt="Produkt" />
-            <h3>Názov produktu</h3>
-        </div>
-    </div>
-</section>
 
-<!-- Reklamné bannery -->
-<section class="ads">
-    <div class="ad-banner">
-        <p>Reklama</p>
-    </div>
-    <div class="ad-banner">
-        <p>Reklama</p>
-    </div>
-</section>
 
 <!-- ===================== FOOTER ===================== -->
-<footer class="bg-light py-3">
-    <div class="container text-center">
-        <div class="footer-links mb-2">
-            <a href="#" class="me-3 text-decoration-none text-muted">Obchodné podmienky</a>
-            <a href="#" class="me-3 text-decoration-none text-muted">FAQ</a>
-            <a href="#" class="text-decoration-none text-muted">Kontakt</a>
-        </div>
-        <div class="footer-bottom">
-            <p class="mb-0">
-                Copyright © 2025 Zdvora.sk
-            </p>
+<footer class="bg-light py-4">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-4">
+
+            <!-- Ľavá časť s odkazmi -->
+            <div class="d-flex align-items-center gap-4 flex-wrap">
+                <a href="#" class="btn btn-secondary px-4 py-3 rounded-3">O nás</a>
+                <a href="#" class="text-decoration-none text-dark">Obchodné podmienky</a>
+                <a href="#" class="text-decoration-none text-dark">Doprava</a>
+                <a href="#" class="text-decoration-none text-dark">Platba</a>
+            </div>
+
+            <!-- Pravá časť s copyrightom -->
+            <div class="text-dark">  Copyright © 2025 Zdvora.sk </div>
         </div>
     </div>
 </footer>
