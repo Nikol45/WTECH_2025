@@ -1,12 +1,10 @@
 header {
     width: 100%;
-    background-color: #efefff;
-    border-bottom: 1px solid #ddd;
+    font-family: "Inknut Antiqua", serif;
 }
 
 body {
     font-family: "Inknut Antiqua", serif;
-    color: #333;
 }
 
 a {
@@ -16,24 +14,17 @@ a {
 
 /* ------------------------------- NAVIGATION ------------------------------------- */
 
-.search-container {
-    gap: 0.4rem;
-}
-.search-container input {
-    padding: 0.5rem 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.top-bar {
+    background-color: #79A65D;
 }
 
-.btn-search {
-    padding: 0.4rem 0.8rem;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
+/* animacia na zmiznutie placeholder textu v searchi*/
+input::placeholder {
+    transition: opacity 0.2s ease;
 }
-.btn-search:hover {
-    background-color: #666;
+  
+input:focus::placeholder {
+    opacity: 0;
 }
 
 .dropdown li {
@@ -42,14 +33,18 @@ a {
 .dropdown li:last-child {
     margin-bottom: 0;
 }
-.dropdown a {
-    color: #333;
+
+.dropdown-menu-custom {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    right: auto !important;
+    top: 105% !important;
+    text-align: center;
 }
 
-.dropdown-menu.active {
-    display: block !important;
+.btn:focus, .btn:active {
+  border: none;
 }
-
 
 /* ------------------------------- CATEGORIES ------------------------------------- */
 

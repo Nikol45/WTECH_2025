@@ -9,60 +9,60 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"> </script>
     <script src="script.js" defer></script></head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <body>
 <header>
     <!-- Top bar: Logo, navigácia, vyhľadávanie, ikonky -->
-    <div class="container py-2">
-      <div class="row align-items-center">
-        <!-- Logo -->
-        <div class="col-auto">
-          <a href="#" class="text-decoration-none">
-            <img src="logo.png" alt="Logo" style="height: auto;">
-          </a>
-        </div>
-
-        <!-- Zdvora.sk -->
-        <div class="col-2 me-5">
-          <a href="#" class="text-decoration-none fs-4 fw-bold">
-            Zdvora.sk
-          </a>
-        </div>
-
-        <!-- Vyhľadávanie -->
-        <div class="col-4 offset-1 my-2 my-lg-0">
-          <form class="d-flex">
-            <input type="search"
-                   class="form-control me-1"
-                   placeholder="Vyhľadávanie...">
-                   <button class="btn" type="submit">
-                        <img src="images/icons/search.png" alt="Vyhľadať" width="24" height="24">
-                   </button>
-          </form>
-        </div>
-
-        <!-- Icons (Heart, Cart, User) -->
-        <div class="col-2 ms-auto col-md-auto">
-            <button class="btn" type="submit">
-                <img src="images/icons/heart.png" alt="Obľúbené produkty" width="24" height="24">
-            </button>
-            <button class="btn" type="submit">
-                <img src="images/icons/cart.png" alt="Košík" width="24" height="24">
-            </button>
-
-            <!-- profil spojeny s jeho dropdown (sowy nudila som sa len to treba fixnutt) -->
-            <div class="icon-wrapper dropdown me-2">
-                <button class="btn" type="button" id="profileBtn" data-bs-toggle="dropdown">
-                    <img src="images/icons/profile.png" alt="Profil" width="24" height="24">
+    <div class="top-bar py-3">
+        <div class="container">
+          <div class="d-flex flex-wrap align-items-center justify-content-between">
+      
+            <!-- Logo -->
+            <a href="HomePage.html" class="d-flex align-items-center flex-shrink-0 me-3 text-decoration-none text-dark">
+                <img src="images/logo.png" alt="Logo" width="30" height="30" class="me-2">
+                <h2 class="mb-0">Zdvora.sk</h2>
+            </a>              
+      
+            <!-- Search -->
+            <div class="d-flex justify-content-start justify-content-md-center flex-grow-1 mx-3 my-2 my-md-0">
+                <form class="position-relative">
+                <input type="text" class="form-control pe-5" placeholder="Vyhľadávanie...">
+                <button class="btn position-absolute top-50 end-0 translate-middle-y me-2 p-0" type="submit">
+                    <img src="images/icons/search.png" alt="Search" width="20">
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="profileBtn" id="profileDropdown">
-                    <li><a class="dropdown-item" href="#">Môj profil</a></li>
-                    <li><a class="dropdown-item" href="#">Objednávky</a></li>
-                    <li><a class="dropdown-item" href="#">Odhlásiť</a></li>
-                </ul>
+                </form>
             </div>
+      
+            <!-- Icons -->
+            <div class="d-flex justify-content-end align-items-center gap-3 mt-2 mt-md-0 flex-shrink-0 ms-3">
+              <!-- Heart -->
+              <button class="btn p-0">
+                <img src="images/icons/heart.png" alt="Obľúbené produkty" width="24">
+              </button>
+      
+              <!-- Cart -->
+              <a href="ShoppingCart1_items.html" class="btn p-0">
+                <img src="images/icons/cart.png" alt="Košík" width="24">
+              </a>              
+      
+              <!-- Profile -->
+              <div class="dropdown text-center">
+                <button class="btn p-0" id="profileBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="images/icons/profile.png" alt="Profil" width="24">
+                </button>
+                <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="profileBtn">
+                  <li><a class="dropdown-item" href="#">Môj profil</a></li>
+                  <li><a class="dropdown-item" href="#">Objednávky</a></li>
+                  <li><a class="dropdown-item" href="#">Odhlásiť</a></li>
+                </ul>
+              </div>              
+            </div>
+      
+          </div>
         </div>
       </div>
-    </div>
 
     <!-- Kategórie (Dropdown Bar) -->
     <div class="categories-bar bg-secondary py-2" id="categoriesBar">
