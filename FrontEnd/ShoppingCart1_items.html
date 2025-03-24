@@ -5,64 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Zdvora.sk – Nákupný košík</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"> </script>
-    <script src="script.js" defer></script></head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"> </script>
+    <script src="script.js" defer></script>
+</head>
 <body>
+
 <header>
     <!-- Top bar: Logo, navigácia, vyhľadávanie, ikonky -->
     <div class="top-bar py-3">
         <div class="container">
-          <div class="d-flex flex-wrap align-items-center justify-content-between">
-      
-            <!-- Logo -->
-            <a href="HomePage.html" class="d-flex align-items-center flex-shrink-0 me-3 text-decoration-none text-dark">
-                <img src="images/logo.png" alt="Logo" width="30" height="30" class="me-2">
-                <h2 class="mb-0">Zdvora.sk</h2>
-            </a>              
-      
-            <!-- Search -->
-            <div class="d-flex justify-content-start justify-content-md-center flex-grow-1 mx-3 my-2 my-md-0">
-                <form class="position-relative">
-                <input type="text" class="form-control pe-5" placeholder="Vyhľadávanie...">
-                <button class="btn position-absolute top-50 end-0 translate-middle-y me-2 p-0" type="submit">
-                    <img src="images/icons/search.png" alt="Search" width="20">
-                </button>
-                </form>
+            <div class="d-flex flex-wrap align-items-center justify-content-between">
+
+                <!-- Logo -->
+                <a href="HomePage.html" class="d-flex align-items-center flex-shrink-0 me-3 text-decoration-none text-dark">
+                    <img src="images/logo.png" alt="Logo" width="30" height="30" class="me-2">
+                    <h2 class="mb-0">Zdvora.sk</h2>
+                </a>
+
+                <!-- Search -->
+                <div class="d-flex justify-content-start justify-content-md-center flex-grow-1 mx-3 my-2 my-md-0">
+                    <form class="position-relative">
+                        <input type="text" class="form-control pe-5" placeholder="Vyhľadávanie...">
+                        <button class="btn position-absolute top-50 end-0 translate-middle-y me-2 p-0" type="submit">
+                            <img src="images/icons/search.png" alt="Search" width="20">
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Icons -->
+                <div class="d-flex justify-content-end align-items-center gap-3 mt-2 mt-md-0 flex-shrink-0 ms-3">
+                    <!-- Heart -->
+                    <button class="btn p-0">
+                        <img src="images/icons/heart.png" alt="Obľúbené produkty" class="medium-icon">
+                    </button>
+
+                    <!-- Cart -->
+                    <a href="ShoppingCart1_items.html" class="btn p-0">
+                        <img src="images/icons/cart.png" alt="Košík" class="medium-icon">
+                    </a>
+
+                    <!-- Profile -->
+                    <div class="dropdown text-center">
+                        <button class="btn p-0" id="profileBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="images/icons/profile.png" alt="Profil" class="medium-icon">
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="profileBtn">
+                            <li><a class="dropdown-item" href="#">Môj profil</a></li>
+                            <li><a class="dropdown-item" href="#">Objednávky</a></li>
+                            <li><a class="dropdown-item" href="#">Odhlásiť</a></li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
-      
-            <!-- Icons -->
-            <div class="d-flex justify-content-end align-items-center gap-3 mt-2 mt-md-0 flex-shrink-0 ms-3">
-              <!-- Heart -->
-              <button class="btn p-0">
-                <img src="images/icons/heart.png" alt="Obľúbené produkty" width="24">
-              </button>
-      
-              <!-- Cart -->
-              <a href="ShoppingCart1_items.html" class="btn p-0">
-                <img src="images/icons/cart.png" alt="Košík" width="24">
-              </a>              
-      
-              <!-- Profile -->
-              <div class="dropdown text-center">
-                <button class="btn p-0" id="profileBtn" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="images/icons/profile.png" alt="Profil" width="24">
-                </button>
-                <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="profileBtn">
-                  <li><a class="dropdown-item" href="#">Môj profil</a></li>
-                  <li><a class="dropdown-item" href="#">Objednávky</a></li>
-                  <li><a class="dropdown-item" href="#">Odhlásiť</a></li>
-                </ul>
-              </div>              
-            </div>
-      
-          </div>
         </div>
-      </div>
+    </div>
 
     <!-- Kategórie (Dropdown Bar) -->
     <div class="categories-bar bg-secondary py-2" id="categoriesBar">
@@ -71,77 +74,77 @@
                 <!-- 1. Kategória -->
                 <li class="me-3 mb-2">
                     <button class="btn btn-outline-light category-btn">
-                        <img src="images/category/fruit.png" alt="Ovocie" width="24" height="24"><br>
+                        <img src="images/category/fruit.png" alt="Ovocie" class="medium-icon" height="24"><br>
                         <span>OVOCIE</span>
                     </button>
                 </li>
                 <!-- 2. Kategória -->
                 <li class="me-3 mb-2">
                     <button class="btn btn-outline-light category-btn">
-                        <img src="images/category/vegetable.png" alt="Zelenina" width="24" height="24"><br>
+                        <img src="images/category/vegetable.png" alt="Zelenina" class="medium-icon" height="24"><br>
                         <span>ZELENINA</span>
                     </button>
                 </li>
                 <!-- 3. Kategória -->
                 <li class="me-3 mb-2">
                     <button class="btn btn-outline-light category-btn">
-                        <img src="images/category/cheese.png" alt="Mliečne výrobky" width="24" height="24"><br>
+                        <img src="images/category/cheese.png" alt="Mliečne výrobky" class="medium-icon" height="24"><br>
                         <span>MLIEČNE VÝROBKY, VAJCIA</span>
                     </button>
                 </li>
                 <!-- 4. Kategória -->
                 <li class="me-3 mb-2">
                     <button class="btn btn-outline-light category-btn">
-                        <img src="images/category/meat.png" alt="Mäsove výrobky" width="24" height="24"><br>
+                        <img src="images/category/meat.png" alt="Mäsove výrobky" class="medium-icon" height="24"><br>
                         <span>MÄSOVÉ VÝROBKY</span>
                     </button>
                 </li>
                 <!-- 5. Kategória -->
                 <li class="me-3 mb-2">
                     <button class="btn btn-outline-light category-btn">
-                        <img src="images/category/bread.png" alt="Pečivo" width="24" height="24"><br>
+                        <img src="images/category/bread.png" alt="Pečivo" class="medium-icon" height="24"><br>
                         <span>PEČIVO A OBILNINY</span>
                     </button>
                 </li>
                 <!-- 6. Kategória -->
                 <li class="me-3 mb-2">
                     <button class="btn btn-outline-light category-btn">
-                        <img src="images/category/drink.png" alt="Nápoje" width="24" height="24"><br>
+                        <img src="images/category/drink.png" alt="Nápoje" class="medium-icon" height="24"><br>
                         <span>DOMÁCE NÁPOJE</span>
                     </button>
                 </li>
                 <!-- 7. Kategória -->
                 <li class="me-3 mb-2">
                     <button class="btn btn-outline-light category-btn">
-                        <img src="images/category/honey.png" alt="Med+Orechy" width="24" height="24"><br>
+                        <img src="images/category/honey.png" alt="Med+Orechy" class="medium-icon" height="24"><br>
                         <span>ORECHY A VČELIE PRODUKTY</span>
                     </button>
                 </li>
                 <!-- 8. Kategória -->
                 <li class="me-3 mb-2">
                     <button class="btn btn-outline-light category-btn">
-                        <img src="images/category/herb.png" alt="Byliny" width="24" height="24"><br>
+                        <img src="images/category/herb.png" alt="Byliny" class="medium-icon" height="24"><br>
                         <span>BYLINKY A KORENINY</span>
                     </button>
                 </li>
                 <!-- 9. Kategória -->
                 <li class="me-3 mb-2">
                     <button class="btn btn-outline-light category-btn">
-                        <img src="images/category/marmalade.png" alt="Zavaraniny" width="24" height="24"><br>
+                        <img src="images/category/marmalade.png" alt="Zavaraniny" class="medium-icon" height="24"><br>
                         <span>DOMÁCE ZAVÁRANINY</span>
                     </button>
                 </li>
                 <!-- 10. Kategória -->
                 <li class="mb-2">
                     <button class="btn btn-outline-light category-btn">
-                        <img src="images/category/brmbrm.png" alt="Farmar" width="24" height="24"><br>
+                        <img src="images/category/brmbrm.png" alt="Farmar" class="medium-icon" height="24"><br>
                         <span>POĽNOHOSPODÁRSKE POTREBY</span>
                     </button>
                 </li>
                 <!-- 11. Kategória -->
                 <li class="mb-2">
                     <button class="btn btn-outline-light category-btn">
-                        <img src="images/category/livestock.png" alt="Chovateľ" width="24" height="24"><br>
+                        <img src="images/category/livestock.png" alt="Chovateľ" class="medium-icon" height="24"><br>
                         <span>CHOVATEĽSKÉ POTREBY</span>
                     </button>
                 </li>

@@ -1,3 +1,7 @@
+html {
+    font-size: 12px;
+}
+
 header {
     width: 100%;
     font-family: "Inknut Antiqua", serif;
@@ -22,7 +26,7 @@ a {
 input::placeholder {
     transition: opacity 0.2s ease;
 }
-  
+
 input:focus::placeholder {
     opacity: 0;
 }
@@ -43,7 +47,7 @@ input:focus::placeholder {
 }
 
 .btn:focus, .btn:active {
-  border: none;
+    border: none;
 }
 
 /* ------------------------------- CATEGORIES ------------------------------------- */
@@ -216,20 +220,14 @@ input:focus::placeholder {
     margin-top: 1rem;
 }
 
-.icon_text-container {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
 .small-icon {
-    width: 20px;  
-    height: 20px;
+    width: 16px;
+    height: 16px;
 }
 
 .medium-icon {
-    width: 25px;  
-    height: 25px;
+    width: 24px;
+    height: 24px;
 }
 
 .big-icon {
@@ -1383,3 +1381,35 @@ main {
 }
 
 
+
+
+
+.half-image-container {
+    position: relative;
+}
+
+.img-half-cover {
+    width: 100%;
+    display: block;
+}
+
+.discount {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25%;
+    aspect-ratio: 1 / 1;
+    background: url('images/akcia.png') no-repeat center center;
+    background-size: contain;
+    transform: rotate(-8deg);
+}
+
+.discount-text {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    color: #444;
+    font-weight: bold;
+}
