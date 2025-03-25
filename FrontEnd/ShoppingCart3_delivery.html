@@ -171,116 +171,246 @@
     <button class="step-btn" data-step="sumar">Sumarizácia</button>
 </div>
 
-<main>
-    <!-- Odkaz "Späť na údaje" -->
-    <a href="#" class="back-link">
-        <span class="back-arrow">←</span>
-        Späť na údaje
+<main class="container py-4">
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs mb-4">
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="#">Košík</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="#">Údaje</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Doprava a platba</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="#">Sumarizácia</a>
+        </li>
+    </ul>
+
+    <!-- Späť na údaje -->
+    <a href="#" class="d-inline-flex align-items-center mb-4 text-decoration-none text-dark">
+        <span class="me-1">←</span> Späť na údaje
     </a>
 
-    <div class="shipping-payment-container">
-        <!-- Blok "Vyberte spôsob dopravy" -->
-        <div class="shipping-block">
-            <h2>Vyberte spôsob dopravy</h2>
+    <!-- Nadpis -->
+    <h2 class="fw-bold mb-4">Vyberte spôsob dopravy</h2>
 
-            <!-- Príklad: Doručenie z konkrétnej farmy -->
-            <div class="shipping-farm-group">
-                <div class="farm-group-header">
-                    Zásielka z farmy Farma pod Lipou
-                    <span style="float: right; font-size: 0.9rem; color: #999;">Doručenie nie je možné.</span>
-                </div>
-                <div class="farm-items">
-                    <div class="farm-item-card">
-                        Názov produktu
-                    </div>
-                    <div class="farm-item-card">
-                        Názov produktu
-                    </div>
-                    <div class="farm-item-card">
-                        Názov produktu
-                    </div>
-                </div>
-                <div class="farm-delivery-info">Doručenie nie je možné</div>
-            </div>
-
-            <!-- Druhá farma -->
-            <div class="shipping-farm-group">
-                <div class="farm-group-header">Zásielka z farmy názov farmy</div>
-                <div class="farm-items">
-                    <div class="farm-item-card">
-                        Názov produktu
-                    </div>
-                    <div class="farm-item-card">
-                        Názov produktu
-                    </div>
-                </div>
-                <div class="farm-delivery-info">Dátum doručenia: 23.3. – 25.3.</div>
-                <div class="shipping-price-block">Doplatok: 15,90 €</div>
+    <!-- 1. Zásielka z farmy (doručenie nie je možné) -->
+    <div class="border rounded-3 p-3 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="fw-bold mb-0">Zásielka z farmy Farma pod Lipou</h5>
+            <!-- "Doručenie nie je možné" + info ikonka s tooltipom -->
+            <div>
+                <span class="text-muted">
+                    Doručenie nie je možné
+                    <span
+                            class="ms-2"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Len osobný odber"
+                    >
+                        <img src="images/icons/info.png" alt="info" width="16" height="16">
+                    </span>
+                </span>
             </div>
         </div>
 
-        <!-- Spôsob dopravy (radio buttons) -->
-        <div class="shipping-block">
-            <h2>Spôsob dopravy</h2>
-            <div class="delivery-options">
-                <label class="delivery-option">
-                    <input type="radio" name="deliveryMethod" value="courier" checked />
-                    Doručenie na adresu cez GLS
-                </label>
-                <label class="delivery-option">
-                    <input type="radio" name="deliveryMethod" value="pickup" />
-                    Doručenie na Zásielkovňu
-                </label>
-                <label class="delivery-option">
-                    <input type="radio" name="deliveryMethod" value="personal" />
-                    Osobný odber
-                </label>
-                <p class="delivery-info">Možné doručenie v termíne: 23.3. – 25.3.</p>
+        <!-- Produkty (4 karty) -->
+        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-3 mb-3">
+            <div class="col">
+                <div class="border p-2 text-center">
+                    <div class="bg-secondary mb-2" style="width:100%; height:80px;"></div>
+                    <p class="fw-bold mb-0">Názov produktu<br>cena €</p>
+                    <p class="text-muted fs-6">cena €/ks</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="border p-2 text-center">
+                    <div class="bg-secondary mb-2" style="width:100%; height:80px;"></div>
+                    <p class="fw-bold mb-0">Názov produktu<br>cena €</p>
+                    <p class="text-muted fs-6">cena €/ks</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="border p-2 text-center">
+                    <div class="bg-secondary mb-2" style="width:100%; height:80px;"></div>
+                    <p class="fw-bold mb-0">Názov produktu<br>cena €</p>
+                    <p class="text-muted fs-6">cena €/ks</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="border p-2 text-center">
+                    <div class="bg-secondary mb-2" style="width:100%; height:80px;"></div>
+                    <p class="fw-bold mb-0">Názov produktu<br>cena €</p>
+                    <p class="text-muted fs-6">cena €/ks</p>
+                </div>
             </div>
         </div>
 
-        <!-- Spôsob platby (radio buttons) -->
-        <div class="shipping-block">
-            <h2>Vyberte spôsob platby</h2>
-            <div class="payment-options">
-                <label class="payment-option">
-                    <input type="radio" name="paymentMethod" value="card" checked />
-                    Kartou online
-                </label>
-                <label class="payment-option">
-                    <input type="radio" name="paymentMethod" value="bank" />
-                    Bankový prevod
-                </label>
-                <label class="payment-option">
-                    <input type="radio" name="paymentMethod" value="cash" />
-                    Dobierka
-                </label>
-            </div>
+        <!-- Typ doručenia - tu len osobný odber -->
+        <div class="mb-3">
+            <button class="btn btn-outline-secondary btn-sm" disabled>
+                Vyzdvihnutie na farme
+                <img src="images/icons/locker.png" alt="lock" width="16" class="ms-1">
+            </button>
         </div>
 
-        <!-- Tlačidlo "Prejsť na sumár/review" -->
-        <button class="btn-next-step">Prejsť na sumár/review</button>
+        <!-- Cena dokopy -->
+        <div class="text-end fw-bold">
+            Dokopy: 15,92 €
+        </div>
     </div>
 
-    <!-- Reklamné bannery -->
-    <section class="ads-section my-5">
-        <div class="col">
-            <div class="col-md-12 mb-4">
-                <div class="card ad-banner text-center h-100">
-                    <div class="card-body d-flex align-items-center justify-content-center">
-                        <p class="mb-0">Reklama</p>
-                    </div>
+    <!-- 2. Zásielka z inej farmy (doručenie je dostupné) -->
+    <div class="border rounded-3 p-3 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="fw-bold mb-0">Zásielka z farmy názov farmy</h5>
+            <div class="text-muted">Doručenie od cena €</div>
+        </div>
+
+        <!-- Produkty (3 karty + prázdny?) -->
+        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-3 mb-3">
+            <div class="col">
+                <div class="border p-2 text-center">
+                    <div class="bg-secondary mb-2" style="width:100%; height:80px;"></div>
+                    <p class="fw-bold mb-0">Názov produktu<br>cena €</p>
+                    <p class="text-muted fs-6">cena €/ks</p>
                 </div>
             </div>
-            <div class="col-md-12 mb-4">
-                <div class="card ad-banner text-center h-100">
-                    <div class="card-body d-flex align-items-center justify-content-center">
-                        <p class="mb-0">Reklama</p>
-                    </div>
+            <div class="col">
+                <div class="border p-2 text-center">
+                    <div class="bg-secondary mb-2" style="width:100%; height:80px;"></div>
+                    <p class="fw-bold mb-0">Názov produktu<br>cena €</p>
+                    <p class="text-muted fs-6">cena €/ks</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="border p-2 text-center">
+                    <div class="bg-secondary mb-2" style="width:100%; height:80px;"></div>
+                    <p class="fw-bold mb-0">Názov produktu<br>cena €</p>
+                    <p class="text-muted fs-6">cena €/ks</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="border p-2 text-center">
+                    <div class="bg-secondary mb-2" style="width:100%; height:80px;"></div>
+                    <p class="fw-bold mb-0">Názov produktu<br>cena €</p>
+                    <p class="text-muted fs-6">cena €/ks</p>
                 </div>
             </div>
         </div>
-    </section>
+
+        <!-- Select s dopravou pre konkrétnu farmu (napr. Dovoz, Osobné vyzdvihnutie...) -->
+        <div class="mb-3">
+            <select class="form-select form-select-sm w-auto">
+                <option value="dovoz">Dovoz</option>
+                <option value="osobne">Osobné vyzdvihnutie</option>
+            </select>
+        </div>
+
+        <!-- Cena dokopy -->
+        <div class="text-end fw-bold">
+            Dokopy: cena €
+        </div>
+    </div>
+
+    <!-- Oddelenie produktových blokov a výberu dopravy (bod 3) -->
+    <hr class="mb-4" />
+
+    <!-- Výber spôsobu dopravy (celkový) -->
+    <div class="mb-4">
+        <h5 class="fw-bold mb-3">Spôsob dopravy</h5>
+        <!-- Pre zrozumiteľnosť: dostupné možnosti budú ako "aktívne" (checkboxy) a nedostupné môžu byť disabled -->
+        <div class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" id="deliveryGls">
+            <label class="form-check-label" for="deliveryGls">
+                Doručenie na adresu cez GLS
+            </label>
+            <!-- Môžeme pridať aj nejaký drobný select, ak je to relevantné → zobraziť až po zaškrtnutí, atď. -->
+            <select class="form-select form-select-sm w-auto d-inline-block ms-3">
+                <option>Štandard</option>
+                <option>Express</option>
+            </select>
+        </div>
+        <div class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" id="deliveryBox">
+            <label class="form-check-label" for="deliveryBox">
+                Doručenie do balíkomatu
+            </label>
+            <select class="form-select form-select-sm w-auto d-inline-block ms-3">
+                <option>Balíkomat X</option>
+                <option>Balíkomat Y</option>
+            </select>
+        </div>
+        <p class="text-muted mb-0">Predpokladaný dátum doručenia: 23.3. - 25.3.</p>
+    </div>
+
+    <!-- Výber spôsobu platby -->
+    <div class="mb-4">
+        <h5 class="fw-bold mb-3">Vyberte spôsob platby</h5>
+        <!-- Dostupné a nedostupné spôsoby môžeme naznačiť podobne. Napr. v tomto príklade všetky aktivne. -->
+        <div class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" id="payCardOnline">
+            <label class="form-check-label" for="payCardOnline">
+                Kartou online
+            </label>
+        </div>
+        <div class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" id="payBank">
+            <label class="form-check-label" for="payBank">
+                Bankový prevod
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="payDobierka">
+            <label class="form-check-label" for="payDobierka">
+                Dobierka
+            </label>
+        </div>
+    </div>
+
+    <!-- Riadok so sumou (bod 4) - zobrazí sa napr. po vybraní spôsobu dopravy -->
+    <div id="summaryRow" class="border p-3 mb-4 d-none">
+        <div class="d-flex flex-wrap gap-3 align-items-center justify-content-between">
+            <div>
+                <p class="mb-1">Cena tovaru: <strong>25,92 €</strong></p>
+                <p class="mb-1">Cena dopravy: <strong>3,39 €</strong></p>
+                <p class="mb-0">Celkom: <strong>29,31 €</strong></p>
+            </div>
+            <button class="btn btn-secondary btn-sm">Zmeniť dopravu</button>
+        </div>
+    </div>
+
+    <!-- Tlačidlo Prejsť na sumarizáciu -->
+    <div class="text-end mb-5">
+        <button class="btn btn-primary px-4 py-2">Prejsť na sumarizáciu</button>
+    </div>
+
+    <!-- Reklamné bloky -->
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="border text-center p-5">
+                Reklama
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="border text-center p-5">
+                Reklama
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="border text-center p-5">
+                Reklama
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="border text-center p-5">
+                Reklama
+            </div>
+        </div>
+    </div>
 
 </main>
 

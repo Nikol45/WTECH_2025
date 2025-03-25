@@ -29,4 +29,45 @@ document.addEventListener('DOMContentLoaded', () => {
       catBar.classList.toggle('collapsed');
       toggleBtn.classList.toggle('rotated-arrow');
     });
+
+    const differentAddress = document.getElementById('differentAddress');
+    const deliveryAddressSection = document.getElementById('deliveryAddressSection');
+
+    // Skryť / zobraziť dodaciu adresu
+    differentAddress.addEventListener('change', () => {
+        if (differentAddress.checked) {
+            deliveryAddressSection.classList.remove('d-none');
+        } else {
+            deliveryAddressSection.classList.add('d-none');
+        }
+    });
+
+    const companyCheck = document.getElementById('companyCheck');
+    const companySection = document.getElementById('companySection');
+
+    // Skryť / zobraziť firmu
+    companyCheck.addEventListener('change', () => {
+        if (companyCheck.checked) {
+            companySection.classList.remove('d-none');
+        } else {
+            companySection.classList.add('d-none');
+        }
+    });
+
+    const summaryRow = document.getElementById('summaryRow');
+    const deliveryGls = document.getElementById('deliveryGls');
+    const deliveryBox = document.getElementById('deliveryBox');
+
+
+    // Ukážkové zobrazenie sumy, keď sa zaškrtne jedna z možností dopravy
+    [deliveryGls, deliveryBox].forEach(input => {
+        input.addEventListener('change', () => {
+            // Ak aspoň jeden je zaškrtnutý, zobrazíme riadok
+            if (deliveryGls.checked || deliveryBox.checked) {
+                summaryRow.classList.remove('d-none');
+            } else {
+                summaryRow.classList.add('d-none');
+            }
+        });
+    });
 });

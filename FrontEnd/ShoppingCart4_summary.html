@@ -171,143 +171,188 @@
     <button class="step-btn active" data-step="sumar">Sumarizácia</button>
 </div>
 
-<main>
-    <!-- Odkaz "Späť na dopravu a platbu" -->
-    <a href="#" class="back-link">
-        <span class="back-arrow">←</span>
-        Späť na dopravu a platbu
+<main class="container py-4">
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs mb-4">
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="#">Košík</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="#">Údaje</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="#">Doprava a platba</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Sumarizácia</a>
+        </li>
+    </ul>
+
+    <!-- Späť na dopravu a platbu -->
+    <a href="#" class="d-inline-flex align-items-center mb-4 text-decoration-none text-dark">
+        <span class="me-1">←</span> Späť na dopravu a platbu
     </a>
 
-    <div class="summary-container">
-        <!-- Ľavý stĺpec: Osobné údaje, adresy, firma, poznámky... -->
-        <div class="summary-left">
-            <h3>Osobné údaje</h3>
-            <div class="summary-block">
-                <div class="summary-block-title">Meno:</div>
-                <p>Jana Tichá</p>
+    <div class="row g-4">
+        <!-- Ľavý stĺpec: Osobné údaje, adresy, firma, poznámka -->
+        <div class="col-lg-8">
+            <!-- Card pre celý blok osobných údajov, adries a firmy -->
+            <div class="card p-3 border-0 shadow-sm">
+                <!-- Hlavný nadpis karty -->
+                <h5 class="fw-bold mb-3">Osobné údaje</h5>
+
+                <div class="ms-2 mb-3">
+                    <p class="mb-1"><strong>Meno:</strong> Jana Tichá</p>
+                    <p class="mb-1"><strong>Email:</strong> janaticha@zdravomail.com</p>
+                    <p class="mb-1"><strong>Telefónne číslo:</strong> +421 111 222 333</p>
+                </div>
+
+                <hr class="my-3"/>
+
+                <!-- Fakturačná adresa -->
+                <h6 class="fw-bold ms-2">Fakturačná adresa</h6>
+                <div class="ms-2 mb-3">
+                    <p class="mb-1">Ulica 12, 841 01</p>
+                    <p class="mb-1">Bratislava</p>
+                    <p class="mb-1">Slovensko</p>
+                </div>
+
+                <hr class="my-3"/>
+
+                <!-- Dodacia adresa -->
+                <h6 class="fw-bold ms-2">Dodacia adresa</h6>
+                <div class="ms-2 mb-3">
+                    <p class="mb-1">Ulica Medová, 24</p>
+                    <p class="mb-1">821 02 Košice, Slovensko</p>
+                </div>
+
+                <hr class="my-3"/>
+
+                <!-- Nákup na firmu -->
+                <h6 class="fw-bold ms-2">Nákup na firmu</h6>
+                <div class="ms-2 mb-3">
+                    <p class="mb-1">IČO: 99988877</p>
+                    <p class="mb-1">Názov spoločnosti: Zdravo s.r.o.</p>
+                </div>
+
+                <hr class="my-3"/>
+
+                <!-- Poznámka pre kuriéra -->
+                <h6 class="fw-bold ms-2">Poznámka pre kuriéra</h6>
+                <div class="ms-2 mb-3">
+                    <p class="mb-1">
+                        Prosím zvoniť 2x, vchod je z druhej strany budovy.
+                    </p>
+                </div>
+
+                <a href="#" class="ms-2 text-primary">Upraviť údaje</a>
             </div>
-            <div class="summary-block">
-                <div class="summary-block-title">Email:</div>
-                <p>janaticha@zdravomail.com</p>
-            </div>
-            <div class="summary-block">
-                <div class="summary-block-title">Telefónne číslo:</div>
-                <p>+421 111 222 333</p>
-            </div>
-
-            <hr style="margin: 1rem 0;" />
-
-            <h3>Fakturačná adresa</h3>
-            <p>Ulica 12, 841 01</p>
-            <p>Bratislava</p>
-            <p>Slovensko</p>
-
-            <hr style="margin: 1rem 0;" />
-
-            <h3>Dodacia adresa</h3>
-            <p>Ulica Medová, 24</p>
-            <p>821 02 Košice, Slovensko</p>
-
-            <hr style="margin: 1rem 0;" />
-
-            <h3>Nákup na firmu</h3>
-            <p>IČO: 99988877, Názov spoločnosti: Zdravo s.r.o.</p>
-
-            <hr style="margin: 1rem 0;" />
-
-            <h3>Poznámka pre kuriéra</h3>
-            <p>Prosím zvoniť 2x, vchod je z druhej strany budovy.</p>
-
-            <hr style="margin: 1rem 0;" />
-
-            <h3>Upraviť údaje</h3>
-            <p><a href="#">Kliknite sem, ak chcete zmeniť svoje údaje</a></p>
         </div>
 
-        <!-- Pravý stĺpec: Sumár objednávky (podľa vzoru) -->
-        <div class="summary-right">
-            <div class="order-summary">
-                <h3>Sumarizácia objednávky</h3>
+        <!-- Pravý stĺpec: Sumarizácia objednávky -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-3">Sumarizácia objednávky</h5>
 
-                <!-- 1. Farma -->
-                <div class="farm-summary-block">
-                    <h4>Názov farmy</h4>
-                    <div class="farm-product-line">
-                        <span class="product-name">5 ks Granátové jablko</span>
-                        <span class="price">cena €</span>
+                    <!-- 1. Farma -->
+                    <div class="p-2 bg-light mb-3 rounded-2">
+                        <strong>Názov farmy</strong>
+                        <p class="mb-1">
+                            5 ks Granátové jablko
+                            <span class="float-end">cena €</span>
+                        </p>
+                        <p class="mb-1">
+                            x ks Názov produktu
+                            <span class="float-end">cena €</span>
+                        </p>
+                        <p class="mb-1">
+                            x ks Názov produktu
+                            <span class="float-end">cena €</span>
+                        </p>
+                        <p class="mb-0"><em>Doprava: Osobný odber</em></p>
                     </div>
-                    <div class="farm-product-line">
-                        <span class="product-name">x ks Názov produktu</span>
-                        <span class="price">cena €</span>
-                    </div>
-                    <p class="farm-delivery">Doprava: Osobný odber</p>
-                </div>
 
-                <!-- 2. Farma -->
-                <div class="farm-summary-block">
-                    <h4>Názov farmy</h4>
-                    <div class="farm-product-line">
-                        <span class="product-name">x ks Názov produktu</span>
-                        <span class="price">cena €</span>
+                    <!-- 2. Farma -->
+                    <div class="p-2 bg-light mb-3 rounded-2">
+                        <strong>Názov farmy</strong>
+                        <p class="mb-1">
+                            x ks Názov produktu
+                            <span class="float-end">cena €</span>
+                        </p>
+                        <p class="mb-1">
+                            x ks Názov produktu
+                            <span class="float-end">cena €</span>
+                        </p>
+                        <p class="mb-1">
+                            x ks Názov produktu
+                            <span class="float-end">cena €</span>
+                        </p>
+                        <p class="mb-1">
+                            x ks Názov produktu
+                            <span class="float-end">cena €</span>
+                        </p>
+                        <p class="mb-0"><em>Doprava: Doručenie na adresu s GLS</em></p>
                     </div>
-                    <div class="farm-product-line">
-                        <span class="product-name">x ks Názov produktu</span>
-                        <span class="price">cena €</span>
-                    </div>
-                    <div class="farm-product-line">
-                        <span class="product-name">x ks Názov produktu</span>
-                        <span class="price">cena €</span>
-                    </div>
-                    <p class="farm-delivery">Doprava: Doručenie na adresu s GLS</p>
-                </div>
 
-                <!-- 3. Farma -->
-                <div class="farm-summary-block">
-                    <h4>Názov farmy</h4>
-                    <div class="farm-product-line">
-                        <span class="product-name">x ks Názov produktu</span>
-                        <span class="price">cena €</span>
+                    <!-- 3. Farma -->
+                    <div class="p-2 bg-light mb-3 rounded-2">
+                        <strong>Názov farmy</strong>
+                        <p class="mb-1">
+                            x ks Názov produktu
+                            <span class="float-end">cena €</span>
+                        </p>
+                        <p class="mb-0"><em>Doprava: Typ doručenia</em></p>
                     </div>
-                    <div class="farm-product-line">
-                        <span class="product-name">x ks Názov produktu</span>
-                        <span class="price">cena €</span>
-                    </div>
-                    <p class="farm-delivery">Doprava: Typ doručenia</p>
-                </div>
 
-                <!-- Súhrn cien -->
-                <div class="summary-footer">
-                    <p>Cena bez DPH: 18,23 €</p>
-                    <p>Cena dopravy: cena €</p>
-                    <p class="summary-total">Celkom: cena €</p>
+                    <!-- Súhrn cien -->
+                    <div class="mt-3">
+                        <p class="mb-1">Cena bez DPH: <strong>18,23 €</strong></p>
+                        <p class="mb-1">Cena dopravy: <strong>cena €</strong></p>
+                        <h5 class="fw-bold mt-3">
+                            Celkom na úhradu: 21,42 €
+                        </h5>
+                    </div>
+
+                    <!-- Tlačidlo "Objednať s povinnosťou platby" -->
+                    <button class="btn btn-primary w-100 mt-3">
+                        Objednať s povinnosťou platby
+                    </button>
+                    <p class="text-muted mt-2 mb-0" style="font-size: 0.85rem;">
+                        Dokončením objednávky súhlasíte s
+                        <a href="#" class="text-muted text-decoration-underline">
+                            obchodnými podmienkami
+                        </a>.
+                    </p>
                 </div>
             </div>
-
-            <!-- Tlačidlo "Objednať" -->
-            <button class="btn-confirm">Objednať</button>
         </div>
     </div>
 
-
-    <!-- Reklamné bannery -->
-    <section class="ads-section my-5">
-        <div class="col">
-            <div class="col-md-12 mb-4">
-                <div class="card ad-banner text-center h-100">
-                    <div class="card-body d-flex align-items-center justify-content-center">
-                        <p class="mb-0">Reklama</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 mb-4">
-                <div class="card ad-banner text-center h-100">
-                    <div class="card-body d-flex align-items-center justify-content-center">
-                        <p class="mb-0">Reklama</p>
-                    </div>
-                </div>
+    <!-- Reklamné bloky -->
+    <div class="row g-4 my-5">
+        <div class="col-md-6">
+            <div class="border text-center p-5">
+                Reklama
             </div>
         </div>
-    </section>
+        <div class="col-md-6">
+            <div class="border text-center p-5">
+                Reklama
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="border text-center p-5">
+                Reklama
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="border text-center p-5">
+                Reklama
+            </div>
+        </div>
+    </div>
 </main>
 
 
