@@ -5,22 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // -------- Dropdown toggles pre ikonky --------
-    const profileBtn = document.getElementById('profileBtn');
+
     const profileDropdown = document.getElementById('profileDropdown');
     const heartBtn = document.getElementById('heartBtn');
     const heartDropdown = document.getElementById('heartDropdown');
     const cartBtn = document.getElementById('cartBtn');
     const cartDropdown = document.getElementById('cartDropdown');
 
-    if (profileBtn && profileDropdown) {
-        profileBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            profileDropdown.classList.toggle('active');
-            // Zatvorenie ostatných
-            heartDropdown && heartDropdown.classList.remove('active');
-            cartDropdown && cartDropdown.classList.remove('active');
-        });
-    }
 
     if (heartBtn && heartDropdown) {
         heartBtn.addEventListener('click', (e) => {
@@ -49,12 +40,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    const profileBtn = document.getElementById('profileBtn');
+    const profileMenu = document.getElementById('profileMenu');
+
+    profileBtn.addEventListener('click', () => {
+        profileMenu.classList.toggle('show');
+    });
+
+
     // -------- Toggle kategórií --------
-    const categoriesBar = document.getElementById('categoriesBar');
-    const toggleCategoriesBtn = document.getElementById('toggleCategoriesBtn');
-    if (toggleCategoriesBtn && categoriesBar) {
-        toggleCategoriesBtn.addEventListener('click', () => {
-            categoriesBar.classList.toggle('collapsed');
-        });
-    }
+    const toggleBtn = document.getElementById('toggleCategoriesBtn');
+    const catBar = document.getElementById('categoriesBar');
+  
+    toggleBtn.addEventListener('click', () => {
+      // Toggle the bar's collapsed state
+      catBar.classList.toggle('collapsed');
+      // Toggle a class on the button to flip the arrow
+      toggleBtn.classList.toggle('rotated-arrow');
+    });
 });

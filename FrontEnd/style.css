@@ -3,6 +3,7 @@ html {
 }
 
 header {
+    position: relative;
     width: 100%;
     font-family: "Inknut Antiqua", serif;
 }
@@ -16,11 +17,23 @@ a {
     color: inherit;
 }
 
+.custom-fluid {  /*custom fluid container*/
+    width: 90%;
+    margin: 0 auto;
+  }
+
 /* ------------------------------- NAVIGATION ------------------------------------- */
 
 .top-bar {
     background-color: #79A65D;
+    color: #0d3113;
 }
+
+@media (min-width: 490px) {
+    .my-search-container {
+      justify-content: center !important;
+    }
+  }
 
 /* animacia na zmiznutie placeholder textu v searchi*/
 input::placeholder {
@@ -31,6 +44,17 @@ input:focus::placeholder {
     opacity: 0;
 }
 
+.my-button {
+    display: inline-flex;       /* or display: flex if it's a block button */
+    align-items: center;        /* vertically center children */
+    justify-content: center;    /* horizontally center (optional) */
+  }
+
+.material-icons {
+    font-size: 25px !important;     /* e.g., 32px icon */
+    color: #0d3113;       /* e.g., a red color */
+  }
+
 .dropdown li {
     margin-bottom: 0.5rem;
 }
@@ -39,86 +63,121 @@ input:focus::placeholder {
 }
 
 .dropdown-menu-custom {
+    position: absolute;           /* or your preferred approach */
     left: 50% !important;
     transform: translateX(-50%) !important;
     right: auto !important;
     top: 105% !important;
     text-align: center;
-}
+  
+    /* HIDE by default */
+    transform-origin: top center; /* pivot from the top edge */
+    transform: scaleY(0);         /* collapsed vertically */
+    opacity: 0;                   /* invisible */
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    pointer-events: none;         /* disable clicks when hidden */
+  }
+  
+  /* When shown, scale to full height and fade in */
+  .dropdown-menu-custom.show {
+    transform: scaleY(1) translateX(-50%) !important;
+    opacity: 1;
+    pointer-events: auto;         /* re-enable clicks */
+  }
 
 .btn:focus, .btn:active {
     border: none;
 }
 
 /* ------------------------------- CATEGORIES ------------------------------------- */
+.categories-bar {
+  /* Keep it in normal flow, but we can animate it vertically */
+  position: relative;
+  max-height: 600px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding-top: 0.5rem ;
+  padding-bottom: 0.5rem ;
+  background-color: #694F3F;
+  color: #0d3113;
+  /* Start in the "expanded" position: transform: translateY(0) */
+}
+  
 
 .categories-list {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
     width: 100%;
-    gap: 0.5rem;
-    padding: 5px 5px;
-}
-
-/* Kategória: tlačidlo s obrázkom a textom */
+    justify-content: space-between;
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+  
+  /* Each category item is a fixed-size square */
+  .category-item {
+    width: 6rem;            /* fixed square size */
+    height: 6rem;
+    flex: 0 0 auto;         /* don't grow or shrink */
+  }
+  
+  
 .category-btn {
-    margin: 0;
-    padding: 10px;
-    display: flex;
-    flex-direction: column; /* vertikalne */
-    align-items: center;
-    /*!justify-content: center; */
-    gap: 0.0025rem;             /* medzera medzi obrázkom a textom */
-
-    border: 1px solid #ccc;
-    border-radius: 4px;
-
-    width: 70px;  /* pevná šírka */
-    height: 70px; /* pevná výška */
-}
-
-.category-btn img {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;  /* zachová proporcie */
-}
-.category-btn span {
-    font-size: 0.5rem;
-    display: -webkit-box;
-    color: #333;
+    width: 100%;
+    height: 100%;
+    font-size: 75%;
+    border: #9C8170 solid;
+    background-color: #9C8170;
+    white-space: normal;
     text-align: center;
+    --bs-btn-color: unset !important;
+    transition: background-color .15s ease-in-out, border-color .15s ease-in-out, color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .category-btn:hover {
-    background-color: #e6e6e6;
-    border-color: #bbb;
+    background-color: #EDFAE6;          /* white fill */
+    color: #0d3113;                     /* dark text */
+    border-color: #EDFAE6;             /* dark border to match text */
+  }
+  
+
+.mensi-font {
+    font-size: 80%;
 }
 
+.category-btn span {
+    display: block;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
 /* Tlačidlo na zbalenie / rozbalenie panelu s kategóriami */
+/* Toggle button absolutely positioned under the bar on the right */
 .toggle-btn {
-    right: 2rem;        /* zarovná s pravým paddingom .categories-bar */
-    top: 50%;
-    transform: translateY(-50%);
+    position: absolute;
+    bottom: -30px;       /* or however far below the bar you want it */
+    right: 5.5%;         /* adjust horizontal placement */
     background: none;
-    /*border: none;*/
+    border: 1px solid #ccc;
+    border-radius: 4px;  
+    cursor: pointer;
     padding: 0.25rem;
-}
-.toggle-btn img {
-    width: 24px;
-    height: 24px;
-    transition: transform 0.2s ease;
-}
-
-/* Po zbalení: skryjeme zoznam */
-.categories-bar.collapsed .categories-list {
-    display: none !important;
-}
-
-/* Po zbalení: otočíme ikonku */
-.categories-bar.collapsed .toggle-btn img {
+  }
+  
+/* When the bar is collapsed, shift it up by its own height */
+.categories-bar.collapsed {
+    max-height: 0;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  
+  /* Flip arrow icon when collapsed, if you want that effect */
+  .toggle-btn.rotated-arrow img {
     transform: rotate(180deg);
-}
-
+    transition: transform 0.2s ease;
+  }
+/*potialto*/
+  
 /* ------------------------------- BODY ------------------------------------- */
 
 /* Zadanie polohy */
