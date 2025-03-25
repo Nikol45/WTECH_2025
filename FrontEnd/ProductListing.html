@@ -4,55 +4,54 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Zdvora.sk – Zoznam produktov</title>
-
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">  <!--font-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"> </script>
     <script src="script.js" defer></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">  <!--material ikonky-->
     </head>
 <body>
 
 <header>
-    <!-- Top bar: Logo, navigácia, vyhľadávanie, ikonky -->
+    <!-- Top bar navigačný: logo, vyhľadávanie, ikonky -->
     <div class="top-bar py-3">
         <div class="container-fluid custom-fluid">
             <div class="d-flex flex-wrap align-items-center justify-content-between">
 
                 <!-- Logo -->
-                <a href="HomePage.html" class="d-flex align-items-center flex-shrink-0 me-3 text-decoration-none">
+                <a href="HomePage.html" class="d-flex align-items-center flex-shrink-0 me-3 text-decoration-none custom-logo">
                     <img src="images/logo.png" alt="Logo" width="30" height="30" class="me-2">
                     <h2 class="mb-0">Zdvora.sk</h2>
                 </a>
 
                 <!-- Search -->
-                <div class="d-flex justify-content-start flex-grow-1 mx-3 my-2 my-md-0 my-search-container">
+                <div class="d-flex justify-content-start flex-grow-1 mx-3 my-2 my-md-0 custom-search-container">
                     <form class="position-relative">
                         <input type="text" class="form-control pe-5" placeholder="Vyhľadávanie...">
-                        <button class="btn position-absolute top-50 end-0 translate-middle-y me-2 p-0" type="submit">
-                            <img src="images/icons/search.png" alt="Search" width="20">
+                        <button class="btn my-button position-absolute top-50 end-0 translate-middle-y me-2 p-0" type="submit">
+                            <span class="material-icons">search</span>
                         </button>
                     </form>
                 </div>
 
                 <!-- Icons -->
-                <div class="d-flex justify-content-end align-items-center gap-3 mt-2 mt-md-0 flex-shrink-0 ms-3">
+                <div class="d-flex justify-content-end align-items-center gap-3 mt-2 mt-md-0 flex-shrink-0 ms-3 custom-ikonky">
                     <!-- Heart -->
-                    <a href="Profil-oblubene.html" class="btn my-button p-0">
+                    <a href="Profil-oblubene.html" class="btn my-button p-0 ms-2">
                         <span class="material-icons">favorite</span>
                     </a>
 
                     <!-- Cart -->
-                    <a href="ShoppingCart1_items.html" class="btn my-button p-0">
+                    <a href="ShoppingCart1_items.html" class="btn my-button p-0 ms-2">
                         <span class="material-icons">shopping_cart</span>
                     </a>
 
                     <!-- Profile -->
-                    <div class="dropdown text-center">
+                    <div class="dropdown text-center ms-2">
                         <button class="btn my-button p-0" id="profileBtn">
                             <span class="material-icons">account_circle</span>
                         </button>
@@ -64,7 +63,6 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -111,7 +109,7 @@
               <!-- 5. Kategória -->
               <li class="category-item">
                 <button class="btn category-btn">
-                  <img src="images/category/bread.png" alt="Pečivo" height="24"><br>
+                  <img src="images/category/bread.png" alt="Pečivo a obilniny" height="24"><br>
                   <span>PEČIVO A OBILNINY</span>
                 </button>
               </li>
@@ -127,7 +125,7 @@
               <!-- 7. Kategória -->
               <li class="category-item mensi-font">
                 <button class="btn category-btn">
-                  <img src="images/category/honey.png" alt="Med a orechy" height="24"><br>
+                  <img src="images/category/honey.png" alt="Včelie produkty" height="24"><br>
                   <span>VČELIE PRODUKTY</span>
                 </button>
               </li>
@@ -151,18 +149,18 @@
               <!-- 10. Kategória -->
               <li class="category-item mensi-font">
                 <button class="btn category-btn">
-                  <img src="images/category/brmbrm.png" alt="Poľnohospodárske potreby" height="24"><br>
+                  <img src="images/category/brmbrm.png" alt="Pestovanie" height="24"><br>
                   <span>PESTOVANIE</span>
                 </button>
               </li>
             </ul>
-            <!-- Toggle Button -->
           </div>
         </div>
-      </div>
-      <button class="toggle-btn" id="toggleCategoriesBtn">
+    </div>
+    <!-- Toggle button -->
+    <button class="toggle-btn" id="toggleCategoriesBtn">
         <img src="images/icons/arrow-pull.png" alt="↑" width="16" height="16">
-      </button>
+    </button>
 </header>
 
 <main class="container py-4">

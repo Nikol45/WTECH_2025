@@ -17,7 +17,7 @@ a {
     color: inherit;
 }
 
-.custom-fluid {  /*custom fluid container*/
+.custom-fluid {  /*custom fluid container na responzivnost a dodrziavanie margins stranky*/
     width: 90%;
     margin: 0 auto;
   }
@@ -29,14 +29,21 @@ a {
     color: #0d3113;
 }
 
-@media (min-width: 490px) {
-    .my-search-container {
-      justify-content: center !important;
+@media (min-width: 490px) {  /*fix na search bar aby ostal v strede az do wrapu*/
+    .custom-search-container {
+        justify-content: center !important;
     }
-  }
+}
 
-/* animacia na zmiznutie placeholder textu v searchi*/
-input::placeholder {
+@media (max-width: 433px) {  /*fix na centrovanie nav baru pri troch riadkoch*/
+    .custom-logo, .custom-ikonky, .custom-search-container {
+    display: flex !important; 
+    width: 100%;
+    justify-content: center !important; 
+  }
+}
+
+input::placeholder {  /* animacia na zmiznutie placeholder textu v searchi*/
     transition: opacity 0.2s ease;
 }
 
@@ -44,67 +51,61 @@ input:focus::placeholder {
     opacity: 0;
 }
 
-.my-button {
-    display: inline-flex;       /* or display: flex if it's a block button */
-    align-items: center;        /* vertically center children */
-    justify-content: center;    /* horizontally center (optional) */
-  }
-
-.material-icons {
-    font-size: 25px !important;     /* e.g., 32px icon */
-    color: #0d3113;       /* e.g., a red color */
-  }
-
-.dropdown li {
-    margin-bottom: 0.5rem;
+.my-button {  /*custom trieda na ikonky alebo buttons*/
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none !important;
 }
+
+.material-icons {  /*pre material ikonky stiahnute*/
+    font-size: 25px !important;
+    color: #0d3113;  
+    border: none !important;
+}
+
+.dropdown li {  /*aby dropdown menu items zabrali cely dropdown bez paddingu na pekny highlight pri hover a active*/
+    line-height: 2;
+    --bs-dropdown-link-active-bg: #0d3113;
+    --bs-dropdown-link-hover-bg: #9d9d9d;
+}
+
 .dropdown li:last-child {
     margin-bottom: 0;
 }
 
-.dropdown-menu-custom {
-    position: absolute;           /* or your preferred approach */
+.dropdown-menu-custom {  /* custom trieda na dropdown menucka*/
+    --bs-dropdown-padding-y: 0 !important;
+    position: absolute;
     left: 50% !important;
     transform: translateX(-50%) !important;
     right: auto !important;
     top: 105% !important;
     text-align: center;
-  
-    /* HIDE by default */
-    transform-origin: top center; /* pivot from the top edge */
-    transform: scaleY(0);         /* collapsed vertically */
-    opacity: 0;                   /* invisible */
-    transition: transform 0.2s ease, opacity 0.2s ease;
-    pointer-events: none;         /* disable clicks when hidden */
-  }
-  
-  /* When shown, scale to full height and fade in */
-  .dropdown-menu-custom.show {
-    transform: scaleY(1) translateX(-50%) !important;
-    opacity: 1;
-    pointer-events: auto;         /* re-enable clicks */
-  }
-
-.btn:focus, .btn:active {
-    border: none;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 /* ------------------------------- CATEGORIES ------------------------------------- */
-.categories-bar {
-  /* Keep it in normal flow, but we can animate it vertically */
-  position: relative;
-  max-height: 600px;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  padding-top: 0.5rem ;
-  padding-bottom: 0.5rem ;
-  background-color: #694F3F;
-  color: #0d3113;
-  /* Start in the "expanded" position: transform: translateY(0) */
-}
-  
 
-.categories-list {
+.category-btn.btn { /*fix na skackanie paddingu a border - bs override*/
+    --bs-btn-padding-y: 0 !important;
+    --bs-btn-padding-x: 0 !important;
+    border: none !important;
+}
+
+.categories-bar {  /*bar s kategoriami, prisposobeny na animaciu*/
+    position: relative;
+    max-height: 600px;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding-top: 0.5rem ;
+    padding-bottom: 0.5rem ;
+    background-color: #694F3F;
+    color: #0d3113;
+}
+
+.categories-list {  /*rovnomerne rozmiestnenie kategorii s wrapom*/
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
@@ -112,17 +113,15 @@ input:focus::placeholder {
     justify-content: space-between;
     padding-left: 0;
     margin-bottom: 0;
-  }
+}
   
-  /* Each category item is a fixed-size square */
-  .category-item {
-    width: 6rem;            /* fixed square size */
+.category-item {  /*fixna sirka kategorii a ziadny shrink*/
+    width: 6rem;
     height: 6rem;
-    flex: 0 0 auto;         /* don't grow or shrink */
-  }
-  
-  
-.category-btn {
+    flex: 0 0 auto;
+}
+
+.category-btn {  /*tlacidlo kategorie s prisposobenym fontom a animaciou*/
     width: 100%;
     height: 100%;
     font-size: 75%;
@@ -134,49 +133,37 @@ input:focus::placeholder {
     transition: background-color .15s ease-in-out, border-color .15s ease-in-out, color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-.category-btn:hover {
-    background-color: #EDFAE6;          /* white fill */
-    color: #0d3113;                     /* dark text */
-    border-color: #EDFAE6;             /* dark border to match text */
-  }
-  
+.category-btn:hover, .category-btn:active {
+    background-color: #EDFAE6;
+    color: #0d3113;
+    border-color: #EDFAE6;
+}
 
-.mensi-font {
+.mensi-font {  /*mensi font v kategoriach s dlhymi nazvami, funguje ako multiplier*/
     font-size: 80%;
 }
 
-.category-btn span {
-    display: block;
-    width: 100%;
-    text-align: center;
-    box-sizing: border-box;
-}
-/* Tlačidlo na zbalenie / rozbalenie panelu s kategóriami */
-/* Toggle button absolutely positioned under the bar on the right */
-.toggle-btn {
+.toggle-btn {  /*tlačidlo na zbalenie/rozbalenie panelu s kategóriami*/
     position: absolute;
-    bottom: -30px;       /* or however far below the bar you want it */
-    right: 5.5%;         /* adjust horizontal placement */
+    bottom: -30px;
+    right: 5.5%;
     background: none;
     border: 1px solid #ccc;
     border-radius: 4px;  
     cursor: pointer;
     padding: 0.25rem;
-  }
-  
-/* When the bar is collapsed, shift it up by its own height */
-.categories-bar.collapsed {
+}
+
+.categories-bar.collapsed {  /*ako bude vyzerat ked bude zbaleny*/
     max-height: 0;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
-  }
+}
   
-  /* Flip arrow icon when collapsed, if you want that effect */
-  .toggle-btn.rotated-arrow img {
+.toggle-btn.rotated-arrow img {  /*animacia otacania sipky pri zabaleni/rozbaleni*/
     transform: rotate(180deg);
     transition: transform 0.2s ease;
-  }
-/*potialto*/
+}
   
 /* ------------------------------- BODY ------------------------------------- */
 
@@ -867,9 +854,6 @@ input:focus::placeholder {
 }
 
 /* ---- FORM STYLES (Checkout & ďalšie formuláre) ---- */
-.checkout-form {
-    /* ďalšie štýly pre formulár podľa potreby */
-}
 
 .form-section {
     border: 1px solid #ddd;
@@ -1097,10 +1081,6 @@ footer {
     list-style: none;
     margin: 0;
     padding: 0;
-}
-
-.subcategories-list li {
-    /* prípadne margin či iné nastavenia, ak potrebuješ */
 }
 
 .subcat-btn {
