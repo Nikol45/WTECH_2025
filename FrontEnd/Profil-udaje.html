@@ -17,7 +17,269 @@
 <body>
 
     <header>
-        <!-- Top bar navigačný: logo, vyhľadávanie, ikonky -->
+    <!-- Pop-up modály pre prihlásenie a registráciu -->
+    <div class = "modal-container">
+        <!-- Overlay pozadia pre modály -->
+        <div id="overlayBackground" class="modal-overlay d-none"></div>
+
+        <!-- ================== MODÁL: REGISTRÁCIA ================== -->
+        <div id="registrationModal" class="custom-modal d-none">
+            <div class="modal-content p-4 border-0 shadow position-relative">
+                <!-- Tlačidlo zatvorenia (X) -->
+                <button
+                        type="button"
+                        class="btn-close position-absolute end-0 top-0 m-2"
+                        aria-label="Close"
+                        onclick="closeModal('registrationModal')"
+                ></button>
+
+                <!-- Nadpis -->
+                <h2 class="mb-4 text-center text-uppercase" style="color: #235815;">Registrácia</h2>
+
+                <!-- Používateľské meno -->
+                <div class="input-group mb-3">
+      <span
+              class="input-group-text border-end-0"
+              style="border-color: #B1D27A; background-color: #EDF9FD;"
+      >
+        <i class="bi bi-person" style="color: #235815;"></i>
+      </span>
+                    <input
+                            type="text"
+                            class="form-control border-start-0"
+                            style="border-color: #B1D27A;"
+                            placeholder="Používateľské meno"
+                    >
+                </div>
+
+                <!-- E-mail -->
+                <div class="input-group mb-3">
+      <span
+              class="input-group-text border-end-0"
+              style="border-color: #B1D27A; background-color: #EDF9FD;"
+      >
+        <i class="bi bi-envelope" style="color: #235815;"></i>
+      </span>
+                    <input
+                            type="email"
+                            class="form-control border-start-0"
+                            style="border-color: #B1D27A;"
+                            placeholder="E-mail"
+                    >
+                </div>
+
+                <!-- Heslo -->
+                <div class="input-group mb-3">
+      <span
+              class="input-group-text border-end-0"
+              style="border-color: #B1D27A; background-color: #EDF9FD;"
+      >
+        <i class="bi bi-lock" style="color: #235815;"></i>
+      </span>
+                    <input
+                            type="password"
+                            class="form-control border-start-0"
+                            style="border-color: #B1D27A;"
+                            placeholder="Heslo"
+                    >
+                </div>
+
+                <!-- Potvrdenie hesla -->
+                <div class="input-group mb-3">
+      <span
+              class="input-group-text border-end-0"
+              style="border-color: #B1D27A; background-color: #EDF9FD;"
+      >
+        <i class="bi bi-lock" style="color: #235815;"></i>
+      </span>
+                    <input
+                            type="password"
+                            class="form-control border-start-0"
+                            style="border-color: #B1D27A;"
+                            placeholder="Potvrdenie hesla"
+                    >
+                </div>
+
+                <!-- Checkbox súhlasu -->
+                <div class="form-check mb-3">
+                    <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="termsCheck"
+                    >
+                    <label class="form-check-label" for="termsCheck" style="color: #235815;">
+                        Súhlasím s
+                        <a href="#" class="text-decoration-underline" style="color: #235815;">podmienkami a zásadami</a>
+                    </label>
+                </div>
+
+                <!-- Tlačidlo na odoslanie (v wireframe "Prihlásiť sa") -->
+                <button
+                        class="btn w-100 mb-3"
+                        style="background-color: #B1D27A; color: #235815;"
+                        onclick="alert('Registrácia...')"
+                >
+                    Prihlásiť sa
+                </button>
+
+                <!-- Odkaz na prechod do Prihlásenia -->
+                <div class="text-center">
+                    <small style="color: #235815;">
+                        Máte už účet?
+                        <a
+                                href="#"
+                                class="text-decoration-underline"
+                                style="color: #235815;"
+                                onclick="switchModal('registrationModal','loginModal')"
+                        >
+                            Prihláste sa.
+                        </a>
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================== MODÁL: VÝBER PRIHLÁSENIA ================== -->
+        <div id="loginChoiceModal" class="custom-modal d-none">
+            <div class="modal-content p-4 border-0 shadow position-relative">
+                <!-- Tlačidlo zatvorenia (X) -->
+                <button
+                        type="button"
+                        class="btn-close position-absolute end-0 top-0 m-2"
+                        aria-label="Close"
+                        onclick="closeModal('loginChoiceModal')"
+                ></button>
+
+                <!-- Nadpis -->
+                <h2 class="mb-4 text-center text-uppercase" style="color: #235815;">
+                    Chcete sa prihlásiť?
+                </h2>
+
+                <!-- Tlačidlo "Prihlásiť sa do účtu" -->
+                <button
+                        class="btn w-100 mb-3"
+                        style="background-color: #B1D27A; color: #235815;"
+                        onclick="switchModal('loginChoiceModal','loginModal')"
+                >
+                    Prihlásiť sa do zákaznického účtu
+                </button>
+
+                <!-- Odkaz "Nakupovať ako hosť" -->
+                <div class="text-center">
+                    <a
+                            href="#"
+                            class="text-decoration-underline"
+                            style="color: #235815;"
+                            onclick="closeModal('loginChoiceModal')"
+                    >
+                        Nakupovať ako hosť
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================== MODÁL: PRIHLÁSENIE ================== -->
+        <div id="loginModal" class="custom-modal d-none">
+            <div class="modal-content p-4 border-0 shadow position-relative">
+                <!-- Tlačidlo zatvorenia (X) -->
+                <button
+                        type="button"
+                        class="btn-close position-absolute end-0 top-0 m-2"
+                        aria-label="Close"
+                        onclick="closeModal('loginModal')"
+                ></button>
+
+                <!-- Nadpis -->
+                <h2 class="mb-4 text-center text-uppercase" style="color: #235815;">
+                    Prihlásenie
+                </h2>
+
+                <!-- Používateľské meno alebo e-mail -->
+                <div class="input-group mb-3">
+      <span
+              class="input-group-text border-end-0"
+              style="border-color: #B1D27A; background-color: #EDF9FD;"
+      >
+        <i class="bi bi-person" style="color: #235815;"></i>
+      </span>
+                    <input
+                            type="text"
+                            class="form-control border-start-0"
+                            style="border-color: #B1D27A;"
+                            placeholder="Používateľské meno alebo e-mail"
+                    >
+                </div>
+
+                <!-- Heslo -->
+                <div class="input-group mb-3">
+      <span
+              class="input-group-text border-end-0"
+              style="border-color: #B1D27A; background-color: #EDF9FD;"
+      >
+        <i class="bi bi-lock" style="color: #235815;"></i>
+      </span>
+                    <input
+                            type="password"
+                            class="form-control border-start-0"
+                            style="border-color: #B1D27A;"
+                            placeholder="Heslo"
+                    >
+                </div>
+
+                <!-- Checkbox "Zapamätať prihlásenie" -->
+                <div class="form-check mb-3">
+                    <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="rememberMe"
+                    >
+                    <label
+                            class="form-check-label"
+                            for="rememberMe"
+                            style="color: #235815;"
+                    >
+                        Zapamätať prihlásenie
+                    </label>
+                </div>
+
+                <!-- Tlačidlo Prihlásiť sa -->
+                <button
+                        class="btn w-100 mb-3"
+                        style="background-color: #B1D27A; color: #235815;"
+                        onclick="alert('Prihlasujem...')"
+                >
+                    Prihlásiť sa
+                </button>
+
+                <!-- Zabudnuté heslo / Zaregistrovať sa -->
+                <div class="text-center">
+                    <a
+                            href="#"
+                            class="d-block mb-2 text-decoration-underline"
+                            style="color: #235815;"
+                            onclick="alert('Zabudnuté heslo...')"
+                    >
+                        Zabudnuté heslo
+                    </a>
+                    <small style="color: #235815;">
+                        Nemáte ešte účet?
+                        <a
+                                href="#"
+                                class="text-decoration-underline"
+                                style="color: #235815;"
+                                onclick="switchModal('loginModal','registrationModal')"
+                        >
+                            Zaregistrujte sa.
+                        </a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top bar navigačný: logo, vyhľadávanie, ikonky -->
         <div class="top-bar py-3">
             <div class="container-fluid custom-fluid">
                 <div class="d-flex flex-wrap align-items-center justify-content-between">
@@ -55,12 +317,7 @@
                             <button class="btn custom-button p-0" id="profileBtn">
                                 <span class="material-icons">account_circle</span>
                             </button>
-                            <ul class="dropdown-menu custom-dropdown-menu" id="profileMenu">
-                                <li><a class="dropdown-item" href="Profil-udaje.html">Môj profil</a></li>
-                                <li><a class="dropdown-item" href="Profil-historia.html">Objednávky</a></li>
-                                <li><a class="dropdown-item" href="Profil-recenzie.html">Recenzie</a></li>
-                                <li><a class="dropdown-item" href="#">Odhlásiť</a></li>
-                            </ul>
+                            <ul class="dropdown-menu custom-dropdown-menu" id="profileMenu"></ul>
                         </div>
                     </div>
                 </div>
