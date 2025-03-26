@@ -10,6 +10,8 @@ header {
 
 body {
     font-family: "Inknut Antiqua", serif;
+    color:#0d3113;
+    background-color: #BBE89E;
 }
 
 a {
@@ -17,14 +19,82 @@ a {
     color: inherit;
 }
 
+.small-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.medium-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.big-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.huge-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.custom-button {  /*custom trieda na ikonky alebo buttons*/
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none !important;
+}
+
+.custom-dropdown-menu {  /* custom trieda na dropdown menucka*/
+    --bs-dropdown-padding-y: 0 !important;
+    position: absolute;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    right: auto !important;
+    top: 105% !important;
+    text-align: center;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.dropdown li {  /*aby dropdown menu items zabrali cely dropdown bez paddingu na pekny highlight pri hover a active*/
+    line-height: 2;
+    --bs-dropdown-link-active-bg: #0d3113;
+    --bs-dropdown-link-hover-bg: #bbb;
+}
+
+.dropdown li:last-child {
+    margin-bottom: 0;
+}
+
+.material-icons {  /*pre material ikonky stiahnute*/
+    font-size: 25px !important;
+    color: #0d3113;  
+    border: none !important;
+}
+
+.mensi-font {  /*mensi font v kategoriach s dlhymi nazvami, funguje ako multiplier*/
+    font-size: 80% !important;
+}
+
+.truncate-ellipsis {  /*na ... ak text preteka*/
+    width: 225px;
+    height: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+
 .custom-fluid {  /*custom fluid container na responzivnost a dodrziavanie margins stranky*/
     width: 90%;
     margin: 0 auto;
-  }
+}
 
 /* ------------------------------- NAVIGATION ------------------------------------- */
 
-.top-bar {
+.top-bar {  /*nav bar*/
     background-color: #79A65D;
     color: #0d3113;
 }
@@ -43,6 +113,10 @@ a {
   }
 }
 
+.custom-logo {  /*sirsie pismo v logu*/
+    font-weight: bolder;
+}
+
 input::placeholder {  /* animacia na zmiznutie placeholder textu v searchi*/
     transition: opacity 0.2s ease;
 }
@@ -51,47 +125,12 @@ input:focus::placeholder {
     opacity: 0;
 }
 
-.my-button {  /*custom trieda na ikonky alebo buttons*/
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: none !important;
-}
-
-.material-icons {  /*pre material ikonky stiahnute*/
-    font-size: 25px !important;
-    color: #0d3113;  
-    border: none !important;
-}
-
-.dropdown li {  /*aby dropdown menu items zabrali cely dropdown bez paddingu na pekny highlight pri hover a active*/
-    line-height: 2;
-    --bs-dropdown-link-active-bg: #0d3113;
-    --bs-dropdown-link-hover-bg: #9d9d9d;
-}
-
-.dropdown li:last-child {
-    margin-bottom: 0;
-}
-
-.dropdown-menu-custom {  /* custom trieda na dropdown menucka*/
-    --bs-dropdown-padding-y: 0 !important;
-    position: absolute;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    right: auto !important;
-    top: 105% !important;
-    text-align: center;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
 /* ------------------------------- CATEGORIES ------------------------------------- */
 
 .category-btn.btn { /*fix na skackanie paddingu a border - bs override*/
-    --bs-btn-padding-y: 0 !important;
-    --bs-btn-padding-x: 0 !important;
-    border: none !important;
+    --bs-btn-padding-y: 0;
+    --bs-btn-padding-x: 0;
+    border: none;
 }
 
 .categories-bar {  /*bar s kategoriami, prisposobeny na animaciu*/
@@ -116,7 +155,7 @@ input:focus::placeholder {
 }
   
 .category-item {  /*fixna sirka kategorii a ziadny shrink*/
-    width: 6rem;
+    width: 9.25rem;
     height: 6rem;
     flex: 0 0 auto;
 }
@@ -125,6 +164,7 @@ input:focus::placeholder {
     width: 100%;
     height: 100%;
     font-size: 75%;
+    font-weight: 600;
     border: #9C8170 solid;
     background-color: #9C8170;
     white-space: normal;
@@ -133,14 +173,10 @@ input:focus::placeholder {
     transition: background-color .15s ease-in-out, border-color .15s ease-in-out, color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-.category-btn:hover, .category-btn:active {
+.category-btn:hover, .category-btn:active {  /*nastavenie hover a active vzhladu kategorii*/
     background-color: #EDFAE6;
     color: #0d3113;
     border-color: #EDFAE6;
-}
-
-.mensi-font {  /*mensi font v kategoriach s dlhymi nazvami, funguje ako multiplier*/
-    font-size: 80%;
 }
 
 .toggle-btn {  /*tlačidlo na zbalenie/rozbalenie panelu s kategóriami*/
@@ -152,6 +188,7 @@ input:focus::placeholder {
     border-radius: 4px;  
     cursor: pointer;
     padding: 0.25rem;
+    background-color: #EDFAE6;
 }
 
 .categories-bar.collapsed {  /*ako bude vyzerat ked bude zbaleny*/
@@ -165,130 +202,212 @@ input:focus::placeholder {
     transition: transform 0.2s ease;
 }
   
-/* ------------------------------- BODY ------------------------------------- */
+/* ------------------------------- HERO ------------------------------------- */
 
-/* Zadanie polohy */
-.hero-section {
-    background-color: #eaeaea;
+.custom-search-container-2 .form-control {  /*vacsi search v hero section a s border*/
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    font-size: 1rem;
+    --bs-border-color: #0d3113;
+    --bs-border-width: 2px;
 }
 
-.hero-subtitle {
-    font-size: 1.4rem;      /* Mierne väčší text než bežný odstavec */
-    margin-bottom: 1rem;   /* Odsadenie podnadpisu */
+.hero-section {  /*hero sekcia*/
+    background-color: #BBE89E;
 }
 
-.hero-title {
+.hero-subtitle {  /*podtitulok v hero*/
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.hero-title {  /*titulok v hero*/
     font-size: 2.5rem;
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 1.5rem;
+    line-height: 1.5;
 }
 
-.hero-search .form-control {
-    padding: 0.6rem 0.8rem;
-    border: 2px solid #333;
-    max-width: 65%;
-}
+/* -------------- ARROWS PRI SEKCIACH ------------ */
 
-.hero-search .btn {
-    white-space: nowrap; /* Zabránime zalomeniu textu */
-    padding: 0.6rem 1rem;
-    background-color: #333;
-    border: none;
-}
-.hero-search .btn:hover {
-    background-color: #555;
-}
-
-.arrows {
+.arrows {  /*sipky pri produkt sekciach*/
     display: flex;
     gap: 0.6rem;
 }
 
-.arrow-left, .arrow-right {
-    background: #ddd;
+.arrow-left, .arrow-right {  /*nastavenie samostatnych sipok*/
+    background:#EDFAE6;
     border: none;
     padding: 0.5rem;
     padding-inline: 1rem;
     transition: background-color 0.2s ease;
 }
-.arrow-left:hover, .arrow-right:hover {
+.arrow-left:hover, .arrow-right:hover, .toggle-btn:hover {  /*nastavenie hover*/
     background: #bbb;
 }
 
-/* ---- PRODUCT GRID & CARDS ---- */
+/* -------------- SEKCIA PRODUKTOV -------------- */
 
-.card.product-card {
-    border: 1px solid #ddd;
-    background-color: #ccc;
-    padding-inline: 20px;
+.products-carousel-container {  /*carousel container pre animaciu scrollovania produktov*/
+    position: relative;
+    width: 100%;
+    overflow: hidden;
 }
 
-.card.product-card .card-img {
-    width: 50%;
+.products-row {  /*rad produktov s animaciou*/
+    display: flex;
+    transition: transform 0.3s ease;
+    will-change: transform;
+}
+
+.products-row .col {  /*rozlozenie stlpcov radu produktov*/
+    flex: 0 0 25%;
+    box-sizing: border-box;
+    margin-right: 1rem; 
+}
+  
+.products-row .col:last-child {
+    margin-right: 0;
+}
+
+.card {  /*karticky produktov*/
+    --bs-card-bg: #EDFAE6;
+    padding: 20px !important;
+    border: none;
+    max-width: 300px;
+}
+
+.img-half-cover {  /*vsetky obrazky s radius a vyskou max nastavenou*/
+    display: block;
+    max-height: 150px;
     height: auto;
-    margin-top: 0.5rem;
+    width: 100%;  
+    border-radius: 0.375rem;  
 }
 
-.card.product-card .card-body {
-    text-align: left;
+.discount {  /*zlava*/
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 25%;
+    aspect-ratio: 1 / 1;
+    background: url('images/akcia.png') no-repeat center center;
+    background-size: contain;
+    transform: rotate(-8deg);
+}
+
+.discount-text {  /*text zlavy*/
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    color: #0d3113 !important;
+    font-weight: bold;
+}
+
+.card-body {  /*text v karticke produktu*/
+    color:#0d3113 !important;
     padding: 0;
 }
 
-.card-title {
+.card-title {  /*nazov produktu*/
     font-size: 1.4rem;
     margin-top: 1rem;
 }
 
-/* Cena - prvý span (ľavá strana), druhý span (pravá strana) */
-.price-container {
+.price-container {  /*vsetky tri ceny*/
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 5px;
 }
 
-/* cena */
-.price-container .price {
+.price-container .price {  /*aktualna cena*/
     font-weight: bold;
-    color: #504070;
+    color: #0d3113;
     font-size: 1.5rem;
 }
-/* cena za kus */
-.price-container .price-per {
+
+.price-container .price-per, .price-before {  /*cena za kus/kg a predz zlavou*/
     font-size: 1rem;
     color: #666;
 }
 
-.card-location {
+.price-before {  /*cena pred zlavou nastaveny margin*/
+    margin-right: 2.5rem;
+}
+
+.card-location {  /*riadok s lokaciou*/
     font-size: 1.2rem;
-    color: #222;
-    margin-top: 1rem;
+    color: #0d3113;
 }
 
-.small-icon {
-    width: 16px;
-    height: 16px;
+.btn-pridat-do-kosika {  /*tlacidlo pridat do kosika aj s animaciou*/
+    background-color:  #BBE89E;
+    font-size: larger;
+    font-weight: bold;
+    height: 4rem;
+    margin-top: 2rem;
+    transition: background-color 0.3s ease;
 }
 
-.medium-icon {
-    width: 24px;
-    height: 24px;
+.btn-pridat-do-kosika:hover {  /*nastaveny hover*/
+  background-color: #0d3113;
+  color:#EDFAE6;
 }
 
-.big-icon {
-    width: 30px;
-    height: 30px;
+.btn-pridat-do-kosika:active {  /*nastaveny active*/
+    --bs-btn-active-bg: #BBE89E;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~------------- TU SOM SKONČILA!!! ------------~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* ------ SEKCIA ČLÁNKOV ------ */
 
+.articles-carousel-container {  /*carousel container na animaciu scrollovania clankov*/
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
 
+.articles-row {  /*rada clankov*/
+    display: flex;
+    transition: transform 0.3s ease;
+    will-change: transform;
+}
 
-/*toto treba pozmenit - Product detail*/
+.articles-row .col {  /*nastavenie rozlozenia stlpcov clankov*/
+    flex: 0 0 25%;
+    box-sizing: border-box;
+    margin-right: 1rem; 
+}
+  
+.articles-row .col:last-child {
+    margin-right: 0;
+}
+
+.mensi-font-clanky {  /*mensi font na nazvy clankov*/
+    font-size: 14px !important;
+}
+
+/* ---- SEKCIA REKLÁM ---- */
+
+.ad-banner {  /*banner na reklamy*/
+    max-width: 100% !important;
+    height: 150px;
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+.big-gutter-row {  /*vacsi gutter ako g-5 na spacing medzi cols*/
+    --bs-gutter-x: 4rem;
+    display: flex;
+    overflow-x: auto;
+}
 
 /* ---- PRODUCT DETAIL ---- */
+
 .product-detail {
     display: flex;
     gap: 2rem;
@@ -326,68 +445,7 @@ input:focus::placeholder {
     cursor: pointer;
 }
 
-
-
-
-
-/* ========== NEW ==========  ========== NEW ==========  ========== NEW ==========  ========== NEW ==========  ========== NEW ========== */
-
-html {
-    font-size: 12px;
-}
-
-header {
-    position: relative;
-    width: 100%;
-    font-family: "Inknut Antiqua", serif;
-}
-
-body {
-    font-family: "Inknut Antiqua", serif;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.custom-fluid {  /*custom fluid container na responzivnost a dodrziavanie margins stranky*/
-    width: 90%;
-    margin: 0 auto;
-}
-
-
-.half-image-container {
-    position: relative;
-}
-
-.img-half-cover {
-    width: 100%;
-    display: block;
-}
-
-.discount {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 25%;
-    aspect-ratio: 1 / 1;
-    background: url('images/akcia.png') no-repeat center center;
-    background-size: contain;
-    transform: rotate(-8deg);
-}
-
-.discount-text {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1rem;
-    color: #444;
-    font-weight: bold;
-}
-
-/*prerobit pafination, nefunguju farby*/
+/*--------PRODUCT LISTING-------*/
 
 .pagination {
     display: flex;
@@ -414,3 +472,5 @@ a {
     color: #fff;
     border-color: #42803e;
 }
+
+/*--------------------------------*/

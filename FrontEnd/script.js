@@ -25,15 +25,285 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleBtn = document.getElementById('toggleCategoriesBtn');
     const catBar = document.getElementById('categoriesBar');
   
+    //zrolovat kategorie pri kliknuti, otocit sipku
     toggleBtn.addEventListener('click', () => {
       catBar.classList.toggle('collapsed');
       toggleBtn.classList.toggle('rotated-arrow');
     });
 
+    // -------------- Sekcie produktov -----------
+
+    const carouselRow = document.getElementById('carouselRow');
+    const arrowRight = document.getElementById('arrowRight');
+    const arrowLeft = document.getElementById('arrowLeft');
+
+    const carouselRow1 = document.getElementById('carouselRow1');
+    const arrowRight1 = document.getElementById('arrowRight1');
+    const arrowLeft1 = document.getElementById('arrowLeft1');
+
+    const carouselRow2 = document.getElementById('carouselRow2');
+    const arrowRight2 = document.getElementById('arrowRight2');
+    const arrowLeft2 = document.getElementById('arrowLeft2');
+
+    const carouselRow3 = document.getElementById('carouselRow3');
+    const arrowRight3 = document.getElementById('arrowRight3');
+    const arrowLeft3 = document.getElementById('arrowLeft3');
+
+    //pre sekciu clankov
+    const carouselRow4 = document.getElementById('carouselRow4');
+    const arrowRight4 = document.getElementById('arrowRight4');
+    const arrowLeft4 = document.getElementById('arrowLeft4');
+
+    let isAnimating = false;
+
+    //animacie na scrollovanie sekciami produktov
+    arrowRight.addEventListener('click', () => {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        carouselRow.style.transform = 'translateX(-25%)';
+
+        carouselRow.addEventListener('transitionend', function handler(e) {
+            if (e.propertyName === 'transform') {
+            const firstCol = carouselRow.querySelector('.col');
+            carouselRow.appendChild(firstCol);
+
+            carouselRow.style.transition = 'none';
+            carouselRow.style.transform = 'none';
+
+            carouselRow.offsetHeight;
+
+            carouselRow.style.transition = 'transform 0.3s ease';
+
+            carouselRow.removeEventListener('transitionend', handler);
+            isAnimating = false;
+            }
+        });
+    });
+
+    arrowLeft.addEventListener('click', () => {
+        if (isAnimating) return;
+        isAnimating = true;
+      
+        const allCols = carouselRow.querySelectorAll('.col');
+        const lastCol = allCols[allCols.length - 1];
+        carouselRow.insertBefore(lastCol, allCols[0]);
+
+        carouselRow.style.transition = 'none';
+        carouselRow.style.transform = 'translateX(-25%)';
+      
+        carouselRow.offsetHeight;
+      
+        carouselRow.style.transition = 'transform 0.3s ease';
+        carouselRow.style.transform = 'none';
+      
+        carouselRow.addEventListener('transitionend', function handler(e) {
+            if (e.propertyName === 'transform') {
+                carouselRow.removeEventListener('transitionend', handler);
+                isAnimating = false;
+            }
+        });
+    });
+
+    arrowRight1.addEventListener('click', () => {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        carouselRow1.style.transform = 'translateX(-25%)';
+
+        carouselRow1.addEventListener('transitionend', function handler(e) {
+            if (e.propertyName === 'transform') {
+            const firstCol = carouselRow1.querySelector('.col');
+            carouselRow1.appendChild(firstCol);
+
+            carouselRow1.style.transition = 'none';
+            carouselRow1.style.transform = 'none';
+
+            carouselRow1.offsetHeight;
+
+            carouselRow1.style.transition = 'transform 0.3s ease';
+
+            carouselRow1.removeEventListener('transitionend', handler);
+            isAnimating = false;
+            }
+        });
+    });
+
+    arrowLeft1.addEventListener('click', () => {
+        if (isAnimating) return;
+        isAnimating = true;
+      
+        const allCols = carouselRow1.querySelectorAll('.col');
+        const lastCol = allCols[allCols.length - 1];
+        carouselRow1.insertBefore(lastCol, allCols[0]);
+
+        carouselRow1.style.transition = 'none';
+        carouselRow1.style.transform = 'translateX(-25%)';
+      
+        carouselRow1.offsetHeight;
+      
+        carouselRow1.style.transition = 'transform 0.3s ease';
+        carouselRow1.style.transform = 'none';
+      
+        carouselRow1.addEventListener('transitionend', function handler(e) {
+            if (e.propertyName === 'transform') {
+                carouselRow1.removeEventListener('transitionend', handler);
+                isAnimating = false;
+            }
+        });
+    });
+
+    arrowRight2.addEventListener('click', () => {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        carouselRow2.style.transform = 'translateX(-25%)';
+
+        carouselRow2.addEventListener('transitionend', function handler(e) {
+            if (e.propertyName === 'transform') {
+            const firstCol = carouselRow2.querySelector('.col');
+            carouselRow2.appendChild(firstCol);
+
+            carouselRow2.style.transition = 'none';
+            carouselRow2.style.transform = 'none';
+
+            carouselRow2.offsetHeight;
+
+            carouselRow2.style.transition = 'transform 0.3s ease';
+
+            carouselRow2.removeEventListener('transitionend', handler);
+            isAnimating = false;
+            }
+        });
+    });
+
+    arrowLeft2.addEventListener('click', () => {
+        if (isAnimating) return;
+        isAnimating = true;
+      
+        const allCols = carouselRow2.querySelectorAll('.col');
+        const lastCol = allCols[allCols.length - 1];
+        carouselRow2.insertBefore(lastCol, allCols[0]);
+
+        carouselRow2.style.transition = 'none';
+        carouselRow2.style.transform = 'translateX(-25%)';
+      
+        carouselRow2.offsetHeight;
+      
+        carouselRow2.style.transition = 'transform 0.3s ease';
+        carouselRow2.style.transform = 'none';
+      
+        carouselRow2.addEventListener('transitionend', function handler(e) {
+            if (e.propertyName === 'transform') {
+                carouselRow2.removeEventListener('transitionend', handler);
+                isAnimating = false;
+            }
+        });
+    });
+
+    arrowRight3.addEventListener('click', () => {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        carouselRow3.style.transform = 'translateX(-25%)';
+
+        carouselRow3.addEventListener('transitionend', function handler(e) {
+            if (e.propertyName === 'transform') {
+            const firstCol = carouselRow3.querySelector('.col');
+            carouselRow3.appendChild(firstCol);
+
+            carouselRow3.style.transition = 'none';
+            carouselRow3.style.transform = 'none';
+
+            carouselRow3.offsetHeight;
+
+            carouselRow3.style.transition = 'transform 0.3s ease';
+
+            carouselRow3.removeEventListener('transitionend', handler);
+            isAnimating = false;
+            }
+        });
+    });
+
+    arrowLeft3.addEventListener('click', () => {
+        if (isAnimating) return;
+        isAnimating = true;
+      
+        const allCols = carouselRow3.querySelectorAll('.col');
+        const lastCol = allCols[allCols.length - 1];
+        carouselRow3.insertBefore(lastCol, allCols[0]);
+
+        carouselRow3.style.transition = 'none';
+        carouselRow3.style.transform = 'translateX(-25%)';
+      
+        carouselRow3.offsetHeight;
+      
+        carouselRow3.style.transition = 'transform 0.3s ease';
+        carouselRow3.style.transform = 'none';
+      
+        carouselRow3.addEventListener('transitionend', function handler(e) {
+            if (e.propertyName === 'transform') {
+                carouselRow3.removeEventListener('transitionend', handler);
+                isAnimating = false;
+            }
+        });
+    });
+
+    //animacie na scrollovanie sekciou clankov
+    arrowRight4.addEventListener('click', () => {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        carouselRow4.style.transform = 'translateX(-25%)';
+
+        carouselRow4.addEventListener('transitionend', function handler(e) {
+            if (e.propertyName === 'transform') {
+            const firstCol = carouselRow4.querySelector('.col');
+            carouselRow4.appendChild(firstCol);
+
+            carouselRow4.style.transition = 'none';
+            carouselRow4.style.transform = 'none';
+
+            carouselRow4.offsetHeight;
+
+            carouselRow4.style.transition = 'transform 0.3s ease';
+
+            carouselRow4.removeEventListener('transitionend', handler);
+            isAnimating = false;
+            }
+        });
+    });
+
+    arrowLeft4.addEventListener('click', () => {
+        if (isAnimating) return;
+        isAnimating = true;
+      
+        const allCols = carouselRow4.querySelectorAll('.col');
+        const lastCol = allCols[allCols.length - 1];
+        carouselRow4.insertBefore(lastCol, allCols[0]);
+
+        carouselRow4.style.transition = 'none';
+        carouselRow4.style.transform = 'translateX(-25%)';
+      
+        carouselRow4.offsetHeight;
+      
+        carouselRow4.style.transition = 'transform 0.3s ease';
+        carouselRow4.style.transform = 'none';
+      
+        carouselRow4.addEventListener('transitionend', function handler(e) {
+            if (e.propertyName === 'transform') {
+                carouselRow4.removeEventListener('transitionend', handler);
+                isAnimating = false;
+            }
+        });
+    });
+
+    // ------------------------------------------------
+
     const differentAddress = document.getElementById('differentAddress');
     const deliveryAddressSection = document.getElementById('deliveryAddressSection');
 
-    // Skryť / zobraziť dodaciu adresu
+    // Skryť/zobraziť dodaciu adresu
     differentAddress.addEventListener('change', () => {
         if (differentAddress.checked) {
             deliveryAddressSection.classList.remove('d-none');
