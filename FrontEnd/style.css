@@ -333,7 +333,9 @@ input:focus::placeholder {
 
 .card-title {  /*nazov produktu*/
     font-size: 1.4rem;
+    height: 2.5rem;
     margin-top: 1rem;
+    line-height: 1.5 !important;
 }
 
 .price-container {  /*vsetky tri ceny*/
@@ -356,6 +358,28 @@ input:focus::placeholder {
 
 .price-before {  /*cena pred zlavou nastaveny margin*/
     margin-right: 2.5rem;
+}
+
+.stars {  /*hodnotenia*/
+    display: flex;
+    align-items: center;
+}
+
+.stars .star {
+    font-size: 1.2rem;
+    margin-right: 2px;
+}
+
+.star.filled {
+    color: #FFD700;
+}
+.star.empty {
+    color: #bbb;
+}
+
+.star-count {
+    font-size: 0.9rem;
+    color: #666;
 }
 
 .card-location {  /*riadok s lokaciou*/
@@ -515,6 +539,48 @@ input:focus::placeholder {
     color: var(--modal-accent);
     opacity: 0.9;
 }
+
+/* ---- PRODUCT LISTING ---- */
+
+.subcategory-btn {
+    width: 100%;
+    height: 100%;
+    font-size: 75%;
+    font-weight: 600;
+    background-color: var(--green-medium);
+    white-space: normal;
+    text-align: center;
+    --bs-btn-color: unset !important;
+    transition: background-color .15s ease-in-out, border-color .15s ease-in-out, color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.subcategories-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 100%;
+    justify-content: space-between;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.subcategory-item {
+    width: 8rem;
+    height: 3rem;
+    flex: 0 0 auto;
+}
+
+.subcategories-bar {
+    position: relative;
+    max-height: 600px;
+    overflow: hidden;
+    padding-top: 0.8rem ;
+    padding-bottom: 0.8rem ;
+    background-color: var();
+    color: var();
+}
+
+
 
 /* ---- PRODUCT DETAIL ---- */
 

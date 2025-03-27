@@ -410,28 +410,16 @@
     </button>
 </header>
 
-<main class="container-fluid custom-fluid py-4">
-
-    <!-- SUBKATEGÓRIE + ODKAZ SPÄŤ -->
-    <div class="row mb-4">
-        <div class="col-12 mb-2">
-            <a href="#" class="back-link text-decoration-none">&larr; Späť do obchodu</a>
-        </div>
-        <div class="col-12">
-            <ul class="subcategories-list list-unstyled d-flex flex-wrap gap-2 mb-0">
-                <li><button class="subcat-btn">Podkategória 1</button></li>
-                <li><button class="subcat-btn">Podkategória 2</button></li>
-                <li><button class="subcat-btn">Podkategória 3</button></li>
-                <li><button class="subcat-btn">Podkategória 4</button></li>
-                <li><button class="subcat-btn">Podkategória 5</button></li>
-                <li><button class="subcat-btn">Podkategória 6</button></li>
-                <li><button class="subcat-btn">Podkategória 7</button></li>
-                <li><button class="subcat-btn">Podkategória 8</button></li>
-            </ul>
+<main class="container-fluid custom-fluid">
+    <!-- Odkaz späť + subkategórie -->
+    <div class="mt-2">
+        <div class="col-12 d-flex mb-3 align-items-center">
+            <span class="material-icons">arrow_back</span>
+            <span href="HomePage.html" class="back-link m-2 text-decoration-none">Späť do obchodu</span>        
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mb-4">
         <!-- FILTER SEKCIA -->
         <aside class="filter-section col-12 col-md-4 col-lg-3 col-xl-2 mb-4 mb-md-0">
             <h2 class="fs-5 mb-3">Filtrovanie</h2>
@@ -510,14 +498,47 @@
             </div>
         </aside>
 
+        <div class="col">
+            <div class="container-fluid">
+                <div class="d-flex flex-wrap position-relative"> 
+                    <ul class="subcategories-list list-unstyled d-flex flex-wrap mb-0">
+                        <li class="subcategory-item">
+                            <button class="subcategory-btn custom-button">Podkategória 1</button>
+                        </li>
+                        <li class="subcategory-item">
+                            <button class="subcategory-btn custom-button">Podkategória 1</button>
+                        </li>
+                        <li class="subcategory-item">
+                            <button class="subcategory-btn custom-button">Podkategória 1</button>
+                        </li>
+                        <li class="subcategory-item">
+                            <button class="subcategory-btn custom-button">Podkategória 1</button>
+                        </li>
+                        <li class="subcategory-item">
+                            <button class="subcategory-btn custom-button">Podkategória 1</button>
+                        </li>
+                        <li class="subcategory-item">
+                            <button class="subcategory-btn custom-button">Podkategória 1</button>
+                        </li>
+                        <li class="subcategory-item">
+                            <button class="subcategory-btn custom-button">Podkategória 1</button>
+                        </li>
+                        <li class="subcategory-item">
+                            <button class="subcategory-btn custom-button">Podkategória 1</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        
+
         <!-- PRODUKTY -->
         <section class="products-section col-12 col-md-8 col-lg-9 col-xl-10">
 
             <!-- Hlavička sekcie: nadpis + zoradenie -->
-            <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between mb-4">
-                <h2 class="mb-2 mb-sm-0">Zoznam produktov</h2>
+            <div class="col flex-sm-row align-items-sm-center justify-content-between mb-4">
+                <h2 class="mb-4 mt-4 mb-sm-0">Zoznam produktov</h2>
                 <div class="sort-container d-flex align-items-center">
-                    <label for="sortSelect" class="me-2 mb-0">Zoradiť podľa:</label>
+                    <label for="sortSelect" class="me-2 align-items-center mb-0">Zoradiť podľa:</label>
                     <select id="sortSelect" class="form-select form-select-sm w-auto">
                         <option value="priceAsc">Cena (od najnižšej)</option>
                         <option value="priceDesc">Cena (od najvyššej)</option>
@@ -628,6 +649,7 @@
                 <!-- ... ďalšie karty ... -->
 
             </div>
+        </div>
 
             <!-- PAGINATION -->
             <nav class="pagination-container d-flex justify-content-center">
