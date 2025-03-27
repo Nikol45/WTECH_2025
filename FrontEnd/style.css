@@ -98,9 +98,6 @@ a {
     border: none !important;
 }
 
-.mensi-font {  /*mensi font v kategoriach s dlhymi nazvami, funguje ako multiplier*/
-    font-size: 80% !important;
-}
 
 .truncate-ellipsis {  /*na ... ak text preteka*/
     width: 225px;
@@ -171,7 +168,7 @@ input:focus::placeholder {
 .categories-list {  /*rovnomerne rozmiestnenie kategorii s wrapom*/
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 1rem;
     width: 100%;
     justify-content: space-between;
     padding-left: 0;
@@ -179,8 +176,8 @@ input:focus::placeholder {
 }
 
 .category-item {  /*fixna sirka kategorii a ziadny shrink*/
-    width: 9.25rem;
-    height: 6rem;
+    width: 7.8rem;
+    height: 7rem;
     flex: 0 0 auto;
 }
 
@@ -406,10 +403,6 @@ input:focus::placeholder {
 
 .articles-row .col:last-child {
     margin-right: 0;
-}
-
-.mensi-font-clanky {  /*mensi font na nazvy clankov*/
-    font-size: 14px !important;
 }
 
 /* ---- SEKCIA REKLÁM ---- */

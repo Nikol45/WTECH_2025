@@ -16,7 +16,7 @@
     </head>
 <body>
 
-    <header>
+<header>
     <!-- Pop-up modály pre prihlásenie a registráciu -->
     <div class="modal-container">
         <!-- Overlay pozadia pre modály -->
@@ -249,169 +249,182 @@
     </div>
 
     <!-- Top bar navigačný: logo, vyhľadávanie, ikonky -->
-        <div class="top-bar py-3">
-            <div class="container-fluid custom-fluid">
-                <div class="d-flex flex-wrap align-items-center justify-content-between">
-    
-                    <!-- Logo -->
-                    <a href="HomePage.html" class="d-flex align-items-center flex-shrink-0 me-3 text-decoration-none custom-logo">
-                        <img src="images/logo.png" alt="Logo" width="30" height="30" class="me-2">
-                        <h2 class="mb-0 custom-logo">Zdvora.sk</h2>
+    <div class="top-bar py-3">
+        <div class="container-fluid custom-fluid">
+            <div class="d-flex flex-wrap align-items-center justify-content-between">
+
+                <!-- Logo -->
+                <a href="HomePage.html" class="d-flex align-items-center flex-shrink-0 me-3 text-decoration-none custom-logo">
+                    <img src="images/logo.png" alt="Logo" width="30" height="30" class="me-2">
+                    <h2 class="mb-0 custom-logo">Zdvora.sk</h2>
+                </a>
+
+                <!-- Search -->
+                <div class="d-flex justify-content-start flex-grow-1 mx-3 my-2 my-md-0 custom-search-container">
+                    <form class="position-relative">
+                        <input type="text" class="form-control pe-5" placeholder="Vyhľadávanie...">
+                        <button class="btn custom-button position-absolute top-50 end-0 translate-middle-y me-2 p-0" type="submit">
+                            <span class="material-icons">search</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Icons -->
+                <div class="d-flex justify-content-end align-items-center gap-3 mt-2 mt-md-0 flex-shrink-0 ms-3 custom-ikonky">
+                    <!-- Heart -->
+                    <a href="Profil-oblubene.html" class="btn custom-button p-0 ms-2">
+                        <span class="material-icons">favorite</span>
                     </a>
-    
-                    <!-- Search -->
-                    <div class="d-flex justify-content-start flex-grow-1 mx-3 my-2 my-md-0 custom-search-container">
-                        <form class="position-relative">
-                            <input type="text" class="form-control pe-5" placeholder="Vyhľadávanie...">
-                            <button class="btn custom-button position-absolute top-50 end-0 translate-middle-y me-2 p-0" type="submit">
-                                <span class="material-icons">search</span>
-                            </button>
-                        </form>
-                    </div>
-    
-                    <!-- Icons -->
-                    <div class="d-flex justify-content-end align-items-center gap-3 mt-2 mt-md-0 flex-shrink-0 ms-3 custom-ikonky">
-                        <!-- Heart -->
-                        <a href="Profil-oblubene.html" class="btn custom-button p-0 ms-2">
-                            <span class="material-icons">favorite</span>
-                        </a>
-    
-                        <!-- Cart -->
-                        <a href="ShoppingCart1_items.html" class="btn custom-button p-0 ms-2">
-                            <span class="material-icons">shopping_cart</span>
-                        </a>
-    
-                        <!-- Profile -->
-                        <div class="dropdown text-center ms-2">
-                            <button class="btn custom-button p-0" id="profileBtn">
-                                <span class="material-icons">account_circle</span>
-                            </button>
-                            <ul class="dropdown-menu custom-dropdown-menu" id="profileMenu"></ul>
-                        </div>
+
+                    <!-- Cart -->
+                    <a href="ShoppingCart1_items.html" class="btn custom-button p-0 ms-2">
+                        <span class="material-icons">shopping_cart</span>
+                    </a>
+
+                    <!-- Profile -->
+                    <div class="dropdown text-center ms-2">
+                        <button class="btn custom-button p-0" id="profileBtn">
+                            <span class="material-icons">account_circle</span>
+                        </button>
+                        <!-- Tu necháme <ul> prázdne. JS vloží obsah podľa stavu prihlásenia. -->
+                        <ul class="dropdown-menu custom-dropdown-menu" id="profileMenu"></ul>
                     </div>
                 </div>
             </div>
         </div>
-    
-        <!-- Kategórie -->
-        <div class="categories-bar" id="categoriesBar">
-            <div class="container-fluid custom-fluid">
-              <div class="d-flex flex-wrap position-relative">
-        
+    </div>
+
+    <!-- Kategórie -->
+    <div class="categories-bar" id="categoriesBar">
+        <div class="container-fluid custom-fluid">
+            <div class="d-flex flex-wrap position-relative">
+
                 <!-- Categories Grid -->
                 <ul class="categories-list list-unstyled d-flex flex-wrap mb-0">
-                  <!-- 1. Kategória -->
-                  <li class="category-item">
-                    <button class="btn category-btn">
-                      <img src="images/category/fruit.png" alt="Ovocie" height="50"><br>
-                      <span>OVOCIE</span>
-                    </button>
-                  </li>
-        
-                  <!-- 2. Kategória -->
-                  <li class="category-item">
-                    <button class="btn category-btn">
-                      <img src="images/category/vegetable.png" alt="Zelenina" height="50"><br>
-                      <span>ZELENINA</span>
-                    </button>
-                  </li>
-        
-                  <!-- 3. Kategória -->
-                  <li class="category-item">
-                    <button class="btn category-btn">
-                      <img src="images/category/cheese.png" alt="Mliečne výrobky" height="50"><br>
-                      <span>MLIEČNE VÝROBKY</span>
-                    </button>
-                  </li>
-        
-                  <!-- 4. Kategória -->
-                  <li class="category-item">
-                    <button class="btn category-btn">
-                      <img src="images/category/meat.png" alt="Mäsové výrobky" height="50"><br>
-                      <span>MÄSOVÉ VÝROBKY</span>
-                    </button>
-                  </li>
-        
-                  <!-- 5. Kategória -->
-                  <li class="category-item">
-                    <button class="btn category-btn">
-                      <img src="images/category/bread.png" alt="Pečivo a obilniny" height="50"><br>
-                      <span>PEČIVO A OBILNINY</span>
-                    </button>
-                  </li>
-        
-                  <!-- 6. Kategória -->
-                  <li class="category-item">
-                    <button class="btn category-btn">
-                      <img src="images/category/drink.png" alt="Domáce nápoje" height="50"><br>
-                      <span>DOMÁCE NÁPOJE</span>
-                    </button>
-                  </li>
-        
-                  <!-- 7. Kategória -->
-                  <li class="category-item mensi-font">
-                    <button class="btn category-btn">
-                      <img src="images/category/honey.png" alt="Včelie produkty" height="50"><br>
-                      <span>VČELIE PRODUKTY</span>
-                    </button>
-                  </li>
-        
-                  <!-- 8. Kategória -->
-                  <li class="category-item">
-                    <button class="btn category-btn">
-                      <img src="images/category/herb.png" alt="Bylinky" height="50"><br>
-                      <span>BYLINKY</span>
-                    </button>
-                  </li>
-        
-                  <!-- 9. Kategória -->
-                  <li class="category-item mensi-font">
-                    <button class="btn category-btn">
-                      <img src="images/category/marmalade.png" alt="Zaváraniny" height="50"><br>
-                      <span>DOMÁCE ZAVÁRANINY</span>
-                    </button>
-                  </li>
-        
-                  <!-- 10. Kategória -->
-                  <li class="category-item mensi-font">
-                    <button class="btn category-btn">
-                      <img src="images/category/brmbrm.png" alt="Pestovanie" height="50"><br>
-                      <span>PESTOVANIE</span>
-                    </button>
-                  </li>
+                    <!-- 1. Kategória -->
+                    <li class="category-item">
+                        <a href="ProductListing.html">
+                            <button class="btn category-btn">
+                                <img src="images/category/fruit.png" alt="Ovocie" class="huge-icon"><br>
+                                <span>OVOCIE</span>
+                            </button>
+                        </a>
+                    </li>
+
+                    <!-- 2. Kategória -->
+                    <li class="category-item">
+                        <a href="ProductListing.html">
+                            <button class="btn category-btn">
+                                <img src="images/category/vegetable.png" alt="Zelenina" class="huge-icon"><br>
+                                <span>ZELENINA</span>
+                            </button>
+                        </a>
+                    </li>
+
+                    <!-- 3. Kategória -->
+                    <li class="category-item">
+                        <a href="ProductListing.html">
+                            <button class="btn category-btn">
+                                <img src="images/category/cheese.png" alt="Mliečne výrobky" class="huge-icon"><br>
+                                <span>MLIEČNE VÝROBKY</span>
+                            </button>
+                        </a>
+                    </li>
+
+                    <!-- 4. Kategória -->
+                    <li class="category-item">
+                        <a href="ProductListing.html">
+                            <button class="btn category-btn">
+                                <img src="images/category/meat.png" alt="Mäsové výrobky" class="huge-icon"><br>
+                                <span>MÄSOVÉ VÝROBKY</span>
+                            </button>
+                        </a>
+                    </li>
+
+                    <!-- 5. Kategória -->
+                    <li class="category-item">
+                        <a href="ProductListing.html">
+                            <button class="btn category-btn">
+                                <img src="images/category/bread.png" alt="Pečivo a obilniny" class="huge-icon"><br>
+                                <span>PEČIVO A OBILNINY</span>
+                            </button>
+                        </a>
+                    </li>
+
+                    <!-- 6. Kategória -->
+                    <li class="category-item">
+                        <a href="ProductListing.html">
+                            <button class="btn category-btn">
+                                <img src="images/category/drink.png" alt="Domáce nápoje" class="huge-icon"><br>
+                                <span>DOMÁCE NÁPOJE</span>
+                            </button>
+                        </a>
+                    </li>
+
+                    <!-- 7. Kategória -->
+                    <li class="category-item">
+                        <a href="ProductListing.html">
+                            <button class="btn category-btn">
+                                <img src="images/category/honey.png" alt="Včelie produkty" class="huge-icon"><br>
+                                <span>VČELIE PRODUKTY</span>
+                            </button>
+                        </a>
+                    </li>
+
+                    <!-- 8. Kategória -->
+                    <li class="category-item">
+                        <a href="ProductListing.html">
+                            <button class="btn category-btn">
+                                <img src="images/category/herb.png" alt="Bylinky" class="huge-icon"><br>
+                                <span>BYLINKY</span>
+                            </button>
+                        </a>
+                    </li>
+
+                    <!-- 9. Kategória -->
+                    <li class="category-item">
+                        <a href="ProductListing.html">
+                            <button class="btn category-btn">
+                                <img src="images/category/marmalade.png" alt="Zaváraniny" class="huge-icon"><br>
+                                <span>DOMÁCE ZAVÁRANINY</span>
+                            </button>
+                        </a>
+                    </li>
+
+                    <!-- 10. Kategória -->
+                    <li class="category-item">
+                        <a href="ProductListing.html">
+                            <button class="btn category-btn">
+                                <img src="images/category/brmbrm.png" alt="Pestovanie" class="huge-icon"><br>
+                                <span>PESTOVANIE</span>
+                            </button>
+                        </a>
+                    </li>
                 </ul>
-              </div>
             </div>
         </div>
-        <!-- Toggle button -->
-        <button class="toggle-btn" id="toggleCategoriesBtn">
-            <img src="images/icons/arrow-pull.png" alt="↑" width="16" height="16">
-        </button>
-    </header>
+    </div>
+    <!-- Toggle button -->
+    <button class="toggle-btn" id="toggleCategoriesBtn">
+        <img src="images/icons/arrow-pull.png" alt="↑" width="16" height="16">
+    </button>
+</header>
 
-
-<div class="checkout-steps">
-    <button class="step-btn" data-step="kosik">Košík</button>
-    <button class="step-btn active" data-step="udaje">Údaje</button>
-    <button class="step-btn" data-step="doprava">Doprava a platba</button>
-    <button class="step-btn" data-step="sumar">Sumarizácia</button>
-</div>
-
-<main class="container py-4">
+<main class="container-fluid custom-fluid py-4">
 
     <!-- Tabs -->
     <ul class="nav nav-tabs mb-4">
         <li class="nav-item">
-            <a class="nav-link text-dark" href="#">Košík</a>
+            <a class="nav-link text-dark" href="ShoppingCart1_items.html">Košík</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Údaje</a>
+            <a class="nav-link active" aria-current="page" href="ShoppingCart2_form.html">Údaje</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" href="#">Doprava a platba</a>
+            <a class="nav-link text-dark" href="ShoppingCart3_delivery.html">Doprava a platba</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" href="#">Sumarizácia</a>
+            <a class="nav-link text-dark" href="ShoppingCart4_summary.html">Sumarizácia</a>
         </li>
     </ul>
 
