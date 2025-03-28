@@ -249,22 +249,36 @@ input:focus::placeholder {
 
 /* -------------- ARROWS PRI SEKCIACH ------------ */
 
-.arrows {  /*sipky pri produkt sekciach*/
-    display: flex;
-    gap: 0.6rem;
+.arrow-left, .arrow-right {
+    position: absolute;
+    z-index: 1;
+    top: 40%;
+    transform: translateY(-50%);
+
+    /* Vzhľad kruhového bieleho tlačidla */
+    background-color: var(--green-light);
+    border-radius: 50%;
+    width: 5rem;
+    height: 5rem;
+    color: var(--green-dark-muted);
+
+    align-items: center;
+    justify-content: center;
 }
 
-.arrow-left, .arrow-right {  /*nastavenie samostatnych sipok*/
-    background:#EDFAE6;
-    border: none;
-    padding: 0.5rem;
-    padding-inline: 1rem;
-    transition: background-color 0.2s ease;
+/* Umiestnenie ľavej a pravej šípky */
+.arrow-left {
+    left: -2rem;
 }
+
+.arrow-right {
+    right: -2rem;
+}
+
+/* Efekt na kliknutie (active/focus) */
 .arrow-left:hover, .arrow-right:hover, .toggle-btn:hover {  /*nastavenie hover*/
-    background: #bbb;
+    background: var(--green-very-light);
 }
-
 /* -------------- SEKCIA PRODUKTOV -------------- */
 
 .products-carousel-container {  /*carousel container pre animaciu scrollovania produktov*/

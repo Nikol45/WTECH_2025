@@ -442,9 +442,9 @@
 <main class="container-fluid custom-fluid">
         <!-- Odporúčané produkty -->
         <section class="my-5">
-            <div class="d-flex justify-content-between mb-4">
-                <h2>Odporúčané produkty</h2>
-                <!-- Šípky -->
+            <h2>Odporúčané produkty</h2>
+
+            <div class="arrows-around position-relative mt-4">
                 <div class="arrows">
                     <button class="btn custom-button arrow-left" id="arrowLeft">
                         <span class="material-icons">chevron_left</span>
@@ -453,9 +453,7 @@
                         <span class="material-icons">chevron_right</span>
                     </button>
                 </div>
-            </div>
-
-            <div class="products-carousel-container"> <!--  id="carouselContainer" -->
+                <div class="products-carousel-container"> <!--  id="carouselContainer" -->
                 <div class="products-row" id="carouselRow">
 
                     <!-- 1. produkt -->
@@ -479,7 +477,7 @@
                                     <span class="price-before"><del>3,72 €</del></span>
                                     <span class="price-per">5,32 €/kg</span>
                                 </div>
-                                
+
                                 <!-- Riadok s hodnotením -->
                                 <div class="stars mb-3 mt-3">
                                     <span class="material-icons star filled">star</span>
@@ -487,7 +485,7 @@
                                     <span class="material-icons star filled">star</span>
                                     <span class="material-icons star filled">star</span>
                                     <span class="material-icons star empty">star_outline</span>
-                                  
+
                                     <span class="star-count ms-2">(4)</span>
                                 </div>
 
@@ -535,7 +533,7 @@
                                     <span class="material-icons star filled">star</span>
                                     <span class="material-icons star empty">star_outline</span>
                                     <span class="material-icons star empty">star_outline</span>
-                                    
+
                                     <span class="star-count ms-2">(3)</span>
                                 </div>
 
@@ -583,7 +581,7 @@
                                     <span class="material-icons star empty">star_outline</span>
                                     <span class="material-icons star empty">star_outline</span>
                                     <span class="material-icons star empty">star_outline</span>
-                                    
+
                                     <span class="star-count ms-2">(2)</span>
                                 </div>
 
@@ -635,7 +633,7 @@
                                     <span class="material-icons star filled">star</span>
                                     <span class="material-icons star filled">star</span>
                                     <span class="material-icons star empty">star_outline</span>
-                                    
+
                                     <span class="star-count ms-2">(4)</span>
                                 </div>
 
@@ -683,7 +681,7 @@
                                     <span class="material-icons star filled">star</span>
                                     <span class="material-icons star empty">star_outline</span>
                                     <span class="material-icons star empty">star_outline</span>
-                                    
+
                                     <span class="star-count ms-2">(3)</span>
                                 </div>
 
@@ -707,13 +705,14 @@
                     </div>
                 </div>
             </div>
+            </div>
         </section>
 
         <!-- Novinky -->
         <section class="my-5">
-            <div class="d-flex justify-content-between mb-4">
-                <h2>Novinky</h2>
-                <!-- Šípky -->
+            <h2>Novinky</h2>
+
+            <div class="arrows-around position-relative mt-4">
                 <div class="arrows">
                     <button class="btn custom-button arrow-left" id="arrowLeft1">
                         <span class="material-icons">chevron_left</span>
@@ -722,263 +721,263 @@
                         <span class="material-icons">chevron_right</span>
                     </button>
                 </div>
-            </div>
+                <div class="products-carousel-container">
+                    <div class="products-row" id="carouselRow1">
 
-            <div class="products-carousel-container">
-                <div class="products-row" id="carouselRow1">
-
-                    <!-- 1. produkt -->
-                    <div class="col">
-                        <div class="card text-start p-3">
-                            <div class=" mb-3">
-                                <img src="images/tovar/fruit/granatove_jablko.png" alt="Granátové jablko" class="img-half-cover">
-                            </div>
-
-                            <div class="card-body">
-                                <a href="ProductDetail.html" class="text-decoration-none">
-                                    <h5 class="card-title truncate-ellipsis px-2">Granátové jablko 1 ks</h5>
-                                </a>
-
-                                <!-- Riadok pre cenu -->
-                                <div class="price-container">
-                                    <span class="price fw-bold px-2">3,69 €</span>
-                                    <span class="price-per">3,69 €/ks</span>
+                        <!-- 1. produkt -->
+                        <div class="col">
+                            <div class="card text-start p-3">
+                                <div class=" mb-3">
+                                    <img src="images/tovar/fruit/granatove_jablko.png" alt="Granátové jablko" class="img-half-cover">
                                 </div>
 
-                                <!-- Riadok s hodnotením -->
-                                <div class="stars mb-3 mt-3">
-                                    <span class="material-icons star filled">star</span>
-                                    <span class="material-icons star filled">star</span>
-                                    <span class="material-icons star empty">star_outline</span>
-                                    <span class="material-icons star empty">star_outline</span>
-                                    <span class="material-icons star empty">star_outline</span>
-                                    
-                                    <span class="star-count ms-2">(2)</span>
-                                </div>
-
-                                <!-- Riadok pre lokáciu -->
-                                <div class="d-flex align-items-center gap-2 mt-2">
-                                    <a href="Farma.html" class="d-flex align-items-center gap-2 text-decoration-none">
-                                        <span class="material-icons">location_on</span>
-                                        <span class="card-location truncate-ellipsis">Ovosad, Nové Zámky</span>
+                                <div class="card-body">
+                                    <a href="ProductDetail.html" class="text-decoration-none">
+                                        <h5 class="card-title truncate-ellipsis px-2">Granátové jablko 1 ks</h5>
                                     </a>
-                                </div>
 
-                                <!-- Riadok pre tlačidlo do košíka -->
-                                <div class="d-flex align-items-center gap-2">
-                                    <button class="btn custom-button btn-pridat-do-kosika w-100">Pridať do košíka</button>
-                                    <button class="btn custom-button favorite-btn">
-                                        <span class="material-icons">favorite_border</span>
-                                    </button>
+                                    <!-- Riadok pre cenu -->
+                                    <div class="price-container">
+                                        <span class="price fw-bold px-2">3,69 €</span>
+                                        <span class="price-per">3,69 €/ks</span>
+                                    </div>
+
+                                    <!-- Riadok s hodnotením -->
+                                    <div class="stars mb-3 mt-3">
+                                        <span class="material-icons star filled">star</span>
+                                        <span class="material-icons star filled">star</span>
+                                        <span class="material-icons star empty">star_outline</span>
+                                        <span class="material-icons star empty">star_outline</span>
+                                        <span class="material-icons star empty">star_outline</span>
+
+                                        <span class="star-count ms-2">(2)</span>
+                                    </div>
+
+                                    <!-- Riadok pre lokáciu -->
+                                    <div class="d-flex align-items-center gap-2 mt-2">
+                                        <a href="Farma.html" class="d-flex align-items-center gap-2 text-decoration-none">
+                                            <span class="material-icons">location_on</span>
+                                            <span class="card-location truncate-ellipsis">Ovosad, Nové Zámky</span>
+                                        </a>
+                                    </div>
+
+                                    <!-- Riadok pre tlačidlo do košíka -->
+                                    <div class="d-flex align-items-center gap-2">
+                                        <button class="btn custom-button btn-pridat-do-kosika w-100">Pridať do košíka</button>
+                                        <button class="btn custom-button favorite-btn">
+                                            <span class="material-icons">favorite_border</span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- 2. produkt -->
-                    <div class="col">
-                        <div class="card text-start p-3">
-                            <div class=" mb-3">
-                                <img src="images/tovar/fruit/figy.png" alt="Figy" class="img-half-cover">
-                            </div>
-
-                            <div class="card-body">
-                                <a href="ProductDetail.html" class="text-decoration-none">
-                                    <h5 class="card-title truncate-ellipsis px-2">Figy 250 g</h5>
-                                </a>
-
-                                <!-- Riadok pre cenu -->
-                                <div class="price-container">
-                                    <span class="price fw-bold px-2">6,25 €</span>
-                                    <span class="price-per">27,80 €/kg</span>
+                        <!-- 2. produkt -->
+                        <div class="col">
+                            <div class="card text-start p-3">
+                                <div class=" mb-3">
+                                    <img src="images/tovar/fruit/figy.png" alt="Figy" class="img-half-cover">
                                 </div>
 
-                                <!-- Riadok s hodnotením -->
-                                <div class="stars mb-3 mt-3">
-                                    <span class="material-icons star filled">star</span>
-                                    <span class="material-icons star empty">star_outline</span>
-                                    <span class="material-icons star empty">star_outline</span>
-                                    <span class="material-icons star empty">star_outline</span>
-                                    <span class="material-icons star empty">star_outline</span>
-                                    
-                                    <span class="star-count ms-2">(1)</span>
-                                </div>
-
-                                <!-- Riadok pre lokáciu -->
-                                <div class="d-flex align-items-center gap-2 mt-2">
-                                    <a href="Farma.html" class="d-flex align-items-center gap-2 text-decoration-none">
-                                        <span class="material-icons">location_on</span>
-                                        <span class="card-location truncate-ellipsis">Exotické ovocie od Janky, Prešov</span>
+                                <div class="card-body">
+                                    <a href="ProductDetail.html" class="text-decoration-none">
+                                        <h5 class="card-title truncate-ellipsis px-2">Figy 250 g</h5>
                                     </a>
-                                </div>
 
-                                <!-- Riadok pre tlačidlo do košíka -->
-                                <div class="d-flex align-items-center gap-2">
-                                    <button class="btn custom-button btn-pridat-do-kosika w-100">Pridať do košíka</button>
-                                    <button class="btn custom-button favorite-btn">
-                                        <span class="material-icons">favorite_border</span>
-                                    </button>
+                                    <!-- Riadok pre cenu -->
+                                    <div class="price-container">
+                                        <span class="price fw-bold px-2">6,25 €</span>
+                                        <span class="price-per">27,80 €/kg</span>
+                                    </div>
+
+                                    <!-- Riadok s hodnotením -->
+                                    <div class="stars mb-3 mt-3">
+                                        <span class="material-icons star filled">star</span>
+                                        <span class="material-icons star empty">star_outline</span>
+                                        <span class="material-icons star empty">star_outline</span>
+                                        <span class="material-icons star empty">star_outline</span>
+                                        <span class="material-icons star empty">star_outline</span>
+
+                                        <span class="star-count ms-2">(1)</span>
+                                    </div>
+
+                                    <!-- Riadok pre lokáciu -->
+                                    <div class="d-flex align-items-center gap-2 mt-2">
+                                        <a href="Farma.html" class="d-flex align-items-center gap-2 text-decoration-none">
+                                            <span class="material-icons">location_on</span>
+                                            <span class="card-location truncate-ellipsis">Exotické ovocie od Janky, Prešov</span>
+                                        </a>
+                                    </div>
+
+                                    <!-- Riadok pre tlačidlo do košíka -->
+                                    <div class="d-flex align-items-center gap-2">
+                                        <button class="btn custom-button btn-pridat-do-kosika w-100">Pridať do košíka</button>
+                                        <button class="btn custom-button favorite-btn">
+                                            <span class="material-icons">favorite_border</span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- 3. produkt -->
-                    <div class="col">
-                        <div class="card text-start p-3">
-                            <div class=" mb-3">
-                                <img src="images/tovar/fruit/egres-ruzovy.png" alt="Egreš ružový" class="img-half-cover">
-                            </div>
-
-                            <div class="card-body">
-                                <a href="ProductDetail.html" class="text-decoration-none">
-                                    <h5 class="card-title truncate-ellipsis px-2">Egreš ružový 250 g</h5>
-                                </a>
-
-                                <!-- Riadok pre cenu -->
-                                <div class="price-container">
-                                    <span class="price fw-bold px-2">5,24 €</span>
-                                    <span class="price-per">20,21 €/kg</span>
+                        <!-- 3. produkt -->
+                        <div class="col">
+                            <div class="card text-start p-3">
+                                <div class=" mb-3">
+                                    <img src="images/tovar/fruit/egres-ruzovy.png" alt="Egreš ružový" class="img-half-cover">
                                 </div>
 
-                                <!-- Riadok s hodnotením -->
-                                <div class="stars mb-3 mt-3">
-                                    <span class="material-icons star filled">star</span>
-                                    <span class="material-icons star filled">star</span>
-                                    <span class="material-icons star empty">star_outline</span>
-                                    <span class="material-icons star empty">star_outline</span>
-                                    <span class="material-icons star empty">star_outline</span>
-                                    
-                                    <span class="star-count ms-2">(2)</span>
-                                </div>
-
-                                <!-- Riadok pre lokáciu -->
-                                <div class="d-flex align-items-center gap-2 mt-2">
-                                    <a href="Farma.html" class="d-flex align-items-center gap-2 text-decoration-none">
-                                        <span class="material-icons">location_on</span>
-                                        <span class="card-location truncate-ellipsis">SL ovocné sady, Malinovo</span>
+                                <div class="card-body">
+                                    <a href="ProductDetail.html" class="text-decoration-none">
+                                        <h5 class="card-title truncate-ellipsis px-2">Egreš ružový 250 g</h5>
                                     </a>
-                                </div>
 
-                                <!-- Riadok pre tlačidlo do košíka -->
-                                <div class="d-flex align-items-center gap-2">
-                                    <button class="btn custom-button btn-pridat-do-kosika w-100">Pridať do košíka</button>
-                                    <button class="btn custom-button favorite-btn">
-                                        <span class="material-icons">favorite_border</span>
-                                    </button>
+                                    <!-- Riadok pre cenu -->
+                                    <div class="price-container">
+                                        <span class="price fw-bold px-2">5,24 €</span>
+                                        <span class="price-per">20,21 €/kg</span>
+                                    </div>
+
+                                    <!-- Riadok s hodnotením -->
+                                    <div class="stars mb-3 mt-3">
+                                        <span class="material-icons star filled">star</span>
+                                        <span class="material-icons star filled">star</span>
+                                        <span class="material-icons star empty">star_outline</span>
+                                        <span class="material-icons star empty">star_outline</span>
+                                        <span class="material-icons star empty">star_outline</span>
+
+                                        <span class="star-count ms-2">(2)</span>
+                                    </div>
+
+                                    <!-- Riadok pre lokáciu -->
+                                    <div class="d-flex align-items-center gap-2 mt-2">
+                                        <a href="Farma.html" class="d-flex align-items-center gap-2 text-decoration-none">
+                                            <span class="material-icons">location_on</span>
+                                            <span class="card-location truncate-ellipsis">SL ovocné sady, Malinovo</span>
+                                        </a>
+                                    </div>
+
+                                    <!-- Riadok pre tlačidlo do košíka -->
+                                    <div class="d-flex align-items-center gap-2">
+                                        <button class="btn custom-button btn-pridat-do-kosika w-100">Pridať do košíka</button>
+                                        <button class="btn custom-button favorite-btn">
+                                            <span class="material-icons">favorite_border</span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- 4. produkt -->
-                    <div class="col">
-                        <div class="card text-start p-3">
-                            <div class=" mb-3">
-                                <img src="images/tovar/fruit/kiwi.png" alt="Kiwi" class="img-half-cover">
-                                <div class="discount">
-                                    <span class="discount-text">-24%</span>
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <a href="ProductDetail.html" class="text-decoration-none">
-                                    <h5 class="card-title truncate-ellipsis px-2">Kiwi 1 ks</h5>
-                                </a>
-
-                                <!-- Riadok pre cenu -->
-                                <div class="price-container">
-                                    <span class="price fw-bold px-2">0,40 €</span>
-                                    <span class="price-before"><del>0,49 €</del></span>
-                                    <span class="price-per">0,40 €/ks</span>
+                        <!-- 4. produkt -->
+                        <div class="col">
+                            <div class="card text-start p-3">
+                                <div class=" mb-3">
+                                    <img src="images/tovar/fruit/kiwi.png" alt="Kiwi" class="img-half-cover">
+                                    <div class="discount">
+                                        <span class="discount-text">-24%</span>
+                                    </div>
                                 </div>
 
-                                <!-- Riadok s hodnotením -->
-                                <div class="stars mb-3 mt-3">
-                                    <span class="material-icons star filled">star</span>
-                                    <span class="material-icons star filled">star</span>
-                                    <span class="material-icons star filled">star</span>
-                                    <span class="material-icons star empty">star_outline</span>
-                                    <span class="material-icons star empty">star_outline</span>
-                                    
-                                    <span class="star-count ms-2">(3)</span>
-                                </div>
-
-                                <!-- Riadok pre lokáciu -->
-                                <div class="d-flex align-items-center gap-2 mt-2">
-                                    <a href="Farma.html" class="d-flex align-items-center gap-2 text-decoration-none">
-                                        <span class="material-icons">location_on</span>
-                                        <span class="card-location truncate-ellipsis">Jarkine ovocinárstvo, Stropkov</span>
+                                <div class="card-body">
+                                    <a href="ProductDetail.html" class="text-decoration-none">
+                                        <h5 class="card-title truncate-ellipsis px-2">Kiwi 1 ks</h5>
                                     </a>
-                                </div>
 
-                                <!-- Riadok pre tlačidlo do košíka -->
-                                <div class="d-flex align-items-center gap-2">
-                                    <button class="btn custom-button btn-pridat-do-kosika w-100">Pridať do košíka</button>
-                                    <button class="btn custom-button favorite-btn">
-                                        <span class="material-icons">favorite_border</span>
-                                    </button>
+                                    <!-- Riadok pre cenu -->
+                                    <div class="price-container">
+                                        <span class="price fw-bold px-2">0,40 €</span>
+                                        <span class="price-before"><del>0,49 €</del></span>
+                                        <span class="price-per">0,40 €/ks</span>
+                                    </div>
+
+                                    <!-- Riadok s hodnotením -->
+                                    <div class="stars mb-3 mt-3">
+                                        <span class="material-icons star filled">star</span>
+                                        <span class="material-icons star filled">star</span>
+                                        <span class="material-icons star filled">star</span>
+                                        <span class="material-icons star empty">star_outline</span>
+                                        <span class="material-icons star empty">star_outline</span>
+
+                                        <span class="star-count ms-2">(3)</span>
+                                    </div>
+
+                                    <!-- Riadok pre lokáciu -->
+                                    <div class="d-flex align-items-center gap-2 mt-2">
+                                        <a href="Farma.html" class="d-flex align-items-center gap-2 text-decoration-none">
+                                            <span class="material-icons">location_on</span>
+                                            <span class="card-location truncate-ellipsis">Jarkine ovocinárstvo, Stropkov</span>
+                                        </a>
+                                    </div>
+
+                                    <!-- Riadok pre tlačidlo do košíka -->
+                                    <div class="d-flex align-items-center gap-2">
+                                        <button class="btn custom-button btn-pridat-do-kosika w-100">Pridať do košíka</button>
+                                        <button class="btn custom-button favorite-btn">
+                                            <span class="material-icons">favorite_border</span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- 5. produkt -->
-                    <div class="col">
-                        <div class="card text-start p-3">
-                            <div class=" mb-3">
-                                <img src="images/tovar/fruit/cernice.png" alt="Černice" class="img-half-cover">
-                            </div>
-
-                            <div class="card-body">
-                                <a href="ProductDetail.html" class="text-decoration-none">
-                                    <h5 class="card-title truncate-ellipsis px-2">Černice 100 g</h5>
-                                </a>
-
-                                <!-- Riadok pre cenu -->
-                                <div class="price-container">
-                                    <span class="price fw-bold px-2">3,79 €</span>
-                                    <span class="price-per">30,32 €/kg</span>
+                        <!-- 5. produkt -->
+                        <div class="col">
+                            <div class="card text-start p-3">
+                                <div class=" mb-3">
+                                    <img src="images/tovar/fruit/cernice.png" alt="Černice" class="img-half-cover">
                                 </div>
 
-                                <!-- Riadok s hodnotením -->
-                                <div class="stars mb-3 mt-3">
-                                    <span class="material-icons star filled">star</span>
-                                    <span class="material-icons star filled">star</span>
-                                    <span class="material-icons star filled">star</span>
-                                    <span class="material-icons star filled">star</span>
-                                    <span class="material-icons star empty">star_outline</span>
-                                    
-                                    <span class="star-count ms-2">(4)</span>
-                                </div>
-
-                                <!-- Riadok pre lokáciu -->
-                                <div class="d-flex align-items-center gap-2 mt-2">
-                                    <a href="Farma.html" class="d-flex align-items-center gap-2 text-decoration-none">
-                                        <span class="material-icons">location_on</span>
-                                        <span class="card-location truncate-ellipsis">Sad pri potoku, Žilina</span>
+                                <div class="card-body">
+                                    <a href="ProductDetail.html" class="text-decoration-none">
+                                        <h5 class="card-title truncate-ellipsis px-2">Černice 100 g</h5>
                                     </a>
-                                </div>
 
-                                <!-- Riadok pre tlačidlo do košíka -->
-                                <div class="d-flex align-items-center gap-2">
-                                    <button class="btn custom-button btn-pridat-do-kosika w-100">Pridať do košíka</button>
-                                    <button class="btn custom-button favorite-btn">
-                                        <span class="material-icons">favorite_border</span>
-                                    </button>
+                                    <!-- Riadok pre cenu -->
+                                    <div class="price-container">
+                                        <span class="price fw-bold px-2">3,79 €</span>
+                                        <span class="price-per">30,32 €/kg</span>
+                                    </div>
+
+                                    <!-- Riadok s hodnotením -->
+                                    <div class="stars mb-3 mt-3">
+                                        <span class="material-icons star filled">star</span>
+                                        <span class="material-icons star filled">star</span>
+                                        <span class="material-icons star filled">star</span>
+                                        <span class="material-icons star filled">star</span>
+                                        <span class="material-icons star empty">star_outline</span>
+
+                                        <span class="star-count ms-2">(4)</span>
+                                    </div>
+
+                                    <!-- Riadok pre lokáciu -->
+                                    <div class="d-flex align-items-center gap-2 mt-2">
+                                        <a href="Farma.html" class="d-flex align-items-center gap-2 text-decoration-none">
+                                            <span class="material-icons">location_on</span>
+                                            <span class="card-location truncate-ellipsis">Sad pri potoku, Žilina</span>
+                                        </a>
+                                    </div>
+
+                                    <!-- Riadok pre tlačidlo do košíka -->
+                                    <div class="d-flex align-items-center gap-2">
+                                        <button class="btn custom-button btn-pridat-do-kosika w-100">Pridať do košíka</button>
+                                        <button class="btn custom-button favorite-btn">
+                                            <span class="material-icons">favorite_border</span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </section>
 
         <!-- Výhodné ponuky -->
         <section class="my-5">
-            <div class="d-flex justify-content-between mb-4">
-                <h2>Výhodné ponuky</h2>
-                <!-- Šípky -->
+            <h2>Výhodné ponuky</h2>
+
+            <div class="arrows-around position-relative mt-4">
                 <div class="arrows">
                     <button class="btn custom-button arrow-left" id="arrowLeft2">
                         <span class="material-icons">chevron_left</span>
@@ -987,9 +986,7 @@
                         <span class="material-icons">chevron_right</span>
                     </button>
                 </div>
-            </div>
-
-            <div class="products-carousel-container">
+                <div class="products-carousel-container">
                 <div class="products-row" id="carouselRow2">
 
                     <!-- 1. produkt -->
@@ -1021,7 +1018,7 @@
                                     <span class="material-icons star filled">star</span>
                                     <span class="material-icons star filled">star</span>
                                     <span class="material-icons star empty">star_outline</span>
-                                    
+
                                     <span class="star-count ms-2">(4)</span>
                                 </div>
 
@@ -1073,7 +1070,7 @@
                                     <span class="material-icons star empty">star_outline</span>
                                     <span class="material-icons star empty">star_outline</span>
                                     <span class="material-icons star empty">star_outline</span>
-                                    
+
                                     <span class="star-count ms-2">(2)</span>
                                 </div>
 
@@ -1125,7 +1122,7 @@
                                     <span class="material-icons star empty">star_outline</span>
                                     <span class="material-icons star empty">star_outline</span>
                                     <span class="material-icons star empty">star_outline</span>
-                                    
+
                                     <span class="star-count ms-2">(1)</span>
                                 </div>
 
@@ -1177,7 +1174,7 @@
                                     <span class="material-icons star filled">star</span>
                                     <span class="material-icons star filled">star</span>
                                     <span class="material-icons star empty">star_outline</span>
-                                    
+
                                     <span class="star-count ms-2">(4)</span>
                                 </div>
 
@@ -1229,7 +1226,7 @@
                                     <span class="material-icons star filled">star</span>
                                     <span class="material-icons star empty">star_outline</span>
                                     <span class="material-icons star empty">star_outline</span>
-                                    
+
                                     <span class="star-count ms-2">(3)</span>
                                 </div>
 
@@ -1253,13 +1250,14 @@
                     </div>
                 </div>
             </div>
+            </div>
         </section>
 
         <!-- Sezónne produkty -->
         <section class="my-5">
-            <div class="d-flex justify-content-between mb-4">
-                <h2>Sezónne produkty</h2>
-                <!-- Šípky -->
+            <h2>Sezónne produkty</h2>
+
+            <div class="arrows-around position-relative mt-4">
                 <div class="arrows">
                     <button class="btn custom-button arrow-left" id="arrowLeft3">
                         <span class="material-icons">chevron_left</span>
@@ -1268,9 +1266,7 @@
                         <span class="material-icons">chevron_right</span>
                     </button>
                 </div>
-            </div>
-
-            <div class="products-carousel-container">
+                <div class="products-carousel-container">
                 <div class="products-row" id="carouselRow3">
 
                     <!-- 1. produkt -->
@@ -1302,7 +1298,7 @@
                                     <span class="material-icons star empty">star_outline</span>
                                     <span class="material-icons star empty">star_outline</span>
                                     <span class="material-icons star empty">star_outline</span>
-                                    
+
                                     <span class="star-count ms-2">(2)</span>
                                 </div>
 
@@ -1350,7 +1346,7 @@
                                     <span class="material-icons star filled">star</span>
                                     <span class="material-icons star filled">star</span>
                                     <span class="material-icons star empty">star_outline</span>
-                                    
+
                                     <span class="star-count ms-2">(4)</span>
                                 </div>
 
@@ -1398,7 +1394,7 @@
                                     <span class="material-icons star filled">star</span>
                                     <span class="material-icons star filled">star</span>
                                     <span class="material-icons star empty">star_outline</span>
-                                    
+
                                     <span class="star-count ms-2">(4)</span>
                                 </div>
 
@@ -1450,7 +1446,7 @@
                                     <span class="material-icons star empty">star_outline</span>
                                     <span class="material-icons star empty">star_outline</span>
                                     <span class="material-icons star empty">star_outline</span>
-                                    
+
                                     <span class="star-count ms-2">(2)</span>
                                 </div>
 
@@ -1498,7 +1494,7 @@
                                     <span class="material-icons star empty">star_outline</span>
                                     <span class="material-icons star empty">star_outline</span>
                                     <span class="material-icons star empty">star_outline</span>
-                                    
+
                                     <span class="star-count ms-2">(2)</span>
                                 </div>
 
@@ -1522,14 +1518,14 @@
                     </div>
                 </div>
             </div>
+            </div>
         </section>
 
         <!-- Mohlo by vás zaujímať -->
         <section class="my-5">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2>Mohlo by vás zaujímať</h2>
+            <h2>Mohlo by vás zaujímať</h2>
 
-                <!-- Šípky -->
+            <div class="arrows-around position-relative mt-4">
                 <div class="arrows">
                     <button class="btn custom-button arrow-left" id="arrowLeft4">
                         <span class="material-icons">chevron_left</span>
@@ -1538,10 +1534,8 @@
                         <span class="material-icons">chevron_right</span>
                     </button>
                 </div>
-            </div>
-
-            <div class="articles-carousel-container">
-                <div class="articles-row" id="carouselRow4">
+                <div class="articles-carousel-container">
+                    <div class="articles-row" id="carouselRow4">
 
                     <!-- 1. Článok -->
                     <div class="col">
@@ -1648,6 +1642,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </section>
 
