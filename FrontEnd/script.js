@@ -188,246 +188,266 @@ document.addEventListener('DOMContentLoaded', () => {
     let isAnimating = false;
 
     //animacie na scrollovanie sekciami produktov
-    arrowRight.addEventListener('click', () => {
-        if (isAnimating) return;
-        isAnimating = true;
+    if (arrowRight && carouselRow) {
+        arrowRight.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
 
-        carouselRow.style.transform = 'translateX(-25%)';
+            carouselRow.style.transform = 'translateX(-25%)';
 
-        carouselRow.addEventListener('transitionend', function handler(e) {
-            if (e.propertyName === 'transform') {
-                const firstCol = carouselRow.querySelector('.col');
-                carouselRow.appendChild(firstCol);
+            carouselRow.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    const firstCol = carouselRow.querySelector('.col');
+                    carouselRow.appendChild(firstCol);
 
-                carouselRow.style.transition = 'none';
-                carouselRow.style.transform = 'none';
+                    carouselRow.style.transition = 'none';
+                    carouselRow.style.transform = 'none';
 
-                carouselRow.offsetHeight;
+                    carouselRow.offsetHeight;
 
-                carouselRow.style.transition = 'transform 0.3s ease';
+                    carouselRow.style.transition = 'transform 0.3s ease';
 
-                carouselRow.removeEventListener('transitionend', handler);
-                isAnimating = false;
-            }
+                    carouselRow.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
         });
-    });
+    }
 
-    arrowLeft.addEventListener('click', () => {
-        if (isAnimating) return;
-        isAnimating = true;
+    if (arrowLeft && carouselRow) {
+        arrowLeft.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
 
-        const allCols = carouselRow.querySelectorAll('.col');
-        const lastCol = allCols[allCols.length - 1];
-        carouselRow.insertBefore(lastCol, allCols[0]);
+            const allCols = carouselRow.querySelectorAll('.col');
+            const lastCol = allCols[allCols.length - 1];
+            carouselRow.insertBefore(lastCol, allCols[0]);
 
-        carouselRow.style.transition = 'none';
-        carouselRow.style.transform = 'translateX(-25%)';
+            carouselRow.style.transition = 'none';
+            carouselRow.style.transform = 'translateX(-25%)';
 
-        carouselRow.offsetHeight;
+            carouselRow.offsetHeight;
 
-        carouselRow.style.transition = 'transform 0.3s ease';
-        carouselRow.style.transform = 'none';
+            carouselRow.style.transition = 'transform 0.3s ease';
+            carouselRow.style.transform = 'none';
 
-        carouselRow.addEventListener('transitionend', function handler(e) {
-            if (e.propertyName === 'transform') {
-                carouselRow.removeEventListener('transitionend', handler);
-                isAnimating = false;
-            }
+            carouselRow.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    carouselRow.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
         });
-    });
+    }
 
-    arrowRight1.addEventListener('click', () => {
-        if (isAnimating) return;
-        isAnimating = true;
+    if (arrowRight1 && carouselRow1) {
+        arrowRight1.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
 
-        carouselRow1.style.transform = 'translateX(-25%)';
+            carouselRow1.style.transform = 'translateX(-25%)';
 
-        carouselRow1.addEventListener('transitionend', function handler(e) {
-            if (e.propertyName === 'transform') {
-                const firstCol = carouselRow1.querySelector('.col');
-                carouselRow1.appendChild(firstCol);
+            carouselRow1.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    const firstCol = carouselRow1.querySelector('.col');
+                    carouselRow1.appendChild(firstCol);
 
-                carouselRow1.style.transition = 'none';
-                carouselRow1.style.transform = 'none';
+                    carouselRow1.style.transition = 'none';
+                    carouselRow1.style.transform = 'none';
 
-                carouselRow1.offsetHeight;
+                    carouselRow1.offsetHeight;
 
-                carouselRow1.style.transition = 'transform 0.3s ease';
+                    carouselRow1.style.transition = 'transform 0.3s ease';
 
-                carouselRow1.removeEventListener('transitionend', handler);
-                isAnimating = false;
-            }
+                    carouselRow1.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
         });
-    });
+    }
 
-    arrowLeft1.addEventListener('click', () => {
-        if (isAnimating) return;
-        isAnimating = true;
+    if (arrowLeft1 && carouselRow1) {
+        arrowLeft1.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
 
-        const allCols = carouselRow1.querySelectorAll('.col');
-        const lastCol = allCols[allCols.length - 1];
-        carouselRow1.insertBefore(lastCol, allCols[0]);
+            const allCols = carouselRow1.querySelectorAll('.col');
+            const lastCol = allCols[allCols.length - 1];
+            carouselRow1.insertBefore(lastCol, allCols[0]);
 
-        carouselRow1.style.transition = 'none';
-        carouselRow1.style.transform = 'translateX(-25%)';
+            carouselRow1.style.transition = 'none';
+            carouselRow1.style.transform = 'translateX(-25%)';
 
-        carouselRow1.offsetHeight;
+            carouselRow1.offsetHeight;
 
-        carouselRow1.style.transition = 'transform 0.3s ease';
-        carouselRow1.style.transform = 'none';
+            carouselRow1.style.transition = 'transform 0.3s ease';
+            carouselRow1.style.transform = 'none';
 
-        carouselRow1.addEventListener('transitionend', function handler(e) {
-            if (e.propertyName === 'transform') {
-                carouselRow1.removeEventListener('transitionend', handler);
-                isAnimating = false;
-            }
+            carouselRow1.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    carouselRow1.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
         });
-    });
+    }
+    
+    if (arrowRight2 && carouselRow2) {
+        arrowRight2.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
 
-    arrowRight2.addEventListener('click', () => {
-        if (isAnimating) return;
-        isAnimating = true;
+            carouselRow2.style.transform = 'translateX(-25%)';
 
-        carouselRow2.style.transform = 'translateX(-25%)';
+            carouselRow2.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    const firstCol = carouselRow2.querySelector('.col');
+                    carouselRow2.appendChild(firstCol);
 
-        carouselRow2.addEventListener('transitionend', function handler(e) {
-            if (e.propertyName === 'transform') {
-                const firstCol = carouselRow2.querySelector('.col');
-                carouselRow2.appendChild(firstCol);
+                    carouselRow2.style.transition = 'none';
+                    carouselRow2.style.transform = 'none';
 
-                carouselRow2.style.transition = 'none';
-                carouselRow2.style.transform = 'none';
+                    carouselRow2.offsetHeight;
 
-                carouselRow2.offsetHeight;
+                    carouselRow2.style.transition = 'transform 0.3s ease';
 
-                carouselRow2.style.transition = 'transform 0.3s ease';
-
-                carouselRow2.removeEventListener('transitionend', handler);
-                isAnimating = false;
-            }
+                    carouselRow2.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
         });
-    });
+    }
 
-    arrowLeft2.addEventListener('click', () => {
-        if (isAnimating) return;
-        isAnimating = true;
+    if (arrowLeft2 && carouselRow2) {
+        arrowLeft2.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
 
-        const allCols = carouselRow2.querySelectorAll('.col');
-        const lastCol = allCols[allCols.length - 1];
-        carouselRow2.insertBefore(lastCol, allCols[0]);
+            const allCols = carouselRow2.querySelectorAll('.col');
+            const lastCol = allCols[allCols.length - 1];
+            carouselRow2.insertBefore(lastCol, allCols[0]);
 
-        carouselRow2.style.transition = 'none';
-        carouselRow2.style.transform = 'translateX(-25%)';
+            carouselRow2.style.transition = 'none';
+            carouselRow2.style.transform = 'translateX(-25%)';
 
-        carouselRow2.offsetHeight;
+            carouselRow2.offsetHeight;
 
-        carouselRow2.style.transition = 'transform 0.3s ease';
-        carouselRow2.style.transform = 'none';
+            carouselRow2.style.transition = 'transform 0.3s ease';
+            carouselRow2.style.transform = 'none';
 
-        carouselRow2.addEventListener('transitionend', function handler(e) {
-            if (e.propertyName === 'transform') {
-                carouselRow2.removeEventListener('transitionend', handler);
-                isAnimating = false;
-            }
+            carouselRow2.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    carouselRow2.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
         });
-    });
+    }
 
-    arrowRight3.addEventListener('click', () => {
-        if (isAnimating) return;
-        isAnimating = true;
+    if (arrowRight3 && carouselRow3) {
+        arrowRight3.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
 
-        carouselRow3.style.transform = 'translateX(-25%)';
+            carouselRow3.style.transform = 'translateX(-25%)';
 
-        carouselRow3.addEventListener('transitionend', function handler(e) {
-            if (e.propertyName === 'transform') {
-                const firstCol = carouselRow3.querySelector('.col');
-                carouselRow3.appendChild(firstCol);
+            carouselRow3.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    const firstCol = carouselRow3.querySelector('.col');
+                    carouselRow3.appendChild(firstCol);
 
-                carouselRow3.style.transition = 'none';
-                carouselRow3.style.transform = 'none';
+                    carouselRow3.style.transition = 'none';
+                    carouselRow3.style.transform = 'none';
 
-                carouselRow3.offsetHeight;
+                    carouselRow3.offsetHeight;
 
-                carouselRow3.style.transition = 'transform 0.3s ease';
+                    carouselRow3.style.transition = 'transform 0.3s ease';
 
-                carouselRow3.removeEventListener('transitionend', handler);
-                isAnimating = false;
-            }
+                    carouselRow3.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
         });
-    });
+    }
 
-    arrowLeft3.addEventListener('click', () => {
-        if (isAnimating) return;
-        isAnimating = true;
+    if (arrowLeft3 && carouselRow3) {
+        arrowLeft3.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
 
-        const allCols = carouselRow3.querySelectorAll('.col');
-        const lastCol = allCols[allCols.length - 1];
-        carouselRow3.insertBefore(lastCol, allCols[0]);
+            const allCols = carouselRow3.querySelectorAll('.col');
+            const lastCol = allCols[allCols.length - 1];
+            carouselRow3.insertBefore(lastCol, allCols[0]);
 
-        carouselRow3.style.transition = 'none';
-        carouselRow3.style.transform = 'translateX(-25%)';
+            carouselRow3.style.transition = 'none';
+            carouselRow3.style.transform = 'translateX(-25%)';
 
-        carouselRow3.offsetHeight;
+            carouselRow3.offsetHeight;
 
-        carouselRow3.style.transition = 'transform 0.3s ease';
-        carouselRow3.style.transform = 'none';
+            carouselRow3.style.transition = 'transform 0.3s ease';
+            carouselRow3.style.transform = 'none';
 
-        carouselRow3.addEventListener('transitionend', function handler(e) {
-            if (e.propertyName === 'transform') {
-                carouselRow3.removeEventListener('transitionend', handler);
-                isAnimating = false;
-            }
+            carouselRow3.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    carouselRow3.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
         });
-    });
+    }
 
     //animacie na scrollovanie sekciou clankov
-    arrowRight4.addEventListener('click', () => {
-        if (isAnimating) return;
-        isAnimating = true;
+    if (arrowRight4 && carouselRow4) {
+        arrowRight4.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
 
-        carouselRow4.style.transform = 'translateX(-25%)';
+            carouselRow4.style.transform = 'translateX(-25%)';
 
-        carouselRow4.addEventListener('transitionend', function handler(e) {
-            if (e.propertyName === 'transform') {
-                const firstCol = carouselRow4.querySelector('.col');
-                carouselRow4.appendChild(firstCol);
+            carouselRow4.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    const firstCol = carouselRow4.querySelector('.col');
+                    carouselRow4.appendChild(firstCol);
 
-                carouselRow4.style.transition = 'none';
-                carouselRow4.style.transform = 'none';
+                    carouselRow4.style.transition = 'none';
+                    carouselRow4.style.transform = 'none';
 
-                carouselRow4.offsetHeight;
+                    carouselRow4.offsetHeight;
 
-                carouselRow4.style.transition = 'transform 0.3s ease';
+                    carouselRow4.style.transition = 'transform 0.3s ease';
 
-                carouselRow4.removeEventListener('transitionend', handler);
-                isAnimating = false;
-            }
+                    carouselRow4.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
         });
-    });
+    }
 
-    arrowLeft4.addEventListener('click', () => {
-        if (isAnimating) return;
-        isAnimating = true;
+    if (arrowLeft4 && carouselRow4) {
+        arrowLeft4.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
 
-        const allCols = carouselRow4.querySelectorAll('.col');
-        const lastCol = allCols[allCols.length - 1];
-        carouselRow4.insertBefore(lastCol, allCols[0]);
+            const allCols = carouselRow4.querySelectorAll('.col');
+            const lastCol = allCols[allCols.length - 1];
+            carouselRow4.insertBefore(lastCol, allCols[0]);
 
-        carouselRow4.style.transition = 'none';
-        carouselRow4.style.transform = 'translateX(-25%)';
+            carouselRow4.style.transition = 'none';
+            carouselRow4.style.transform = 'translateX(-25%)';
 
-        carouselRow4.offsetHeight;
+            carouselRow4.offsetHeight;
 
-        carouselRow4.style.transition = 'transform 0.3s ease';
-        carouselRow4.style.transform = 'none';
+            carouselRow4.style.transition = 'transform 0.3s ease';
+            carouselRow4.style.transform = 'none';
 
-        carouselRow4.addEventListener('transitionend', function handler(e) {
-            if (e.propertyName === 'transform') {
-                carouselRow4.removeEventListener('transitionend', handler);
-                isAnimating = false;
-            }
+            carouselRow4.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    carouselRow4.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
         });
-    });
+    }
 
     //animacia na fillnutie srdiecka pri kliknuti
     document.querySelectorAll('.favorite-btn').forEach(favBtn => {
