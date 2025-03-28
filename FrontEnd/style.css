@@ -411,6 +411,23 @@ input:focus::placeholder {
     --bs-btn-active-bg: var(--green-light);
 }
 
+.favorite-btn .filled {
+    color: var(--green-dark-muted);
+    transition: color 0.3s ease !important;
+}
+
+.favorite-btn {
+    margin-top: 24px;
+}
+
+.favorite-btn .material-icons {
+    font-size: 30px !important;
+}
+
+.favorite-btn:hover {
+    border:none !important;
+}
+
 /* ------ SEKCIA ČLÁNKOV ------ */
 
 .articles-carousel-container {  /*carousel container na animaciu scrollovania clankov*/

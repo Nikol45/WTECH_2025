@@ -429,4 +429,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    //animacia na fillnutie srdiecka pri kliknuti
+    document.querySelectorAll('.favorite-btn').forEach(favBtn => {
+        favBtn.addEventListener('click', () => {
+          const icon = favBtn.querySelector('.material-icons');
+          if (icon.textContent.trim() === 'favorite_border') {
+            icon.textContent = 'favorite';
+            icon.classList.add('filled');
+          } else {
+            icon.textContent = 'favorite_border';
+            icon.classList.remove('filled');
+          }
+        });
+    });
+
 });
