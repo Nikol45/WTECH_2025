@@ -108,6 +108,12 @@ a {
     display: inline-block;
 }
 
+.truncate-ellipsis-220 {  /*na ... ak text preteka*/
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .custom-fluid {  /*custom fluid container na responzivnost a dodrziavanie margins stranky*/
     width: 90%;
     margin: 0 auto;
@@ -201,7 +207,7 @@ input:focus::placeholder {
 
 .toggle-btn {  /*tlačidlo na zbalenie/rozbalenie panelu s kategóriami*/
     position: absolute;
-    bottom: -30px;
+    bottom: -29px;
     right: 5.5%;
     border: none;
     border-radius: 4px;
@@ -542,45 +548,39 @@ input:focus::placeholder {
 
 /* ---- PRODUCT LISTING ---- */
 
-.subcategory-btn {
-    width: 100%;
-    height: 100%;
-    font-size: 75%;
-    font-weight: 600;
-    background-color: var(--green-medium);
-    white-space: normal;
-    text-align: center;
-    --bs-btn-color: unset !important;
-    transition: background-color .15s ease-in-out, border-color .15s ease-in-out, color .15s ease-in-out, box-shadow .15s ease-in-out;
-}
-
-.subcategories-list {
+.product-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
-    width: 100%;
-    justify-content: space-between;
-    padding-left: 0;
-    margin-bottom: 0;
+    gap: clamp(10px, 2vw, 1rem);
+    justify-content: center;
+  }
+
+.form-select {
+    max-height: 30px !important;
 }
 
-.subcategory-item {
-    width: 8rem;
-    height: 3rem;
-    flex: 0 0 auto;
+.col-listing {
+    flex: 0 0 0 !important;
 }
 
-.subcategories-bar {
-    position: relative;
-    max-height: 600px;
-    overflow: hidden;
-    padding-top: 0.8rem ;
-    padding-bottom: 0.8rem ;
-    background-color: var();
-    color: var();
+.col-listing .card {
+    width: 200px;
 }
 
+.col-listing .card-title, .col-listing .card-body, .col-listing .card-location, .col-listing .discount-text, .col-listing .star-count, .location-line{
+    font-size: 1rem !important;
+    line-height: normal !important;
+    margin: 0;
+    max-width:220px !important;
+    display: block;
+}
 
+.col-listing .price-before, .col-listing .price-per, .col-listing .price {
+    font-size: 0.9rem !important;
+    line-height: normal !important;
+    margin: 0;
+
+}
 
 /* ---- PRODUCT DETAIL ---- */
 
