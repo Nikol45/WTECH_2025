@@ -423,92 +423,168 @@
     </div>
 
     <div class="row">
-        <!-- FILTER SEKCIA -->
-        <aside class="col-12 col-sm-4 col-lg-3 col-xl-2 mb-4 mb-md-0">
-            <h2 class="fs-5 mb-3">Filtrovanie</h2>
+        <!-- Filter sekcia -->
+        <aside class="filter-section truncate-ellipsis col-12 col-sm-4 col-lg-3 col-xl-2 mb-4 mb-md-0">
+            <h2 class="filter-title mb-3 mt-3">Filtrovanie</h2>
 
             <!-- Kategórie -->
-            <div class="filter-block mb-3">
-                <h3 class="fs-6 mb-2">Kategórie</h3>
+            <div class=" filter-block mb-3">
+                <h3 class="mb-3 mt-4 fs-5 fw-bold">Kategórie</h3>
                 <ul class="filter-list list-unstyled">
                     <li class="mb-1">
                         <input type="checkbox" id="cat1" />
-                        <label for="cat1">Kategória 1</label>
+                        <label for="cat1">Evelina</label>
                     </li>
                     <li class="mb-1">
                         <input type="checkbox" id="cat2" />
-                        <label for="cat2">Kategória 2</label>
+                        <label for="cat2">Gala</label>
                     </li>
                     <li class="mb-1">
                         <input type="checkbox" id="cat3" />
-                        <label for="cat3">Kategória 3</label>
+                        <label for="cat3">Granny Smith</label>
+                    </li>
+                    <li class="mb-1">
+                        <input type="checkbox" id="cat4" />
+                        <label for="cat4">Golden Delicious</label>
+                    </li>
+                    <li class="mb-1">
+                        <input type="checkbox" id="cat5" />
+                        <label for="cat5">Pink Lady</label>
+                    </li>
+                    <li class="mb-1">
+                        <input type="checkbox" id="cat6" />
+                        <label for="cat6">Red Delicious</label>
                     </li>
                 </ul>
             </div>
 
             <!-- Cenové rozpätie -->
             <div class="filter-block mb-3">
-                <h3 class="fs-6 mb-2">Cena</h3>
+                <h3 class="mb-3 mt-4 fs-5 fw-bold">Cena</h3>
                 <div class="price-range d-flex align-items-center gap-2">
-                    <input type="number" class="form-control" placeholder="Min" />
+                    <div class="input-group">
+                        <input type="" class="form-control min-price" placeholder="Min" />
+                        <span class="input-group-text">€</span>
+                    </div>
                     <span>–</span>
-                    <input type="number" class="form-control" placeholder="Max" />
+                    <div class="input-group">
+                        <input type="" class="form-control max-price" placeholder="Max" />
+                        <span class="input-group-text">€</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Hodnotenie -->
             <div class="filter-block mb-3">
-                <h3 class="fs-6 mb-2">Hodnotenie</h3>
-                <ul class="filter-list list-unstyled">
-                    <li class="mb-1">
-                        <input type="radio" name="rating" id="rating1" />
-                        <label for="rating1" class="stars">★★★★★</label>
-                    </li>
-                    <li class="mb-1">
-                        <input type="radio" name="rating" id="rating2" />
-                        <label for="rating2" class="stars">★★★★☆</label>
-                    </li>
-                    <li class="mb-1">
-                        <input type="radio" name="rating" id="rating3" />
-                        <label for="rating3" class="stars">★★★☆☆</label>
-                    </li>
+                <h3 class="mb-3 mt-4 fs-5 fw-bold">Hodnotenie</h3>
+                <ul class="list-unstyled">
+                  <li class="mb-1 d-flex align-items-center gap-2">
+                    <input type="radio" name="rating" id="rating1" />
+                    <!-- Premade star div -->
+                    <div class="stars mb-0">
+                      <span class="material-icons star filled">star</span>
+                      <span class="material-icons star filled">star</span>
+                      <span class="material-icons star filled">star</span>
+                      <span class="material-icons star filled">star</span>
+                      <span class="material-icons star empty">star</span>
+                      <span class="fw-bold">+</span>
+                    </div>
+                  </li>
+                  <li class="mb-1 d-flex align-items-center gap-2">
+                    <input type="radio" name="rating" id="rating2" />
+                    <div class="stars mb-0">
+                      <span class="material-icons star filled">star</span>
+                      <span class="material-icons star filled">star</span>
+                      <span class="material-icons star filled">star</span>
+                      <span class="material-icons star filled">star</span>
+                      <span class="material-icons star empty">star_outline</span>
+                      <span class="fw-bold">+</span>
+                    </div>
+                  </li>
+                  <li class="mb-1 d-flex align-items-center gap-2">
+                    <input type="radio" name="rating" id="rating3" />
+                    <div class="stars mb-0">
+                      <span class="material-icons star filled">star</span>
+                      <span class="material-icons star filled">star</span>
+                      <span class="material-icons star filled">star</span>
+                      <span class="material-icons star filled">star_outline</span>
+                      <span class="material-icons star empty">star_outline</span>
+                      <span class="fw-bold">+</span>
+                    </div>
+                  </li>
+                  <li class="mb-1 d-flex align-items-center gap-2">
+                    <input type="radio" name="rating" id="rating4" />
+                    <div class="stars mb-0">
+                      <span class="material-icons star filled">star</span>
+                      <span class="material-icons star filled">star</span>
+                      <span class="material-icons star filled">star_outline</span>
+                      <span class="material-icons star filled">star_outline</span>
+                      <span class="material-icons star empty">star_outline</span>
+                      <span class="fw-bold">+</span>
+                    </div>
+                  </li>
+                  <li class="mb-1 d-flex align-items-center gap-2">
+                    <input type="radio" name="rating" id="rating5" />
+                    <div class="stars mb-0">
+                      <span class="material-icons star filled">star_outline</span>
+                      <span class="material-icons star filled">star_outline</span>
+                      <span class="material-icons star filled">star_outline</span>
+                      <span class="material-icons star filled">star_outline</span>
+                      <span class="material-icons star empty">star_outline</span>
+                      <span class="fw-bold">+</span>
+                    </div>
+                  </li>
                 </ul>
+              </div>
+              
+
+            <!-- Vzdialenosť rozpätie -->
+            <div class="filter-block mb-3">
+                <h3 class="mb-3 mt-4 fs-5 fw-bold">Vzdialenosť</h3>
+                <div class="distance-range d-flex align-items-center gap-2">
+                    <div class="input-group">
+                        <input type="" class="form-control min-distance" placeholder="Min" />
+                        <span class="input-group-text">km</span>
+                    </div>
+                    <span>–</span>
+                    <div class="input-group">
+                        <input type="" class="form-control max-distance" placeholder="Max" />
+                        <span class="input-group-text">km</span>
+                    </div>
+                </div>
             </div>
 
-            <!-- Extra voľby (checkboxy) -->
+            <!-- Doprava -->
             <div class="filter-block mb-4">
-                <h3 class="fs-6 mb-2">Ďalšie voľby</h3>
+                <h3 class="mb-3 mt-4 fs-5 fw-bold">Doprava</h3>
                 <ul class="filter-list list-unstyled">
                     <li class="mb-1">
-                        <input type="checkbox" id="bestFarms" />
-                        <label for="bestFarms">Len tie najlepšie farmy</label>
+                        <input type="radio" id="Osobny" name="doprava" />
+                        <label for="Osobny">Iba osobný odber</label>
                     </li>
                     <li class="mb-1">
-                        <input type="checkbox" id="popular" />
-                        <label for="popular">Najobľúbenejšie</label>
-                    </li>
-                    <li class="mb-1">
-                        <input type="checkbox" id="inStock" />
-                        <label for="inStock">Zobraziť iba dostupné</label>
+                        <input type="radio" id="Dovoz" name="doprava"/>
+                        <label for="Dovoz">Aj s dovozom</label>
                     </li>
                 </ul>
             </div>
 
             <!-- Tlačidlá -->
-            <div class="filter-buttons d-flex gap-2">
-                <button class="btn btn-primary">Použiť filter</button>
-                <button class="btn btn-secondary">Zrušiť</button>
+            <div class="filter-buttons d-flex gap-3 flex-wrap">
+                <button class="btn filter-button custom-button">Použiť filter</button>
+                <button class="btn filter-button custom-button">Zrušiť</button>
             </div>
         </aside>
 
         <!-- Nadpis -->
-        <div class="col-12 col-md-8 col-lg-9 col-xl-10">
-            <div class="d-flex flex-wrap position-relative justify-content-between mb-4">
-                <h2>Zoznam produktov</h2>
+        <div class="product-listing col-12 col-lg-9 col-xl-10 px-4">
+            <div class="d-flex flex-wrap position-relative justify-content-between mb-4 mt-3 gap-2">
+                <h2 class="fw-bold">Zoznam produktov</h2>
+                <button class="btn custom-button filter-toggle">Filtre</button>
                 <!-- Zoradenie -->
-                <div class="d-flex gap-2">
-                    <label for="sortSelect" class="form-label d-flex align-items-center me-2">Zoradiť podľa:</label>
-                    <select id="sortSelect" class="form-select w-auto">
+                <div class="d-flex gap-1">
+                    <label for="sortSelect" class="form-label d-flex align-items-center me-2 w-auto">Zoradiť podľa:</label>
+                    <select id="sortSelect" class="form-select">
                         <option value="priceAsc">Cena (od najnižšej)</option>
                         <option value="priceDesc">Cena (od najvyššej)</option>
                         <option value="ratingAsc">Hodnotenie (od najnižšieho)</option>
@@ -1515,6 +1591,9 @@
                                 <!-- Riadok pre tlačidlo do košíka -->
                                 <div class="d-flex align-items-center gap-2">
                                     <button class="btn custom-button btn-pridat-do-kosika w-100">Pridať do košíka</button>
+                                    <button class="btn custom-button favorite-btn">
+                                        <span class="material-icons">favorite_border</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -1720,94 +1799,143 @@
                         </div>
                     </div>
                 </div>
-            </div>
+        
+
+                <!-- PAGINATION -->
+                <nav class="pagination-container d-flex justify-content-center">
+                    <ul class="pagination">
+                        <li class="page-item active"><a class="page-link" href="ProductListing.html">1</a></li>
+                        <li class="page-item"><a class="page-link" href="ProductListing.html">2</a></li>
+                        <li class="page-item"><a class="page-link" href="ProductListing.html">3</a></li>
+                        <li class="page-item"><a class="page-link" href="ProductListing.html">Ďalšia &raquo;</a>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
         </div>
 
-            <!-- PAGINATION -->
-            <nav class="pagination-container d-flex justify-content-center">
-                <ul class="pagination">
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Ďalšia &raquo;</a>
-                    </li>
-                </ul>
-            </nav>
-        </section>
-    </div>
-
-    <!-- Mohlo by vás zaujať -->
+    <!-- Mohlo by vás zaujímať -->
     <section class="my-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2>Mohlo by vás zaujímať</h2>
+
+            <!-- Šípky -->
             <div class="arrows">
-                <button class="btn btn-outline-secondary arrow-left">&lt;</button>
-                <button class="btn btn-outline-secondary arrow-right">&gt;</button>
+                <button class="btn custom-button arrow-left" id="arrowLeft4">
+                    <span class="material-icons">chevron_left</span>
+                </button>
+                <button class="btn custom-button arrow-right" id="arrowRight4">
+                    <span class="material-icons">chevron_right</span>
+                </button>
             </div>
         </div>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
-            <div class="col">
-                <div class="card text-start p-3 h-100">
-                    <img src="images/empty.png" alt="Article" class="img-half-cover">
 
-                    <div class="card-body">
-                        <h5 class="card-title">Názov článku</h5>
+        <div class="articles-carousel-container">
+            <div class="articles-row" id="carouselRow4">
 
-                        <!-- Riadok pre autora -->
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="images/icons/person.png" alt="Autor" class="small-icon">
-                            <small class="text-muted">Meno autora, farma</small>
+                <!-- 1. Článok -->
+                <div class="col">
+                    <div class="card text-start p-3">
+                        <img src="images/articles/chov_sliepok.png" alt="Sliepky na lúke" class="img-half-cover">
+
+                        <div class="card-body">
+                            <a href="#" class="text-decoration-none">
+                                <h5 class="card-title truncate-ellipsis">Ako začať s chovom sliepok</h5>
+                            </a>
+
+                            <!-- Riadok pre autora -->
+                            <div class="d-flex align-items-center gap-2">
+                                <a href="Farma.html" class="d-flex align-items-center gap-2 text-decoration-none">
+                                    <span class="material-icons">account_circle</span>
+                                    <span class="text-muted">Peter Ď., Farma pod Lipou</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-
                 </div>
-            </div>
-            <div class="col">
-                <div class="card text-start p-3 h-100">
-                    <img src="images/empty.png" alt="Article" class="img-half-cover">
 
-                    <div class="card-body">
-                        <h5 class="card-title">Názov článku</h5>
+                <!-- 2. Článok -->
+                <div class="col">
+                    <div class="card text-start p-3">
+                        <img src="images/articles/ovocny_sad.png" alt="Ovocný sad" class="img-half-cover">
 
-                        <!-- Riadok pre autora -->
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="images/icons/person.png" alt="Autor" class="small-icon">
-                            <small class="text-muted">Meno autora, farma</small>
+                        <div class="card-body">
+                            <a href="#" class="text-decoration-none">
+                                <h5 class="card-title truncate-ellipsis">Zber ovocnej úrody na jar</h5>
+                            </a>
+
+                            <!-- Riadok pre autora -->
+                            <div class="d-flex align-items-center gap-2">
+                                <a href="Farma.html" class="d-flex align-items-center gap-2 text-decoration-none">
+                                    <span class="material-icons">account_circle</span>
+                                    <span class="text-muted">Nikol M., Ovocný háj</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-
                 </div>
-            </div>
-            <div class="col">
-                <div class="card text-start p-3 h-100">
-                    <img src="images/empty.png" alt="Article" class="img-half-cover">
 
-                    <div class="card-body">
-                        <h5 class="card-title">Názov článku</h5>
+                <!-- 3. Článok -->
+                <div class="col">
+                    <div class="card text-start p-3">
+                        <img src="images/articles/pestovanie_byliniek.png" alt="Bylinková záhrada" class="img-half-cover">
 
-                        <!-- Riadok pre autora -->
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="images/icons/person.png" alt="Autor" class="small-icon">
-                            <small class="text-muted">Meno autora, farma</small>
+                        <div class="card-body">
+                            <a href="#" class="text-decoration-none">
+                                <h5 class="card-title truncate-ellipsis">Ako si vytvoriť bylinkovú záhradu</h5>
+                            </a>
+
+                            <!-- Riadok pre autora -->
+                            <div class="d-flex align-items-center gap-2">
+                                <a href="Farma.html" class="d-flex align-items-center gap-2 text-decoration-none">
+                                    <span class="material-icons">account_circle</span>
+                                    <span class="text-muted">Svetlana P., GreenLand</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-
                 </div>
-            </div>
-            <div class="col">
-                <div class="card text-start p-3 h-100">
-                    <img src="images/empty.png" alt="Article" class="img-half-cover">
 
-                    <div class="card-body">
-                        <h5 class="card-title">Názov článku</h5>
+                <!-- 4. Článok -->
+                <div class="col">
+                    <div class="card text-start p-3">
+                        <img src="images/articles/pecenie_chleba.png" alt="Pečenie chleba" class="img-half-cover">
 
-                        <!-- Riadok pre autora -->
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="images/icons/person.png" alt="Autor" class="small-icon">
-                            <small class="text-muted">Meno autora, farma</small>
+                        <div class="card-body">
+                            <a href="#" class="text-decoration-none">
+                                <h5 class="card-title truncate-ellipsis">Recept na domáci kváskový chlieb</h5>
+                            </a>
+
+                            <!-- Riadok pre autora -->
+                            <div class="d-flex align-items-center gap-2">
+                                <a href="Farma.html" class="d-flex align-items-center gap-2 text-decoration-none">
+                                    <span class="material-icons">account_circle</span>
+                                    <span class="text-muted">Lukáš K., Obilka</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
+                </div>
 
+                <!-- 5. Článok -->
+                <div class="col">
+                    <div class="card text-start p-3">
+                        <img src="images/articles/zavaranie.png" alt="Zaváraniny" class="img-half-cover">
+
+                        <div class="card-body">
+                            <a href="#" class="text-decoration-none">
+                                <h5 class="card-title truncate-ellipsis">5 tipov pre chutné zaváraniny</h5>
+                            </a>
+
+                            <!-- Riadok pre autora -->
+                            <div class="d-flex align-items-center gap-2">
+                                <a href="Farma.html" class="d-flex align-items-center gap-2 text-decoration-none">
+                                    <span class="material-icons">account_circle</span>
+                                    <span class="text-muted">Janka S., U gazdinej</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1815,18 +1943,18 @@
 
     <!-- Reklamné bannery -->
     <section class="ads-section my-5">
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <div class="card ad-banner text-center h-100">
+        <div class="row big-gutter-row">
+            <div class="col-6 mb-4">
+                <div class="ad-banner text-center">
                     <div class="card-body d-flex align-items-center justify-content-center">
-                        <p class="mb-0">Reklama</p>
+                        <img src="images/ads/Reklama1.png" alt="Reklama" class="img-half-cover"></img>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 mb-4">
-                <div class="card ad-banner text-center h-100">
+            <div class="col-6 mb-4">
+                <div class="ad-banner text-center">
                     <div class="card-body d-flex align-items-center justify-content-center">
-                        <p class="mb-0">Reklama</p>
+                        <img src="images/ads/Reklama2.png" alt="Reklama" class="img-half-cover"></img>
                     </div>
                 </div>
             </div>

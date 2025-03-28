@@ -453,13 +453,92 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.favorite-btn').forEach(favBtn => {
         favBtn.addEventListener('click', () => {
           const icon = favBtn.querySelector('.material-icons');
-          if (icon.textContent.trim() === 'favorite_border') {
+          if (icon && icon.textContent.trim() === 'favorite_border') {
             icon.textContent = 'favorite';
             icon.classList.add('filled');
-          } else {
+          } else if (icon) {
             icon.textContent = 'favorite_border';
             icon.classList.remove('filled');
           }
+        });
+    });
+
+//=========================== Product Listing ===============================
+
+    //otvorenie filtrov
+    const filterToggle = document.querySelector('.filter-toggle');
+    const filterSection = document.querySelector('.filter-section');
+    if (filterToggle && filterSection) {
+        filterToggle.addEventListener('click', () => {
+        filterSection.classList.toggle('open');
+        });
+    }
+
+    //zatvorenie filtrov pri kliknuti mimo nich
+    document.addEventListener('click', (e) => {
+        if (filterSection && filterSection.classList.contains('open')) {
+            if (!filterSection.contains(e.target) && !filterToggle.contains(e.target)) {
+                filterSection.classList.remove('open');
+            }
+        }
+    });
+    
+    //zatvorenie filtrov pri kliknuti na talcidla na spodku
+    const filterButtons = filterSection ? filterSection.querySelectorAll('.filter-buttons button') : null;
+    if (filterButtons) {
+        filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                filterSection.classList.remove('open');
+            });
+        });
+    }
+
+    //funkcia na zmiznutie placeholder textov min a max pri nizkej sirke ich rodica
+    function updatePlaceholders() {
+        const priceRanges = document.querySelectorAll('.price-range');
+        if (priceRanges) {
+            priceRanges.forEach(priceRange => {
+                const rect = priceRange.getBoundingClientRect();
+                const minInputs = priceRange.querySelectorAll('.min-price');
+                const maxInputs = priceRange.querySelectorAll('.max-price');
+                
+                if (rect.width < 173) {
+                    minInputs.forEach(input => input.placeholder = '');
+                    maxInputs.forEach(input => input.placeholder = '');
+                } else {
+                    minInputs.forEach(input => input.placeholder = 'Min');
+                    maxInputs.forEach(input => input.placeholder = 'Max');
+                }
+            });
+        }
+
+        const distRanges = document.querySelectorAll('.distance-range');
+        if (distRanges) {
+            distRanges.forEach(distRange => {
+                const rect = distRange.getBoundingClientRect();
+                const minInputs = distRange.querySelectorAll('.min-distance');
+                const maxInputs = distRange.querySelectorAll('.max-distance');
+                
+                if (rect.width < 194) {
+                    minInputs.forEach(input => input.placeholder = '');
+                    maxInputs.forEach(input => input.placeholder = '');
+                } else {
+                    minInputs.forEach(input => input.placeholder = 'Min');
+                    maxInputs.forEach(input => input.placeholder = 'Max');
+                }
+            });
+        }
+    }
+
+    updatePlaceholders();
+    window.addEventListener('resize', updatePlaceholders);
+
+    //nastavenie posledne kliknutej stranky na aktivnu
+    document.querySelectorAll('.pagination .page-item').forEach(pageItem => {
+        pageItem.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('.pagination .page-item').forEach(item => item.classList.remove('active'));
+            this.classList.add('active');
         });
     });
 
