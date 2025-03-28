@@ -264,6 +264,7 @@ input:focus::placeholder {
 
     align-items: center;
     justify-content: center;
+    opacity: 0.7;
 }
 
 /* Umiestnenie ľavej a pravej šípky */
@@ -831,4 +832,52 @@ input:focus::placeholder {
     .label-text::before {
         content: "Č. domu *";
     }
+}
+
+@media (max-width: 500px) {
+    /* Menší padding okolo celej sekcie */
+    .border.rounded-3.p-3.mb-4 {
+        padding: 1rem !important;
+    }
+
+    /* Menší padding v kartách */
+    .card.text-start.p-3 {
+        padding: 0.75rem !important;
+    }
+
+    /* Menší font pre názov produktu v kartách */
+    .card .card-title {
+        font-size: 1rem;
+        line-height: 1.2;
+    }
+
+    /* Menší font pre cenu a počet ks */
+    .price {
+        font-size: 0.95rem;
+    }
+    .price-count {
+        font-size: 0.85rem;
+    }
+
+    /* Zmenšenie medzier medzi kartami*/
+    #carouselRow1.g-3 {
+        gap: 0.5rem !important;
+    }
+
+    /* Zmenšenie textu v h5 nadpisoch (Zásielka... a Dokopy...) */
+    h5.fw-bold {
+        font-size: 1rem !important;
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
+    }
+}
+
+
+.no-scrollbar {
+    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;   /* IE 10+ */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;              /* Chrome, Safari, Edge */
 }
