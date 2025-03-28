@@ -665,3 +665,23 @@ input:focus::placeholder {
 /*    color: #fff;*/
 /*    border-color: #42803e;*/
 /*}*/
+
+@media (max-width: 599.99px) {
+    .nav-tabs {
+        display: none !important;
+    }
+
+    .dropdown-nav {
+        display: block !important;
+    }
+}
+
+@media (min-width: 600px) {
+    .nav-tabs {
+        display: flex !important;
+    }
+
+    .dropdown-nav {
+        display: none !important;
+    }
+}

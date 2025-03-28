@@ -295,7 +295,7 @@
     </div>
 
     <!-- Kategórie -->
-    <div class="categories-bar" id="categoriesBar">
+    <div class="categories-bar collapsed" id="categoriesBar">
         <div class="container-fluid custom-fluid">
             <div class="d-flex flex-wrap position-relative">
 
@@ -413,342 +413,343 @@
 
 <main class="container-fluid custom-fluid py-4">
 
-        <!-- Tabs -->
-        <ul class="nav nav-tabs mb-4">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="ShoppingCart1_items.html">Košík</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="ShoppingCart2_form.html">Údaje</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="ShoppingCart3_delivery.html">Doprava a platba</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="ShoppingCart4_summary.html">Sumarizácia</a>
-            </li>
-        </ul>
+    <!-- Tabs -->
+    <ul class="nav nav-tabs mb-4 d-none">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="ShoppingCart1_items.html">Košík</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="ShoppingCart2_form.html">Údaje</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="ShoppingCart3_delivery.html">Doprava a platba</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="ShoppingCart4_summary.html">Sumarizácia</a>
+        </li>
+    </ul>
 
-        <!-- Link Späť do obchodu -->
-        <a href="#" class="d-inline-flex align-items-center mb-3 text-decoration-none text-dark">
-            <span class="me-1">←</span> Späť do obchodu
-        </a>
+    <!-- Link Späť do obchodu -->
+    <a href="#" class="d-inline-flex align-items-center mb-3 text-decoration-none text-dark">
+        <span class="me-1">←</span> Späť do obchodu
+    </a>
 
-        <!-- Horný riadok: "celý košík" + "Odstrániť zvýraznené" -->
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="checkAllCart">
-                <label class="form-check-label ms-1" for="checkAllCart">celý košík</label>
-            </div>
-            <div>
-                <a href="#" class="text-danger d-flex align-items-center">
-                    Odstrániť zvýraznené
-                </a>
-            </div>
+    <!-- Horný riadok: "celý košík" + "Odstrániť zvýraznené" -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="checkAllCart">
+            <label class="form-check-label ms-1" for="checkAllCart">celý košík</label>
         </div>
-
-        <!-- 1. Zásielka -->
-        <div class="border rounded-3 p-3 mb-4">
-            <h5 class="fw-bold mb-3">Zásielka od Farma pod Lipou</h5>
-
-            <!-- 1. Produkt (Granátové jablko) -->
-            <div class="row align-items-center mb-3">
-                <!-- Checkbox -->
-                <div class="col-auto">
-                    <input class="form-check-input" type="checkbox">
-                </div>
-                <!-- Obrázok produktu -->
-                <div class="col-auto">
-                    <div class="bg-secondary" style="width: 60px; height: 60px;"></div>
-                </div>
-                <!-- Názov + miesto farmy -->
-                <div class="col">
-                    <p class="mb-1 fw-bold">Granátové jablko</p>
-                    <p class="mb-0 text-muted">Farma: Farmville, Horné Orešany</p>
-                </div>
-                <!-- Množstvo: - 2 ks + -->
-                <div class="col-auto d-flex align-items-center">
-                    <button class="btn btn-outline-secondary btn-sm">-</button>
-                    <span class="mx-2">2 ks</span>
-                    <button class="btn btn-outline-secondary btn-sm">+</button>
-                </div>
-                <!-- Cena -->
-                <div class="col-auto fw-bold">4.59 €</div>
-                <!-- Odstrániť ikona -->
-                <div class="col-auto">
-                    <button class="btn btn-light border p-1" title="Odstrániť">
-                        <img src="images/icons/trash.png" alt="trash" width="16">
-                    </button>
-                </div>
-            </div>
-
-            <!-- 2. Produkt -->
-            <div class="row align-items-center mb-3">
-                <div class="col-auto">
-                    <input class="form-check-input" type="checkbox">
-                </div>
-                <div class="col-auto">
-                    <div class="bg-secondary" style="width: 60px; height: 60px;"></div>
-                </div>
-                <div class="col">
-                    <p class="mb-1 fw-bold">Názov produktu</p>
-                    <p class="mb-0 text-muted">Názov farmy, sídlo</p>
-                </div>
-                <div class="col-auto d-flex align-items-center">
-                    <button class="btn btn-outline-secondary btn-sm">-</button>
-                    <span class="mx-2">1 ks</span>
-                    <button class="btn btn-outline-secondary btn-sm">+</button>
-                </div>
-                <div class="col-auto fw-bold">cena €</div>
-                <div class="col-auto">
-                    <button class="btn btn-light border p-1">
-                        <img src="images/icons/trash.png" alt="trash" width="16">
-                    </button>
-                </div>
-            </div>
-
-            <!-- 3. Produkt -->
-            <div class="row align-items-center mb-3">
-                <div class="col-auto">
-                    <input class="form-check-input" type="checkbox">
-                </div>
-                <div class="col-auto">
-                    <div class="bg-secondary" style="width: 60px; height: 60px;"></div>
-                </div>
-                <div class="col">
-                    <p class="mb-1 fw-bold">Názov produktu</p>
-                    <p class="mb-0 text-muted">Názov farmy, sídlo</p>
-                </div>
-                <div class="col-auto d-flex align-items-center">
-                    <button class="btn btn-outline-secondary btn-sm">-</button>
-                    <span class="mx-2">1 ks</span>
-                    <button class="btn btn-outline-secondary btn-sm">+</button>
-                </div>
-                <div class="col-auto fw-bold">cena €</div>
-                <div class="col-auto">
-                    <button class="btn btn-light border p-1">
-                        <img src="images/icons/trash.png" alt="trash" width="16">
-                    </button>
-                </div>
-            </div>
-
-            <!-- 4. Produkt -->
-            <div class="row align-items-center">
-                <div class="col-auto">
-                    <input class="form-check-input" type="checkbox">
-                </div>
-                <div class="col-auto">
-                    <div class="bg-secondary" style="width: 60px; height: 60px;"></div>
-                </div>
-                <div class="col">
-                    <p class="mb-1 fw-bold">Názov produktu</p>
-                    <p class="mb-0 text-muted">Názov farmy, sídlo</p>
-                </div>
-                <div class="col-auto d-flex align-items-center">
-                    <button class="btn btn-outline-secondary btn-sm">-</button>
-                    <span class="mx-2">1 ks</span>
-                    <button class="btn btn-outline-secondary btn-sm">+</button>
-                </div>
-                <div class="col-auto fw-bold">cena €</div>
-                <div class="col-auto">
-                    <button class="btn btn-light border p-1">
-                        <img src="images/icons/trash.png" alt="trash" width="16">
-                    </button>
-                </div>
-            </div>
-
-            <!-- Doručenie -->
-            <div class="text-end text-muted mt-2">
-                Doručenie od 2,39 €
-            </div>
+        <div>
+            <a href="#" class="text-danger d-flex align-items-center">
+                Odstrániť zvýraznené
+            </a>
         </div>
+    </div>
 
-        <!-- 2. Zásielka -->
-        <div class="border rounded-3 p-3 mb-4">
-            <h5 class="fw-bold mb-3">Zásielka od názov farmy</h5>
+    <!-- 1. Zásielka -->
+    <div class="border rounded-3 p-3 mb-4">
+        <h5 class="fw-bold mb-3">Zásielka od Farma pod Lipou</h5>
 
-            <div class="row align-items-center mb-3">
-                <div class="col-auto">
-                    <input class="form-check-input" type="checkbox">
-                </div>
-                <div class="col-auto">
-                    <div class="bg-secondary" style="width: 60px; height: 60px;"></div>
-                </div>
-                <div class="col">
-                    <p class="mb-1 fw-bold">Názov produktu</p>
-                    <p class="mb-0 text-muted">Názov farmy, sídlo</p>
-                </div>
-                <div class="col-auto d-flex align-items-center">
-                    <button class="btn btn-outline-secondary btn-sm">-</button>
-                    <span class="mx-2">1 ks</span>
-                    <button class="btn btn-outline-secondary btn-sm">+</button>
-                </div>
-                <div class="col-auto fw-bold">cena €</div>
-                <div class="col-auto">
-                    <button class="btn btn-light border p-1">
-                        <img src="images/icons/trash.png" alt="trash" width="16">
-                    </button>
-                </div>
+        <!-- 1. Produkt (Granátové jablko) -->
+        <div class="row align-items-center mb-3">
+            <!-- Checkbox -->
+            <div class="col-auto">
+                <input class="form-check-input" type="checkbox">
             </div>
-            <!-- Upozornenie: LEN OSOBNÉ VYZDVIHNUTIE -->
-            <div class="alert alert-warning py-1 px-2 d-inline-flex align-items-center gap-2" role="alert">
-                <img src="images/icons/close.png" alt="warning" width="16" height="16">
-                LEN OSOBNÉ VYZDVIHNUTIE
+            <!-- Obrázok produktu -->
+            <div class="col-auto">
+                <div class="bg-secondary" style="width: 60px; height: 60px;"></div>
             </div>
-        </div>
-
-        <!-- 3. Zásielka -->
-        <div class="border rounded-3 p-3 mb-4">
-            <h5 class="fw-bold mb-3">Zásielka od názov farmy</h5>
-
-            <div class="row align-items-center">
-                <div class="col-auto">
-                    <input class="form-check-input" type="checkbox">
-                </div>
-                <div class="col-auto">
-                    <div class="bg-secondary" style="width: 60px; height: 60px;"></div>
-                </div>
-                <div class="col">
-                    <p class="mb-1 fw-bold">Názov produktu</p>
-                    <p class="mb-0 text-muted">Názov farmy, sídlo</p>
-                </div>
-                <div class="col-auto d-flex align-items-center">
-                    <button class="btn btn-outline-secondary btn-sm">-</button>
-                    <span class="mx-2">1 ks</span>
-                    <button class="btn btn-outline-secondary btn-sm">+</button>
-                </div>
-                <div class="col-auto fw-bold">cena €</div>
-                <div class="col-auto">
-                    <button class="btn btn-light border p-1">
-                        <img src="images/icons/trash.png" alt="trash" width="16">
-                    </button>
-                </div>
-            </div>
-            <div class="text-end text-muted mt-2">
-                Doručenie od cena €
-            </div>
-        </div>
-
-        <!-- 4. Zásielka (doručovateľ) -->
-        <div class="border rounded-3 p-3 mb-4">
-            <h5 class="fw-bold mb-3">Zásielka od doručovateľa</h5>
-
-            <div class="row align-items-center">
-                <div class="col-auto">
-                    <input class="form-check-input" type="checkbox">
-                </div>
-                <div class="col-auto">
-                    <div class="bg-secondary" style="width: 60px; height: 60px;"></div>
-                </div>
-                <div class="col">
-                    <p class="mb-1 fw-bold">Názov produktu</p>
-                    <p class="mb-0 text-muted">Názov farmy, sídlo</p>
-                </div>
-                <div class="col-auto d-flex align-items-center">
-                    <button class="btn btn-outline-secondary btn-sm">-</button>
-                    <span class="mx-2">1 ks</span>
-                    <button class="btn btn-outline-secondary btn-sm">+</button>
-                </div>
-                <div class="col-auto fw-bold">cena €</div>
-                <div class="col-auto">
-                    <button class="btn btn-light border p-1">
-                        <img src="images/icons/trash.png" alt="trash" width="16">
-                    </button>
-                </div>
-            </div>
-            <div class="text-end text-muted mt-2">
-                Doručenie od cena €
-            </div>
-        </div>
-
-        <!-- Súhrn košíka -->
-        <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between gap-3 mb-4">
-            <div>
-                <div class="fw-bold fs-5">Celkom na úhradu: 21,42 €</div>
-                <div class="text-muted">Cena bez DPH: 18,23 €</div>
-            </div>
-            <button class="btn btn-primary px-4 py-2">Prejsť k údajom</button>
-        </div>
-
-        <!-- Upsell: "Pridajte do svojej objednávky!" -->
-        <h3 class="fs-5 mb-3">Pridajte do svojej objednávky!</h3>
-        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3 mb-5">
-
-            <!-- 1. Produkt -->
+            <!-- Názov + miesto farmy -->
             <div class="col">
-                <div class="border text-center p-3 h-100">
-                    <div class="bg-secondary mb-2" style="width:100%; height:110px;"></div>
-                    <p class="fw-bold mb-1">Názov produktu <br> cena €</p>
-                    <p class="text-muted fs-6 mb-1">cena €/kus</p>
-                    <div class="d-flex align-items-center justify-content-center text-muted">
-                        <img src="images/icons/location.png" alt="Location" class="small-icon me-1">
-                        <small>Názov farmy, sídlo</small>
-                    </div>
-                </div>
+                <p class="mb-1 fw-bold">Granátové jablko</p>
+                <p class="mb-0 text-muted">Farma: Farmville, Horné Orešany</p>
             </div>
-            <!-- 2. Produkt -->
-            <div class="col">
-                <div class="border text-center p-3 h-100">
-                    <div class="bg-secondary mb-2" style="width:100%; height:110px;"></div>
-                    <p class="fw-bold mb-1">Názov produktu <br> cena €</p>
-                    <p class="text-muted fs-6 mb-1">cena €/kus</p>
-                    <div class="d-flex align-items-center justify-content-center text-muted">
-                        <img src="images/icons/location.png" alt="Location" class="small-icon me-1">
-                        <small>Názov farmy, sídlo</small>
-                    </div>
-                </div>
+            <!-- Množstvo: - 2 ks + -->
+            <div class="col-auto d-flex align-items-center">
+                <button class="btn btn-outline-secondary btn-sm">-</button>
+                <span class="mx-2">2 ks</span>
+                <button class="btn btn-outline-secondary btn-sm">+</button>
             </div>
-            <!-- 3. Produkt -->
-            <div class="col">
-                <div class="border text-center p-3 h-100">
-                    <div class="bg-secondary mb-2" style="width:100%; height:110px;"></div>
-                    <p class="fw-bold mb-1">Názov produktu <br> cena €</p>
-                    <p class="text-muted fs-6 mb-1">cena €/kus</p>
-                    <div class="d-flex align-items-center justify-content-center text-muted">
-                        <img src="images/icons/location.png" alt="Location" class="small-icon me-1">
-                        <small>Názov farmy, sídlo</small>
-                    </div>
-                </div>
-            </div>
-            <!-- 4. Produkt -->
-            <div class="col">
-                <div class="border text-center p-3 h-100">
-                    <div class="bg-secondary mb-2" style="width:100%; height:110px;"></div>
-                    <p class="fw-bold mb-1">Názov produktu <br> cena €</p>
-                    <p class="text-muted fs-6 mb-1">cena €/kus</p>
-                    <div class="d-flex align-items-center justify-content-center text-muted">
-                        <img src="images/icons/location.png" alt="Location" class="small-icon me-1">
-                        <small>Názov farmy, sídlo</small>
-                    </div>
-                </div>
-            </div>
-            <!-- 5. šípka -> (karusel) -->
-            <div class="col d-flex justify-content-center align-items-center">
-                <button class="btn btn-outline-secondary">
-                    <img src="images/icons/arrow-next.png" alt="Ďalšie" width="20" height="20">
+            <!-- Cena -->
+            <div class="col-auto fw-bold">4.59 €</div>
+            <!-- Odstrániť ikona -->
+            <div class="col-auto">
+                <button class="btn btn-light border p-1" title="Odstrániť">
+                    <img src="images/icons/trash.png" alt="trash" width="16">
                 </button>
             </div>
         </div>
 
-        <!-- Reklamné bannery -->
-        <div class="row g-3">
-            <div class="col-md-6">
-                <div class="border text-center p-5">
-                    Reklama
-                </div>
+        <!-- 2. Produkt -->
+        <div class="row align-items-center mb-3">
+            <div class="col-auto">
+                <input class="form-check-input" type="checkbox">
             </div>
-            <div class="col-md-6">
-                <div class="border text-center p-5">
-                    Reklama
+            <div class="col-auto">
+                <div class="bg-secondary" style="width: 60px; height: 60px;"></div>
+            </div>
+            <div class="col">
+                <p class="mb-1 fw-bold">Názov produktu</p>
+                <p class="mb-0 text-muted">Názov farmy, sídlo</p>
+            </div>
+            <div class="col-auto d-flex align-items-center">
+                <button class="btn btn-outline-secondary btn-sm">-</button>
+                <span class="mx-2">1 ks</span>
+                <button class="btn btn-outline-secondary btn-sm">+</button>
+            </div>
+            <div class="col-auto fw-bold">cena €</div>
+            <div class="col-auto">
+                <button class="btn btn-light border p-1">
+                    <img src="images/icons/trash.png" alt="trash" width="16">
+                </button>
+            </div>
+        </div>
+
+        <!-- 3. Produkt -->
+        <div class="row align-items-center mb-3">
+            <div class="col-auto">
+                <input class="form-check-input" type="checkbox">
+            </div>
+            <div class="col-auto">
+                <div class="bg-secondary" style="width: 60px; height: 60px;"></div>
+            </div>
+            <div class="col">
+                <p class="mb-1 fw-bold">Názov produktu</p>
+                <p class="mb-0 text-muted">Názov farmy, sídlo</p>
+            </div>
+            <div class="col-auto d-flex align-items-center">
+                <button class="btn btn-outline-secondary btn-sm">-</button>
+                <span class="mx-2">1 ks</span>
+                <button class="btn btn-outline-secondary btn-sm">+</button>
+            </div>
+            <div class="col-auto fw-bold">cena €</div>
+            <div class="col-auto">
+                <button class="btn btn-light border p-1">
+                    <img src="images/icons/trash.png" alt="trash" width="16">
+                </button>
+            </div>
+        </div>
+
+        <!-- 4. Produkt -->
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <input class="form-check-input" type="checkbox">
+            </div>
+            <div class="col-auto">
+                <div class="bg-secondary" style="width: 60px; height: 60px;"></div>
+            </div>
+            <div class="col">
+                <p class="mb-1 fw-bold">Názov produktu</p>
+                <p class="mb-0 text-muted">Názov farmy, sídlo</p>
+            </div>
+            <div class="col-auto d-flex align-items-center">
+                <button class="btn btn-outline-secondary btn-sm">-</button>
+                <span class="mx-2">1 ks</span>
+                <button class="btn btn-outline-secondary btn-sm">+</button>
+            </div>
+            <div class="col-auto fw-bold">cena €</div>
+            <div class="col-auto">
+                <button class="btn btn-light border p-1">
+                    <img src="images/icons/trash.png" alt="trash" width="16">
+                </button>
+            </div>
+        </div>
+
+        <!-- Doručenie -->
+        <div class="text-end text-muted mt-2">
+            Doručenie od 2,39 €
+        </div>
+    </div>
+
+    <!-- 2. Zásielka -->
+    <div class="border rounded-3 p-3 mb-4">
+        <h5 class="fw-bold mb-3">Zásielka od názov farmy</h5>
+
+        <div class="row align-items-center mb-3">
+            <div class="col-auto">
+                <input class="form-check-input" type="checkbox">
+            </div>
+            <div class="col-auto">
+                <div class="bg-secondary" style="width: 60px; height: 60px;"></div>
+            </div>
+            <div class="col">
+                <p class="mb-1 fw-bold">Názov produktu</p>
+                <p class="mb-0 text-muted">Názov farmy, sídlo</p>
+            </div>
+            <div class="col-auto d-flex align-items-center">
+                <button class="btn btn-outline-secondary btn-sm">-</button>
+                <span class="mx-2">1 ks</span>
+                <button class="btn btn-outline-secondary btn-sm">+</button>
+            </div>
+            <div class="col-auto fw-bold">cena €</div>
+            <div class="col-auto">
+                <button class="btn btn-light border p-1">
+                    <img src="images/icons/trash.png" alt="trash" width="16">
+                </button>
+            </div>
+        </div>
+        <!-- Upozornenie: LEN OSOBNÉ VYZDVIHNUTIE -->
+        <div class="alert alert-warning py-1 px-2 d-inline-flex align-items-center gap-2" role="alert">
+            <img src="images/icons/close.png" alt="warning" width="16" height="16">
+            LEN OSOBNÉ VYZDVIHNUTIE
+        </div>
+    </div>
+
+    <!-- 3. Zásielka -->
+    <div class="border rounded-3 p-3 mb-4">
+        <h5 class="fw-bold mb-3">Zásielka od názov farmy</h5>
+
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <input class="form-check-input" type="checkbox">
+            </div>
+            <div class="col-auto">
+                <div class="bg-secondary" style="width: 60px; height: 60px;"></div>
+            </div>
+            <div class="col">
+                <p class="mb-1 fw-bold">Názov produktu</p>
+                <p class="mb-0 text-muted">Názov farmy, sídlo</p>
+            </div>
+            <div class="col-auto d-flex align-items-center">
+                <button class="btn btn-outline-secondary btn-sm">-</button>
+                <span class="mx-2">1 ks</span>
+                <button class="btn btn-outline-secondary btn-sm">+</button>
+            </div>
+            <div class="col-auto fw-bold">cena €</div>
+            <div class="col-auto">
+                <button class="btn btn-light border p-1">
+                    <img src="images/icons/trash.png" alt="trash" width="16">
+                </button>
+            </div>
+        </div>
+        <div class="text-end text-muted mt-2">
+            Doručenie od cena €
+        </div>
+    </div>
+
+    <!-- 4. Zásielka (doručovateľ) -->
+    <div class="border rounded-3 p-3 mb-4">
+        <h5 class="fw-bold mb-3">Zásielka od doručovateľa</h5>
+
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <input class="form-check-input" type="checkbox">
+            </div>
+            <div class="col-auto">
+                <div class="bg-secondary" style="width: 60px; height: 60px;"></div>
+            </div>
+            <div class="col">
+                <p class="mb-1 fw-bold">Názov produktu</p>
+                <p class="mb-0 text-muted">Názov farmy, sídlo</p>
+            </div>
+            <div class="col-auto d-flex align-items-center">
+                <button class="btn btn-outline-secondary btn-sm">-</button>
+                <span class="mx-2">1 ks</span>
+                <button class="btn btn-outline-secondary btn-sm">+</button>
+            </div>
+            <div class="col-auto fw-bold">cena €</div>
+            <div class="col-auto">
+                <button class="btn btn-light border p-1">
+                    <img src="images/icons/trash.png" alt="trash" width="16">
+                </button>
+            </div>
+        </div>
+        <div class="text-end text-muted mt-2">
+            Doručenie od cena €
+        </div>
+    </div>
+
+    <!-- Súhrn košíka -->
+    <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between gap-3 mb-4">
+        <div>
+            <div class="fw-bold fs-5">Celkom na úhradu: 21,42 €</div>
+            <div class="text-muted">Cena bez DPH: 18,23 €</div>
+        </div>
+        <a href="ShoppingCart2_form.html" class="btn btn-primary px-4 py-2">Prejsť k údajom</a>
+
+    </div>
+
+    <!-- Upsell: "Pridajte do svojej objednávky!" -->
+    <h3 class="fs-5 mb-3">Pridajte do svojej objednávky!</h3>
+
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3 mb-5">
+        <!-- 1. Produkt -->
+        <div class="col">
+            <div class="border text-center p-3 h-100">
+                <div class="bg-secondary mb-2" style="width:100%; height:110px;"></div>
+                <p class="fw-bold mb-1">Názov produktu <br> cena €</p>
+                <p class="text-muted fs-6 mb-1">cena €/kus</p>
+                <div class="d-flex align-items-center justify-content-center text-muted">
+                    <img src="images/icons/location.png" alt="Location" class="small-icon me-1">
+                    <small>Názov farmy, sídlo</small>
                 </div>
             </div>
         </div>
-    </main>
+        <!-- 2. Produkt -->
+        <div class="col">
+            <div class="border text-center p-3 h-100">
+                <div class="bg-secondary mb-2" style="width:100%; height:110px;"></div>
+                <p class="fw-bold mb-1">Názov produktu <br> cena €</p>
+                <p class="text-muted fs-6 mb-1">cena €/kus</p>
+                <div class="d-flex align-items-center justify-content-center text-muted">
+                    <img src="images/icons/location.png" alt="Location" class="small-icon me-1">
+                    <small>Názov farmy, sídlo</small>
+                </div>
+            </div>
+        </div>
+        <!-- 3. Produkt -->
+        <div class="col">
+            <div class="border text-center p-3 h-100">
+                <div class="bg-secondary mb-2" style="width:100%; height:110px;"></div>
+                <p class="fw-bold mb-1">Názov produktu <br> cena €</p>
+                <p class="text-muted fs-6 mb-1">cena €/kus</p>
+                <div class="d-flex align-items-center justify-content-center text-muted">
+                    <img src="images/icons/location.png" alt="Location" class="small-icon me-1">
+                    <small>Názov farmy, sídlo</small>
+                </div>
+            </div>
+        </div>
+        <!-- 4. Produkt -->
+        <div class="col">
+            <div class="border text-center p-3 h-100">
+                <div class="bg-secondary mb-2" style="width:100%; height:110px;"></div>
+                <p class="fw-bold mb-1">Názov produktu <br> cena €</p>
+                <p class="text-muted fs-6 mb-1">cena €/kus</p>
+                <div class="d-flex align-items-center justify-content-center text-muted">
+                    <img src="images/icons/location.png" alt="Location" class="small-icon me-1">
+                    <small>Názov farmy, sídlo</small>
+                </div>
+            </div>
+        </div>
+        <!-- 5. šípka -> (karusel) -->
+        <div class="col d-flex justify-content-center align-items-center">
+            <button class="btn btn-outline-secondary">
+                <img src="images/icons/arrow-next.png" alt="Ďalšie" width="20" height="20">
+            </button>
+        </div>
+    </div>
+
+    <!-- Reklamné bannery -->
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="border text-center p-5">
+                Reklama
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="border text-center p-5">
+                Reklama
+            </div>
+        </div>
+    </div>
+</main>
 
 
 <!-- ===================== FOOTER ===================== -->
 <footer class="bg-light py-4">
-    <div class="container">
+    <div class="container-fluid custom-fluid">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-4">
 
             <!-- Ľavá časť s odkazmi -->

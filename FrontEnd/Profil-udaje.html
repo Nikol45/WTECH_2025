@@ -295,7 +295,7 @@
     </div>
 
     <!-- Kategórie -->
-    <div class="categories-bar" id="categoriesBar">
+    <div class="categories-bar collapsed" id="categoriesBar">
         <div class="container-fluid custom-fluid">
             <div class="d-flex flex-wrap position-relative">
 
@@ -410,11 +410,12 @@
     </button>
 </header>
 
-<!-- ===================== MAIN CONTENT ===================== -->
 <main class="container-fluid custom-fluid py-4">
 
     <!-- Tabs (Údaje, História objednávok, Obľúbené produkty, Recenzie) -->
-    <ul class="nav nav-tabs mb-4">
+
+    <!-- Pre stredné a väčšie obrazovky: klasické nav-tabs -->
+    <ul class="nav nav-tabs d-none d-md-flex mb-4">
         <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="Profil-udaje.html">Osobné údaje</a>
         </li>
@@ -429,17 +430,33 @@
         </li>
     </ul>
 
+
     <!-- Odkaz späť do obchodu -->
-    <a href="#" class="d-inline-flex align-items-center mb-4 text-decoration-none text-dark">
+    <a href="#" class="d-inline-flex align-items-center text-decoration-none text-dark">
         <span class="me-2">←</span>
         Späť do obchodu
     </a>
 
+    <!-- Pre menšie obrazovky: dropdown -->
+    <div class="dropdown-nav d-md-none mt-3">
+        <div class="dropdown">
+            <button class="btn btn-light w-100 text-start dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Osobné údaje
+            </button>
+            <ul class="dropdown-menu w-100">
+                <li><a class="dropdown-item active" href="Profil-udaje.html">Osobné údaje</a></li>
+                <li><a class="dropdown-item" href="Profil-historia.html">História objednávok</a></li>
+                <li><a class="dropdown-item" href="Profil-oblubene.html">Obľúbené produkty</a></li>
+                <li><a class="dropdown-item" href="Profil-recenzie.html">Recenzie</a></li>
+            </ul>
+        </div>
+    </div>
+
     <!-- Nadpis -->
-    <h2 class="fw-bold mb-5">Môj profil</h2>
+    <h2 class="fw-bold my-4">Môj profil</h2>
 
     <!-- Osobné údaje (3 stĺpce) -->
-    <div class="row mb-3">
+    <div class="row mb-4 g-4">
         <div class="col-md-4">
             <p class="fw-bold mb-1">Meno:</p>
             <p class="mb-0">Ján Hraško</p>
@@ -458,7 +475,7 @@
     </div>
 
     <!-- Fakturačná, dodacia adresa a nákup na firmu (3 stĺpce) -->
-    <div class="row mb-5 g-4">
+    <div class="row mb-4 g-4">
         <!-- Fakturačná adresa -->
         <div class="col-md-4">
             <h3 class="fw-bold mb-2">Fakturačná adresa</h3>
@@ -531,7 +548,7 @@
 
 <!-- ===================== FOOTER ===================== -->
 <footer class="bg-light py-4">
-    <div class="container">
+    <div class="container-fluid custom-fluid">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-4">
 
             <!-- Ľavá časť s odkazmi -->

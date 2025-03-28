@@ -295,7 +295,7 @@
     </div>
 
     <!-- Kategórie -->
-    <div class="categories-bar" id="categoriesBar">
+    <div class="categories-bar collapsed" id="categoriesBar">
         <div class="container-fluid custom-fluid">
             <div class="d-flex flex-wrap position-relative">
 
@@ -413,7 +413,7 @@
 <main class="container-fluid custom-fluid py-4">
 
     <!-- Tabs -->
-    <ul class="nav nav-tabs mb-4">
+    <ul class="nav nav-tabs mb-4 d-none">
         <li class="nav-item">
             <a class="nav-link text-dark" href="ShoppingCart1_items.html">Košík</a>
         </li>
@@ -429,13 +429,13 @@
     </ul>
 
     <!-- Link Späť do košíka -->
-    <a href="#" class="d-inline-flex align-items-center mb-4 text-decoration-none text-dark">
+    <a href="ShoppingCart1_items.html" class="d-inline-flex align-items-center mb-4 text-decoration-none text-dark">
         <span class="me-1">←</span> Späť do košíka
     </a>
 
     <!-- Formulár so základnými údajmi -->
     <form>
-        <div class="row g-4 mb-5">
+        <div class="row g-4">
             <!-- Ľavý stĺpec (Základné údaje, Fakturačná adresa, Dodatočné sekcie) -->
             <div class="col-md-8">
 
@@ -566,25 +566,16 @@
         </div>
 
         <!-- Tlačidlo "Prejsť k doprave a platbe" -->
-        <div class="text-end">
-            <button class="btn btn-primary px-4 py-2">
+        <div class="text-center text-md-end">
+            <a href="ShoppingCart3_delivery.html" class="btn btn-primary px-4 py-2">
                 Prejsť k doprave a platbe
-            </button>
+            </a>
         </div>
+
     </form>
 
     <!-- Reklamné bloky -->
-    <div class="row g-4 my-5">
-        <div class="col-md-6">
-            <div class="border text-center p-5">
-                Reklama
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="border text-center p-5">
-                Reklama
-            </div>
-        </div>
+    <div class="row g-2 mt-5">
         <div class="col-md-6">
             <div class="border text-center p-5">
                 Reklama
@@ -604,7 +595,7 @@
 
 <!-- ===================== FOOTER ===================== -->
 <footer class="bg-light py-4">
-    <div class="container">
+    <div class="container-fluid custom-fluid">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-4">
 
             <!-- Ľavá časť s odkazmi -->

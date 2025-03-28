@@ -295,7 +295,7 @@
     </div>
 
     <!-- Kategórie -->
-    <div class="categories-bar" id="categoriesBar">
+    <div class="categories-bar collapsed" id="categoriesBar">
         <div class="container-fluid custom-fluid">
             <div class="d-flex flex-wrap position-relative">
 
@@ -412,9 +412,10 @@
 
 <!-- ===================== MAIN CONTENT ===================== -->
 <main class="container-fluid custom-fluid py-4">
-
     <!-- Tabs (Údaje, História objednávok, Obľúbené produkty, Recenzie) -->
-    <ul class="nav nav-tabs mb-4">
+
+    <!-- Pre stredné a väčšie obrazovky: klasické nav-tabs -->
+    <ul class="nav nav-tabs d-none d-md-flex mb-4">
         <li class="nav-item">
             <a class="nav-link text-dark" href="Profil-udaje.html">Osobné údaje</a>
         </li>
@@ -430,13 +431,28 @@
     </ul>
 
     <!-- Odkaz späť do obchodu -->
-    <a href="#" class="d-inline-flex align-items-center mb-4 text-decoration-none text-dark">
+    <a href="#" class="d-inline-flex align-items-center text-decoration-none text-dark">
         <span class="me-2">←</span>
         Späť do obchodu
     </a>
 
+    <!-- Pre menšie obrazovky: dropdown -->
+    <div class="dropdown-nav d-md-none mt-3">
+        <div class="dropdown">
+            <button class="btn btn-light w-100 text-start dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Obľúbené produkty
+            </button>
+            <ul class="dropdown-menu w-100">
+                <li><a class="dropdown-item" href="Profil-udaje.html">Osobné údaje</a></li>
+                <li><a class="dropdown-item" href="Profil-historia.html">História objednávok</a></li>
+                <li><a class="dropdown-item active" href="Profil-oblubene.html">Obľúbené produkty</a></li>
+                <li><a class="dropdown-item" href="Profil-recenzie.html">Recenzie</a></li>
+            </ul>
+        </div>
+    </div>
+
     <!-- Nadpis stránky -->
-    <h2 class="fw-bold mb-4">Obľúbené produkty</h2>
+    <h2 class="fw-bold my-4">Obľúbené produkty</h2>
 
     <!-- Grid s obľúbenými produktmi (4 stĺpce) -->
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mb-5">
@@ -622,7 +638,7 @@
 
 <!-- ===================== FOOTER ===================== -->
 <footer class="bg-light py-4">
-    <div class="container">
+    <div class="container-fluid custom-fluid">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-4">
 
             <!-- Ľavá časť s odkazmi -->
