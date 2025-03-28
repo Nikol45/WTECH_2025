@@ -100,18 +100,11 @@ a {
 
 
 .truncate-ellipsis {  /*na ... ak text preteka*/
-    width: 225px;
-    height: 22px;
+    max-width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     display: inline-block;
-}
-
-.truncate-ellipsis-220 {  /*na ... ak text preteka*/
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .custom-fluid {  /*custom fluid container na responzivnost a dodrziavanie margins stranky*/
@@ -566,10 +559,22 @@ input:focus::placeholder {
 /* ---- PRODUCT LISTING ---- */
 
 .product-grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: clamp(10px, 2vw, 1rem);
     justify-content: center;
+    align-items: stretch;
+}
+
+.product-grid .card {
+    height: 100%;  /* Make the card fill the grid cell */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; /* center children horizontally */
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto; /* Allow internal flexing if needed */
   }
 
 .form-select {
@@ -580,20 +585,28 @@ input:focus::placeholder {
     flex: 0 0 0 !important;
 }
 
-.col-listing .card {
-    width: 200px;
+.col-listing .card {  /*aby boli centrovane cards ked je len jedna v row*/
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.col-listing .card-title, .col-listing .card-body, .col-listing .card-location, .col-listing .discount-text, .col-listing .star-count, .location-line{
-    font-size: 1rem !important;
-    line-height: normal !important;
+.col-listing .card-title, .col-listing .card-body, .col-listing .card-location, .col-listing .discount-text, .col-listing .star-count,.col-listing .location-line {
+    line-height: 1.3 !important;
     margin: 0;
     max-width:220px !important;
     display: block;
 }
 
+.col-listing .card-title {
+    font-size: 15px !important;
+}
+
+.col-listing .btn-pridat-do-kosika {
+    font-size: 13px;
+}
+
 .col-listing .price-before, .col-listing .price-per, .col-listing .price {
-    font-size: 0.9rem !important;
+    font-size: 15px !important;
     line-height: normal !important;
     margin: 0;
 
