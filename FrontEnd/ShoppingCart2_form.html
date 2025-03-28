@@ -456,37 +456,48 @@
                     </div>
                     <div class="col-sm-6">
                         <label class="form-label">Telefónne číslo *</label>
-                        <div class="input-group">
-                            <select class="form-select" aria-label="Prefix čísla">
-                                <option value="+421">+421</option>
-                                <option value="+420">+420</option>
-                                <option value="+48">+48</option>
-                            </select>
-                            <input type="tel" class="form-control" placeholder="0950 111 111" required>
+                        <!-- Vnorená row pre prefix (col-4) a telefónne číslo (col-8) -->
+                        <div class="row g-2">
+                            <div class="col-4">
+                                <select class="form-select" aria-label="Prefix čísla">
+                                    <option value="+421">+421</option>
+                                    <option value="+420">+420</option>
+                                    <option value="+48">+48</option>
+                                </select>
+                            </div>
+                            <div class="col-8">
+                                <input type="tel" class="form-control" id="phoneNumber" required>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Fakturačná adresa -->
-                <h5 class="fw-bold mb-3">Fakturačná adresa</h5>
-                <div class="mb-3">
-                    <label for="street" class="form-label">Ulica *</label>
-                    <input type="text" class="form-control" id="street" required>
-                </div>
-                <div class="mb-3">
-                    <label for="streetNumber" class="form-label">Číslo domu *</label>
-                    <input type="text" class="form-control" id="streetNumber" required>
-                </div>
+                <h5 class="fw-bold mb-3 mt-5">Fakturačná adresa</h5>
                 <div class="row g-3 mb-3">
-                    <div class="col-sm-6">
+                    <div class="col-8">
+                        <label for="street" class="form-label">Ulica *</label>
+                        <input type="text" class="form-control" id="street" required>
+                    </div>
+                    <div class="col-4">
+                        <!-- Na mobiloch "Č. domu", na väčších "Číslo domu" -->
+                        <label for="streetNumber" class="form-label">
+                            <span class="label-text"></span>
+                        </label>
+                        <input type="text" class="form-control" id="streetNumber" required>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-sm-6 col-8">
                         <label for="city" class="form-label">Mesto *</label>
                         <input type="text" class="form-control" id="city" required>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2 col-4">
                         <label for="psc" class="form-label">PSČ *</label>
                         <input type="text" class="form-control" id="psc" required>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <label for="country" class="form-label">Krajina *</label>
                         <input type="text" class="form-control" id="country" required>
                     </div>
@@ -502,27 +513,32 @@
 
                 <!-- Dodacia adresa (skrytá, objaví sa po zaškrtnutí) -->
                 <div id="deliveryAddressSection" class="d-none">
-                    <h5 class="fw-bold mb-3">Dodacia adresa</h5>
-                    <div class="mb-3">
-                        <label for="deliveryStreet" class="form-label">Ulica *</label>
-                        <input type="text" class="form-control" id="deliveryStreet">
-                    </div>
-                    <div class="mb-3">
-                        <label for="deliveryStreetNumber" class="form-label">Číslo domu *</label>
-                        <input type="text" class="form-control" id="deliveryStreetNumber">
-                    </div>
+                    <h5 class="fw-bold mb-3 mt-5">Dodacia adresa</h5>
                     <div class="row g-3 mb-3">
-                        <div class="col-sm-6">
+                        <div class="col-8">
+                            <label for="deliveryStreet" class="form-label">Ulica *</label>
+                            <input type="text" class="form-control" id="deliveryStreet" required>
+                        </div>
+                        <div class="col-4">
+                            <label for="deliveryStreetNumber" class="form-label">
+                                <span class="label-text"></span>
+                            </label>
+                            <input type="text" class="form-control" id="deliveryStreetNumber" required>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-sm-6 col-8">
                             <label for="deliveryCity" class="form-label">Mesto *</label>
-                            <input type="text" class="form-control" id="deliveryCity">
+                            <input type="text" class="form-control" id="deliveryCity" required>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2 col-4">
                             <label for="deliveryPsc" class="form-label">PSČ *</label>
-                            <input type="text" class="form-control" id="deliveryPsc">
+                            <input type="text" class="form-control" id="deliveryPsc" required>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <label for="deliveryCountry" class="form-label">Krajina *</label>
-                            <input type="text" class="form-control" id="deliveryCountry">
+                            <input type="text" class="form-control" id="deliveryCountry" required>
                         </div>
                     </div>
                 </div>

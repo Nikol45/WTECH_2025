@@ -683,6 +683,7 @@ input:focus::placeholder {
 /*    border-color: #42803e;*/
 /*}*/
 
+/* košík - navigácia */
 @media (max-width: 599.99px) {
     .nav-tabs {
         display: none !important;
@@ -700,5 +701,16 @@ input:focus::placeholder {
 
     .dropdown-nav {
         display: none !important;
+    }
+}
+
+.label-text::before {
+    content: "Číslo domu *";
+}
+
+/* Pod 350px zmeniť text */
+@media (max-width: 350px) {
+    .label-text::before {
+        content: "Č. domu *";
     }
 }
