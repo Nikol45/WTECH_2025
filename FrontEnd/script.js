@@ -185,6 +185,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const arrowRight4 = document.getElementById('arrowRight4');
     const arrowLeft4 = document.getElementById('arrowLeft4');
 
+    //pre sekciu clankov
+    const carouselRow5 = document.getElementById('carouselRow5');
+    const arrowRight5 = document.getElementById('arrowRight5');
+    const arrowLeft5 = document.getElementById('arrowLeft5');
+
     let isAnimating = false;
 
     //animacie na scrollovanie sekciami produktov
@@ -443,6 +448,58 @@ document.addEventListener('DOMContentLoaded', () => {
             carouselRow4.addEventListener('transitionend', function handler(e) {
                 if (e.propertyName === 'transform') {
                     carouselRow4.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
+        });
+    }
+
+    if (arrowRight5 && carouselRow5) {
+        arrowRight5.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            carouselRow5.style.transform = 'translateX(-125px)';
+
+            carouselRow5.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    const firstCol = carouselRow5.querySelector('.col');
+                    carouselRow5.appendChild(firstCol);
+
+                    carouselRow5.style.transition = 'none';
+                    carouselRow5.style.transform = 'none';
+
+                    carouselRow5.offsetHeight;
+
+                    carouselRow5.style.transition = 'transform 0.3s ease';
+
+                    carouselRow5.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
+        });
+    }
+
+    if (arrowLeft5 && carouselRow5) {
+        arrowLeft5.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            const allCols = carouselRow5.querySelectorAll('.col');
+            const lastCol = allCols[allCols.length - 1];
+            carouselRow5.insertBefore(lastCol, allCols[0]);
+
+            carouselRow5.style.transition = 'none';
+            carouselRow5.style.transform = 'translateX(-125px)';
+
+            carouselRow5.offsetHeight;
+
+            carouselRow5.style.transition = 'transform 0.3s ease';
+            carouselRow5.style.transform = 'none';
+
+            carouselRow5.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    carouselRow5.removeEventListener('transitionend', handler);
                     isAnimating = false;
                 }
             });

@@ -414,97 +414,109 @@
 <main class="container-fluid custom-fluid py-4">
 
     <!-- Cesta k produktu (breadcrumb) -->
-
-    <div class="breadcrumb mb-3">
-        <!-- Ikona domčeka namiesto "Domov" -->
-        <a href="#" class="me-1">
-            <img src="icons/home.png" alt="Domov"
-                 class="small-icon"
-            >
+    <div class="breadcrumb align-items-center mb-3">
+        <a href="HomePage.html" class="d-flex justify-content-center align-items-center me-1">
+            <span class="material-icons">home</span>
         </a>
         &gt;
-        <a href="#" class="mx-1">Ovocie / Exotické ovocie</a>
+        <a href="ProductListing.html" class="mx-1">Ovocie</a>
         &gt;
-        <strong class="ms-1">Granátové jablko</strong>
+        <a href="ProductListing.html" class="mx-1">Jablko</a>
+        &gt;
+        <strong class="ms-1">Jablko Evelina</strong>
     </div>
 
-
-    <!-- Produkt Detail (galéria + info) -->
-    <!-- Späť do obchodu -->
-    <a href="#" class="text-decoration-none d-inline-block mb-3">
-        &larr; Späť do obchodu
-    </a>
+    <!-- Odkaz späť -->
+    <div class="row mb-2">
+        <div class="col-12 d-flex align-items-center">
+            <a href="HomePage.html" class="mb-2 d-flex align-items-center gap-2 text-decoration-none">
+                <span class="material-icons">arrow_back</span>
+                <span class="px-2">Späť do obchodu</span>
+            </a>        
+        </div>
+    </div>
 
     <div class="row product-detail">
-        <!-- Galéria produktu (vľavo) -->
+        <!-- Galéria produktu -->
+        <!-- Hlavný obrázok -->
         <div class="col-md-5 product-gallery">
             <div class="main-image position-relative mb-3">
-                <img
-                        src="images/product-main.png"
-                        alt="Granátové jablko"
-                        class="img-fluid"
-                >
+                <img src="images/tovar/fruit/apples/evelina.png" alt="Jablko Evelina" class="img">
             </div>
 
-            <!-- Navigácia miniatur - šípky a thumbnaily -->
+            <!-- Mini obrázky vedlajšie -->
             <div class="d-flex align-items-center">
-                <button class="btn p-0 me-2" aria-label="Predchádzajúci obrázok">
-                    <img src="icons/arrow-prev.png" alt="<" />
-                </button>
-                <div class="thumbnail-list d-flex gap-2">
-                    <img
-                            src="images/product-thumbnail1.png"
-                            alt="Granátové jablko mini"
-                            width="60"
-                            height="60"
-                    >
-                    <img
-                            src="images/product-thumbnail2.png"
-                            alt="Granátové jablko mini"
-                            width="60"
-                            height="60"
-                    >
-                    <img
-                            src="images/product-thumbnail3.png"
-                            alt="Granátové jablko mini"
-                            width="60"
-                            height="60"
-                    >
+
+                <div class="arrows-around position-relative mt-4">
+                    <div class="arrows">
+                        <button class="btn custom-button arrow-left" id="arrowLeft5">
+                            <span class="material-icons">chevron_left</span>
+                        </button>
+                        <button class="btn custom-button arrow-right" id="arrowRight5">
+                            <span class="material-icons">chevron_right</span>
+                        </button>
+                    </div>
+                    <div class="images-carousel-container">
+                        <div class="images-row" id="carouselRow5">
+                            <div class="thumbnail-list gap-3 w-100">
+                                <div class="col">
+                                    <img src="images/tovar/fruit/apples/evelina_1.png" alt="Jablká Evelina v košíku" width="125px" height="87px">
+                                </div>
+                                <div class="col">
+                                    <img src="images/tovar/fruit/apples/evelina_2.png" alt="Jablká Evelina v debničke" width="125px" height="87px">
+                                </div>
+                                <div class="col">
+                                    <img src="images/tovar/fruit/apples/evelina_3.png" alt="Jablká Evelina na strome" width="125px" height="87px">
+                                </div>
+                                <div class="col">
+                                    <img src="images/tovar/fruit/apples/evelina_4.png" alt="Jablko Evelina v ruke" width="125px" height="87px">
+                                </div>
+                                </div>
+                          </div>
+                          
+                    </div>
                 </div>
-                <button class="btn p-0 ms-2" aria-label="Nasledujúci obrázok">
-                    <img src="icons/arrow-next.png" alt=">" />
-                </button>
             </div>
         </div>
 
-        <!-- Informácie o produkte (vpravo) -->
-        <div class="col-md-7">
-            <h1 class="mb-2">Granátové jablko</h1>
+        <!-- Informácie o produkte -->
+        <div class="col-md-7 px-4">
+            <h1 class="mb-3">Jablko Evelina</h1>
 
-            <!-- Hodnotenie & množstvo -->
+            <!-- Hodnotenia a množstvo -->
             <div class="rating-and-reviews mb-2 d-flex align-items-center gap-2">
-                <span class="rating-score fs-5">4,5</span>
-                <span class="stars">★★★★☆</span>
+                <span class="rating-score">4</span>
+                <span>
+                    <div class="stars mb-0">
+                        <span class="material-icons star filled">star</span>
+                        <span class="material-icons star filled">star</span>
+                        <span class="material-icons star filled">star</span>
+                        <span class="material-icons star filled">star</span>
+                        <span class="material-icons star empty">star_outline</span>
+                    </div>
+                </span>
                 <span>3 hodnotenia</span>
                 <span>|</span>
-                <span>1ks</span>
+                <span>250 g</span>
             </div>
 
             <!-- Cena -->
-            <div class="big_price fs-3 fw-bold mb-3">$3.89</div>
+            <div class="big_price fs-3 fw-bold mb-3">0,56 €</div>
 
-            <!-- Krátky popis podľa wireframu -->
+            <!-- Krátky popis -->
             <p class="short-description">
-                Objavte jedinečnú chuť a výživové benefity granátového jablka,
-                superpotraviny známej svojou osviežujúcou sladko-kyslou chuťou
-                a bohatým obsahom antioxidantov. Jeho šťavnaté červené semená sú
+                Objavte jedinečnú chuť a výživové benefity jablka Evelina,
+                známeho svojou osviežujúcou sladko-kyslou chuťou
+                a bohatým obsahom antioxidantov. Jeho šťavnatá dužina je
                 ideálne na priamu konzumáciu, lisovanie šťavy alebo ako lahodný
                 doplnok do šalátov, dezertov a hlavných jedál.
             </p>
 
-            <!-- Detailné informácie (ak chceš, môžeš pridať collapse) -->
+            <!-- Detailné informácie -->
             <div class="mb-4">
-                <a href="#productDescription" class="text-decoration-none">Detailné informácie </a>
+                <a href="#productDescription" class="modal-link">Detailné informácie
+                    <span class="material-icons">keyboard_arrow_down</span>
+                </a>
 
             </div>
 

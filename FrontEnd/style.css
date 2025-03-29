@@ -738,42 +738,86 @@ input:focus::placeholder {
 
 /* ---- PRODUCT DETAIL ---- */
 
-/*.product-detail {*/
-/*    display: flex;*/
-/*    gap: 2rem;*/
-/*    margin-bottom: 2rem;*/
-/*}*/
+.breadcrumb .material-icons {
+    font-size: 20px !important;
+}
 
-/*.product-gallery {*/
-/*    flex: 1;*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    gap: 1rem;*/
-/*    max-width: 400px;*/
-/*}*/
+.product-detail {
+    display: flex;
+   gap: 2rem;
+   margin-bottom: 2rem;
+}
 
-/*.main-image img {*/
-/*    width: 100%;*/
-/*    aspect-ratio: 1 / 1;*/
-/*    object-fit: cover; !* zabezpečí správne orezanie obrázka *!*/
-/*    display: block;*/
-/*    border: 1px solid #ddd;*/
-/*    border-radius: 4px;*/
-/*}*/
+.product-gallery {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+    max-width: 400px;
+}
 
-/*.thumbnail-list {*/
-/*    display: flex;*/
-/*    gap: 0.5rem;*/
-/*}*/
+.main-image {
+    width: 384px;
+    height: 225px; /* Adjust as needed */ /* Hide any overflow */
+}
 
-/*.thumbnail-list img {*/
-/*    width: 60px;*/
-/*    height: 60px;*/
-/*    object-fit: cover;*/
-/*    border: 1px solid #ddd;*/
-/*    border-radius: 4px;*/
-/*    cursor: pointer;*/
-/*}*/
+.main-image img {
+   width: 100%;
+   aspect-ratio: 256 / 150;
+   object-fit: cover;
+   border: 5px solid #ddd;
+   border-radius: 0.375rem;
+}
+
+.product-gallery .arrow-left, .product-gallery .arrow-right {
+    height: 2rem !important;
+    width: 2rem !important;
+    top: 50%;
+}
+
+.product-gallery .arrow-left {
+    left: -3rem;
+}
+
+.product-gallery .arrow-right {
+    right: -3rem;
+}
+
+.product-gallery .arrows-around {
+    width: 382px;
+}
+
+.images-carousel-container {  /*carousel container na animaciu scrollovania clankov*/
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.images-row {  /*rada clankov*/
+    display: flex;
+    transition: transform 0.3s ease;
+    will-change: transform;
+}
+
+.thumbnail-list {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.thumbnail-list img {
+    width: 125px;
+   height: 70,75px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.rating-and-reviews {
+    font-size: 15px !important;
+}
 
 /*--------PRODUCT LISTING-------*/
 
