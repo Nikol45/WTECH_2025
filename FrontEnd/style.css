@@ -295,9 +295,10 @@ input:focus::placeholder {
 }
 
 .products-row .col {  /*rozlozenie stlpcov radu produktov*/
-    flex: 0 0 25%;
+    flex: 0 0 auto;
     box-sizing: border-box;
     margin-right: 1rem;
+    width: 340px;
 }
 
 .products-row .col:last-child {
@@ -841,12 +842,12 @@ input:focus::placeholder {
     }
 
     /* Menší padding v kartách */
-    .card.text-start.p-3 {
+    .package-products .text-start.p-3 {
         padding: 0.75rem !important;
     }
 
     /* Menší font pre názov produktu v kartách */
-    .card .card-title {
+    .package-products .card-title {
         font-size: 1rem;
         line-height: 1.2;
     }
