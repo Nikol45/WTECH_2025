@@ -104,6 +104,63 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    //na otvorenie login pop up z hamburger menu
+    const mobileProfileLink = document.getElementById('mobileProfileLink');
+        if (mobileProfileLink) {
+        mobileProfileLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const offcanvas = document.getElementById('mobileMenu');
+            if (offcanvas) {
+                const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvas);
+                if (bsOffcanvas) {
+                    bsOffcanvas.hide();
+                }
+            }
+            openModal('loginModal');
+        });
+    }
+
+    const mobileProfileMenu = document.getElementById('mobileProfileMenu');
+
+    //na zmenenie moznosti hamburger menu podla prihlasenia
+    function updateMobileProfileMenu() {
+        if (mobileProfileMenu) {
+            mobileProfileMenu.innerHTML = '';
+            if (isLoggedIn) {
+                mobileProfileMenu.innerHTML = `
+                <li class="mb-3 fw-bold fs-5"><a href="Profil-udaje.html">Môj profil</a></li>
+                <li class="mb-3 fw-bold fs-5"><a href="Profil-historia.html">Objednávky</a></li>
+                <li class="mb-3 fw-bold fs-5"><a href="Profil-recenzie.html">Recenzie</a></li>
+                <li class="mb-3 fw-bold fs-5"><a href="#" id="mobileLogoutLink">Odhlásiť</a></li>
+                `;
+            }
+            else {
+                mobileProfileMenu.innerHTML = `
+                <li class="mb-3 fw-bold fs-5"><a href="#" id="mobileLoginLink">Prihlásiť sa</a></li>
+                `;
+            }
+        }
+    }
+      
+    updateMobileProfileMenu();
+      
+    document.addEventListener('click', (e) => {
+        if (e.target && e.target.id === 'mobileLoginLink') {
+            e.preventDefault();
+            isLoggedIn = true;
+            updateMobileProfileMenu();
+            const offcanvas = document.getElementById('mobileMenu');
+            const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvas);
+            if (bsOffcanvas) bsOffcanvas.hide();
+            openModal('loginModal');
+        }
+
+        if (e.target && e.target.id === 'mobileLogoutLink') {
+            e.preventDefault();
+            isLoggedIn = false;
+            updateMobileProfileMenu();
+        }
+    });
 
     // =================== TOGGLE KATEGÓRIÍ ===================
     const toggleBtn = document.getElementById('toggleCategoriesBtn');

@@ -249,15 +249,13 @@
     <div class="top-bar py-3">
         <div class="container-fluid custom-fluid">
             <div class="d-flex flex-wrap align-items-center justify-content-between">
-
                 <!-- Logo -->
                 <a href="HomePage.html" class="d-flex align-items-center flex-shrink-0 me-3 text-decoration-none custom-logo">
                     <img src="images/logo.png" alt="Logo" width="30" height="30" class="me-2">
                     <h2 class="mb-0 custom-logo">Zdvora.sk</h2>
                 </a>
-
                 <!-- Search -->
-                <div class="d-flex justify-content-start flex-grow-1 mx-3 my-2 my-md-0 custom-search-container">
+                <div class="custom-search-container d-flex justify-content-start flex-grow-1 mx-3 my-2 my-md-0">
                     <form class="position-relative">
                         <input type="text" class="form-control pe-5" placeholder="Vyhľadávanie...">
                         <button class="btn custom-button position-absolute top-50 end-0 translate-middle-y me-2 p-0" type="submit">
@@ -265,29 +263,46 @@
                         </button>
                     </form>
                 </div>
-
-                <!-- Icons -->
-                <div class="d-flex justify-content-end align-items-center gap-3 mt-2 mt-md-0 flex-shrink-0 ms-3 custom-ikonky">
-                    <!-- Heart -->
+                <!-- Ikonky -->
+                <div class="custom-ikonky d-flex justify-content-end align-items-center gap-3 mt-2 mt-md-0 flex-shrink-0 ms-3">
                     <a href="Profil-oblubene.html" class="btn custom-button p-0 ms-2">
                         <span class="material-icons">favorite</span>
                     </a>
-
-                    <!-- Cart -->
                     <a href="ShoppingCart1_items.html" class="btn custom-button p-0 ms-2">
                         <span class="material-icons">shopping_cart</span>
                     </a>
-
-                    <!-- Profile -->
                     <div class="dropdown text-center ms-2">
                         <button class="btn custom-button p-0" id="profileBtn">
                             <span class="material-icons">account_circle</span>
                         </button>
-                        
                         <ul class="dropdown-menu custom-dropdown-menu" id="profileMenu"></ul>
                     </div>
                 </div>
+
+                <!-- Hamburger menu -->
+                <button class="btn custom-button d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
+                    <span class="material-icons">menu</span>
+                </button>
             </div>
+        </div>
+    </div>
+    
+    <!-- Sidebar miesto ikoniek -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title fw-bold" id="mobileMenuLabel">Menu</h2>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form class="mb-3">
+                <input type="text" class="form-control" placeholder="Vyhľadávanie...">
+                <button class="btn custom-button subcategory-btn mt-2" type="submit">Hľadať</button>
+            </form>
+            <ul class="list-unstyled">
+                <li class="mb-3 fw-bold fs-5"><a href="Profil-oblubene.html">Obľúbené</a></li>
+                <li class="mb-3 fw-bold fs-5"><a href="ShoppingCart1_items.html">Košík</a></li>
+                <ul class="list-unstyled" id="mobileProfileMenu"></ul>
+            </ul>
         </div>
     </div>
 

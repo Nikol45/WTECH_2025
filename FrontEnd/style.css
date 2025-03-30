@@ -145,14 +145,6 @@ a {
     }
 }
 
-@media (max-width: 433px) {  /*fix na centrovanie nav baru pri troch riadkoch*/
-    .custom-logo, .custom-ikonky, .custom-search-container {
-    display: flex !important;
-    width: 100%;
-    justify-content: center !important;
-  }
-}
-
 .custom-logo {  /*sirsie pismo v logu*/
     font-weight: bolder;
 }
@@ -163,6 +155,21 @@ input::placeholder {  /* animacia na zmiznutie placeholder textu v searchi*/
 
 input:focus::placeholder {
     opacity: 0;
+}
+
+@media (max-width: 767.98px) {  /*zmiznutie searchu a ikoniek ked sa uz nezmestia*/
+    .custom-search-container, .custom-ikonky {
+        display: none !important;
+    }
+}
+
+.offcanvas {  /*pozadie sidebaru*/
+    background-color: var(--green-light);
+    color: var(--green-dark-muted);
+}
+
+.offcanvas .subcategory-btn {  /*pozadie hladat button*/
+    background-color: #EDFAE6 !important;
 }
 
 /* ------------------------------- CATEGORIES ------------------------------------- */
