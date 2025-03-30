@@ -1,14 +1,11 @@
 :root {
-    /* 🌤️ Light Blue Tones – backgroundy, sekcie, zvýraznenie */
     --blue-very-light: #E6F9FF;
     --blue-light: #6696bd;
     --blue-medium: #086888;
 
-    /* 🌊 Dark Blue-Green Tones – texty, kontrastné elementy */
     --teal-dark: #054358;
     --green-dark-muted: #2f5038;
 
-    /* 🌿 Green Tones – značkové farby, potvrdenia, pozitívne stavy */
     --green: #79A65D;
     --green-medium: #99CF82;
     --green-light: #bbe89e;
@@ -16,10 +13,9 @@
 
     --teal-very-light: #b4f8d4;
 
-    /* 📝 Modal Unique Colors */
-    --modal-text: #235815;    /* používa sa ako text (color) */
-    --modal-bg: #EDF9FD;       /* používa sa ako pozadie (background-color) */
-    --modal-accent: #B1D27A;   /* používa sa ako pozadie (background-color) aj pre border (border-color) */
+    --modal-text: #235815;
+    --modal-bg: #EDF9FD;
+    --modal-accent: #B1D27A;
 
 
     --progress-width: 40%;     /* šírka progress baru */
@@ -39,6 +35,11 @@ body {
     font-family: "Inknut Antiqua", serif;
     color:var(--green-dark-muted);
     background-color: var(--blue-very-light);
+}
+
+footer {
+    background-color: var(--green-medium);
+    color:var(--green-dark-muted);
 }
 
 a {
@@ -191,16 +192,6 @@ input:focus::placeholder {
     color: var();
 }
 
-.categories-list {  /*rovnomerne rozmiestnenie kategorii s wrapom*/
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    width: 100%;
-    justify-content: space-between;
-    padding-left: 0;
-    margin-bottom: 0;
-}
-
 .category-item {  /*fixna sirka kategorii a ziadny shrink*/
     width: 7.8rem;
     height: 7rem;
@@ -245,6 +236,38 @@ input:focus::placeholder {
 .toggle-btn.rotated-arrow img {  /*animacia otacania sipky pri zabaleni/rozbaleni*/
     transform: rotate(180deg);
     transition: transform 0.2s ease;
+}
+
+.categories-list {  /*zoznam kategorii*/
+    display: grid;
+    gap: 1rem;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+  
+@media (min-width: 1200px) {  /* vsetkych 10 kategorii v jednom riadku*/
+    .categories-list {
+        grid-template-columns: repeat(10, 1fr);
+    }
+}
+  
+@media (max-width: 1199px) and (min-width: 600px) {  /*5 a 5 v 2 riadkoch*/
+    .categories-list {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+  
+@media (max-width: 599px) and (min-width: 375px) {  /*3 3 3 1 v 4 riadkoch*/
+    .categories-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+  
+
+@media (max-width: 374px) {  /*2 2 2 2 2 v 5 riadkoch*/
+    .categories-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /* ------------------------------- HERO ------------------------------------- */
