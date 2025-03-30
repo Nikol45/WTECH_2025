@@ -924,11 +924,11 @@ input:focus::placeholder {
 }
 
 .plus {
-    margin-right: 0.75rem;
+    margin-left: 0.75rem;
 }
 
 .minus {
-    margin-left: 0.75rem;
+    margin-right: 0.75rem;
 }
 
 .farm-col.card {  /*karticky s farmami*/
@@ -1027,6 +1027,40 @@ input:focus::placeholder {
         margin-top: 2rem;
     }
 }
+
+/*-------- CART - ITEMS ---------*/
+
+.nav-link {
+    color: var(--green-dark-muted)
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--green-dark-muted);
+    background-color: var(--green-light);
+}
+
+.oznacenie .material-icons {
+    color: var(--bs-danger) !important;
+}
+
+.package {
+    background-color: #EDFAE6;
+    padding: 2rem;
+    border-radius: 0.375rem;
+}
+
+.package .form-control {
+    width: 30%; 
+}
+
+.quantity {
+    min-width: 140px;
+}
+
+.quantity .quantity-button {
+    height: 30px;
+}
+
 
 /*--------PRODUCT LISTING-------*/
 

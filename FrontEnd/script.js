@@ -675,14 +675,14 @@ document.addEventListener('DOMContentLoaded', () => {
     //funkcia tlacidiel na pridavanie a odoberanie mnozstva produktu
     if (btnPlus && qtyInput) {
         btnPlus.addEventListener('click', () => {
-            let currentValue = parseInt(qtyInput.value) || 1;
+            let currentValue = parseFloat(qtyInput.value) || 1;
             qtyInput.value = currentValue + 1;
         });
     }
 
     if (btnMinus && qtyInput) {
         btnMinus.addEventListener('click', () => {
-            let currentValue = parseInt(qtyInput.value) || 1;
+            let currentValue = parseFloat(qtyInput.value) || 1;
             if (currentValue > 1) {
                 qtyInput.value = currentValue - 1;
             }
@@ -709,5 +709,17 @@ document.addEventListener('DOMContentLoaded', () => {
             farm.classList.add('selected');
         });
     });
+
+    //================ Cart - Items ===================//
+
+    const checkAll = document.getElementById('checkAllCart');
+    if (checkAll) {
+        checkAll.addEventListener('change', () => {
+            const allCheckboxes = document.querySelectorAll('input.form-check-input[type="checkbox"]:not(#checkAllCart)');
+            allCheckboxes.forEach(chk => {
+                chk.checked = checkAll.checked;
+            });
+        });
+    }
 
 });
