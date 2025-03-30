@@ -12,12 +12,17 @@
     --green: #79A65D;
     --green-medium: #99CF82;
     --green-light: #bbe89e;
-    --green-very-light: #b4f8d4;
+    --green-very-light: #EDFAE6;
+
+    --teal-very-light: #b4f8d4;
 
     /* 📝 Modal Unique Colors */
     --modal-text: #235815;    /* používa sa ako text (color) */
     --modal-bg: #EDF9FD;       /* používa sa ako pozadie (background-color) */
     --modal-accent: #B1D27A;   /* používa sa ako pozadie (background-color) aj pre border (border-color) */
+
+
+    --progress-width: 40%;     /* šírka progress baru */
 }
 
 html {
@@ -258,14 +263,14 @@ input:focus::placeholder {
 .arrow-left, .arrow-right {
     position: absolute;
     z-index: 1;
-    top: 40%;
+    top: 50%;
     transform: translateY(-50%);
 
     /* Vzhľad kruhového bieleho tlačidla */
     background-color: var(--green-light);
     border-radius: 50%;
-    width: 5rem;
-    height: 5rem;
+    width: 4rem;
+    height: 4rem;
     color: var(--green-dark-muted);
 
     align-items: center;
@@ -313,10 +318,11 @@ input:focus::placeholder {
 }
 
 .card {  /*karticky produktov*/
-    --bs-card-bg: #EDFAE6;
+    --bs-card-bg: var(--green-very-light);
     padding: 20px !important;
     border: none;
     max-width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .img-half-cover {  /*vsetky obrazky s radius a ratio*/
@@ -421,7 +427,7 @@ input:focus::placeholder {
     position: relative;
     color: #ccc;
 }
-  
+
 .star.half-filled::before {  /*polovicka vyfarbena na prekrytie*/
     content: 'star';
     position: absolute;
@@ -646,7 +652,7 @@ input:focus::placeholder {
         transform: translateX(300px);
     }
 }
-  
+
 @media (min-width: 850px) {  /*filter tlacidlo sa neukazuje ak je sirka>=850px*/
     .filter-toggle {
         display: none;
@@ -891,7 +897,7 @@ input:focus::placeholder {
 }
 
 .add-to-cart-container .custom-dropdown-menu {  /*nastavenie dropdown na vybratie kg alebo ks*/
-    width: fit-content !important; 
+    width: fit-content !important;
     font-size: 16px;
     left: 40% !important;
     --bs-dropdown-min-width: 0 !important;
@@ -918,7 +924,7 @@ input:focus::placeholder {
     background-color: var(--green-dark-muted);
     color: var(--blue-very-light);
 }
-  
+
 .quantity-button:active {  /*nastaveny active*/
       --bs-btn-active-bg: var(--green-light);
 }
@@ -965,7 +971,7 @@ input:focus::placeholder {
     background-color: var(--green-dark-muted);
     color: var(--blue-very-light);
 }
-  
+
 .btn-napisat-recenziu:active {  /*nastaveny active*/
     --bs-btn-active-bg: var(--green-light);
 }
@@ -995,7 +1001,7 @@ input:focus::placeholder {
     background-color: var(--green-dark-muted);
     color: var(--blue-very-light);
 }
-  
+
 .btn-zobrazit-dalsie:active {  /*nastaveny active*/
       --bs-btn-active-bg: var(--green-light);
 }
@@ -1143,15 +1149,53 @@ input:focus::placeholder {
     .border.rounded-3.p-3.mb-4 {
         padding: 1rem !important;
     }
+}
 
+/* Default: zobraz len desktop */
+.mobile-only {
+    display: none;
+}
+.desktop-only {
+    display: block;
+}
+
+/* Pri malých zariadeniach (<576px) zobraz len mobil */
+@media (max-width: 575.98px) {
+    .mobile-only {
+        display: block !important;
+    }
+
+    .desktop-only {
+        display: none !important;
+    }
+
+    .admin-card {
+        flex-direction: column !important;
+        flex-grow: 0 !important; /* prepíše flex-grow-1 */
+        gap: 0 !important;
+    }
+}
+
+@media (max-width: 450px) {
     /* Menší padding v kartách */
     .package-products .text-start.p-3 {
-        padding: 0.75rem !important;
+        padding: 1rem !important;
     }
 
     /* Menší font pre názov produktu v kartách */
     .package-products .card-title {
-        font-size: 1rem;
+        font-size: 1.2rem;
+        margin-top: 1rem;
+    }
+
+    .admin-products .card-title {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+        margin-bottom: 0;
+    }
+
+    .admin-products .card-location {
+        font-size: 0.8rem;
         line-height: 1.2;
     }
 
@@ -1169,19 +1213,74 @@ input:focus::placeholder {
     }
 
     /* Zmenšenie textu v h5 nadpisoch (Zásielka... a Dokopy...) */
-    .package-products h5.fw-bold {
+    h5.fw-bold {
         font-size: 1rem !important;
         line-height: 1.2;
-        margin-bottom: 0.5rem;
+    }
+    h6 {
+        font-size: 1rem !important;
+        line-height: 1.2;
+    }
+
+    /* Zmenšenie názvu farmy a miesta */
+    .admin-card-title {
+        font-size: 1rem;
+        line-height: 1.2;
+    }
+
+    .farm-location {
+        font-size: 0.9rem;
+        line-height: 1.2;
+    }
+
+    .admin-zone {
+        padding: 1rem !important;
+    }
+
+    .arrow-left, .arrow-right {
+        width: 3rem;
+        height: 3rem;
     }
 }
 
-
 .no-scrollbar {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     scrollbar-width: none;      /* Firefox */
     -ms-overflow-style: none;   /* IE 10+ */
 }
 
 .no-scrollbar::-webkit-scrollbar {
     display: none;              /* Chrome, Safari, Edge */
+}
+
+.edit-button {
+    background-color: var(--green-light);
+    color: var(--green-dark-muted);
+
+    width: 70%;
+}
+
+.admin-card {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 2rem;
+    border-radius: 0.375rem;
+    background-color: var(--green-very-light);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.card-img {
+    display: block;
+    max-height: 150px;
+    border-radius: 0.375rem;
+}
+.card-img-cover {  /*zlava*/
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 25%;
+    aspect-ratio: 1 / 1;
+    background-size: contain;
 }

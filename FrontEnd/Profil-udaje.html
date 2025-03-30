@@ -452,61 +452,114 @@
         </div>
     </div>
 
-    <!-- Nadpis -->
-    <h2 class="fw-bold my-4">Môj profil</h2>
+    <div class="row align-items-stretch">
+        <!-- Obsah: osobné údaje a adresy -->
+        <div class="col-md-9">
+            <!-- Nadpis -->
+            <h2 class="fw-bold my-4">Môj profil</h2>
 
-    <!-- Osobné údaje (3 stĺpce) -->
-    <div class="row mb-4 g-4">
-        <div class="col-md-4">
-            <p class="fw-bold mb-1">Meno:</p>
-            <p class="mb-0">Ján Hraško</p>
-            <a href="#" class="text-primary">Zmeniť meno</a>
+            <!-- Osobné údaje (3 stĺpce) -->
+            <div class="row mb-5 g-4">
+                <div class="col-md-4">
+                    <p class="fw-bold mb-1">Meno:</p>
+                    <p class="mb-0">Ján Hraško</p>
+                    <a href="#" class="text-primary">Zmeniť meno</a>
+                </div>
+                <div class="col-md-4">
+                    <p class="fw-bold mb-1">Email:</p>
+                    <p class="mb-0">j.hrasko@gmail.com</p>
+                    <a href="#" class="text-primary">Zmeniť email</a>
+                </div>
+                <div class="col-md-4">
+                    <p class="fw-bold mb-1">Telefónne číslo:</p>
+                    <p class="mb-0">+421 111 222</p>
+                    <a href="#" class="text-primary">Zmeniť číslo</a>
+                </div>
+            </div>
+
+            <!-- Adresy a nákup na firmu (3 stĺpce) -->
+            <div class="row mb-4 g-4">
+                <!-- Fakturačná adresa -->
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-3">Fakturačná adresa</h5>
+                    <p class="mb-0">Ulica: Hraškova</p>
+                    <p class="mb-0">Číslo domu: 1</p>
+                    <p class="mb-0">Mesto: Bratislava</p>
+                    <p class="mb-0">PSČ: 222 22</p>
+                    <p class="mb-2">Krajina: Slovensko</p>
+                    <a href="#" class="text-primary">Zmeniť údaje</a>
+                </div>
+
+                <!-- Dodacia adresa -->
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-3">Dodacia adresa</h5>
+                    <p class="mb-0">Ulica: Mrkvova</p>
+                    <p class="mb-0">Číslo domu: 2</p>
+                    <p class="mb-0">Mesto: Bratislava</p>
+                    <p class="mb-0">PSČ: 333 33</p>
+                    <p class="mb-2">Krajina: Slovensko</p>
+                    <a href="#" class="text-primary">Zmeniť údaje</a>
+                </div>
+
+                <!-- Nákup na firmu -->
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-3">Nákup na firmu</h5>
+                    <p class="mb-0">Názov spoločnosti: ABCspol</p>
+                    <p class="mb-0">IČO: 111111</p>
+                    <p class="mb-2">IČ DPH: 222222222</p>
+                    <a href="#" class="text-primary">Zmeniť údaje</a>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <p class="fw-bold mb-1">Email:</p>
-            <p class="mb-0">j.hrasko@gmail.com</p>
-            <a href="#" class="text-primary">Zmeniť email</a>
-        </div>
-        <div class="col-md-4">
-            <p class="fw-bold mb-1">Telefónne číslo:</p>
-            <p class="mb-0">+421 111 222</p>
-            <a href="#" class="text-primary">Zmeniť číslo</a>
+
+        <!-- Bočný panel s profilom a odznakmi -->
+        <div class="col-md-3 my-5">
+            <div class="h-100 border pt-4 p-3 text-center position-relative">
+                <!-- Profilový obrázok s ikonou na úpravu -->
+                <div class="position-relative d-inline-block">
+                    <img src="images/empty.png"
+                         class="rounded-circle mb-2"
+                         alt="Avatar" width="100" height="100">
+                    <button class="btn custom-button edit-avatar-btn" title="Upraviť avatar">
+                        <span class="material-icons">add_a_photo</span>
+                    </button>
+
+                </div>
+
+                <!-- Nickname s tlačidlom na úpravu -->
+                <div class="my-4 d-flex align-items-center justify-content-center">
+                    <h5 class="fw-bold mb-0 me-2">hrasko123</h5>
+                    <button class="btn custom-button p-0 ms-2" title="Upraviť prezývku">
+                        <span class="material-icons">drive_file_rename_outline</span>
+                    </button>
+                </div>
+
+                <!-- Odznak a jeho názov -->
+                <div class="mb-2 fw-bold">
+                    <span style="font-size: 1.5rem;" class="me-2">🧺</span>
+                    Skúsený ochutnávač
+                </div>
+
+                <!-- Slider – progres k ďalšiemu odznaku -->
+                <div class="px-3 mb-4">
+                    <!-- Horné čísla po stranách -->
+                    <div class="d-flex justify-content-between mb-1">
+                        <small class="text-muted">15</small>
+                        <small class="text-muted">30</small>
+                    </div>
+
+                    <!-- Slider -->
+                    <div class="progress mb-2">
+                        <div class="progress-bar" style="width: 40%;"></div>
+                    </div>
+
+                    <!-- Text pod slidrom -->
+                    <small class="text-muted">Ešte 9 recenzií do ďalšieho odznaku</small>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Fakturačná, dodacia adresa a nákup na firmu (3 stĺpce) -->
-    <div class="row mb-4 g-4">
-        <!-- Fakturačná adresa -->
-        <div class="col-md-4">
-            <h3 class="fw-bold mb-2">Fakturačná adresa</h3>
-            <p class="mb-0">Ulica: Hraškova</p>
-            <p class="mb-0">Číslo domu: 1</p>
-            <p class="mb-0">Mesto: Bratislava</p>
-            <p class="mb-0">PSČ: 222 22</p>
-            <p class="mb-2">Krajina: Slovensko</p>
-            <a href="#" class="text-primary">Zmeniť údaje</a>
-        </div>
-
-        <!-- Dodacia adresa -->
-        <div class="col-md-4">
-            <h3 class="fw-bold mb-2">Dodacia adresa</h3>
-            <p class="mb-0">Ulica: Mrkvova</p>
-            <p class="mb-0">Číslo domu: 2</p>
-            <p class="mb-0">Mesto: Bratislava</p>
-            <p class="mb-0">PSČ: 333 33</p>
-            <p class="mb-2">Krajina: Slovensko</p>
-            <a href="#" class="text-primary">Zmeniť údaje</a>
-        </div>
-
-        <!-- Nákup na firmu -->
-        <div class="col-md-4">
-            <h3 class="fw-bold mb-2">Nákup na firmu</h3>
-            <p class="mb-0">Názov spoločnosti: ABCspol</p>
-            <p class="mb-0">IČO: 111111</p>
-            <p class="mb-2">IČ DPH: 222222222</p>
-            <a href="#" class="text-primary">Zmeniť údaje</a>
-        </div>
-    </div>
 
     <!-- Tlačidlá Zmeniť heslo a Odhlásiť sa -->
     <div class="d-flex flex-wrap gap-3 mb-5">
@@ -517,32 +570,31 @@
     <!-- Prepnúť na administrátorský účet -->
     <div class="mb-5">
         <h3 class="fw-bold mb-3">Chcete sa stať našim partnerom?</h3>
-        <button class="btn btn-secondary">Prepnúť na administrátorský účet</button>
+        <a href="Profil-udaje_admin.html" class="btn btn-secondary">Prepnúť na administrátorský účet</a>
     </div>
 
     <!-- Reklamné bloky (4x) -->
-    <div class="row g-4 mb-5">
+    <div class="row g-4">
         <div class="col-md-6">
-            <div class="card ad-banner text-center py-5">
-                <p class="mb-0">Reklama</p>
+            <div class="border text-center p-5">
+                Reklama
             </div>
         </div>
         <div class="col-md-6">
-            <div class="card ad-banner text-center py-5">
-                <p class="mb-0">Reklama</p>
+            <div class="border text-center p-5">
+                Reklama
             </div>
         </div>
         <div class="col-md-6">
-            <div class="card ad-banner text-center py-5">
-                <p class="mb-0">Reklama</p>
+            <div class="border text-center p-5">
+                Reklama
             </div>
         </div>
         <div class="col-md-6">
-            <div class="card ad-banner text-center py-5">
-                <p class="mb-0">Reklama</p>
+            <div class="border text-center p-5">
+                Reklama
             </div>
         </div>
-    </div>
     </div>
 </main>
 
