@@ -114,6 +114,11 @@ a {
     margin: 0 auto;
 }
 
+.h-gaps {  /*ako gap ale len pre horizontalne medzery*/
+    column-gap: 2rem;
+    row-gap: 0;
+}
+
 .no-margin {  /*odstranenie vsetkych margins*/
     margin: 0 !important;
 }
@@ -121,6 +126,10 @@ a {
 .no-wrap {  /*odstranenie wrapu*/
     white-space: nowrap;
     flex-wrap: nowrap;
+}
+
+.yes-wrap {  /*pridanie wrapu*/
+    flex-wrap: wrap;
 }
 
 /* ------------------------------- NAVIGATION ------------------------------------- */
@@ -245,17 +254,13 @@ input:focus::placeholder {
     background-color: var(--green-very-light)
 }
 
-.hero-subtitle {  /*podtitulok v hero*/
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-    line-height: 1.5;
+.hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.5rem); /* medzi 16px a 24px */
 }
 
-.hero-title {  /*titulok v hero*/
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
+.hero-title {
+    font-size: clamp(1.5rem, 5vw, 3rem); /* medzi 24px a 48px */
+    font-weight: bold;
 }
 
 /* -------------- ARROWS PRI SEKCIACH ------------ */
@@ -298,6 +303,8 @@ input:focus::placeholder {
     position: relative;
     width: 100%;
     overflow: hidden;
+    height: 450px;
+    align-items: center;
 }
 
 .products-row {  /*rad produktov s animaciou*/
@@ -1082,6 +1089,54 @@ input:focus::placeholder {
 
 .suhrn .btn-pridat-do-kosika {  /*tlacidlo prejst k udajom bez margin*/
     margin-top: 0 !important;
+}
+
+/*------------ FARMA ----------------*/
+
+.farm-banner {  /*container na obrazok banneru*/
+    object-fit: cover;
+    overflow: hidden;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.farm-banner img {  /*vycentrovany obrazok v nom*/
+    object-position: center center;
+}
+
+@media (max-width:452px) {  /*zmensenie containeru pri mensej velkosti*/
+    .farm-banner {
+        height: 270px;
+        margin: 0 !important;
+    }
+}
+
+.farm-loc .material-icons{  /*ikona lokacie zmensena*/
+    font-size: 17px !important;
+}
+
+.farm-info div, .farm-info span {  /*vacsia line height v popise farmy*/
+    line-height: 2rem;
+}
+
+.subcategory-btn {  /*tlacidla kategorii aj s animaciou*/
+    background-color:  var(--green-light);
+    color: var(--green-dark-muted);
+    font-size: larger;
+    font-weight: bold;
+    height: 3rem;
+    transition: background-color 0.3s ease;
+}
+
+.subcategory-btn:hover {  /*nastaveny hover*/
+    background-color: var(--green-dark-muted);
+    color: var(--blue-very-light);
+}
+
+.subcategory-btn:active {  /*nastaveny active*/
+      --bs-btn-active-bg: var(--green-light);
 }
 
 /*--------PRODUCT LISTING-------*/

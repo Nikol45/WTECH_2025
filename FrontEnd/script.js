@@ -180,6 +180,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const arrowRight3 = document.getElementById('arrowRight3');
     const arrowLeft3 = document.getElementById('arrowLeft3');
 
+    const carouselRow7 = document.getElementById('carouselRow7');
+    const arrowRight7 = document.getElementById('arrowRight7');
+    const arrowLeft7 = document.getElementById('arrowLeft7');
+
+    const carouselRow8 = document.getElementById('carouselRow8');
+    const arrowRight8 = document.getElementById('arrowRight8');
+    const arrowLeft8 = document.getElementById('arrowLeft8');
+
     //pre sekciu clankov
     const carouselRow4 = document.getElementById('carouselRow4');
     const arrowRight4 = document.getElementById('arrowRight4');
@@ -400,6 +408,110 @@ document.addEventListener('DOMContentLoaded', () => {
             carouselRow3.addEventListener('transitionend', function handler(e) {
                 if (e.propertyName === 'transform') {
                     carouselRow3.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
+        });
+    }
+
+    if (arrowRight7 && carouselRow7) {
+        arrowRight7.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            carouselRow7.style.transform = 'translateX(-25%)';
+
+            carouselRow7.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    const firstCol = carouselRow7.querySelector('.col');
+                    carouselRow7.appendChild(firstCol);
+
+                    carouselRow7.style.transition = 'none';
+                    carouselRow7.style.transform = 'none';
+
+                    carouselRow7.offsetHeight;
+
+                    carouselRow7.style.transition = 'transform 0.3s ease';
+
+                    carouselRow7.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
+        });
+    }
+
+    if (arrowLeft7 && carouselRow7) {
+        arrowLeft7.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            const allCols = carouselRow7.querySelectorAll('.col');
+            const lastCol = allCols[allCols.length - 1];
+            carouselRow7.insertBefore(lastCol, allCols[0]);
+
+            carouselRow7.style.transition = 'none';
+            carouselRow7.style.transform = 'translateX(-25%)';
+
+            carouselRow7.offsetHeight;
+
+            carouselRow7.style.transition = 'transform 0.3s ease';
+            carouselRow7.style.transform = 'none';
+
+            carouselRow7.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    carouselRow7.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
+        });
+    }
+
+    if (arrowRight8 && carouselRow8) {
+        arrowRight8.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            carouselRow8.style.transform = 'translateX(-25%)';
+
+            carouselRow8.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    const firstCol = carouselRow8.querySelector('.col');
+                    carouselRow8.appendChild(firstCol);
+
+                    carouselRow8.style.transition = 'none';
+                    carouselRow8.style.transform = 'none';
+
+                    carouselRow8.offsetHeight;
+
+                    carouselRow8.style.transition = 'transform 0.3s ease';
+
+                    carouselRow8.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
+        });
+    }
+
+    if (arrowLeft8 && carouselRow8) {
+        arrowLeft8.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            const allCols = carouselRow8.querySelectorAll('.col');
+            const lastCol = allCols[allCols.length - 1];
+            carouselRow8.insertBefore(lastCol, allCols[0]);
+
+            carouselRow8.style.transition = 'none';
+            carouselRow8.style.transform = 'translateX(-25%)';
+
+            carouselRow8.offsetHeight;
+
+            carouselRow8.style.transition = 'transform 0.3s ease';
+            carouselRow8.style.transform = 'none';
+
+            carouselRow8.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    carouselRow8.removeEventListener('transitionend', handler);
                     isAnimating = false;
                 }
             });
