@@ -1030,37 +1030,53 @@ input:focus::placeholder {
 
 /*-------- CART - ITEMS ---------*/
 
-.nav-link {
+.nav-link {  /*farba pisma v tabs*/
     color: var(--green-dark-muted)
 }
 
-.nav-tabs .nav-link.active {
+.nav-tabs .nav-link.active {  /*nastavenie active tabs*/
     color: var(--green-dark-muted);
     background-color: var(--green-light);
 }
 
-.oznacenie .material-icons {
+.oznacenie .material-icons {  /*ikona na zmazanie vsetkeho aby mala cervenu farbu*/
     color: var(--bs-danger) !important;
 }
 
-.package {
+.package {  /*pozadie bloku jednej zasielky*/
     background-color: #EDFAE6;
     padding: 2rem;
     border-radius: 0.375rem;
 }
 
-.package .form-control {
-    width: 30%; 
+.quantity:not(.add-to-cart-container) input[type="number"] {  /*variabilne velkosti sekcie s mnozstvom*/
+    width: clamp(20px, 8vw, 40px);
+    font-size: clamp(10px, 2vw, 12px);
 }
 
-.quantity {
-    min-width: 140px;
+.quantity:not(.add-to-cart-container) button {  /*variabilne velkosti tlacidiel v sekcii s mnozstvom*/
+    width: clamp(20px, 8vw, 40px);
+    padding: 0.5em;
+    font-size: clamp(10px, 2vw, 12px);
 }
 
-.quantity .quantity-button {
-    height: 30px;
+.quantity:not(.add-to-cart-container) .quantity-button {  /*vyska tlacidiel v sekcii s mnozstvom*/
+    height: 2rem;
 }
 
+.cart-product:not(:last-child) {  /*divider medzi produktami*/
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.warning {  /*mensi font na upozorneni o osobnom odbere*/
+    font-size: 10px;
+}
+
+.suhrn .btn-pridat-do-kosika {  /*tlacidlo prejst k udajom bez margin*/
+    margin-top: 0 !important;
+}
 
 /*--------PRODUCT LISTING-------*/
 
@@ -1153,7 +1169,7 @@ input:focus::placeholder {
     }
 
     /* Zmenšenie textu v h5 nadpisoch (Zásielka... a Dokopy...) */
-    h5.fw-bold {
+    .package-products h5.fw-bold {
         font-size: 1rem !important;
         line-height: 1.2;
         margin-bottom: 0.5rem;
