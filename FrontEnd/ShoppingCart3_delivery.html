@@ -249,15 +249,13 @@
     <div class="top-bar py-3">
         <div class="container-fluid custom-fluid">
             <div class="d-flex flex-wrap align-items-center justify-content-between">
-
                 <!-- Logo -->
                 <a href="HomePage.html" class="d-flex align-items-center flex-shrink-0 me-3 text-decoration-none custom-logo">
                     <img src="images/logo.png" alt="Logo" width="30" height="30" class="me-2">
                     <h2 class="mb-0 custom-logo">Zdvora.sk</h2>
                 </a>
-
                 <!-- Search -->
-                <div class="d-flex justify-content-start flex-grow-1 mx-3 my-2 my-md-0 custom-search-container">
+                <div class="custom-search-container d-flex justify-content-start flex-grow-1 mx-3 my-2 my-md-0">
                     <form class="position-relative">
                         <input type="text" class="form-control pe-5" placeholder="Vyhľadávanie...">
                         <button class="btn custom-button position-absolute top-50 end-0 translate-middle-y me-2 p-0" type="submit">
@@ -265,29 +263,46 @@
                         </button>
                     </form>
                 </div>
-
-                <!-- Icons -->
-                <div class="d-flex justify-content-end align-items-center gap-3 mt-2 mt-md-0 flex-shrink-0 ms-3 custom-ikonky">
-                    <!-- Heart -->
+                <!-- Ikonky -->
+                <div class="custom-ikonky d-flex justify-content-end align-items-center gap-3 mt-2 mt-md-0 flex-shrink-0 ms-3">
                     <a href="Profil-oblubene.html" class="btn custom-button p-0 ms-2">
                         <span class="material-icons">favorite</span>
                     </a>
-
-                    <!-- Cart -->
                     <a href="ShoppingCart1_items.html" class="btn custom-button p-0 ms-2">
                         <span class="material-icons">shopping_cart</span>
                     </a>
-
-                    <!-- Profile -->
                     <div class="dropdown text-center ms-2">
                         <button class="btn custom-button p-0" id="profileBtn">
                             <span class="material-icons">account_circle</span>
                         </button>
-                        
                         <ul class="dropdown-menu custom-dropdown-menu" id="profileMenu"></ul>
                     </div>
                 </div>
+
+                <!-- Hamburger menu -->
+                <button class="btn custom-button d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
+                    <span class="material-icons">menu</span>
+                </button>
             </div>
+        </div>
+    </div>
+
+    <!-- Sidebar miesto ikoniek -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title fw-bold" id="mobileMenuLabel">Menu</h2>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form class="mb-3">
+                <input type="text" class="form-control" placeholder="Vyhľadávanie...">
+                <button class="btn custom-button subcategory-btn mt-2" type="submit">Hľadať</button>
+            </form>
+            <ul class="list-unstyled">
+                <li class="mb-3 fw-bold fs-5"><a href="Profil-oblubene.html">Obľúbené</a></li>
+                <li class="mb-3 fw-bold fs-5"><a href="ShoppingCart1_items.html">Košík</a></li>
+                <ul class="list-unstyled" id="mobileProfileMenu"></ul>
+            </ul>
         </div>
     </div>
 
@@ -437,7 +452,7 @@
         <!-- Zásielky z farmy (doručenie nie je možné) -->
         <div class="package-products border rounded-3 p-3 mb-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
-                <h5 class="fw-bold mb-0">Zásielka z farmy názov farmy</h5>
+                <h5 class="fw-bold mb-0">Zásielka z farmy Včelí raj</h5>
                 <div class="text-muted">Doručenie nie je možné.</div>
             </div>
 
@@ -456,29 +471,29 @@
                 <!-- Kontejner pre karty -->
                 <div class="products-carousel-container px-4" id="carouselContainer1">
                     <!-- Riadok kariet -->
-                    <div class="no-scrollbar row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-3 mb-3 flex-nowrap"
+                    <div class="no-scrollbar row  row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-3 mb-3 flex-nowrap"
                          id="carouselRow1">
+
 
                         <div class="col flex-shrink-0">
                             <div class="card text-start p-3">
-                                <img src="images/empty.png" alt="Názov produktu" class="img-half-cover">
+                                <img src="images/tovar/bee_products_nuts/med.png" alt="Názov produktu" class="img-half-cover">
                                 <div class="card-body mt-3">
-                                    <h5 class="card-title truncate-ellipsis px-2">Názov produktu</h5>
+                                    <h5 class="card-title truncate-ellipsis px-2">Med</h5>
                                     <div class="d-flex align-items-center justify-content-between px-2 mb-2">
-                                        <span class="price fw-bold">3,50 €</span>
-                                        <span class="counter">5 ks</span>
+                                        <span class="price fw-bold">1,99 €</span>
+                                        <span class="counter">3 ks</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- ďalšie karty rovnakou štruktúrou -->
                         <div class="col flex-shrink-0">
                             <div class="card text-start p-3">
-                                <img src="images/empty.png" alt="Názov produktu" class="img-half-cover">
+                                <img src="images/tovar/bee_products_nuts/vosk.png" alt="Názov produktu" class="img-half-cover">
                                 <div class="card-body mt-3">
-                                    <h5 class="card-title truncate-ellipsis px-2">Názov produktu</h5>
+                                    <h5 class="card-title truncate-ellipsis px-2">Včelí vosk puk</h5>
                                     <div class="d-flex align-items-center justify-content-between px-2 mb-2">
-                                        <span class="price fw-bold">2,10 €</span>
+                                        <span class="price fw-bold">5,85 €</span>
                                         <span class="counter">2 ks</span>
                                     </div>
                                 </div>
@@ -486,48 +501,12 @@
                         </div>
                         <div class="col flex-shrink-0">
                             <div class="card text-start p-3">
-                                <img src="images/empty.png" alt="Názov produktu" class="img-half-cover">
+                                <img src="images/tovar/bee_products_nuts/vlasske_orechy.png" alt="Názov produktu" class="img-half-cover">
                                 <div class="card-body mt-3">
-                                    <h5 class="card-title truncate-ellipsis px-2">Názov produktu</h5>
+                                    <h5 class="card-title truncate-ellipsis px-2">Vlašské Orechy 1kg</h5>
                                     <div class="d-flex align-items-center justify-content-between px-2 mb-2">
-                                        <span class="price fw-bold">5,00 €</span>
-                                        <span class="counter">1 ks</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col flex-shrink-0">
-                            <div class="card text-start p-3">
-                                <img src="images/empty.png" alt="Názov produktu" class="img-half-cover">
-                                <div class="card-body mt-3">
-                                    <h5 class="card-title truncate-ellipsis px-2">Názov produktu</h5>
-                                    <div class="d-flex align-items-center justify-content-between px-2 mb-2">
-                                        <span class="price fw-bold">1,99 €</span>
-                                        <span class="counter">3 ks</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col flex-shrink-0">
-                            <div class="card text-start p-3">
-                                <img src="images/empty.png" alt="Názov produktu" class="img-half-cover">
-                                <div class="card-body mt-3">
-                                    <h5 class="card-title truncate-ellipsis px-2">Názov produktu</h5>
-                                    <div class="d-flex align-items-center justify-content-between px-2 mb-2">
-                                        <span class="price fw-bold">1,99 €</span>
-                                        <span class="counter">3 ks</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col flex-shrink-0">
-                            <div class="card text-start p-3">
-                                <img src="images/empty.png" alt="Názov produktu" class="img-half-cover">
-                                <div class="card-body mt-3">
-                                    <h5 class="card-title truncate-ellipsis px-2">Názov produktu</h5>
-                                    <div class="d-flex align-items-center justify-content-between px-2 mb-2">
-                                        <span class="price fw-bold">1,99 €</span>
-                                        <span class="counter">3 ks</span>
+                                        <span class="price fw-bold">6,21 €</span>
+                                        <span class="counter">2 ks</span>
                                     </div>
                                 </div>
                             </div>
@@ -551,8 +530,8 @@
         <!-- Zásielky z inej farmy (doručenie je dostupné) -->
         <div class="package-products border rounded-3 p-3 mb-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
-                <h5 class="fw-bold mb-0">Zásielka z farmy názov farmy</h5>
-                <div class="text-muted">Doručenie od cena €.</div>
+                <h5 class="fw-bold mb-0">Zásielka z FruitLand</h5>
+                <div class="text-muted">Doručenie od 21,30 €.</div>
             </div>
 
             <!-- Nový wrapper pre šípky + karusel -->
@@ -570,17 +549,17 @@
                 <!-- Kontejner pre karty -->
                 <div class="products-carousel-container px-4" id="carouselContainer2">
                     <!-- Riadok kariet -->
-                    <div class="no-scrollbar row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-3 mb-3 flex-nowrap"
+                    <div class="no-scrollbar row row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-3 mb-3 flex-nowrap"
                          id="carouselRow2">
 
                         <div class="col flex-shrink-0">
                             <div class="card text-start p-3">
-                                <img src="images/empty.png" alt="Názov produktu" class="img-half-cover">
+                                <img src="images/tovar/fruit/apples/evelina.png" alt="Jablká Evelina" class="img-half-cover">
                                 <div class="card-body mt-3">
-                                    <h5 class="card-title truncate-ellipsis px-2">Názov produktu</h5>
+                                    <h5 class="card-title truncate-ellipsis px-2">Jablká Evelina</h5>
                                     <div class="d-flex align-items-center justify-content-between px-2 mb-2">
-                                        <span class="price fw-bold">3,50 €</span>
-                                        <span class="counter">5 ks</span>
+                                        <span class="price fw-bold">1,42 €</span>
+                                        <span class="counter">1 ks</span>
                                     </div>
                                 </div>
                             </div>
@@ -588,72 +567,48 @@
                         <!-- Opakuj ďalšie karty rovnakou štruktúrou -->
                         <div class="col flex-shrink-0">
                             <div class="card text-start p-3">
-                                <img src="images/empty.png" alt="Názov produktu" class="img-half-cover">
+                                <img src="images/tovar/fruit/broskyne.png" alt="Názov produktu" class="img-half-cover">
                                 <div class="card-body mt-3">
-                                    <h5 class="card-title truncate-ellipsis px-2">Názov produktu</h5>
+                                    <h5 class="card-title truncate-ellipsis px-2">Broskyne May Flower</h5>
                                     <div class="d-flex align-items-center justify-content-between px-2 mb-2">
-                                        <span class="price fw-bold">2,10 €</span>
-                                        <span class="counter">2 ks</span>
+                                        <span class="price fw-bold">2,15 €</span>
+                                        <span class="counter">0,25 kg</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col flex-shrink-0">
                             <div class="card text-start p-3">
-                                <img src="images/empty.png" alt="Názov produktu" class="img-half-cover">
+                                <img src="images/tovar/fruit/cucoriedky.png" alt="Názov produktu" class="img-half-cover">
                                 <div class="card-body mt-3">
-                                    <h5 class="card-title truncate-ellipsis px-2">Názov produktu</h5>
+                                    <h5 class="card-title truncate-ellipsis px-2">Čučoriedky</h5>
                                     <div class="d-flex align-items-center justify-content-between px-2 mb-2">
-                                        <span class="price fw-bold">5,00 €</span>
-                                        <span class="counter">1 ks</span>
+                                        <span class="price fw-bold">4,21 €</span>
+                                        <span class="counter">0,1 kg</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col flex-shrink-0">
                             <div class="card text-start p-3">
-                                <img src="images/empty.png" alt="Názov produktu" class="img-half-cover">
+                                <img src="images/tovar/fruit/hrusky.png" alt="Názov produktu" class="img-half-cover">
                                 <div class="card-body mt-3">
-                                    <h5 class="card-title truncate-ellipsis px-2">Názov produktu</h5>
+                                    <h5 class="card-title truncate-ellipsis px-2">Hrušky</h5>
                                     <div class="d-flex align-items-center justify-content-between px-2 mb-2">
-                                        <span class="price fw-bold">1,99 €</span>
-                                        <span class="counter">3 ks</span>
+                                        <span class="price fw-bold">1,78 €</span>
+                                        <span class="counter">0,25 kg</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col flex-shrink-0">
                             <div class="card text-start p-3">
-                                <img src="images/empty.png" alt="Názov produktu" class="img-half-cover">
+                                <img src="images/tovar/fruit/hrozno-ruzove.png" alt="Názov produktu" class="img-half-cover">
                                 <div class="card-body mt-3">
-                                    <h5 class="card-title truncate-ellipsis px-2">Názov produktu</h5>
+                                    <h5 class="card-title truncate-ellipsis px-2">Hrozno</h5>
                                     <div class="d-flex align-items-center justify-content-between px-2 mb-2">
-                                        <span class="price fw-bold">1,99 €</span>
-                                        <span class="counter">3 ks</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col flex-shrink-0">
-                            <div class="card text-start p-3">
-                                <img src="images/empty.png" alt="Názov produktu" class="img-half-cover">
-                                <div class="card-body mt-3">
-                                    <h5 class="card-title truncate-ellipsis px-2">Názov produktu</h5>
-                                    <div class="d-flex align-items-center justify-content-between px-2 mb-2">
-                                        <span class="price fw-bold">1,99 €</span>
-                                        <span class="counter">3 ks</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col flex-shrink-0">
-                            <div class="card text-start p-3">
-                                <img src="images/empty.png" alt="Názov produktu" class="img-half-cover">
-                                <div class="card-body mt-3">
-                                    <h5 class="card-title truncate-ellipsis px-2">Názov produktu</h5>
-                                    <div class="d-flex align-items-center justify-content-between px-2 mb-2">
-                                        <span class="price fw-bold">1,99 €</span>
-                                        <span class="counter">3 ks</span>
+                                        <span class="price fw-bold">3,21 €</span>
+                                        <span class="counter">5 ks</span>
                                     </div>
                                 </div>
                             </div>
@@ -669,7 +624,7 @@
                     <option value="dovoz">Dovoz</option>
                     <option value="osobne">Osobné vyzdvihnutie</option>
                 </select>
-                <h5 class="fw-bold"> Dokopy: 15,92 € </h5>
+                <h5 class="fw-bold"> Dokopy: 27,80 € </h5>
             </div>
             <!-- Výber spôsobu dopravy -->
             <div class="my-4">

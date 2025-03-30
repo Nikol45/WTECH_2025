@@ -1378,3 +1378,12 @@ input:focus::placeholder {
     aspect-ratio: 1 / 1;
     background-size: contain;
 }
+
+.edit-avatar-btn {
+    position: absolute;
+    top: 0;
+    right: -1rem;
+    color: var(--green-dark-muted);
+
+
+}
