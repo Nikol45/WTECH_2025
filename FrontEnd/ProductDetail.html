@@ -437,11 +437,10 @@
     </div>
 
     <div class="row product-detail">
-        <!-- Galéria produktu -->
         <!-- Hlavný obrázok -->
         <div class="col-md-5 product-gallery">
             <div class="main-image position-relative mb-3">
-                <img src="images/tovar/fruit/apples/evelina.png" alt="Jablko Evelina" class="img">
+                <img id="mainImage" src="images/tovar/fruit/apples/evelina.png" alt="Jablko Evelina" class="img img-fluid">
             </div>
 
             <!-- Mini obrázky vedlajšie -->
@@ -458,53 +457,59 @@
                     </div>
                     <div class="images-carousel-container">
                         <div class="images-row" id="carouselRow5">
-                            <div class="thumbnail-list gap-3 w-100">
+                            <div class="thumbnail-list d-flex w-100">
                                 <div class="col">
-                                    <img src="images/tovar/fruit/apples/evelina_1.png" alt="Jablká Evelina v košíku" width="125px" height="87px">
-                                </div>
-                                <div class="col">
-                                    <img src="images/tovar/fruit/apples/evelina_2.png" alt="Jablká Evelina v debničke" width="125px" height="87px">
+                                    <img src="images/tovar/fruit/apples/evelina_1.png" alt="Jablká Evelina v košíku" class="ms-2 img img-fluid rounded">
                                 </div>
                                 <div class="col">
-                                    <img src="images/tovar/fruit/apples/evelina_3.png" alt="Jablká Evelina na strome" width="125px" height="87px">
+                                    <img src="images/tovar/fruit/apples/evelina_2.png" alt="Jablká Evelina v debničke" class="ms-2 img img-fluid rounded">
                                 </div>
                                 <div class="col">
-                                    <img src="images/tovar/fruit/apples/evelina_4.png" alt="Jablko Evelina v ruke" width="125px" height="87px">
+                                    <img src="images/tovar/fruit/apples/evelina_3.png" alt="Jablká Evelina na strome" class="ms-2 img  img-fluid rounded">
                                 </div>
+                                <div class="col">
+                                    <img src="images/tovar/fruit/apples/evelina_4.png" alt="Jablko Evelina v ruke" class="ms-2 img img-fluid rounded">
                                 </div>
-                          </div>
-                          
+                                <div class="col">
+                                    <img src="images/tovar/fruit/apples/evelina.png" alt="Jablko Evelina" class="ms-2 img img-fluid rounded">
+                                </div>
+                            </div>
+                        </div> 
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Informácie o produkte -->
-        <div class="col-md-7 px-4">
-            <h1 class="mb-3">Jablko Evelina</h1>
+        <div class="col-12 col-md-5 col-lg-7 px-4">
+            <h1 class="mb-5">Jablko Evelina</h1>
 
-            <!-- Hodnotenia a množstvo -->
-            <div class="rating-and-reviews mb-2 d-flex align-items-center gap-2">
-                <span class="rating-score">4</span>
-                <span>
-                    <div class="stars mb-0">
-                        <span class="material-icons star filled">star</span>
-                        <span class="material-icons star filled">star</span>
-                        <span class="material-icons star filled">star</span>
-                        <span class="material-icons star filled">star</span>
-                        <span class="material-icons star empty">star_outline</span>
+            <div class="row d-flex mb-3">
+                <div class="info col-12 col-md-5 col-lg-7 d-flex align-items-center">
+                    <!-- Hodnotenia a množstvo -->
+                    <div class="rating-and-reviews d-flex align-items-center gap-2">
+                        <span>4,5</span>
+                        <div class="stars mb-0">
+                            <span class="material-icons star filled">star</span>
+                            <span class="material-icons star filled ">star</span>
+                            <span class="material-icons star filled ">star</span>
+                            <span class="material-icons star filled ">star</span>
+                            <span class="material-icons star half-filled">star_border</span>
+                        </div>
                     </div>
-                </span>
-                <span>3 hodnotenia</span>
-                <span>|</span>
-                <span>250 g</span>
+                    <div class="d-flex gap-2">
+                        <span class="no-wrap">3 recenzie</span>
+                        <span>|</span>
+                        <span class="no-wrap">250 g</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Cena -->
-            <div class="big_price fs-3 fw-bold mb-3">0,56 €</div>
+            <div class="fs-3 fw-bold mb-4">0,56 €</div>
 
             <!-- Krátky popis -->
-            <p class="short-description">
+            <p>
                 Objavte jedinečnú chuť a výživové benefity jablka Evelina,
                 známeho svojou osviežujúcou sladko-kyslou chuťou
                 a bohatým obsahom antioxidantov. Jeho šťavnatá dužina je
@@ -514,325 +519,451 @@
 
             <!-- Detailné informácie -->
             <div class="mb-4">
-                <a href="#productDescription" class="modal-link">Detailné informácie
+                <a href="#productDescription" class="detailne-info d-flex align-items-center gap-2">
+                    <span class="modal-link">Detailné informácie</span>
                     <span class="material-icons">keyboard_arrow_down</span>
                 </a>
-
             </div>
 
-            <!-- Sekcia Farmy -->
-            <div class="farm-section mt-4">
-                <h3 class="mb-3">Farmy</h3>
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
-                    <!-- 1. farma -->
-                    <div class="col">
-                        <div class="border p-3 h-100">
-                            <div class="mb-2 bg-secondary" style="width:100%; height:100px;"></div>
-                            <h5 class="fw-semibold mb-1">Názov farmy, sídlo</h5>
-                            <p class="mb-1">Vzdialenosť <strong>10</strong> km</p>
-                            <p class="mb-1">Cena <strong>3.99</strong> €</p>
-                            <p class="mb-0">
-                                S dopravou
-                                <img
-                                        src="images/icons/car.png"
-                                        alt="Doprava"
-                                        style="width:20px; height:20px;"
-                                >
-                            </p>
-                        </div>
-                    </div>
-                    <!-- 2. farma -->
-                    <div class="col">
-                        <div class="border p-3 h-100">
-                            <div class="mb-2 bg-secondary" style="width:100%; height:100px;"></div>
-                            <h5 class="fw-semibold mb-1">Názov farmy, sídlo</h5>
-                            <p class="mb-1">Vzdialenosť <strong>15</strong> km</p>
-                            <p class="mb-1">Cena <strong>4.10</strong> €</p>
-                            <p class="mb-0">
-                                Osobný odber
-                                <img
-                                        src="images/icons/walking.png"
-                                        alt="Osobný odber"
-                                        style="width:20px; height:20px;"
-                                >
-                            </p>
-                        </div>
-                    </div>
-                    <!-- 3. farma -->
-                    <div class="col">
-                        <div class="border p-3 h-100">
-                            <div class="mb-2 bg-secondary" style="width:100%; height:100px;"></div>
-                            <h5 class="fw-semibold mb-1">Názov farmy, sídlo</h5>
-                            <p class="mb-1">Vzdialenosť <strong>8</strong> km</p>
-                            <p class="mb-1">Cena <strong>4.00</strong> €</p>
-                            <p class="mb-0">
-                                S dopravou
-                                <img
-                                        src="images/icons/car.png"
-                                        alt="Doprava"
-                                        style="width:20px; height:20px;"
-                                >
-                            </p>
-                        </div>
-                    </div>
-                    <!-- 4. farma -->
-                    <div class="col">
-                        <div class="border p-3 h-100">
-                            <div class="mb-2 bg-secondary" style="width:100%; height:100px;"></div>
-                            <h5 class="fw-semibold mb-1">Názov farmy, sídlo</h5>
-                            <p class="mb-1">Vzdialenosť <strong>12</strong> km</p>
-                            <p class="mb-1">Cena <strong>3.50</strong> €</p>
-                            <p class="mb-0">
-                                Osobný odber
-                                <img
-                                        src="images/icons/walking.png"
-                                        alt="Osobný odber"
-                                        style="width:20px; height:20px;"
-                                >
-                            </p>
-                        </div>
-                    </div>
-                </div>
+            <!-- Množstvo + tlačidlá -->
+            <div class="add-to-cart-container d-flex align-items-center gap-2 flex-wrap">
 
-                <!-- Zobraziť viac fariem -->
-                <button
-                        class="btn btn-outline-secondary mt-3"
-                        id="expandFarmsBtn"
-                        title="Zobraziť viac fariem"
-                >
-                    <img src="icons/arrow-next.png" alt=">" style="width:20px; height:20px;" />
-                </button>
-            </div>
+                <button class="quantity-button plus btn custom-button" id="qtyMinus">-</button>
+                <input type="" id="productQty" value="1" min="1" class="form-control text-center">
+                <button class="quantity-button minus btn custom-button" id="qtyPlus">+</button>
 
-            <!-- Množstvo + tlačidlá (hlavný produkt) -->
-            <div class="add-to-cart-container mt-4 d-flex align-items-center gap-2 flex-wrap">
-                <!-- Dropdown alebo +/- -->
-                <div class="dropdown">
-                    <button
-                            class="btn btn-secondary dropdown-toggle"
-                            type="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                    >
-                        2 ks
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">1 ks</a></li>
-                        <li><a class="dropdown-item" href="#">2 ks</a></li>
-                        <li><a class="dropdown-item" href="#">3 ks</a></li>
+                <div class="product-detail-dropdown dropdown">
+                    <button class="btn custom-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">kg</button>
+                    <ul class="dropdown-menu custom-dropdown-menu">
+                        <li><span class="dropdown-item">kg</span></li>
+                        <li><span class="dropdown-item">ks</span></li>
                     </ul>
                 </div>
 
-                <button
-                        class="quantity-button btn btn-outline-secondary"
-                        id="qtyMinus"
-                >
-                    -
-                </button>
-                <input
-                        type="number"
-                        id="productQty"
-                        value="1"
-                        min="1"
-                        class="form-control"
-                        style="width:70px;"
-                >
-                <button
-                        class="quantity-button btn btn-outline-secondary"
-                        id="qtyPlus"
-                >
-                    +
-                </button>
-
                 <!-- Obľúbené -->
-                <button
-                        class="btn-favorite btn btn-light"
-                        id="btnFavorite"
-                        title="Pridať do obľúbených"
-                >
-                    <img src="images/icons/heart.png"
-                         alt="Obľúbené" class = "big-icon">
+                <button class="btn custom-button favorite-btn">
+                    <span class="material-icons">favorite_border</span>
                 </button>
 
                 <!-- Pridať do košíka -->
-                <button class="btn-add-cart btn btn-primary" id="addToCartBtn">
-                    Pridať do košíka
-                </button>
+                <button class="btn custom-button btn-pridat-do-kosika mt-0">Pridať do košíka</button>
+            </div>
+        </div>
+
+        <!-- Sekcia Farmy -->
+        <div class="row mt-3">
+            <h2 class="mb-3">Vyberte si farmu</h2>
+
+            <div class="arrows-around position-relative mt-4">
+                <div class="arrows">
+                    <button class="btn custom-button arrow-left" id="arrowLeft6">
+                        <span class="material-icons">chevron_left</span>
+                    </button>
+                    <button class="btn custom-button arrow-right" id="arrowRight6">
+                        <span class="material-icons">chevron_right</span>
+                    </button>
+                </div>
+
+                <div class="articles-carousel-container">
+                    <div class="articles-row" id="carouselRow6">
+
+                        <!-- 1. Farma -->
+                        <div class="col">
+                            <div class="farm-col card selected text-start p-3">
+                                <img src="images/farms/farma_1.png" alt="Farma" class="img-half-cover">
+
+                                <div class="farm card-body">
+                                    <a href="Farma.html" class="text-decoration-none">
+                                        <h5 class="card-title fw-semibold mb-1 truncate-ellipsis">Petrove sady, Malacky</h5>
+                                    </a>
+                                    <p class="mb-1">Vzdialenosť: <strong>15</strong> km</p>
+                                    <p class="mb-1">Cena: <strong>0,56</strong> €</p>
+                                    <p class="mb-1 inline-center">Iba osobný odber
+                                        <span class="material-icons ms-2">directions_walk</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. Farma -->
+                        <div class="col">
+                            <div class="farm-col card text-start p-3">
+                                <img src="images/farms/farma_2.png" alt="Farma" class="img-half-cover">
+
+                                <div class="farm card-body">
+                                    <a href="Farma.html" class="text-decoration-none">
+                                        <h5 class="card-title fw-semibold mb-1 truncate-ellipsis">FruitLand, Bratislava</h5>
+                                    </a>
+                                    <p class="mb-1">Vzdialenosť: <strong>40</strong> km</p>
+                                    <p class="mb-1">Cena: <strong>0,61</strong> €</p>
+                                    <p class="mb-1 inline-center">Aj s dovozom
+                                        <span class="material-icons ms-2">directions_car</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. Farma -->
+                        <div class="col">
+                            <div class="farm-col card text-start p-3">
+                                <img src="images/farms/farma_3.png" alt="Farma" class="img-half-cover">
+
+                                <div class="farm card-body">
+                                    <a href="Farma.html" class="text-decoration-none">
+                                        <h5 class="card-title fw-semibold mb-1 truncate-ellipsis">Ovocinárstvo u Majky, Poprad</h5>
+                                    </a>
+                                    <p class="mb-1">Vzdialenosť: <strong>100</strong> km</p>
+                                    <p class="mb-1">Cena: <strong>0,54</strong> €</p>
+                                    <p class="mb-1 inline-center">Iba osobný odber
+                                        <span class="material-icons ms-2">directions_walk</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. Farma -->
+                        <div class="col">
+                            <div class="farm-col card text-start p-3">
+                                <img src="images/farms/farma_4.png" alt="Farma" class="img-half-cover">
+
+                                <div class="farm card-body">
+                                    <a href="Farma.html" class="text-decoration-none">
+                                        <h5 class="card-title fw-semibold mb-1 truncate-ellipsis">Jabĺčkovo, Poltár</h5>
+                                    </a>
+                                    <p class="mb-1">Vzdialenosť: <strong>75</strong> km</p>
+                                    <p class="mb-1">Cena: <strong>0,52</strong> €</p>
+                                    <p class="mb-1 inline-center">Aj s dovozom
+                                        <span class="material-icons ms-2">directions_car</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5. Farma -->
+                        <div class="col">
+                            <div class="farm-col card text-start p-3">
+                                <img src="images/farms/farma_5.png" alt="Farma" class="img-half-cover">
+
+                                <div class="farm card-body">
+                                    <a href="Farma.html" class="text-decoration-none">
+                                        <h5 class="card-title fw-semibold mb-1 truncate-ellipsis">SLP Sady, Dunajská Streda</h5>
+                                    </a>
+                                    <p class="mb-1">Vzdialenosť: <strong>10</strong> km</p>
+                                    <p class="mb-1">Cena: <strong>0,66</strong> €</p>
+                                    <p class="mb-1 inline-center">Aj s dovozom
+                                        <span class="material-icons ms-2">directions_car</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- POPIS - samostatná sekcia -->
-    <section class="mt-5" id="productDescription" >>
-        <h2 class="mb-3"> Popis </h2>
-        <p>
-            Granátové jablko – prémiová kvalita zo slovenskej farmy<br>
-            Vychutnajte si šťavnatú sladko-kyslú chuť granátového jablka
-            vypestovaného na slovenskej farme. Naše plody dozrievajú
-            v prirodzených podmienkach, vďaka čomu sú bohaté na vitamíny,
-            antioxidanty a lahodnú arómu.
-        </p>
-        <p>
-            Tenšia šupka znamená sladšie jadierka<br>
-            Príjemne osviežujúca chuť pripomína červené ríbezle
-        </p>
-        <p>
-            Odroda: Guloysha<br>
-            Hmotnosť: cca 250 g (1 kus)<br>
-            Pestované na slovenskej farme
-        </p>
+    <!-- Popis -->
+    <section class="mt-5" id="productDescription">
+        <h2 class="mb-3">Popis</h2>
+        <div class="description">
+            <p>
+                <h4 class="no-margin">Jablko Evelina – šťavnaté, chrumkavé, výnimočné</h4><br>
+                Naše plody dozrievajú v prirodzených podmienkach, vďaka čomu sú bohaté na vitamíny, minerály a antioxidanty.
+            </p>
+            <p>
+                Odroda Evelina – Známa svojou prirodzenou sladkosťou a harmonickým pomerom sladkosti a kyselosti.
+                Chrumkavá textúra – Pevná dužina zaručuje výnimočný chuťový zážitok pri každom zahryznutí.
+                Bohaté na vitamíny – Skvelý zdroj vitamínu C, antioxidantov a vlákniny.
+            </p>
+            <p class="no-margin">
+                Hmotnosť: cca 70 g (1 kus)<br>
+                Pestované na slovenskej farme.
+            </p>
+        </div>
     </section>
 
-    <!-- HODNOTENIA - pod popisom, už nie ako tab -->
+    <!-- Recenzie -->
     <section class="mt-5">
         <h2 class="mb-3">Hodnotenia</h2>
+        <div class="ratings">
+            <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+                <!-- Priemerné hodnotenie -->
+                <div class="d-flex flex-wrap align-items-center gap-5">
+                    <!-- Stĺpec s veľkým priemerom a hviezdičkami -->
+                    <div class="d-flex align-items-center gap-4">
+                        <div class="rating-tile display-4 text-center fw-bold">4,5</div>
+                        <div>
+                            <div class="stars mb-0">
+                                <span class="material-icons star filled">star</span>
+                                <span class="material-icons star filled">star</span>
+                                <span class="material-icons star filled">star</span>
+                                <span class="material-icons star filled">star</span>
+                                <span class="material-icons star half-filled">star_border</span>
+                            </div>
+                            <div>Počet recenzií: 3</div>
+                        </div>
+                    </div>
 
-        <!-- Priemerné hodnotenie, hviezdičky, prehľad hviezd, tlačidlo na pridať recenziu atď. -->
-        <div class="d-flex flex-wrap align-items-center gap-4 mb-4">
-            <!-- Stĺpec s veľkým priemerom a hviezdičkami -->
-            <div class="d-flex align-items-center gap-3">
-                <div class="display-4 fw-bold">4.5</div>
-                <div>
-                    <div class="stars fs-5">★★★★☆</div>
-                    <div>Počet recenzií: 3</div>
+                    <!-- Prehľad hodnotení -->
+                    <div class="d-flex flex-column gap-2">
+
+                        <!-- 5 hviezdičiek -->
+                        <div class="d-flex justify-content-between">
+                            <div class="stars mb-0">
+                                <span class="material-icons star filled">star</span>
+                                <span class="material-icons star filled">star</span>
+                                <span class="material-icons star filled">star</span>
+                                <span class="material-icons star filled">star</span>
+                                <span class="material-icons star filled">star</span>
+                            </div>
+                            <span class="text-muted px-2">(2)</span>
+                        </div>
+                    
+                        <!-- 4 hviezdičky -->
+                        <div class="d-flex justify-content-between">
+                            <div class="stars mb-0">
+                                <span class="material-icons star filled">star</span>
+                                <span class="material-icons star filled">star</span>
+                                <span class="material-icons star filled">star</span>
+                                <span class="material-icons star filled">star</span>
+                                <span class="material-icons star empty">star_outline</span>
+                            </div>
+                            <span class="text-muted px-2">(1)</span>
+                        </div>
+                    
+                        <!-- 3 hviezdičky -->
+                        <div class="d-flex justify-content-between">
+                            <div class="stars mb-0">
+                                <span class="material-icons star filled">star</span>
+                                <span class="material-icons star filled">star</span>
+                                <span class="material-icons star filled">star</span>
+                                <span class="material-icons star empty">star_outline</span>
+                                <span class="material-icons star empty">star_outline</span>
+                            </div>
+                            <span class="text-muted px-2">(0)</span>
+                        </div>
+                    
+                        <!-- 2 hviezdičky -->
+                        <div class="d-flex justify-content-between">
+                            <div class="stars mb-0">
+                                <span class="material-icons star filled">star</span>
+                                <span class="material-icons star filled">star</span>
+                                <span class="material-icons star empty">star_outline</span>
+                                <span class="material-icons star empty">star_outline</span>
+                                <span class="material-icons star empty">star_outline</span>
+                            </div>
+                            <span class="text-muted px-2">(0)</span>
+                        </div>
+                    
+                        <!-- 1 hviezdička :( -->
+                        <div class="d-flex justify-content-between">
+                            <div class="stars mb-0">
+                                <span class="material-icons star filled">star</span>
+                                <span class="material-icons star empty">star_outline</span>
+                                <span class="material-icons star empty">star_outline</span>
+                                <span class="material-icons star empty">star_outline</span>
+                                <span class="material-icons star empty">star_outline</span>
+                            </div>
+                            <span class="text-muted px-2">(0)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tlačidlo Napísať recenziu -->
+                <div class="vertical-bottom">
+                    <button class="btn mt-2 custom-button btn-napisat-recenziu">Napísať recenziu</button>
                 </div>
             </div>
 
-            <!-- Prehľad hviezd (ak chceš) -->
-            <div>
-                <div>5 ★ <span class="text-muted">(2)</span></div>
-                <div>4 ★ <span class="text-muted">(1)</span></div>
-                <div>3 ★ <span class="text-muted">(0)</span></div>
-                <div>2 ★ <span class="text-muted">(0)</span></div>
-                <div>1 ★ <span class="text-muted">(0)</span></div>
+            <!-- Zoznam recenzií -->
+            <div class="border-top pt-3 mt-3">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <h3 class="review-title fw-bold">Výborná chuť</h3>
+                    <div class="stars mb-0">
+                        <span class="material-icons star filled">star</span>
+                        <span class="material-icons star filled">star</span>
+                        <span class="material-icons star filled">star</span>
+                        <span class="material-icons star filled">star</span>
+                        <span class="material-icons star filled">star</span>
+                    </div>
+                </div>
+                <div class="d-flex gap-2">
+                    <img src="images/profile.png" alt="Profilová fotka" height="21px" width="21px"></img>
+                    <h4 class="text-muted mb-2"><small>Anna M. | 11.3.2025</small></h4>
+                </div>
+                <p class="review-text">
+                    Objednala som si jablká z tejto farmy a som maximálne spokojná.
+                    Ovocie bolo krásne čerstvé, chutné a šťavnaté.
+                    Určite odporúčam Petrove Sady.
+                </p>
             </div>
 
-            <!-- Tlačidlo "Napísať recenziu" (môže otvoriť formulár v modal, atď.) -->
-            <button class="btn btn-outline-secondary">Napísať recenziu</button>
-        </div>
-
-        <!-- Zoznam recenzií -->
-        <div class="review-item border-top pt-3 mt-3">
-            <div class="d-flex justify-content-between align-items-center mb-1">
-                <div class="review-title fw-bold">Výborná chuť</div>
-                <div class="review-stars">★★★★★</div>
+            <div class="border-top pt-3 mt-3">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <h3 class="review-title fw-bold">Celkom dobré jablká</h3>
+                    <div class="stars mb-0">
+                        <span class="material-icons star filled">star</span>
+                        <span class="material-icons star filled">star</span>
+                        <span class="material-icons star filled">star</span>
+                        <span class="material-icons star filled">star</span>
+                        <span class="material-icons star empty">star_outline</span>
+                    </div>
+                </div>
+                <div class="d-flex gap-2">
+                    <img src="images/profile.png" alt="Profilová fotka" height="21px" width="21px"></img>
+                    <h4 class="text-muted mb-2"><small>Jozef H. | 5.3.2025</small></h4>
+                </div>
+                <p class="review-text">
+                    Pomerne dobrá kvalita, sem-tam som narazil na kyslejší kus.
+                </p>
             </div>
-            <p class="text-muted mb-1"><small>Anna M. | 11.3.2025</small></p>
-            <p class="review-text">
-                Objednala som si granátové jablká z tejto farmy a som maximálne spokojná.
-                Ovocie bolo krásne čerstvé, chutné a šťavnaté.
-                Určite odporúčam Farmu pod Lipou.
-            </p>
-        </div>
 
-        <div class="review-item border-top pt-3 mt-3">
-            <div class="d-flex justify-content-between align-items-center mb-1">
-                <div class="review-title fw-bold">Titulok recenzie</div>
-                <div class="review-stars">★★★☆☆</div>
+            <!-- Tlačidlo "Zobraziť ďalšie..." -->
+            <div class="mt-4">
+                <button class="btn custom-button btn-zobrazit-dalsie">Zobraziť ďalšie...</button>
             </div>
-            <p class="text-muted mb-1"><small>Autor | 10.2.2025</small></p>
-            <p class="review-text">
-                Text recenzie – Pomerne dobrá kvalita, sem-tam narazím na kyslejší kúsok.
-            </p>
-        </div>
-
-        <!-- Tlačidlo "Zobraziť ďalšie..." -->
-        <div class="mt-4">
-            <button class="btn btn-secondary">Zobraziť ďalšie...</button>
         </div>
     </section>
 
-    <!-- Mohlo by vás zaujať -->
+    <!-- Mohlo by vás zaujímať -->
     <section class="my-5">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2>Mohlo by vás zaujímať</h2>
+        <h2>Mohlo by vás zaujímať</h2>
+
+        <div class="arrows-around position-relative mt-4">
             <div class="arrows">
-                <button class="btn btn-outline-secondary arrow-left">&lt;</button>
-                <button class="btn btn-outline-secondary arrow-right">&gt;</button>
+                <button class="btn custom-button arrow-left" id="arrowLeft4">
+                    <span class="material-icons">chevron_left</span>
+                </button>
+                <button class="btn custom-button arrow-right" id="arrowRight4">
+                    <span class="material-icons">chevron_right</span>
+                </button>
+            </div>
+            <div class="articles-carousel-container">
+                <div class="articles-row" id="carouselRow4">
+
+                <!-- 1. Článok -->
+                <div class="col">
+                    <div class="card text-start p-3">
+                        <img src="images/articles/chov_sliepok.png" alt="Sliepky na lúke" class="img-half-cover">
+
+                        <div class="card-body">
+                            <a href="#" class="text-decoration-none">
+                                <h5 class="card-title truncate-ellipsis">Ako začať s chovom sliepok</h5>
+                            </a>
+
+                            <!-- Riadok pre autora -->
+                            <div class="d-flex align-items-center gap-2">
+                                <a href="Farma.html" class="d-flex align-items-center truncate-ellipsis gap-2 text-decoration-none">
+                                    <span class="material-icons">account_circle</span>
+                                    <span class="text-muted">Peter Ď., Farma pod Lipou</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Článok -->
+                <div class="col">
+                    <div class="card text-start p-3">
+                        <img src="images/articles/ovocny_sad.png" alt="Ovocný sad" class="img-half-cover">
+
+                        <div class="card-body">
+                            <a href="#" class="text-decoration-none">
+                                <h5 class="card-title truncate-ellipsis">Zber ovocnej úrody na jar</h5>
+                            </a>
+
+                            <!-- Riadok pre autora -->
+                            <div class="d-flex align-items-center gap-2">
+                                <a href="Farma.html" class="d-flex align-items-center truncate-ellipsis gap-2 text-decoration-none">
+                                    <span class="material-icons">account_circle</span>
+                                    <span class="text-muted">Nikol M., Ovocný háj</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Článok -->
+                <div class="col">
+                    <div class="card text-start p-3">
+                        <img src="images/articles/pestovanie_byliniek.png" alt="Bylinková záhrada" class="img-half-cover">
+
+                        <div class="card-body">
+                            <a href="#" class="text-decoration-none">
+                                <h5 class="card-title truncate-ellipsis">Ako si vytvoriť bylinkovú záhradu</h5>
+                            </a>
+
+                            <!-- Riadok pre autora -->
+                            <div class="d-flex align-items-center gap-2">
+                                <a href="Farma.html" class="d-flex align-items-center truncate-ellipsis gap-2 text-decoration-none">
+                                    <span class="material-icons">account_circle</span>
+                                    <span class="text-muted">Svetlana P., GreenLand</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Článok -->
+                <div class="col">
+                    <div class="card text-start p-3">
+                        <img src="images/articles/pecenie_chleba.png" alt="Pečenie chleba" class="img-half-cover">
+
+                        <div class="card-body">
+                            <a href="#" class="text-decoration-none">
+                                <h5 class="card-title truncate-ellipsis">Recept na domáci kváskový chlieb</h5>
+                            </a>
+
+                            <!-- Riadok pre autora -->
+                            <div class="d-flex align-items-center gap-2">
+                                <a href="Farma.html" class="d-flex align-items-center truncate-ellipsis gap-2 text-decoration-none">
+                                    <span class="material-icons">account_circle</span>
+                                    <span class="text-muted">Lukáš K., Obilka</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Článok -->
+                <div class="col">
+                    <div class="card text-start p-3">
+                        <img src="images/articles/zavaranie.png" alt="Zaváraniny" class="img-half-cover">
+
+                        <div class="card-body">
+                            <a href="#" class="text-decoration-none">
+                                <h5 class="card-title truncate-ellipsis">5 tipov pre chutné zaváraniny</h5>
+                            </a>
+
+                            <!-- Riadok pre autora -->
+                            <div class="d-flex align-items-center gap-2">
+                                <a href="Farma.html" class="d-flex align-items-center truncate-ellipsis gap-2 text-decoration-none">
+                                    <span class="material-icons">account_circle</span>
+                                    <span class="text-muted">Janka S., U gazdinej</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
-            <div class="col">
-                <div class="card text-start p-3 h-100">
-                    <img src="images/empty.png" alt="Article" class="img-half-cover">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Názov článku</h5>
-
-                        <!-- Riadok pre autora -->
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="images/icons/person.png" alt="Autor" class="small-icon">
-                            <small class="text-muted">Meno autora, farma</small>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col">
-                <div class="card text-start p-3 h-100">
-                    <img src="images/empty.png" alt="Article" class="img-half-cover">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Názov článku</h5>
-
-                        <!-- Riadok pre autora -->
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="images/icons/person.png" alt="Autor" class="small-icon">
-                            <small class="text-muted">Meno autora, farma</small>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col">
-                <div class="card text-start p-3 h-100">
-                    <img src="images/empty.png" alt="Article" class="img-half-cover">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Názov článku</h5>
-
-                        <!-- Riadok pre autora -->
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="images/icons/person.png" alt="Autor" class="small-icon">
-                            <small class="text-muted">Meno autora, farma</small>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col">
-                <div class="card text-start p-3 h-100">
-                    <img src="images/empty.png" alt="Article" class="img-half-cover">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Názov článku</h5>
-
-                        <!-- Riadok pre autora -->
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="images/icons/person.png" alt="Autor" class="small-icon">
-                            <small class="text-muted">Meno autora, farma</small>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
         </div>
     </section>
 
     <!-- Reklamné bannery -->
     <section class="ads-section my-5">
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <div class="card ad-banner text-center h-100">
+        <div class="row d-flex big-gutter-row wrap">
+            <div class="col-6 mb-4">
+                <div class="ad-banner text-center">
                     <div class="card-body d-flex align-items-center justify-content-center">
-                        <p class="mb-0">Reklama</p>
+                        <img src="images/ads/Reklama1.png" alt="Reklama" class="img-cover"></img>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 mb-4">
-                <div class="card ad-banner text-center h-100">
+            <div class="col-6 mb-4">
+                <div class="ad-banner text-center">
                     <div class="card-body d-flex align-items-center justify-content-center">
-                        <p class="mb-0">Reklama</p>
+                        <img src="images/ads/Reklama2.png" alt="Reklama" class="img-cover"></img>
                     </div>
                 </div>
             </div>

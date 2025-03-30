@@ -20,8 +20,6 @@
     --modal-accent: #B1D27A;   /* používa sa ako pozadie (background-color) aj pre border (border-color) */
 }
 
-
-
 html {
     font-size: 12px;
 }
@@ -35,7 +33,7 @@ header {
 body {
     font-family: "Inknut Antiqua", serif;
     color:var(--green-dark-muted);
-    background-color: var(--blue-very-light)
+    background-color: var(--blue-very-light);
 }
 
 a {
@@ -98,7 +96,6 @@ a {
     border: none !important;
 }
 
-
 .truncate-ellipsis {  /*na ... ak text preteka*/
     max-width: 100%;
     white-space: nowrap;
@@ -110,6 +107,15 @@ a {
 .custom-fluid {  /*custom fluid container na responzivnost a dodrziavanie margins stranky*/
     width: 90%;
     margin: 0 auto;
+}
+
+.no-margin {  /*odstranenie vsetkych margins*/
+    margin: 0 !important;
+}
+
+.no-wrap {  /*odstranenie wrapu*/
+    white-space: nowrap;
+    flex-wrap: nowrap;
 }
 
 /* ------------------------------- NAVIGATION ------------------------------------- */
@@ -280,6 +286,7 @@ input:focus::placeholder {
 .arrow-left:hover, .arrow-right:hover, .toggle-btn:hover {  /*nastavenie hover*/
     background: var(--green-very-light);
 }
+
 /* -------------- SEKCIA PRODUKTOV -------------- */
 
 .products-carousel-container {  /*carousel container pre animaciu scrollovania produktov*/
@@ -312,7 +319,16 @@ input:focus::placeholder {
     max-width: 300px;
 }
 
-.img-half-cover {  /*vsetky obrazky s radius a vyskou max nastavenou*/
+.img-half-cover {  /*vsetky obrazky s radius a ratio*/
+    display: block;
+    max-height: 150px;
+    height: 100%;
+    max-width: 256px;
+    aspect-ratio: 256 / 150;
+    border-radius: 0.375rem;
+}
+
+.img-cover {  /*obrazky reklam*/
     display: block;
     max-height: 150px;
     height: auto;
@@ -385,15 +401,39 @@ input:focus::placeholder {
     margin-right: 2px;
 }
 
-.card .star.filled {
+.star.filled {
     color: #FFD700;
 }
 
-.card .star.empty {
+.star.empty {
     color: #bbb;
 }
 
-.star-count {
+.filter-block .star.filled {  /*zelene hviezdy vo filter sekcii*/
+    color: var(--green-dark-muted);
+}
+
+.filter-block .star.empty {
+    color: var(--green-dark-muted);
+}
+
+.star.half-filled {  /*nevyfarbena hviezda na vytvorenie polovicne vyfarbenej hviezdy*/
+    position: relative;
+    color: #ccc;
+}
+  
+.star.half-filled::before {  /*polovicka vyfarbena na prekrytie*/
+    content: 'star';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    overflow: hidden;
+    color: #FFD700;
+    white-space: nowrap;
+}
+
+.star-count {  /*pocet recenzii s danymi hviezdami v sekciach produktov*/
     font-size: 0.9rem;
     color: #666;
 }
@@ -405,6 +445,7 @@ input:focus::placeholder {
 
 .btn-pridat-do-kosika {  /*tlacidlo pridat do kosika aj s animaciou*/
     background-color:  var(--green-light);
+    color: var(--green-dark-muted);
     font-size: larger;
     font-weight: bold;
     height: 4rem;
@@ -466,9 +507,21 @@ input:focus::placeholder {
 
 .ad-banner {  /*banner na reklamy*/
     max-width: 100% !important;
-    height: 150px;
+    height: auto;
     padding: 0 !important;
     overflow: hidden;
+}
+
+@media (max-width: 600px) {  /*na wrapnutie reklam pod seba pod 600 px*/
+    .big-gutter-row {
+      flex-wrap: wrap;
+      overflow-x: visible;
+    }
+
+    .big-gutter-row > .col-6 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
 }
 
 .big-gutter-row {  /*vacsi gutter ako g-5 na spacing medzi cols*/
@@ -630,6 +683,11 @@ input:focus::placeholder {
     font-size: 20px;
 }
 
+.input-group-text {  /*mensi font a padding v znacke eur a km*/
+    font-size: 0.75rem;
+    padding: 0.25rem;
+}
+
 .filter-block .filter-list input[type="checkbox"] {  /*trosku miesto medzo checkboxmi a napismi*/
     margin-right: 0.5rem;
 }
@@ -738,85 +796,236 @@ input:focus::placeholder {
 
 /* ---- PRODUCT DETAIL ---- */
 
-.breadcrumb .material-icons {
+.breadcrumb .material-icons, .farm .material-icons {  /*nastavenie mensich ikoniek v breadcrumb a karticke farmy*/
     font-size: 20px !important;
 }
 
-.product-detail {
+.product-detail { /*nastavenie medzier medzi jednotlivymi sekciami*/
     display: flex;
-   gap: 2rem;
-   margin-bottom: 2rem;
+    gap: 2rem;
+    margin-bottom: 2rem;
 }
 
-.product-gallery {
-   flex: 1;
-   display: flex;
-   flex-direction: column;
-   gap: 1rem;
+.product-gallery {  /*nastavenie shrinkovania galerie produktu*/
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     max-width: 400px;
+    min-width: 280px;
 }
 
-.main-image {
-    width: 384px;
-    height: 225px; /* Adjust as needed */ /* Hide any overflow */
+.main-image img {  /*nastavenie hlavneho obrazku v galerii*/
+    width: 100%;
+    height: auto;
+    aspect-ratio: 256 / 150;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 0.375rem;
 }
 
-.main-image img {
-   width: 100%;
-   aspect-ratio: 256 / 150;
-   object-fit: cover;
-   border: 5px solid #ddd;
-   border-radius: 0.375rem;
+.thumbnail-list {  /*nastavenie medzier medzi obrazkami galerie*/
+    gap: 0.5rem;
 }
 
-.product-gallery .arrow-left, .product-gallery .arrow-right {
+.thumbnail-list img { /*nastavenie malych obrazkov v galerii*/
+    width: 100%;
+    aspect-ratio: 256 / 150;
+    object-fit: cover;
+}
+
+.product-gallery .arrow-left, .product-gallery .arrow-right {  /*velkost sipiek v galerii produktu a ich vertikalna poloha*/
     height: 2rem !important;
     width: 2rem !important;
     top: 50%;
 }
 
-.product-gallery .arrow-left {
-    left: -3rem;
+.product-gallery .arrow-left {  /*umiestnenie lavej sipky*/
+    left: -2rem;
 }
 
-.product-gallery .arrow-right {
-    right: -3rem;
+.product-gallery .arrow-right {  /*umiestnenie pravej sipky*/
+    right: -2rem;
 }
 
-.product-gallery .arrows-around {
-    width: 382px;
+.product-gallery .arrows-around {  /*zmensenie galerie mini obrazkov*/
+    width: 90%;
+    left: 5%;
 }
 
-.images-carousel-container {  /*carousel container na animaciu scrollovania clankov*/
+.images-carousel-container {  /*carousel container na animaciu scrollovania mini obrazkov*/
     position: relative;
     width: 100%;
     overflow: hidden;
 }
 
-.images-row {  /*rada clankov*/
+.images-row {  /*rada mini obrazkov*/
     display: flex;
     transition: transform 0.3s ease;
     will-change: transform;
 }
 
-.thumbnail-list {
-    display: flex;
-    gap: 0.5rem;
-    width: 100%;
-    justify-content: flex-start;
-}
-
-.thumbnail-list img {
-    width: 125px;
-   height: 70,75px;
-    object-fit: cover;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.rating-and-reviews {
+.rating-and-reviews {  /*velkost fontu v sumarnom riadku hodnoteni*/
     font-size: 15px !important;
+}
+
+.detailne-info {  /*aby link na detailne info bol len taky dlhy aky realne aj je*/
+    width:fit-content;
+}
+
+.add-to-cart-container {  /*spodny riadok s tlacidlami margin*/
+    margin-top: 6%;
+}
+
+.add-to-cart-container .form-control {  /*nastavenie formulara na mnozstvo*/
+    width: 80px;
+    height: 3rem;
+    font-size: 16px;
+    color: var(--green-dark-muted);
+}
+
+.add-to-cart-container .dropdown-toggle {  /*nastavenie dropdown button na vybratie kg alebo ks*/
+    font-size: 16px;
+    width: 53px;
+    color: var(--green-dark-muted);
+}
+
+.add-to-cart-container .custom-dropdown-menu {  /*nastavenie dropdown na vybratie kg alebo ks*/
+    width: fit-content !important; 
+    font-size: 16px;
+    left: 40% !important;
+    --bs-dropdown-min-width: 0 !important;
+    color: var(--green-dark-muted);
+}
+
+.add-to-cart-container .favorite-btn {  /*margins pre favourite button*/
+    margin-top: 0 !important;
+    margin-right: 1rem;
+}
+
+.quantity-button {  /*tlacidla plus a minus*/
+    background-color:  var(--green-light);
+    height: 3rem;
+    width: 3rem;
+    font-size: 20px;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    color: var(--green-dark-muted);
+}
+
+.quantity-button:hover {  /*nastaveny hover*/
+    background-color: var(--green-dark-muted);
+    color: var(--blue-very-light);
+}
+  
+.quantity-button:active {  /*nastaveny active*/
+      --bs-btn-active-bg: var(--green-light);
+}
+
+.plus {
+    margin-right: 0.75rem;
+}
+
+.minus {
+    margin-left: 0.75rem;
+}
+
+.farm-col.card {  /*karticky s farmami*/
+    width: 100%;
+    max-width: 296px;
+}
+
+.farm-col.card.selected {  /*oznacenie farmy konkretnej*/
+    border: 4px solid var(--green-dark-muted);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.inline-center { /*zarovnanie na stred v ramci riadka (karticky s farmami)*/
+    display: inline-flex;
+    align-items: center;
+}
+
+.description, .ratings {  /*pozadie na popis a recenzie*/
+    background-color: #EDFAE6;
+    padding: 2rem;
+    border-radius: 0.375rem;
+}
+
+.btn-napisat-recenziu {  /*tlacidlo napisat recenziu aj s animaciou*/
+    background-color:  var(--green-light);
+    color: var(--green-dark-muted);
+    font-size: larger;
+    font-weight: bold;
+    height: 4rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-napisat-recenziu:hover {  /*nastaveny hover*/
+    background-color: var(--green-dark-muted);
+    color: var(--blue-very-light);
+}
+  
+.btn-napisat-recenziu:active {  /*nastaveny active*/
+    --bs-btn-active-bg: var(--green-light);
+}
+
+.rating-tile {  /*nastavenie pozadia na cislo priemeru hodnoteni*/
+    background-color: var(--green-light);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 0.375rem;
+}
+
+.review-text {  /*text recenzie*/
+    font-size: 12px;
+    margin-top: 1rem;
+}
+
+.btn-zobrazit-dalsie {  /*tlacidlo zobrazit dalsie aj s animaciou*/
+    background-color:  var(--green-light);
+    color: var(--green-dark-muted);
+    font-size: larger;
+    font-weight: bold;
+    height: 3rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-zobrazit-dalsie:hover {  /*nastaveny hover*/
+    background-color: var(--green-dark-muted);
+    color: var(--blue-very-light);
+}
+  
+.btn-zobrazit-dalsie:active {  /*nastaveny active*/
+      --bs-btn-active-bg: var(--green-light);
+}
+
+.info { /*medzera medzi hviezdami a poctom hodnoteni*/
+    gap: 0.3rem;
+}
+
+@media (max-width: 340px) {  /*pod 340px aby sa riadok s hviezdami a poctom hodnoteni wrapol*/
+    .info {
+        flex-wrap: wrap;
+    }
+}
+
+.vertical-bottom {  /*aby tlacidlo napisat recenziu bolo umiestnene dole v ramci jeho riadku*/
+    display: flex;
+    align-items: flex-end;
+    height: 149px;
+}
+
+@media (max-width: 745px) {  /*ked sa tlacidlo wrapne na druhy riadok tak aby nemalo zbytocnu vysku - gap nad sebou*/
+    .vertical-bottom {
+        height:auto;
+    }
+}
+
+@media (max-width: 559px) {  /*margin horny ked je wrapnute v tretom riadku*/
+    .vertical-bottom {
+        margin-top: 2rem;
+    }
 }
 
 /*--------PRODUCT LISTING-------*/

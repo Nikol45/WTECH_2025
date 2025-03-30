@@ -185,10 +185,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const arrowRight4 = document.getElementById('arrowRight4');
     const arrowLeft4 = document.getElementById('arrowLeft4');
 
-    //pre sekciu clankov
-    const carouselRow5 = document.getElementById('carouselRow5');
+    //pre sekciu mini obrazkov v galerii
     const arrowRight5 = document.getElementById('arrowRight5');
     const arrowLeft5 = document.getElementById('arrowLeft5');
+    const thumbnailList = document.querySelector('.thumbnail-list');
+
+    //pre sekciu fariem
+    const carouselRow6 = document.getElementById('carouselRow6');
+    const arrowRight6 = document.getElementById('arrowRight6');
+    const arrowLeft6 = document.getElementById('arrowLeft6');
 
     let isAnimating = false;
 
@@ -454,57 +459,106 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (arrowRight5 && carouselRow5) {
+    //animacie a scrollovanie sekcia mini obrazkov
+    if (arrowRight5 && thumbnailList) {
         arrowRight5.addEventListener('click', () => {
             if (isAnimating) return;
             isAnimating = true;
-
-            carouselRow5.style.transform = 'translateX(-125px)';
-
-            carouselRow5.addEventListener('transitionend', function handler(e) {
-                if (e.propertyName === 'transform') {
-                    const firstCol = carouselRow5.querySelector('.col');
-                    carouselRow5.appendChild(firstCol);
-
-                    carouselRow5.style.transition = 'none';
-                    carouselRow5.style.transform = 'none';
-
-                    carouselRow5.offsetHeight;
-
-                    carouselRow5.style.transition = 'transform 0.3s ease';
-
-                    carouselRow5.removeEventListener('transitionend', handler);
-                    isAnimating = false;
-                }
-            });
+            const firstItem = thumbnailList.children[0];
+            const itemWidth = firstItem.offsetWidth;
+            thumbnailList.style.transition = 'transform 0.3s ease';
+            thumbnailList.style.transform = `translateX(-${itemWidth}px)`;
+    
+          thumbnailList.addEventListener('transitionend', function handler(e) {
+            if (e.propertyName === 'transform') {
+                thumbnailList.appendChild(firstItem);
+                thumbnailList.style.transition = 'none';
+                thumbnailList.style.transform = 'none';
+                void thumbnailList.offsetWidth;
+                thumbnailList.style.transition = 'transform 0.3s ease';
+                thumbnailList.removeEventListener('transitionend', handler);
+                isAnimating = false;
+            }
+          });
         });
     }
-
-    if (arrowLeft5 && carouselRow5) {
+    
+    if (arrowLeft5 && thumbnailList) {
         arrowLeft5.addEventListener('click', () => {
             if (isAnimating) return;
             isAnimating = true;
-
-            const allCols = carouselRow5.querySelectorAll('.col');
-            const lastCol = allCols[allCols.length - 1];
-            carouselRow5.insertBefore(lastCol, allCols[0]);
-
-            carouselRow5.style.transition = 'none';
-            carouselRow5.style.transform = 'translateX(-125px)';
-
-            carouselRow5.offsetHeight;
-
-            carouselRow5.style.transition = 'transform 0.3s ease';
-            carouselRow5.style.transform = 'none';
-
-            carouselRow5.addEventListener('transitionend', function handler(e) {
+            const items = thumbnailList.children;
+            const lastItem = items[items.length - 1];
+            thumbnailList.insertBefore(lastItem, items[0]);
+            thumbnailList.style.transition = 'none';
+            const itemWidth = lastItem.offsetWidth;
+            thumbnailList.style.transform = `translateX(-${itemWidth}px)`;
+            void thumbnailList.offsetWidth;
+            thumbnailList.style.transition = 'transform 0.3s ease';
+            thumbnailList.style.transform = 'none';
+        
+            thumbnailList.addEventListener('transitionend', function handler(e) {
                 if (e.propertyName === 'transform') {
-                    carouselRow5.removeEventListener('transitionend', handler);
+                    thumbnailList.removeEventListener('transitionend', handler);
                     isAnimating = false;
                 }
             });
         });
     }
+
+    //animacie na scrollovanie sekciou fariem
+    if (arrowRight6 && carouselRow6) {
+        arrowRight6.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            carouselRow6.style.transform = 'translateX(-25%)';
+
+            carouselRow6.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    const firstCol = carouselRow6.querySelector('.col');
+                    carouselRow6.appendChild(firstCol);
+
+                    carouselRow6.style.transition = 'none';
+                    carouselRow6.style.transform = 'none';
+
+                    carouselRow6.offsetHeight;
+
+                    carouselRow6.style.transition = 'transform 0.3s ease';
+
+                    carouselRow6.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
+        });
+    }
+
+    if (arrowLeft6 && carouselRow6) {
+        arrowLeft6.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            const allCols = carouselRow6.querySelectorAll('.col');
+            const lastCol = allCols[allCols.length - 1];
+            carouselRow6.insertBefore(lastCol, allCols[0]);
+
+            carouselRow6.style.transition = 'none';
+            carouselRow6.style.transform = 'translateX(-25%)';
+
+            carouselRow6.offsetHeight;
+
+            carouselRow6.style.transition = 'transform 0.3s ease';
+            carouselRow6.style.transform = 'none';
+
+            carouselRow6.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    carouselRow6.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
+        });
+    }
+
 
     //animacia na fillnutie srdiecka pri kliknuti
     document.querySelectorAll('.favorite-btn').forEach(favBtn => {
@@ -596,6 +650,63 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             document.querySelectorAll('.pagination .page-item').forEach(item => item.classList.remove('active'));
             this.classList.add('active');
+        });
+    });
+
+    //===================== Product Detail ===========================//
+
+    const mainImage = document.getElementById('mainImage');
+    const thumbnails = document.querySelectorAll('.thumbnail-list .col img');
+
+    //zamena hlavneho obrazka za kliknuty z mini galerie
+    thumbnails.forEach(thumb => {
+        thumb.addEventListener('click', () => {
+            if (mainImage) {
+                mainImage.src = thumb.src;
+                mainImage.alt = thumb.alt;
+            }
+        });
+    });
+
+    const qtyInput = document.getElementById('productQty');
+    const btnPlus = document.getElementById('qtyPlus');
+    const btnMinus = document.getElementById('qtyMinus');
+
+    //funkcia tlacidiel na pridavanie a odoberanie mnozstva produktu
+    if (btnPlus && qtyInput) {
+        btnPlus.addEventListener('click', () => {
+            let currentValue = parseInt(qtyInput.value) || 1;
+            qtyInput.value = currentValue + 1;
+        });
+    }
+
+    if (btnMinus && qtyInput) {
+        btnMinus.addEventListener('click', () => {
+            let currentValue = parseInt(qtyInput.value) || 1;
+            if (currentValue > 1) {
+                qtyInput.value = currentValue - 1;
+            }
+        });
+    }
+
+    //zmena textu v tlacidle pri vybrati ks alebo kg
+    document.querySelectorAll('.product-detail-dropdown .dropdown-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+            const selectedText = e.target.textContent.trim();
+            const dropdownToggle = e.target.closest('.dropdown').querySelector('.dropdown-toggle');
+            if (dropdownToggle) {
+                dropdownToggle.textContent = selectedText;
+            }
+        });
+    });
+
+    const farms = document.querySelectorAll('.farm-col.card');
+
+    //nastavenie ramceka na signalizaciu vyberu pri kliknuti na jednu z fariem
+    farms.forEach(farm => {
+        farm.addEventListener('click', () => {
+            farms.forEach(f => f.classList.remove('selected'));
+            farm.classList.add('selected');
         });
     });
 
