@@ -246,7 +246,7 @@
     </div>
 
     <!-- Top bar navigačný: logo, vyhľadávanie, ikonky -->
-    <div class="top-bar py-3">
+    <nav class="top-bar py-3">
         <div class="container-fluid custom-fluid">
             <div class="d-flex flex-wrap align-items-center justify-content-between">
                 <!-- Logo -->
@@ -285,7 +285,7 @@
                 </button>
             </div>
         </div>
-    </div>
+    </nav>
 
     <!-- Sidebar miesto ikoniek -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
@@ -422,9 +422,7 @@
 
 <!-- ===================== MAIN CONTENT ===================== -->
 <main class="container-fluid custom-fluid py-4">
-    <!-- Tabs (Údaje, História objednávok, Obľúbené produkty, Recenzie) -->
-
-    <!-- Pre stredné a väčšie obrazovky: klasické nav-tabs -->
+    <!-- TABS Pre stredné a väčšie obrazovky: nav-tabs -->
     <ul class="nav nav-tabs d-none d-md-flex mb-4">
         <li class="nav-item">
             <a class="nav-link text-dark" href="Profil-udaje.html">Osobné údaje</a>
@@ -440,14 +438,13 @@
         </li>
     </ul>
 
-
     <!-- Odkaz späť do obchodu -->
     <a href="#" class="d-inline-flex align-items-center text-decoration-none text-dark">
         <span class="me-2">←</span>
         Späť do obchodu
     </a>
 
-    <!-- Pre menšie obrazovky: dropdown -->
+    <!-- TABS Pre menšie obrazovky: dropdown -->
     <div class="dropdown-nav d-md-none mt-3">
         <div class="dropdown">
             <button class="btn btn-light w-100 text-start dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -466,127 +463,200 @@
     <h2 class="fw-bold my-4">História objednávok</h2>
 
     <!-- 1. Zásielka -->
-    <div class="border rounded p-3 mb-4">
-        <h3 class="fw-bold fs-5 mb-3">Zásielka od Farma pod Lipou</h3>
+    <div class="border rounded-3 p-3 mb-4">
+        <h3 class="fw-bold fs-5 mb-3">Zásielka č. 202312</h3>
 
         <!-- Produkt 1 -->
-        <div class="d-flex align-items-center justify-content-between mb-3">
-            <div class="d-flex align-items-center gap-3">
-                <div class="bg-secondary" style="width: 80px; height: 80px;"></div>
-                <div>
-                    <p class="mb-1 fw-bold">Granátové jablko</p>
-                    <p class="mb-0 text-muted">Farma: Farmville, Horné Orešany</p>
-                </div>
+        <div class="row mb-3 align-items-center">
+            <div class="col-auto">
+                <img src="images/tovar/fruit/granatove_jablko.png" alt="Granátové jablko" class="img-fluid rounded" style="max-width:80px;">
             </div>
-            <p class="fs-5 mb-0">4,59 €</p>
+            <div class="col">
+                <p class="mb-1 fw-bold">Granátové jablko</p>
+                <p class="mb-0 text-muted">Farma: Farmville, Horné Orešany</p>
+            </div>
+            <div class="col-auto">
+                <span class="badge bg-light text-dark px-3 py-2">3 ks</span>
+            </div>
+            <div class="col-auto">
+                <p class="fs-5 mb-0">4,59 €</p>
+            </div>
         </div>
 
         <!-- Produkt 2 -->
-        <div class="d-flex align-items-center justify-content-between mb-3">
-            <div class="d-flex align-items-center gap-3">
-                <div class="bg-secondary" style="width: 80px; height: 80px;"></div>
-                <div>
-                    <p class="mb-1 fw-bold">Názov produktu</p>
-                    <p class="mb-0 text-muted">Názov farmy, sídlo</p>
-                </div>
+        <div class="row mb-3 align-items-center">
+            <div class="col-auto">
+                <img src="images/tovar/fruit/maliny.png" alt="Maliny" class="img-fluid rounded" style="max-width:80px;">
             </div>
-            <p class="fs-5 mb-0">cena €</p>
+            <div class="col">
+                <p class="mb-1 fw-bold">Maliny 250 g</p>
+                <p class="mb-0 text-muted">Farma: Ovocný háj, Levice</p>
+            </div>
+            <div class="col-auto">
+                <span class="badge bg-light text-dark px-3 py-2">2 ks</span>
+            </div>
+            <div class="col-auto">
+                <p class="fs-5 mb-0">3,50 €</p>
+            </div>
         </div>
 
         <!-- Produkt 3 -->
-        <div class="d-flex align-items-center justify-content-between mb-3">
-            <div class="d-flex align-items-center gap-3">
-                <div class="bg-secondary" style="width: 80px; height: 80px;"></div>
-                <div>
-                    <p class="mb-1 fw-bold">Názov produktu</p>
-                    <p class="mb-0 text-muted">Názov farmy, sídlo</p>
-                </div>
+        <div class="row mb-3 align-items-center">
+            <div class="col-auto">
+                <img src="images/tovar/milk_eggs/vajcia.png" alt="Vajcia" class="img-fluid rounded" style="max-width:80px;">
             </div>
-            <p class="fs-5 mb-0">cena €</p>
+            <div class="col">
+                <p class="mb-1 fw-bold">Vajcia 12 ks</p>
+                <p class="mb-0 text-muted">Farma: U gazdinej, Jatov</p>
+            </div>
+            <div class="col-auto">
+                <span class="badge bg-light text-dark px-3 py-2">1 ks</span>
+            </div>
+            <div class="col-auto">
+                <p class="fs-5 mb-0">3,21 €</p>
+            </div>
         </div>
 
         <!-- Produkt 4 -->
-        <div class="d-flex align-items-center justify-content-between mb-3">
-            <div class="d-flex align-items-center gap-3">
-                <div class="bg-secondary" style="width: 80px; height: 80px;"></div>
-                <div>
-                    <p class="mb-1 fw-bold">Názov produktu</p>
-                    <p class="mb-0 text-muted">Názov farmy, sídlo</p>
-                </div>
+        <div class="row mb-3 align-items-center">
+            <div class="col-auto">
+                <img src="images/tovar/fruit/cernice.png" alt="Černice" class="img-fluid rounded" style="max-width:80px;">
             </div>
-            <p class="fs-5 mb-0">cena €</p>
+            <div class="col">
+                <p class="mb-1 fw-bold">Černice 100 g</p>
+                <p class="mb-0 text-muted">Farma: Sad pri potoku, Žilina</p>
+            </div>
+            <div class="col-auto">
+                <span class="badge bg-light text-dark px-3 py-2">1 ks</span>
+            </div>
+            <div class="col-auto">
+                <p class="fs-5 mb-0">3,79 €</p>
+            </div>
         </div>
 
-        <!-- Spodný riadok s číslom, dátumom a tlačidlom -->
+        <!-- Spodný riadok -->
         <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
             <div>
                 <span class="me-4">č. 202312</span>
                 <span>23.3.2025</span>
             </div>
             <div class="d-flex align-items-center gap-3">
-                <span class="fw-bold">Cena: cena €</span>
+                <span class="fw-bold">Cena: 15,09 €</span>
                 <button class="btn btn-secondary">Objednať znova</button>
             </div>
         </div>
     </div>
 
     <!-- 2. Zásielka -->
-    <div class="border rounded p-3 mb-4">
-        <h3 class="fw-bold fs-5 mb-3">Zásielka od názov farmy</h3>
+    <div class="border rounded-3 p-3 mb-4">
+        <h3 class="fw-bold fs-5 mb-3">Zásielka č. 202313</h3>
 
         <!-- Produkt -->
-        <div class="d-flex align-items-center justify-content-between mb-3">
-            <div class="d-flex align-items-center gap-3">
-                <div class="bg-secondary" style="width: 80px; height: 80px;"></div>
-                <div>
-                    <p class="mb-1 fw-bold">Názov produktu</p>
-                    <p class="mb-0 text-muted">Názov farmy, sídlo</p>
-                </div>
+        <div class="row mb-3 align-items-center">
+            <div class="col-auto">
+                <img src="images/tovar/fruit/egres-ruzovy.png" alt="Egreš ružový" class="img-fluid rounded" style="max-width:80px;">
             </div>
-            <p class="fs-5 mb-0">cena €</p>
+            <div class="col">
+                <p class="mb-1 fw-bold">Egreš ružový 250 g</p>
+                <p class="mb-0 text-muted">Farma: SL ovocné sady, Malinovo</p>
+            </div>
+            <div class="col-auto">
+                <span class="badge bg-light text-dark px-3 py-2">2 ks</span>
+            </div>
+            <div class="col-auto">
+                <p class="fs-5 mb-0">5,24 €</p>
+            </div>
         </div>
 
-        <!-- Spodný riadok s číslom, dátumom a tlačidlom -->
+        <!-- Spodný riadok -->
         <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
             <div>
-                <span class="me-4">č. objednávky</span>
-                <span>Dátum</span>
+                <span class="me-4">č. 202313</span>
+                <span>24.3.2025</span>
             </div>
             <div class="d-flex align-items-center gap-3">
-                <span class="fw-bold">Cena: cena €</span>
+                <span class="fw-bold">Cena: 10,48 €</span>
                 <button class="btn btn-secondary">Objednať znova</button>
             </div>
         </div>
     </div>
 
-    <!-- 3. Zásielka -->
-    <div class="border rounded p-3 mb-4">
-        <h3 class="fw-bold fs-5 mb-3">Zásielka od názov farmy</h3>
 
-        <!-- Produkt -->
-        <div class="d-flex align-items-center justify-content-between mb-3">
-            <div class="d-flex align-items-center gap-3">
-                <div class="bg-secondary" style="width: 80px; height: 80px;"></div>
-                <div>
-                    <p class="mb-1 fw-bold">Názov produktu</p>
-                    <p class="mb-0 text-muted">Názov farmy, sídlo</p>
-                </div>
+    <div class="border rounded-3 p-3 mb-4">
+        <h3 class="fw-bold fs-5 mb-3">Zásielka od Petrove sady</h3>
+
+        <!-- Produkt 1 -->
+        <div class="row mb-3">
+            <div class="col-auto">
+                <img
+                        src="images/tovar/fruit/granatove_jablko.png"
+                        alt="Granátové jablko"
+                        class="img-fluid rounded"
+                        style="max-width:80px;"
+                />
             </div>
-            <p class="fs-5 mb-0">cena €</p>
+            <div class="col d-flex flex-column justify-content-center">
+                <p class="mb-1 fw-bold">Granátové jablko</p>
+                <p class="mb-0 text-muted">Petrove sady, Malacky</p>
+            </div>
+            <div class="col-auto d-flex align-items-center">
+                <p class="fs-5 mb-0">3,69 €</p>
+            </div>
+        </div>
+
+        <!-- Produkt 2 -->
+        <div class="row mb-3">
+            <div class="col-auto">
+                <img
+                        src="images/tovar/fruit/figy.png"
+                        alt="Figy"
+                        class="img-fluid rounded"
+                        style="max-width:80px;"
+                />
+            </div>
+            <div class="col d-flex flex-column justify-content-center">
+                <p class="mb-1 fw-bold">Figy 250 g</p>
+                <p class="mb-0 text-muted">Petrove sady, Malacky</p>
+            </div>
+            <div class="col-auto d-flex align-items-center">
+                <p class="fs-5 mb-0">6,25 €</p>
+            </div>
+        </div>
+
+        <!-- Produkt 3 -->
+        <div class="row mb-3">
+            <div class="col-auto">
+                <img
+                        src="images/tovar/fruit/kiwi.png"
+                        alt="Kiwi"
+                        class="img-fluid rounded"
+                        style="max-width:80px;"
+                />
+            </div>
+            <div class="col d-flex flex-column justify-content-center">
+                <p class="mb-1 fw-bold">Kiwi 1 ks</p>
+                <p class="mb-0 text-muted">Petrove sady, Malacky</p>
+            </div>
+            <div class="col-auto d-flex align-items-center">
+                <p class="fs-5 mb-0">0,40 €</p>
+            </div>
         </div>
 
         <!-- Spodný riadok s číslom, dátumom a tlačidlom -->
-        <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+        <div
+                class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top"
+        >
             <div>
-                <span class="me-4">č. objednávky</span>
-                <span>Dátum</span>
+                <span class="me-4">č. 202305</span>
+                <span>24.4.2025</span>
             </div>
             <div class="d-flex align-items-center gap-3">
-                <span class="fw-bold">Cena: cena €</span>
+                <span class="fw-bold">Cena: 10,34 €</span>
                 <button class="btn btn-secondary">Objednať znova</button>
             </div>
         </div>
     </div>
+
 
     <!-- Stránkovanie -->
     <nav class="mt-4" aria-label="Stránkovanie">

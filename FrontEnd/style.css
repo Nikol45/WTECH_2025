@@ -1407,6 +1407,8 @@ input:focus::placeholder {
     top: 0;
     right: -1rem;
     color: var(--green-dark-muted);
+}
 
-
+.max-h-150 { /* pre obrázky */
+    max-height: 150px;
 }
