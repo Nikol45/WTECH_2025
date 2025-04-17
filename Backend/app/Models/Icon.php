@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Model
+class Icon extends Model
 {
-    /** @use HasFactory<\Database\Factories\CompanyFactory> */
+    /** @use HasFactory<\Database\Factories\IconFactory> */
     use HasFactory;
 
     public function users() {
-        return $this->hasMany(Account::class, 'company_id');
+        return $this->hasMany(Account::class, 'icon_id');
     }
 }

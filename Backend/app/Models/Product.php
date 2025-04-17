@@ -5,25 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Farm extends Model
+class Product extends Model
 {
-    /** @use HasFactory<\Database\Factories\FarmFactory> */
+    /** @use HasFactory<\Database\Factories\ProductFactory> */
     use HasFactory;
 
     public function image() {
         return $this->morphOne(Image::class, 'imageable');
     }
 
-    public function user() {
-        return $this->belongsTo(User::class);
+    public function category() {
+        return $this->belongsTo(Category::class);
     }
 
-    public function address() {
-        return $this->belongsTo(Address::class);
+    public function subcategory() {
+        return $this->belongsTo(Subcategory::class);
     }
 
-    public function packages() {
-        return $this->hasMany(Package::class);
+    public function subsubcategory() {
+        return $this->belongsTo(Subsubcategory::class);
     }
 
     public function farm_products() {
