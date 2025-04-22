@@ -202,22 +202,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =================== ZOBRAZENIE SUMÁRIÁLNEHO RIADKU DOPRAVY ===================
-    const summaryRow = document.getElementById('summaryRow');
-    const deliveryGls = document.getElementById('deliveryGls');
-    const deliveryBox = document.getElementById('deliveryBox');
+    const deliveryRow = document.getElementById('deliveryRow');
+    const priceRow = document.getElementById('priceRow');
+    const deliveryGlsSt = document.getElementById('deliveryGlsSt');
+    const deliveryGlsEx = document.getElementById('deliveryGlsEx');
+    const deliveryPersonal = document.getElementById('deliveryPersonal');
 
-    if (summaryRow && deliveryGls && deliveryBox) {
-        [deliveryGls, deliveryBox].forEach(input => {
-            input.addEventListener('change', () => {
-                if (deliveryGls.checked || deliveryBox.checked) {
-                    summaryRow.classList.remove('d-none');
-                } else {
-                    summaryRow.classList.add('d-none');
-                }
-            });
-        });
+    const payDobierkaWrapper = document.getElementById('payDobierkaWrapper');
+    const priceDeliveryRow = document.getElementById('price_deliveryRow');
+
+    function updateDeliveryDisplay() {
+        const isGLS = deliveryGlsSt.checked || deliveryGlsEx.checked;
+        const isPersonal = deliveryPersonal.checked;
+
+        if (isGLS) {
+            deliveryRow.classList.remove('d-none');
+            priceRow.classList.remove('d-none');
+            priceDeliveryRow.classList.remove('d-none');
+            payDobierkaWrapper.classList.remove('d-none');
+        } else if (isPersonal) {
+            deliveryRow.classList.add('d-none');
+            priceRow.classList.remove('d-none');
+            priceDeliveryRow.classList.add('d-none');
+            payDobierkaWrapper.classList.add('d-none');
+        } else {
+            deliveryRow.classList.add('d-none');
+            priceRow.classList.add('d-none');
+            priceDeliveryRow.classList.add('d-none');
+            payDobierkaWrapper.classList.add('d-none');
+        }
     }
 
+
+    [deliveryGlsSt, deliveryGlsEx, deliveryPersonal].forEach(input => {
+        input.addEventListener('change', updateDeliveryDisplay);
+    });
+
+    const payDobierka = document.getElementById('payDobierka');
+    const price_dobierkaRow = document.getElementById('price_dobierkaRow');
+
+    if (payDobierka && price_dobierkaRow) {
+        payDobierka.addEventListener('change', () => {
+            if (payDobierka.checked) {
+                price_dobierkaRow.classList.remove('d-none');
+
+            } else {
+                price_dobierkaRow.classList.add('d-none');
+            }
+        });
+    }
 
     // ============= SCROLLOVANIE SEKCII PRODUKTOV ==============
 

@@ -141,9 +141,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-      
+
     updateMobileProfileMenu();
-      
+
     document.addEventListener('click', (e) => {
         if (e.target && e.target.id === 'mobileLoginLink') {
             e.preventDefault();
@@ -202,17 +202,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =================== ZOBRAZENIE SUMÁRIÁLNEHO RIADKU DOPRAVY ===================
-    const summaryRow = document.getElementById('summaryRow');
-    const deliveryGls = document.getElementById('deliveryGls');
-    const deliveryBox = document.getElementById('deliveryBox');
+    const deliveryRow = document.getElementById('deliveryRow');
+    const priceRow = document.getElementById('priceRow');
+    const deliveryGlsSt = document.getElementById('deliveryGlsSt');
+    const deliveryGlsEx = document.getElementById('deliveryGlsEx');
 
-    if (summaryRow && deliveryGls && deliveryBox) {
-        [deliveryGls, deliveryBox].forEach(input => {
+    if (deliveryRow && priceRow && deliveryGlsSt && deliveryGlsEx) {
+        [deliveryGlsSt, deliveryGlsEx].forEach(input => {
             input.addEventListener('change', () => {
-                if (deliveryGls.checked || deliveryBox.checked) {
-                    summaryRow.classList.remove('d-none');
+                if (deliveryGlsSt.checked || deliveryGlsEx.checked) {
+                    deliveryRow.classList.remove('d-none');
+                    priceRow.classList.remove('d-none');
                 } else {
-                    summaryRow.classList.add('d-none');
+                    deliveryRow.classList.add('d-none');
+                    priceRow.classList.add('d-none');
                 }
             });
         });
@@ -366,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    
+
     if (arrowRight2 && carouselRow2) {
         arrowRight2.addEventListener('click', () => {
             if (isAnimating) return;
@@ -637,7 +640,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const itemWidth = firstItem.offsetWidth;
             thumbnailList.style.transition = 'transform 0.3s ease';
             thumbnailList.style.transform = `translateX(-${itemWidth}px)`;
-    
+
           thumbnailList.addEventListener('transitionend', function handler(e) {
             if (e.propertyName === 'transform') {
                 thumbnailList.appendChild(firstItem);
@@ -651,7 +654,7 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         });
     }
-    
+
     if (arrowLeft5 && thumbnailList) {
         arrowLeft5.addEventListener('click', () => {
             if (isAnimating) return;
@@ -665,7 +668,7 @@ document.addEventListener('DOMContentLoaded', () => {
             void thumbnailList.offsetWidth;
             thumbnailList.style.transition = 'transform 0.3s ease';
             thumbnailList.style.transform = 'none';
-        
+
             thumbnailList.addEventListener('transitionend', function handler(e) {
                 if (e.propertyName === 'transform') {
                     thumbnailList.removeEventListener('transitionend', handler);
@@ -762,7 +765,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-    
+
     //zatvorenie filtrov pri kliknuti na talcidla na spodku
     const filterButtons = filterSection ? filterSection.querySelectorAll('.filter-buttons button') : null;
     if (filterButtons) {
@@ -781,7 +784,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const rect = priceRange.getBoundingClientRect();
                 const minInputs = priceRange.querySelectorAll('.min-price');
                 const maxInputs = priceRange.querySelectorAll('.max-price');
-                
+
                 if (rect.width < 173) {
                     minInputs.forEach(input => input.placeholder = '');
                     maxInputs.forEach(input => input.placeholder = '');
@@ -798,7 +801,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const rect = distRange.getBoundingClientRect();
                 const minInputs = distRange.querySelectorAll('.min-distance');
                 const maxInputs = distRange.querySelectorAll('.max-distance');
-                
+
                 if (rect.width < 194) {
                     minInputs.forEach(input => input.placeholder = '');
                     maxInputs.forEach(input => input.placeholder = '');
@@ -842,14 +845,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const qtyInput = container.querySelector('.quantity-input-kg');
         const btnPlus = container.querySelector('.plus');
         const btnMinus = container.querySelector('.minus');
-      
+
         if (btnPlus && qtyInput) {
           btnPlus.addEventListener('click', () => {
                 let currentValue = parseFloat(qtyInput.value) || 1;
                 qtyInput.value = (currentValue + 1).toFixed(2);
           });
         }
-      
+
         if (btnMinus && qtyInput) {
             btnMinus.addEventListener('click', () => {
                     let currentValue = parseFloat(qtyInput.value) || 1;
@@ -864,14 +867,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const qtyInput = container.querySelector('.quantity-input-ks');
         const btnPlus = container.querySelector('.plus');
         const btnMinus = container.querySelector('.minus');
-      
+
         if (btnPlus && qtyInput) {
             btnPlus.addEventListener('click', () => {
                 let currentValue = parseInt(qtyInput.value) || 1;
                 qtyInput.value = (currentValue + 1);
             });
         }
-      
+
         if (btnMinus && qtyInput) {
             btnMinus.addEventListener('click', () => {
                 let currentValue = parseInt(qtyInput.value) || 1;
