@@ -1,0 +1,403 @@
+<header>
+    <!-- Pop-up modály pre prihlásenie a registráciu -->
+    <div class="modal-container">
+        <!-- Overlay pozadia pre modály -->
+        <div id="overlayBackground" class="modal-overlay d-none"></div>
+
+        <!-- ================== MODÁL: REGISTRÁCIA ================== -->
+        <div id="registrationModal" class="custom-modal d-none">
+            <div class="modal-content p-4 border-0 shadow position-relative">
+                <!-- Tlačidlo zatvorenia (X) -->
+                <span
+                        class="btn material-icons position-absolute end-0 top-0 m-2"
+                        aria-label="Close"
+                        onclick="closeModal('registrationModal')"
+                > close </span>
+
+
+                <!-- Nadpis -->
+                <h2 class="mb-4 text-center text-uppercase modal-title">Registrácia</h2>
+
+                <!-- Používateľské meno -->
+                <div class="input-group mb-3">
+                <span class="input-group-text icon-wrapper border-end-0">
+                    <span class="material-icons">person_outline</span>
+                </span>
+                    <input
+                            type="text"
+                            class="form-control border-start-0 input-custom"
+                            placeholder="Používateľské meno"
+                    >
+                </div>
+
+                <!-- E-mail -->
+                <div class="input-group mb-3">
+                <span class="input-group-text icon-wrapper border-end-0">
+                    <span class="material-icons">mail_outline</span>
+                </span>
+                    <input
+                            type="email"
+                            class="form-control border-start-0 input-custom"
+                            placeholder="E-mail"
+                    >
+                </div>
+
+                <!-- Heslo -->
+                <div class="input-group mb-3">
+                <span class="input-group-text icon-wrapper border-end-0">
+                    <span class="material-icons">lock_outline</span>
+                </span>
+                    <input
+                            type="password"
+                            class="form-control border-start-0 input-custom"
+                            placeholder="Heslo"
+                    >
+                </div>
+
+                <!-- Potvrdenie hesla -->
+                <div class="input-group mb-3">
+                <span class="input-group-text icon-wrapper border-end-0">
+                    <span class="material-icons">lock</span>
+                </span>
+                    <input
+                            type="password"
+                            class="form-control border-start-0 input-custom"
+                            placeholder="Potvrdenie hesla"
+                    >
+                </div>
+
+                <!-- Checkbox súhlasu -->
+                <div class="form-check mb-3">
+                    <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="termsCheck"
+                    >
+                    <label class="form-check-label text-modal" for="termsCheck">
+                        Súhlasím s
+                        <a href="#" class="modal-link">podmienkami a zásadami</a>
+                    </label>
+                </div>
+
+                <!-- Tlačidlo na odoslanie (v wireframe "Prihlásiť sa") -->
+                <button
+                        class="btn w-100 mb-3 btn-confirm"
+                        onclick="alert('Registrácia...')"
+                >
+                    Prihlásiť sa
+                </button>
+
+                <!-- Odkaz na prechod do Prihlásenia -->
+                <div class="text-center">
+                    <small class="text-modal">
+                        Máte už účet?
+                        <a
+                                href="#"
+                                class="modal-link"
+                                onclick="switchModal('registrationModal','loginModal')"
+                        >
+                            Prihláste sa.
+                        </a>
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================== MODÁL: VÝBER PRIHLÁSENIA ================== -->
+        <div id="loginChoiceModal" class="custom-modal d-none">
+            <div class="modal-content p-4 border-0 shadow position-relative">
+                <!-- Tlačidlo zatvorenia (X) -->
+                <span
+                        class="btn material-icons position-absolute end-0 top-0 m-2"
+                        aria-label="Close"
+                        onclick="closeModal('loginChoiceModal')"
+                > close </span>
+
+                <!-- Nadpis -->
+                <h2 class="mb-4 text-center text-uppercase modal-title">
+                    Chcete sa prihlásiť?
+                </h2>
+
+                <!-- Tlačidlo "Prihlásiť sa do účtu" -->
+                <button
+                        class="btn w-100 mb-3 btn-confirm"
+                        onclick="switchModal('loginChoiceModal','loginModal')"
+                >
+                    Prihlásiť sa do zákaznického účtu
+                </button>
+
+                <!-- Odkaz "Nakupovať ako hosť" -->
+                <div class="text-center">
+                    <a
+                            href="#"
+                            class="modal-link"
+                            onclick="closeModal('loginChoiceModal')"
+                    >
+                        Nakupovať ako hosť
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================== MODÁL: PRIHLÁSENIE ================== -->
+        <div id="loginModal" class="custom-modal d-none">
+            <div class="modal-content p-4 border-0 shadow position-relative">
+                <!-- Tlačidlo zatvorenia (X) -->
+                <span
+                        class="btn material-icons position-absolute end-0 top-0 m-2"
+                        aria-label="Close"
+                        onclick="closeModal('loginModal')"
+                > close </span>
+
+                <!-- Nadpis -->
+                <h2 class="mb-4 text-center text-uppercase modal-title">
+                    Prihlásenie
+                </h2>
+
+                <!-- Používateľské meno alebo e-mail -->
+                <div class="input-group mb-3">
+                <span class="input-group-text icon-wrapper border-end-0">
+                    <span class="material-icons">person_outline</span>
+                </span>
+                    <input
+                            type="text"
+                            class="form-control border-start-0 input-custom"
+                            placeholder="Používateľské meno alebo e-mail"
+                    >
+                </div>
+
+                <!-- Heslo -->
+                <div class="input-group mb-3">
+                <span class="input-group-text icon-wrapper border-end-0">
+                    <span class="material-icons">lock_outline</span>
+                </span>
+                    <input
+                            type="password"
+                            class="form-control border-start-0 input-custom"
+                            placeholder="Heslo"
+                    >
+                </div>
+
+                <!-- Checkbox "Zapamätať prihlásenie" -->
+                <div class="form-check mb-3">
+                    <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="rememberMe"
+                    >
+                    <label
+                            class="form-check-label text-modal"
+                            for="rememberMe"
+                    >
+                        Zapamätať prihlásenie
+                    </label>
+                </div>
+
+                <!-- Tlačidlo Prihlásiť sa -->
+                <button
+                        class="btn w-100 mb-3 btn-confirm"
+                        onclick="alert('Prihlasujem...')"
+                >
+                    Prihlásiť sa
+                </button>
+
+                <!-- Zabudnuté heslo / Zaregistrovať sa -->
+                <div class="text-center">
+                    <a
+                            href="#"
+                            class="d-block mb-2 modal-link"
+                            onclick="alert('Zabudnuté heslo...')"
+                    >
+                        Zabudnuté heslo
+                    </a>
+                    <small class="text-modal">
+                        Nemáte ešte účet?
+                        <a
+                                href="#"
+                                class="modal-link"
+                                onclick="switchModal('loginModal','registrationModal')"
+                        >
+                            Zaregistrujte sa.
+                        </a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top bar navigačný: logo, vyhľadávanie, ikonky -->
+    <nav class="top-bar py-3">
+        <div class="container-fluid custom-fluid">
+            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                <!-- Logo -->
+                <a href="HomePage.html" class="d-flex align-items-center flex-shrink-0 me-3 text-decoration-none custom-logo">
+                    <img src="images/logo.png" alt="Logo" width="30" height="30" class="me-2">
+                    <h2 class="mb-0 custom-logo">Zdvora.sk</h2>
+                </a>
+                <!-- Search -->
+                <div class="custom-search-container d-flex justify-content-start flex-grow-1 mx-3 my-2 my-md-0">
+                    <form class="position-relative">
+                        <input type="text" class="form-control pe-5" placeholder="Vyhľadávanie...">
+                        <button class="btn custom-button position-absolute top-50 end-0 translate-middle-y me-2 p-0" type="submit">
+                            <span class="material-icons">search</span>
+                        </button>
+                    </form>
+                </div>
+                <!-- Ikonky -->
+                <div class="custom-ikonky d-flex justify-content-end align-items-center gap-3 mt-2 mt-md-0 flex-shrink-0 ms-3">
+                    <a href="Profil-oblubene.html" class="btn custom-button p-0 ms-2">
+                        <span class="material-icons">favorite</span>
+                    </a>
+                    <a href="ShoppingCart1_items.html" class="btn custom-button p-0 ms-2">
+                        <span class="material-icons">shopping_cart</span>
+                    </a>
+                    <div class="dropdown text-center ms-2">
+                        <button class="btn custom-button p-0" id="profileBtn">
+                            <span class="material-icons">account_circle</span>
+                        </button>
+                        <ul class="dropdown-menu custom-dropdown-menu" id="profileMenu"></ul>
+                    </div>
+                </div>
+
+                <!-- Hamburger menu -->
+                <button class="btn custom-button d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
+                    <span class="material-icons">menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Sidebar miesto ikoniek -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title fw-bold" id="mobileMenuLabel">Menu</h2>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form class="mb-3">
+                <input type="text" class="form-control" placeholder="Vyhľadávanie...">
+                <button class="btn custom-button subcategory-btn mt-2" type="submit">Hľadať</button>
+            </form>
+            <ul class="list-unstyled">
+                <li class="mb-3 fw-bold fs-5"><a href="Profil-oblubene.html">Obľúbené</a></li>
+                <li class="mb-3 fw-bold fs-5"><a href="ShoppingCart1_items.html">Košík</a></li>
+                <ul class="list-unstyled" id="mobileProfileMenu"></ul>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Kategórie -->
+    <div class="categories-bar custom-fluid" id="categoriesBar">
+        <div class="categories-container">
+          <ul class="categories-list list-unstyled">
+            <!-- Kategória 1 -->
+            <li class="category-item">
+              <a href="ProductListing.html">
+                <button class="btn category-btn">
+                  <img src="images/category/fruit.png" alt="Ovocie">
+                  <br>
+                  <span>OVOCIE</span>
+                </button>
+              </a>
+            </li>
+            <!-- Kategória 2 -->
+            <li class="category-item">
+              <a href="ProductListing.html">
+                <button class="btn category-btn">
+                  <img src="images/category/vegetable.png" alt="Zelenina">
+                  <br>
+                  <span>ZELENINA</span>
+                </button>
+              </a>
+            </li>
+            <!-- Kategória 3 -->
+            <li class="category-item">
+              <a href="ProductListing.html">
+                <button class="btn category-btn">
+                  <img src="images/category/cheese.png" alt="Mliečne výrobky">
+                  <br>
+                  <span>MLIEČNE VÝROBKY</span>
+                </button>
+              </a>
+            </li>
+            <!-- Kategória 4 -->
+            <li class="category-item">
+              <a href="ProductListing.html">
+                <button class="btn category-btn">
+                  <img src="images/category/meat.png" alt="Mäsové výrobky">
+                  <br>
+                  <span>MÄSOVÉ VÝROBKY</span>
+                </button>
+              </a>
+            </li>
+            <!-- Kategória 5 -->
+            <li class="category-item">
+              <a href="ProductListing.html">
+                <button class="btn category-btn">
+                  <img src="images/category/bread.png" alt="Pečivo a obilniny">
+                  <br>
+                  <span>PEČIVO A OBILNINY</span>
+                </button>
+              </a>
+            </li>
+            <!-- Kategória 6 -->
+            <li class="category-item">
+              <a href="ProductListing.html">
+                <button class="btn category-btn">
+                  <img src="images/category/drink.png" alt="Domáce nápoje">
+                  <br>
+                  <span>DOMÁCE NÁPOJE</span>
+                </button>
+              </a>
+            </li>
+            <!-- Kategória 7 -->
+            <li class="category-item">
+              <a href="ProductListing.html">
+                <button class="btn category-btn">
+                  <img src="images/category/honey.png" alt="Včelie produkty">
+                  <br>
+                  <span>VČELIE PRODUKTY</span>
+                </button>
+              </a>
+            </li>
+            <!-- Kategória 8 -->
+            <li class="category-item">
+              <a href="ProductListing.html">
+                <button class="btn category-btn">
+                  <img src="images/category/herb.png" alt="Bylinky">
+                  <br>
+                  <span>BYLINKY</span>
+                </button>
+              </a>
+            </li>
+            <!-- Kategória 9 -->
+            <li class="category-item">
+              <a href="ProductListing.html">
+                <button class="btn category-btn">
+                  <img src="images/category/marmalade.png" alt="Zaváraniny">
+                  <br>
+                  <span>DOMÁCE ZAVÁRANINY</span>
+                </button>
+              </a>
+            </li>
+            <!-- Kategória 10 -->
+            <li class="category-item">
+              <a href="ProductListing.html">
+                <button class="btn category-btn">
+                  <img src="images/category/brmbrm.png" alt="Pestovanie">
+                  <br>
+                  <span>PESTOVANIE</span>
+                </button>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Toggle button -->
+    <button class="toggle-btn" id="toggleCategoriesBtn">
+        <img src="images/icons/arrow-pull.png" alt="↑" width="16" height="16">
+    </button>
+
+</header>

@@ -1,0 +1,1414 @@
+:root {
+    --blue-very-light: #E6F9FF;
+    --blue-light: #6696bd;
+    --blue-medium: #086888;
+
+    --teal-dark: #054358;
+    --green-dark-muted: #2f5038;
+
+    --green: #79A65D;
+    --green-medium: #99CF82;
+    --green-light: #bbe89e;
+    --green-very-light: #EDFAE6;
+
+    --teal-very-light: #b4f8d4;
+
+    --modal-text: #235815;
+    --modal-bg: #EDF9FD;
+    --modal-accent: #B1D27A;
+
+
+    --progress-width: 40%;     /* šírka progress baru */
+}
+
+html {
+    font-size: 12px;
+}
+
+header {
+    position: relative;
+    width: 100%;
+    font-family: "Inknut Antiqua", serif;
+}
+
+body {
+    font-family: "Inknut Antiqua", serif;
+    color:var(--green-dark-muted);
+    background-color: var(--blue-very-light);
+}
+
+footer {
+    background-color: var(--green-medium);
+    color:var(--green-dark-muted);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.small-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.medium-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.big-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.huge-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.custom-button {  /*custom trieda na ikonky alebo buttons*/
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none !important;
+}
+
+.custom-dropdown-menu {  /* custom trieda na dropdown menucka*/
+    --bs-dropdown-padding-y: 0 !important;
+    position: absolute;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    right: auto !important;
+    top: 105% !important;
+    text-align: center;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.dropdown li {  /*aby dropdown menu items zabrali cely dropdown bez paddingu na pekny highlight pri hover a active*/
+    line-height: 2;
+    --bs-dropdown-link-active-bg: var(--green-dark-muted);
+    --bs-dropdown-link-hover-bg: #bbb;
+}
+
+.dropdown li:last-child {
+    margin-bottom: 0;
+}
+
+.material-icons {  /*pre material ikonky stiahnute*/
+    font-size: 25px !important;
+    color: var(--green-dark-muted);
+    border: none !important;
+}
+
+.truncate-ellipsis {  /*na ... ak text preteka*/
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+
+.custom-fluid {  /*custom fluid container na responzivnost a dodrziavanie margins stranky*/
+    width: 90%;
+    margin: 0 auto;
+}
+
+.h-gaps {  /*ako gap ale len pre horizontalne medzery*/
+    column-gap: 2rem;
+    row-gap: 0;
+}
+
+.no-margin {  /*odstranenie vsetkych margins*/
+    margin: 0 !important;
+}
+
+.no-wrap {  /*odstranenie wrapu*/
+    white-space: nowrap;
+    flex-wrap: nowrap;
+}
+
+.yes-wrap {  /*pridanie wrapu*/
+    flex-wrap: wrap;
+}
+
+/* ------------------------------- NAVIGATION ------------------------------------- */
+
+.top-bar {  /*nav bar*/
+    background-color: var(--green);
+    color: var(--green-dark-muted);
+}
+
+@media (min-width: 490px) {  /*fix na search bar aby ostal v strede az do wrapu*/
+    .custom-search-container {
+        justify-content: center !important;
+    }
+}
+
+.custom-logo {  /*sirsie pismo v logu*/
+    font-weight: bolder;
+}
+
+input::placeholder {  /* animacia na zmiznutie placeholder textu v searchi*/
+    transition: opacity 0.2s ease;
+}
+
+input:focus::placeholder {
+    opacity: 0;
+}
+
+@media (max-width: 767.98px) {  /*zmiznutie searchu a ikoniek ked sa uz nezmestia*/
+    .custom-search-container, .custom-ikonky {
+        display: none !important;
+    }
+}
+
+.offcanvas {  /*pozadie sidebaru*/
+    background-color: var(--green-light);
+    color: var(--green-dark-muted);
+}
+
+.offcanvas .subcategory-btn {  /*pozadie hladat button*/
+    background-color: #EDFAE6 !important;
+}
+
+/* ------------------------------- CATEGORIES ------------------------------------- */
+
+.category-btn.btn { /*fix na skackanie paddingu a border - bs override*/
+    --bs-btn-padding-y: 0;
+    --bs-btn-padding-x: 0;
+    border: none;
+}
+
+.categories-bar {  /*bar s kategoriami, prisposobeny na animaciu*/
+    position: relative;
+    max-height: 600px;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding-top: 0.8rem ;
+    padding-bottom: 0.8rem ;
+    background-color: var();
+    color: var();
+}
+
+.category-item {  /*fixna sirka kategorii a ziadny shrink*/
+    width: 7.8rem;
+    height: 7rem;
+    flex: 0 0 auto;
+}
+
+.category-btn {  /*tlacidlo kategorie s prisposobenym fontom a animaciou*/
+    width: 100%;
+    height: 100%;
+    font-size: 75%;
+    font-weight: 600;
+    background-color: var(--green-medium);
+    white-space: normal;
+    text-align: center;
+    --bs-btn-color: unset !important;
+    transition: background-color .15s ease-in-out, border-color .15s ease-in-out, color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.category-btn:hover, .category-btn:active {  /*nastavenie hover a active vzhladu kategorii*/
+    background-color: var(--green-very-light);
+    color: var(--green-dark-muted);
+    border-color: var(--green-very-light);
+}
+
+.toggle-btn {  /*tlačidlo na zbalenie/rozbalenie panelu s kategóriami*/
+    position: absolute;
+    bottom: -29px;
+    right: 5.5%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0.4rem;
+    background-color: var(--blue-light);
+}
+
+.categories-bar.collapsed {  /*ako bude vyzerat ked bude zbaleny*/
+    max-height: 0;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.toggle-btn.rotated-arrow img {  /*animacia otacania sipky pri zabaleni/rozbaleni*/
+    transform: rotate(180deg);
+    transition: transform 0.2s ease;
+}
+
+.categories-list {  /*zoznam kategorii*/
+    display: grid;
+    gap: 1rem;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+  
+@media (min-width: 1200px) {  /* vsetkych 10 kategorii v jednom riadku*/
+    .categories-list {
+        grid-template-columns: repeat(10, 1fr);
+    }
+}
+  
+@media (max-width: 1199px) and (min-width: 600px) {  /*5 a 5 v 2 riadkoch*/
+    .categories-list {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+  
+@media (max-width: 599px) and (min-width: 375px) {  /*3 3 3 1 v 4 riadkoch*/
+    .categories-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+  
+
+@media (max-width: 374px) {  /*2 2 2 2 2 v 5 riadkoch*/
+    .categories-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ------------------------------- HERO ------------------------------------- */
+
+.custom-search-container-2 .form-control {  /*vacsi search v hero section a s border*/
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    font-size: 1rem;
+    --bs-border-color: var(--green-dark-muted);
+    --bs-border-width: 2px;
+}
+
+.hero-section {  /*hero sekcia*/
+    background-color: var(--green-very-light)
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.5rem); /* medzi 16px a 24px */
+}
+
+.hero-title {
+    font-size: clamp(1.5rem, 5vw, 3rem); /* medzi 24px a 48px */
+    font-weight: bold;
+}
+
+/* -------------- ARROWS PRI SEKCIACH ------------ */
+
+.arrow-left, .arrow-right {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+
+    /* Vzhľad kruhového bieleho tlačidla */
+    background-color: var(--green-light);
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    color: var(--green-dark-muted);
+
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+}
+
+/* Umiestnenie ľavej a pravej šípky */
+.arrow-left {
+    left: -2rem;
+}
+
+.arrow-right {
+    right: -2rem;
+}
+
+/* Efekt na kliknutie (active/focus) */
+.arrow-left:hover, .arrow-right:hover, .toggle-btn:hover {  /*nastavenie hover*/
+    background: var(--green-very-light);
+}
+
+/* -------------- SEKCIA PRODUKTOV -------------- */
+
+.products-carousel-container {  /*carousel container pre animaciu scrollovania produktov*/
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    align-items: center;
+}
+
+.products-row {  /*rad produktov s animaciou*/
+    display: flex;
+    transition: transform 0.3s ease;
+    will-change: transform;
+}
+
+.products-row .col {  /*rozlozenie stlpcov radu produktov*/
+    flex: 0 0 auto;
+    box-sizing: border-box;
+    margin-right: 1rem;
+    width: 340px;
+}
+
+.products-row .col:last-child {
+    margin-right: 0;
+}
+
+.card {  /*karticky produktov*/
+    --bs-card-bg: var(--green-very-light);
+    padding: 20px !important;
+    border: none;
+    max-width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.img-half-cover {  /*vsetky obrazky s radius a ratio*/
+    display: block;
+    max-height: 150px;
+    height: 100%;
+    max-width: 256px;
+    aspect-ratio: 256 / 150;
+    border-radius: 0.375rem;
+}
+
+.img-cover {  /*obrazky reklam*/
+    display: block;
+    max-height: 150px;
+    height: auto;
+    width: 100%;
+    border-radius: 0.375rem;
+}
+
+.discount {  /*zlava*/
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 25%;
+    aspect-ratio: 1 / 1;
+    background: url('images/akcia.png') no-repeat center center;
+    background-size: contain;
+    transform: rotate(-8deg);
+}
+
+.discount-text {  /*text zlavy*/
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    color: var(--green-dark-muted) !important;
+    font-weight: bold;
+}
+
+.card-body {  /*text v karticke produktu*/
+    color:var(--green-dark-muted) !important;
+    padding: 0;
+}
+
+.card-title {  /*nazov produktu*/
+    font-size: 1.4rem;
+    height: 2.5rem;
+    margin-top: 1rem;
+    line-height: 1.5 !important;
+}
+
+.price-container {  /*vsetky tri ceny*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.price-container .price {  /*aktualna cena*/
+    font-weight: bold;
+    color: var(--green-dark-muted);
+    font-size: 1.5rem;
+}
+
+.price-container .price-per, .price-before {  /*cena za kus/kg a predz zlavou*/
+    font-size: 1rem;
+    color: #666;
+}
+
+.price-before {  /*cena pred zlavou nastaveny margin*/
+    margin-right: 2.5rem;
+}
+
+.stars {  /*hodnotenia*/
+    display: flex;
+    align-items: center;
+}
+
+.stars .star {
+    font-size: 1.2rem;
+    margin-right: 2px;
+}
+
+.star.filled {
+    color: #FFD700;
+}
+
+.star.empty {
+    color: #bbb;
+}
+
+.filter-block .star.filled {  /*zelene hviezdy vo filter sekcii*/
+    color: var(--green-dark-muted);
+}
+
+.filter-block .star.empty {
+    color: var(--green-dark-muted);
+}
+
+.star.half-filled {  /*nevyfarbena hviezda na vytvorenie polovicne vyfarbenej hviezdy*/
+    position: relative;
+    color: #ccc;
+}
+
+.star.half-filled::before {  /*polovicka vyfarbena na prekrytie*/
+    content: 'star';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    overflow: hidden;
+    color: #FFD700;
+    white-space: nowrap;
+}
+
+.star-count {  /*pocet recenzii s danymi hviezdami v sekciach produktov*/
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.card-location {  /*riadok s lokaciou*/
+    font-size: 1.2rem;
+    color: var(--green-dark-muted);
+}
+
+.btn-pridat-do-kosika {  /*tlacidlo pridat do kosika aj s animaciou*/
+    background-color:  var(--green-light);
+    color: var(--green-dark-muted);
+    font-size: larger;
+    font-weight: bold;
+    height: 4rem;
+    margin-top: 2rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-pridat-do-kosika:hover {  /*nastaveny hover*/
+  background-color: var(--green-dark-muted);
+  color: var(--blue-very-light);
+}
+
+.btn-pridat-do-kosika:active {  /*nastaveny active*/
+    --bs-btn-active-bg: var(--green-light);
+}
+
+.favorite-btn {  /*srdiecko na oznacenie oblubenych*/
+    margin-top: 24px;
+}
+
+.favorite-btn .filled {  /*po kliknuti sa zaplni*/
+    color: var(--green-dark-muted);
+    transition: color 0.3s ease !important;
+}
+
+.favorite-btn .material-icons {
+    font-size: 30px !important;
+}
+
+.favorite-btn:hover {
+    border:none !important;
+}
+
+/* ------ SEKCIA ČLÁNKOV ------ */
+
+.articles-carousel-container {  /*carousel container na animaciu scrollovania clankov*/
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.articles-row {  /*rada clankov*/
+    display: flex;
+    transition: transform 0.3s ease;
+    will-change: transform;
+}
+
+.articles-row .col {  /*nastavenie rozlozenia stlpcov clankov*/
+    flex: 0 0 25%;
+    box-sizing: border-box;
+    margin-right: 1rem;
+}
+
+.articles-row .col:last-child {
+    margin-right: 0;
+}
+
+/* ---- SEKCIA REKLÁM ---- */
+
+.ad-banner {  /*banner na reklamy*/
+    max-width: 100% !important;
+    height: auto;
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+@media (max-width: 600px) {  /*na wrapnutie reklam pod seba pod 600 px*/
+    .big-gutter-row {
+      flex-wrap: wrap;
+      overflow-x: visible;
+    }
+
+    .big-gutter-row > .col-6 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+}
+
+.big-gutter-row {  /*vacsi gutter ako g-5 na spacing medzi cols*/
+    --bs-gutter-x: 4rem;
+    display: flex;
+    overflow-x: auto;
+}
+
+/* ------------------------------- MODAL (POP-UP) ------------------------------------- */
+
+/* Všeobecný tmavý prekryv celej obrazovky */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Jemné stmavenie */
+    z-index: 1050; /* Nad bežným obsahom */
+}
+
+/* Vlastná vrstva pre modálne okná */
+.custom-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1051; /* Nad overlayBackground */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Predvolené skrytie (Bootstrap .d-none funguje rovnako) */
+.d-none {
+    display: none !important;
+}
+
+/* Základný vzhľad modálneho obsahu */
+.custom-modal .modal-content {
+    width: 340px;
+    max-width: 90%;
+    max-height: 90%;
+    background-color: var(--modal-bg);
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+}
+
+/* X-ko pre zatvorenie */
+.close-icon {
+    top: 0.5rem;
+    right: 0.5rem;
+    cursor: pointer;
+    opacity: 0.7;
+    z-index: 1;
+}
+
+.close-icon:hover {
+    opacity: 1;
+}
+
+/* ------------------- NOVÉ TRIEDY PRE ODSUNUTÉ INLINE ŠTÝLY ---------------------- */
+
+/* Nadpis modálu */
+.modal-title {
+    color: var(--modal-text);
+}
+
+/* Používané pre text vo formulári, labels, small ap. */
+.text-modal {
+    color: var(--modal-text);
+}
+
+/* Linka s podčiarknutím a farbou textu */
+.modal-link {
+    color: var(--modal-text);
+    text-decoration: underline;
+}
+
+/* Ikonka s pozadím a orámovaním (pôvodné: color, bg, border) */
+.icon-wrapper {
+    color: var(--modal-text);
+    background-color: var(--modal-bg);
+    border-color: var(--modal-accent);
+}
+
+/* Input s orámovaním (border-color: var(--modal-accent)) */
+.input-custom {
+    border-color: var(--modal-accent);
+}
+
+/* Tlačidlo na potvrdenie / odoslanie (pôvodné: background, color) */
+.btn-confirm {
+    background-color: var(--modal-accent);
+    color: var(--modal-text);
+    cursor: pointer;
+}
+.btn-confirm:hover {
+    background-color: var(--green-dark-muted);
+    color: var(--modal-accent);
+    opacity: 0.9;
+}
+
+/* ---- PRODUCT LISTING ---- */
+
+@media (max-width: 849.98px) {
+    .filter-section {  /*schovavajuci sa filter ked sirka obrazovky<850px*/
+        position: fixed;
+        top: 0;
+        left: -300px;
+        width: 300px;
+        height: 100%;
+        overflow-y: auto;
+        transition: transform 0.3s ease;
+        z-index: 1050;
+        padding: 1rem;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+    }
+
+    .filter-section.open {  /*ked ho otvorime tak sa ukaze*/
+        transform: translateX(300px);
+    }
+}
+
+@media (min-width: 850px) {  /*filter tlacidlo sa neukazuje ak je sirka>=850px*/
+    .filter-toggle {
+        display: none;
+    }
+}
+
+@media (min-width: 850px) and (max-width: 991.98px) {  /*medzi sirkami 850 a 992 px aby bol tvoril filter stvrtinu sirky*/
+    .filter-section {
+        flex: 0 0 25% !important;
+        max-width: 25% !important;
+    }
+    .product-listing {
+        flex: 0 0 75% !important;
+        max-width: 75% !important;
+    }
+}
+
+.filter-toggle {  /*tlacidlo na ukazanie filtra*/
+    background-color: var(--green-light);
+    font-size: 11px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.filter-section {  /*sekcie vo filtri*/
+    background-color: var(--green-light);
+    font-size: 14px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.filter-title {  /*nadpis sekcie filtrov*/
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.input-group-text {  /*mensi font a padding v znacke eur a km*/
+    font-size: 0.75rem;
+    padding: 0.25rem;
+}
+
+.filter-block .filter-list input[type="checkbox"] {  /*trosku miesto medzo checkboxmi a napismi*/
+    margin-right: 0.5rem;
+}
+
+.filter-button {  /*tlacidlo vo filter sekcii*/
+    background-color:  var(--green-very-light);
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.filter-buttons {  /*obal na tie dve tlacidla*/
+    height: 35px;
+    width: 100% !important;
+}
+
+.form-select {  /*zoradenie form*/
+    max-height: 30px !important;
+}
+
+#sortSelect {  /*aby sa jej zmensovala velkost pri zmensovani okna*/
+    flex-shrink: 1;
+    min-width: 0;
+}
+
+.form-label {  /*aby sa napis zoradit podla nezalamoval na dva riadky*/
+    white-space: nowrap;
+}
+
+.product-grid {  /*nastavenie rozlozenia gridu pre produkty*/
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: clamp(10px, 2vw, 1rem);
+    justify-content: center;
+    align-items: stretch;
+}
+
+.product-grid .card {  /*nastavenie karticiek s produktmi*/
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.col-listing {
+    flex: 0 0 0 !important;
+}
+
+.col-listing .card {  /*aby boli centrovane cards ked je len jedna v row*/
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.col-listing .card-title, .col-listing .card-body, .col-listing .card-location, .col-listing .discount-text, .col-listing .star-count,.col-listing .location-line {  /*nastavenia textu na karte produktu*/
+    line-height: 1.3 !important;
+    margin: 0;
+    width:100% !important;
+    display: block;
+}
+
+.col-listing .card-title {  /*nazov produktu*/
+    font-size: 15px !important;
+}
+
+.col-listing .btn-pridat-do-kosika {  /*pridat do kosika tlacidlo*/
+    font-size: 13px;
+}
+
+.col-listing .price-before, .col-listing .price-per, .col-listing .price {  /*cenovy riadok product listing*/
+    font-size: 15px !important;
+    line-height: normal !important;
+    margin: 0;
+}
+
+.col-listing .discount-text {  /*spravne umiestnenie discount textu na listing*/
+    left: 75% !important;
+}
+
+.pagination {  /*strankovanie*/
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.pagination a:hover {  /*tlacidlo stranky hover*/
+    background-color: var(--green-light);
+}
+
+.page-item.active .page-link {  /*tlacidlo stranky aktivne*/
+    background-color: var(--green-dark-muted) !important;
+    color: #ffffff !important;
+    border-color: var(--green-dark-muted) !important;
+}
+
+.page-item .page-link {  /*tlacidlo stranky neaktivne*/
+    color: var(--green-dark-muted) !important;
+    border-radius: 0.375rem;
+}
+
+/* ---- PRODUCT DETAIL ---- */
+
+.breadcrumb .material-icons, .farm .material-icons {  /*nastavenie mensich ikoniek v breadcrumb a karticke farmy*/
+    font-size: 20px !important;
+}
+
+.product-detail { /*nastavenie medzier medzi jednotlivymi sekciami*/
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.product-gallery {  /*nastavenie shrinkovania galerie produktu*/
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+    min-width: 280px;
+}
+
+.main-image img {  /*nastavenie hlavneho obrazku v galerii*/
+    width: 100%;
+    height: auto;
+    aspect-ratio: 256 / 150;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 0.375rem;
+}
+
+.thumbnail-list {  /*nastavenie medzier medzi obrazkami galerie*/
+    gap: 0.5rem;
+}
+
+.thumbnail-list img { /*nastavenie malych obrazkov v galerii*/
+    width: 100%;
+    aspect-ratio: 256 / 150;
+    object-fit: cover;
+}
+
+.product-gallery .arrow-left, .product-gallery .arrow-right {  /*velkost sipiek v galerii produktu a ich vertikalna poloha*/
+    height: 2rem !important;
+    width: 2rem !important;
+    top: 50%;
+}
+
+.product-gallery .arrow-left {  /*umiestnenie lavej sipky*/
+    left: -2rem;
+}
+
+.product-gallery .arrow-right {  /*umiestnenie pravej sipky*/
+    right: -2rem;
+}
+
+.product-gallery .arrows-around {  /*zmensenie galerie mini obrazkov*/
+    width: 90%;
+    left: 5%;
+}
+
+.images-carousel-container {  /*carousel container na animaciu scrollovania mini obrazkov*/
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.images-row {  /*rada mini obrazkov*/
+    display: flex;
+    transition: transform 0.3s ease;
+    will-change: transform;
+}
+
+.rating-and-reviews {  /*velkost fontu v sumarnom riadku hodnoteni*/
+    font-size: 15px !important;
+}
+
+.detailne-info {  /*aby link na detailne info bol len taky dlhy aky realne aj je*/
+    width:fit-content;
+}
+
+.add-to-cart-container {  /*spodny riadok s tlacidlami margin*/
+    margin-top: 6%;
+}
+
+.add-to-cart-container .form-control {  /*nastavenie formulara na mnozstvo*/
+    width: 80px;
+    height: 3rem;
+    font-size: 16px;
+    color: var(--green-dark-muted);
+}
+
+.add-to-cart-container .dropdown-toggle {  /*nastavenie dropdown button na vybratie kg alebo ks*/
+    font-size: 16px;
+    width: 53px;
+    color: var(--green-dark-muted);
+}
+
+.add-to-cart-container .custom-dropdown-menu {  /*nastavenie dropdown na vybratie kg alebo ks*/
+    width: fit-content !important;
+    font-size: 16px;
+    left: 40% !important;
+    --bs-dropdown-min-width: 0 !important;
+    color: var(--green-dark-muted);
+}
+
+.add-to-cart-container .favorite-btn {  /*margins pre favourite button*/
+    margin-top: 0 !important;
+    margin-right: 1rem;
+}
+
+.quantity-button {  /*tlacidla plus a minus*/
+    background-color:  var(--green-light);
+    height: 3rem;
+    width: 3rem;
+    font-size: 20px;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    color: var(--green-dark-muted);
+}
+
+.quantity-button:hover {  /*nastaveny hover*/
+    background-color: var(--green-dark-muted);
+    color: var(--blue-very-light);
+}
+
+.quantity-button:active {  /*nastaveny active*/
+      --bs-btn-active-bg: var(--green-light);
+}
+
+.plus {
+    margin-left: 0.75rem;
+}
+
+.minus {
+    margin-right: 0.75rem;
+}
+
+.farm-col.card {  /*karticky s farmami*/
+    width: 100%;
+    max-width: 296px;
+}
+
+.farm-col.card.selected {  /*oznacenie farmy konkretnej*/
+    border: 4px solid var(--green-dark-muted);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.inline-center { /*zarovnanie na stred v ramci riadka (karticky s farmami)*/
+    display: inline-flex;
+    align-items: center;
+}
+
+.description, .ratings {  /*pozadie na popis a recenzie*/
+    background-color: #EDFAE6;
+    padding: 2rem;
+    border-radius: 0.375rem;
+}
+
+.btn-napisat-recenziu {  /*tlacidlo napisat recenziu aj s animaciou*/
+    background-color:  var(--green-light);
+    color: var(--green-dark-muted);
+    font-size: larger;
+    font-weight: bold;
+    height: 4rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-napisat-recenziu:hover {  /*nastaveny hover*/
+    background-color: var(--green-dark-muted);
+    color: var(--blue-very-light);
+}
+
+.btn-napisat-recenziu:active {  /*nastaveny active*/
+    --bs-btn-active-bg: var(--green-light);
+}
+
+.rating-tile {  /*nastavenie pozadia na cislo priemeru hodnoteni*/
+    background-color: var(--green-light);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 0.375rem;
+}
+
+.review-text {  /*text recenzie*/
+    font-size: 12px;
+    margin-top: 1rem;
+}
+
+.btn-zobrazit-dalsie {  /*tlacidlo zobrazit dalsie aj s animaciou*/
+    background-color:  var(--green-light);
+    color: var(--green-dark-muted);
+    font-size: larger;
+    font-weight: bold;
+    height: 3rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-zobrazit-dalsie:hover {  /*nastaveny hover*/
+    background-color: var(--green-dark-muted);
+    color: var(--blue-very-light);
+}
+
+.btn-zobrazit-dalsie:active {  /*nastaveny active*/
+      --bs-btn-active-bg: var(--green-light);
+}
+
+.info { /*medzera medzi hviezdami a poctom hodnoteni*/
+    gap: 0.3rem;
+}
+
+@media (max-width: 340px) {  /*pod 340px aby sa riadok s hviezdami a poctom hodnoteni wrapol*/
+    .info {
+        flex-wrap: wrap;
+    }
+}
+
+.vertical-bottom {  /*aby tlacidlo napisat recenziu bolo umiestnene dole v ramci jeho riadku*/
+    display: flex;
+    align-items: flex-end;
+    height: 149px;
+}
+
+@media (max-width: 745px) {  /*ked sa tlacidlo wrapne na druhy riadok tak aby nemalo zbytocnu vysku - gap nad sebou*/
+    .vertical-bottom {
+        height:auto;
+    }
+}
+
+@media (max-width: 559px) {  /*margin horny ked je wrapnute v tretom riadku*/
+    .vertical-bottom {
+        margin-top: 2rem;
+    }
+}
+
+/*-------- CART - ITEMS ---------*/
+
+.nav-link {  /*farba pisma v tabs*/
+    color: var(--green-dark-muted)
+}
+
+.nav-tabs .nav-link.active {  /*nastavenie active tabs*/
+    color: var(--green-dark-muted);
+    background-color: var(--green-light);
+}
+
+.oznacenie .material-icons {  /*ikona na zmazanie vsetkeho aby mala cervenu farbu*/
+    color: var(--bs-danger) !important;
+}
+
+.package {  /*pozadie bloku jednej zasielky*/
+    background-color: #EDFAE6;
+    padding: 2rem;
+    border-radius: 0.375rem;
+}
+
+.quantity:not(.add-to-cart-container) input[type="number"] {  /*variabilne velkosti sekcie s mnozstvom*/
+    width: clamp(20px, 8vw, 40px);
+    font-size: clamp(10px, 2vw, 12px);
+}
+
+.quantity:not(.add-to-cart-container) button {  /*variabilne velkosti tlacidiel v sekcii s mnozstvom*/
+    width: clamp(20px, 8vw, 40px);
+    padding: 0.5em;
+    font-size: clamp(10px, 2vw, 12px);
+}
+
+.quantity:not(.add-to-cart-container) .quantity-button {  /*vyska tlacidiel v sekcii s mnozstvom*/
+    height: 2rem;
+}
+
+.cart-product:not(:last-child) {  /*divider medzi produktami*/
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.warning {  /*mensi font na upozorneni o osobnom odbere*/
+    font-size: 10px;
+}
+
+.suhrn .btn-pridat-do-kosika {  /*tlacidlo prejst k udajom bez margin*/
+    margin-top: 0 !important;
+}
+
+/*------------ FARMA ----------------*/
+
+.farm-banner {  /*container na obrazok banneru*/
+    object-fit: cover;
+    overflow: hidden;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.farm-banner img {  /*vycentrovany obrazok v nom*/
+    object-position: center center;
+}
+
+@media (max-width:452px) {  /*zmensenie containeru pri mensej velkosti*/
+    .farm-banner {
+        height: 270px;
+        margin: 0 !important;
+    }
+}
+
+.farm-loc .material-icons{  /*ikona lokacie zmensena*/
+    font-size: 17px !important;
+}
+
+.farm-info div, .farm-info span {  /*vacsia line height v popise farmy*/
+    line-height: 2rem;
+}
+
+.subcategory-btn {  /*tlacidla kategorii aj s animaciou*/
+    background-color:  var(--green-light);
+    color: var(--green-dark-muted);
+    font-size: larger;
+    font-weight: bold;
+    height: 3rem;
+    transition: background-color 0.3s ease;
+}
+
+.subcategory-btn:hover {  /*nastaveny hover*/
+    background-color: var(--green-dark-muted);
+    color: var(--blue-very-light);
+}
+
+.subcategory-btn:active {  /*nastaveny active*/
+      --bs-btn-active-bg: var(--green-light);
+}
+
+/*--------ADMIN FARMA--------*/
+
+.horna-polka {  /*pre umiestnenie edit button vramci hornej polky karty*/
+    position: relative;
+    display: inline-block;
+}
+
+.horna-polka .material-icons {  /*velkost edit ikonky*/
+    font-size: 20px;
+}
+
+.new {  /*tlacidlo noveho produktu*/
+    width: 200px;
+    height: 40px;
+}
+  
+.edit { /*kontajner pre tlacidlo na upravu*/
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    height: 40px; 
+    width: 40px;
+}
+  
+.edit-button {  /*tlacidlo na upravu*/
+    background-color: var(--green-light);
+    color: var(--green-dark-muted);   
+    font-size: larger;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.375rem;
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+  
+.edit-button:hover {  /*nastaveny hover*/
+    background-color: var(--green-dark-muted);
+    color: var(--blue-very-light) !important;
+}
+
+.edit-button:active {  /*nastaveny active*/
+    --bs-btn-active-bg: var(--green-light);
+}
+
+.edit-button:hover .material-icons,
+.edit-button:active .material-icons {
+  color: var(--blue-very-light) !important;
+}
+
+.upload-section .subcategory-btn {  /*velkost tlacidla na pridanie obrazku v modali*/
+    height: 2.5rem;
+}
+
+/*---------------FireFLy-----------------*/
+
+/* košík - navigácia */
+@media (max-width: 599.99px) {
+    .nav-tabs {
+        display: none !important;
+    }
+
+    .dropdown-nav {
+        display: block !important;
+    }
+}
+
+@media (min-width: 600px) {
+    .nav-tabs {
+        display: flex !important;
+    }
+
+    .dropdown-nav {
+        display: none !important;
+    }
+}
+
+.label-text::before {
+    content: "Číslo domu *";
+}
+
+/* Pod 350px zmeniť text */
+@media (max-width: 350px) {
+    .label-text::before {
+        content: "Č. domu *";
+    }
+}
+
+@media (max-width: 500px) {
+    /* Menší padding okolo celej sekcie */
+    .border.rounded-3.p-3.mb-4 {
+        padding: 1rem !important;
+    }
+}
+
+/* Default: zobraz len desktop */
+.mobile-only {
+    display: none;
+}
+.desktop-only {
+    display: block;
+}
+
+/* Pri malých zariadeniach (<576px) zobraz len mobil */
+@media (max-width: 575.98px) {
+    .mobile-only {
+        display: block !important;
+    }
+
+    .desktop-only {
+        display: none !important;
+    }
+
+    .admin-card {
+        flex-direction: column !important;
+        flex-grow: 0 !important; /* prepíše flex-grow-1 */
+        gap: 0 !important;
+    }
+}
+
+@media (max-width: 450px) {
+    /* Menší padding v kartách */
+    .package-products .text-start.p-3 {
+        padding: 1rem !important;
+    }
+
+    /* Menší font pre názov produktu v kartách */
+    .package-products .card-title {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+    }
+
+    .admin-products .card-title {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+        margin-bottom: 0;
+    }
+
+    .admin-products .card-location {
+        font-size: 0.8rem;
+        line-height: 1.2;
+    }
+
+    /* Menší font pre cenu a počet ks */
+    .price {
+        font-size: 0.95rem;
+    }
+    .price-count {
+        font-size: 0.85rem;
+    }
+
+    /* Zmenšenie medzier medzi kartami*/
+    #carouselRow1.g-3 {
+        gap: 0.5rem !important;
+    }
+
+    /* Zmenšenie textu v h5 nadpisoch (Zásielka... a Dokopy...) */
+    h5.fw-bold {
+        font-size: 1rem !important;
+        line-height: 1.2;
+    }
+    h6 {
+        font-size: 1rem !important;
+        line-height: 1.2;
+    }
+
+    /* Zmenšenie názvu farmy a miesta */
+    .admin-card-title {
+        font-size: 1rem;
+        line-height: 1.2;
+    }
+
+    .farm-location {
+        font-size: 0.9rem;
+        line-height: 1.2;
+    }
+
+    .admin-zone {
+        padding: 1rem !important;
+    }
+
+    .arrow-left, .arrow-right {
+        width: 3rem;
+        height: 3rem;
+    }
+}
+
+.no-scrollbar {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;   /* IE 10+ */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;              /* Chrome, Safari, Edge */
+}
+
+.edit-button {
+    background-color: var(--green-light);
+    color: var(--green-dark-muted);
+
+    width: 70%;
+}
+
+.admin-card {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 2rem;
+    border-radius: 0.375rem;
+    background-color: var(--green-very-light);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.card-img {
+    display: block;
+    max-height: 150px;
+    border-radius: 0.375rem;
+}
+.card-img-cover {  /*zlava*/
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 25%;
+    aspect-ratio: 1 / 1;
+    background-size: contain;
+}
+
+.edit-avatar-btn {
+    position: absolute;
+    top: 0;
+    right: -1rem;
+    color: var(--green-dark-muted);
+}
+
+.max-h-150 { /* pre obrázky */
+    max-height: 150px;
+}
