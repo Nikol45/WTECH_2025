@@ -17,7 +17,9 @@ class CompanyFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->company,
+            'ico' => $this->faker->unique()->numberBetween(10000000, 99999999),
+            'ic_dph' => $this->faker->boolean(50) ? $this->faker->unique()->numberBetween(10000000, 99999999) : null
         ];
     }
 }

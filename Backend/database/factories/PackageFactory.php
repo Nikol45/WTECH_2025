@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Order;
+use App\Models\Farm;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +20,11 @@ class PackageFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'order_id' => Order::inRandomOrder()->value('id'),
+            'farm_id' => Farm::inRandomOrder()->value('id'),
+            'price' => null,
+            'expected_delivery_date' => $this->faker->dateTimeBetween('now', '+1 month'),
+            'status' => $this->faker->randomElement(['waiting', 'confirmed', 'shipped', 'delivered']),
         ];
     }
 }

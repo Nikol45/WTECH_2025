@@ -2,6 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Address;
+use App\Models\Company;
+use App\Models\Icon;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -23,12 +27,24 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+
+        $billingAddress = $this->faker->boolean(50) ? Address::factory()->state(['address_type' => 'billing'])->create() : null;
+        $deliveryAddress = $this->faker->boolean(40) ? Address::factory()->state(['address_type' => 'delivery'])->create() : null;
+        $company = $this->faker->boolean(30) ? Company::factory()->create() : null;
+        $iconId = Icon::inRandomOrder()->value('id');
+
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'billing_address_id' => $billingAddress ? $billingAddress->id : null,
+            'delivery_address_id' => $deliveryAddress ? $deliveryAddress->id : null,
+            'company_id' => $company ? $company->id : null,
+            'icon_id' => $iconId,
+            'name' => $this->faker->name,
+            'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => Hash::make(fake()->password()),
             'remember_token' => Str::random(10),
+            'phone_number' => $this->faker->unique()->phoneNumber,
+            'admin_account' => $this->faker->boolean(30)
         ];
     }
 

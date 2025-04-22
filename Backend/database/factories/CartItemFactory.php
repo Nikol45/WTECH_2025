@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\FarmProduct;
+use App\Models\User;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +20,9 @@ class CartItemFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'farm_product_id' => FarmProduct::inRandomOrder()->value('id'),
+            'user_id' => User::inRandomOrder()->value('id'),
+            'quantity' => $this->faker->numberBetween(1, 20)
         ];
     }
 }

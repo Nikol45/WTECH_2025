@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\Address;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +19,19 @@ class FarmFactory extends Factory
      */
     public function definition(): array
     {
+
+        $userId = \App\Models\User::where('admin_account', true)->inRandomOrder()->value('id');
+        $deliveryAvailable = $this->faker->boolean;
+
         return [
-            //
+            'user_id' => $userId,
+            'address_id' => Address::factory()->state(['address_type' => 'farm']),
+            'name' => $this->faker->company,
+            'description' => $this->faker->paragraph(3),
+            'rating' => null,
+            'delivery_available' => $deliveryAvailable,
+            'min_delivery_price' => $deliveryAvailable ? $this->faker->randomFloat(2,0,10) : null,
+            'avg_delivery_time' => $deliveryAvailable ? $this->faker->numberBetween(1,60) : null
         ];
     }
 }

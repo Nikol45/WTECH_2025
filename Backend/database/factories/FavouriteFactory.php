@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\FarmProduct;
+use App\Models\User;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +20,8 @@ class FavouriteFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::inRandomOrder()->value('id'),
+            'farm_product_id' => FarmProduct::inRandomOrder()->value('id')
         ];
     }
 }

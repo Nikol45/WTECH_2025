@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('user_id');
 
-            $table->decimal('total_price', 8, 2);
+            $table->decimal('total_price', 8, 2)->nullable();
             $table->enum('payment_type', ['online', 'transfer', 'cash']);
             $table->enum('delivery_type', ['in_person', 'express', 'standard']);
             $table->text('note')->nullable();

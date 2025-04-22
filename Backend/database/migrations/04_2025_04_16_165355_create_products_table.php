@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('subcategory_id');
-            $table->unsignedBigInteger('subsubcategory_id');
+            $table->unsignedBigInteger('subsubcategory_id')->nullable();
 
             $table->string('name');
             $table->text('description'); 
@@ -36,7 +36,7 @@ return new class extends Migration
             $table->foreign('subsubcategory_id')
                 ->references('id')
                 ->on('subsubcategories')
-                ->onDelete('cascade');
+                ->onDelete('set null');
         });
     }
 

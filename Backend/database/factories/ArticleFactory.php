@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +18,13 @@ class ArticleFactory extends Factory
      */
     public function definition(): array
     {
+
+        $userId = \App\Models\User::where('admin_account', true)->inRandomOrder()->value('id');
+
         return [
-            //
+            'user_id' => $userId,
+            'title' => $this->faker->sentence,
+            'text' => $this->faker->paragraph(10)
         ];
     }
 }

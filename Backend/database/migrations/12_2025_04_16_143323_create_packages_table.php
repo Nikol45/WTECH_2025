@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('farm_id');
 
-            $table->decimal('price', 8, 2);
-            $table->date('expected_delivery_date')->nullable();
+            $table->decimal('price', 8, 2)->nullable();
+            $table->date('expected_delivery_date');
             $table->enum('status', ['waiting', 'confirmed', 'shipped', 'delivered']);
 
             $table->timestamps();
