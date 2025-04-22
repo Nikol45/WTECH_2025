@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //na otvorenie login pop up z hamburger menu
     const mobileProfileLink = document.getElementById('mobileProfileLink');
-        if (mobileProfileLink) {
+    if (mobileProfileLink) {
         mobileProfileLink.addEventListener('click', (e) => {
             e.preventDefault();
             const offcanvas = document.getElementById('mobileMenu');
@@ -172,21 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
-    // =================== TOGGLE DODACEJ ADRESY ===================
-    const differentAddress = document.getElementById('differentAddress');
-    const deliveryAddressSection = document.getElementById('deliveryAddressSection');
-    if (differentAddress && deliveryAddressSection) {
-        differentAddress.addEventListener('change', () => {
-            if (differentAddress.checked) {
-                deliveryAddressSection.classList.remove('d-none');
-            } else {
-                deliveryAddressSection.classList.add('d-none');
-            }
-        });
-    }
-
-
     // =================== TOGGLE FIRMY ===================
     const companyCheck = document.getElementById('companyCheck');
     const companySection = document.getElementById('companySection');
@@ -204,22 +189,57 @@ document.addEventListener('DOMContentLoaded', () => {
     // =================== ZOBRAZENIE SUMÁRIÁLNEHO RIADKU DOPRAVY ===================
     const deliveryRow = document.getElementById('deliveryRow');
     const priceRow = document.getElementById('priceRow');
-    const deliveryGlsSt = document.getElementById('deliveryGlsSt');
-    const deliveryGlsEx = document.getElementById('deliveryGlsEx');
 
-    if (deliveryRow && priceRow && deliveryGlsSt && deliveryGlsEx) {
-        [deliveryGlsSt, deliveryGlsEx].forEach(input => {
-            input.addEventListener('change', () => {
-                if (deliveryGlsSt.checked || deliveryGlsEx.checked) {
-                    deliveryRow.classList.remove('d-none');
-                    priceRow.classList.remove('d-none');
-                } else {
-                    deliveryRow.classList.add('d-none');
-                    priceRow.classList.add('d-none');
-                }
-            });
-        });
+    const deliveryGlsSt = document.querySelector('input[id="delivery_GLS_standard"]');
+    const deliveryGlsEx = document.querySelector('input[id="delivery_GLS_express"]');
+    const deliveryPersonal = document.querySelector('input[id="delivery_personal"]');
+
+    const payDobierkaWrapper = document.getElementById('payDobierkaWrapper');
+    const priceDeliveryRow = document.getElementById('price_deliveryRow');
+    const priceDobierkaRow = document.getElementById('price_dobierkaRow');
+    const payDobierka = document.querySelector('input[name="paymentMethod"][value="cash_on_delivery"]');
+    const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
+
+    function updateDeliveryDisplay() {
+        const isGLS = deliveryGlsSt?.checked || deliveryGlsEx?.checked;
+        const isPersonal = deliveryPersonal?.checked;
+
+        if (isGLS) {
+            deliveryRow.classList.remove('d-none');
+            priceRow.classList.remove('d-none');
+            priceDeliveryRow.classList.remove('d-none');
+            payDobierkaWrapper.classList.remove('d-none');
+        } else if (isPersonal) {
+            deliveryRow.classList.add('d-none');
+            priceRow.classList.remove('d-none');
+            priceDeliveryRow.classList.add('d-none');
+            payDobierkaWrapper.classList.add('d-none');
+        } else {
+            deliveryRow.classList.add('d-none');
+            priceRow.classList.add('d-none');
+            priceDeliveryRow.classList.add('d-none');
+            payDobierkaWrapper.classList.add('d-none');
+        }
+
+        // Obnov zobrazenie dobierky
+        updateDobierkaDisplay();
     }
+
+    function updateDobierkaDisplay() {
+        if (payDobierka?.checked) {
+            priceDobierkaRow.classList.remove('d-none');
+        } else {
+            priceDobierkaRow.classList.add('d-none');
+        }
+    }
+
+    [deliveryGlsSt, deliveryGlsEx, deliveryPersonal].forEach(input => {
+        input?.addEventListener('change', updateDeliveryDisplay);
+    });
+
+    paymentRadios.forEach(radio => {
+        radio.addEventListener('change', updateDobierkaDisplay);
+    });
 
 
     // ============= SCROLLOVANIE SEKCII PRODUKTOV ==============
@@ -641,17 +661,17 @@ document.addEventListener('DOMContentLoaded', () => {
             thumbnailList.style.transition = 'transform 0.3s ease';
             thumbnailList.style.transform = `translateX(-${itemWidth}px)`;
 
-          thumbnailList.addEventListener('transitionend', function handler(e) {
-            if (e.propertyName === 'transform') {
-                thumbnailList.appendChild(firstItem);
-                thumbnailList.style.transition = 'none';
-                thumbnailList.style.transform = 'none';
-                void thumbnailList.offsetWidth;
-                thumbnailList.style.transition = 'transform 0.3s ease';
-                thumbnailList.removeEventListener('transitionend', handler);
-                isAnimating = false;
-            }
-          });
+            thumbnailList.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    thumbnailList.appendChild(firstItem);
+                    thumbnailList.style.transition = 'none';
+                    thumbnailList.style.transform = 'none';
+                    void thumbnailList.offsetWidth;
+                    thumbnailList.style.transition = 'transform 0.3s ease';
+                    thumbnailList.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
         });
     }
 
@@ -735,14 +755,14 @@ document.addEventListener('DOMContentLoaded', () => {
     //animacia na fillnutie srdiecka pri kliknuti
     document.querySelectorAll('.favorite-btn').forEach(favBtn => {
         favBtn.addEventListener('click', () => {
-          const icon = favBtn.querySelector('.material-icons');
-          if (icon && icon.textContent.trim() === 'favorite_border') {
-            icon.textContent = 'favorite';
-            icon.classList.add('filled');
-          } else if (icon) {
-            icon.textContent = 'favorite_border';
-            icon.classList.remove('filled');
-          }
+            const icon = favBtn.querySelector('.material-icons');
+            if (icon && icon.textContent.trim() === 'favorite_border') {
+                icon.textContent = 'favorite';
+                icon.classList.add('filled');
+            } else if (icon) {
+                icon.textContent = 'favorite_border';
+                icon.classList.remove('filled');
+            }
         });
     });
 
@@ -753,7 +773,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterSection = document.querySelector('.filter-section');
     if (filterToggle && filterSection) {
         filterToggle.addEventListener('click', () => {
-        filterSection.classList.toggle('open');
+            filterSection.classList.toggle('open');
         });
     }
 
@@ -770,7 +790,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterButtons = filterSection ? filterSection.querySelectorAll('.filter-buttons button') : null;
     if (filterButtons) {
         filterButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
+            btn.addEventListener('click', () => {
                 filterSection.classList.remove('open');
             });
         });
@@ -847,18 +867,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const btnMinus = container.querySelector('.minus');
 
         if (btnPlus && qtyInput) {
-          btnPlus.addEventListener('click', () => {
+            btnPlus.addEventListener('click', () => {
                 let currentValue = parseFloat(qtyInput.value) || 1;
                 qtyInput.value = (currentValue + 1).toFixed(2);
-          });
+            });
         }
 
         if (btnMinus && qtyInput) {
             btnMinus.addEventListener('click', () => {
-                    let currentValue = parseFloat(qtyInput.value) || 1;
-                    if (currentValue > 1) {
-                        qtyInput.value = (currentValue - 1).toFixed(2);
-                    }
+                let currentValue = parseFloat(qtyInput.value) || 1;
+                if (currentValue > 1) {
+                    qtyInput.value = (currentValue - 1).toFixed(2);
+                }
             });
         }
     });

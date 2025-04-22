@@ -244,25 +244,25 @@ input:focus::placeholder {
     padding-left: 0;
     margin-bottom: 0;
 }
-  
+
 @media (min-width: 1200px) {  /* vsetkych 10 kategorii v jednom riadku*/
     .categories-list {
         grid-template-columns: repeat(10, 1fr);
     }
 }
-  
+
 @media (max-width: 1199px) and (min-width: 600px) {  /*5 a 5 v 2 riadkoch*/
     .categories-list {
         grid-template-columns: repeat(5, 1fr);
     }
 }
-  
+
 @media (max-width: 599px) and (min-width: 375px) {  /*3 3 3 1 v 4 riadkoch*/
     .categories-list {
         grid-template-columns: repeat(3, 1fr);
     }
 }
-  
+
 
 @media (max-width: 374px) {  /*2 2 2 2 2 v 5 riadkoch*/
     .categories-list {
@@ -1185,18 +1185,18 @@ input:focus::placeholder {
     width: 200px;
     height: 40px;
 }
-  
+
 .edit { /*kontajner pre tlacidlo na upravu*/
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
-    height: 40px; 
+    height: 40px;
     width: 40px;
 }
-  
+
 .edit-button {  /*tlacidlo na upravu*/
     background-color: var(--green-light);
-    color: var(--green-dark-muted);   
+    color: var(--green-dark-muted);
     font-size: larger;
     font-weight: bold;
     border: none;
@@ -1208,7 +1208,7 @@ input:focus::placeholder {
     justify-content: center;
     transition: background-color 0.3s ease;
 }
-  
+
 .edit-button:hover {  /*nastaveny hover*/
     background-color: var(--green-dark-muted);
     color: var(--blue-very-light) !important;
@@ -1411,4 +1411,8 @@ input:focus::placeholder {
 
 .max-h-150 { /* pre obrázky */
     max-height: 150px;
+}
+
+.text-muted .small {
+    font-size: 0.85rem;
 }

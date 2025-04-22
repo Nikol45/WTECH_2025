@@ -1412,3 +1412,7 @@ input:focus::placeholder {
 .max-h-150 { /* pre obrázky */
     max-height: 150px;
 }
+
+.text-muted .small {
+    font-size: 0.85rem;
+}
