@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CartItem;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreCartItemRequest;
 use App\Http\Requests\UpdateCartItemRequest;
 
@@ -27,9 +28,25 @@ class CartItemController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCartItemRequest $request)
-    {
-        //
+    public function store(Request $request) {
+        if (auth()->check()) {
+
+            CartItem::create([
+                'user_id' => auth()->id(),
+                'farm_product_id' => $request->farm_product_id,
+                'quantity' => $request->quantity,
+            ]);
+        }
+        else {
+            $cart = session()->get('cart', []);
+            $cart[] = [
+                'farm_product_id' => $request->farm_product_id,
+                'quantity' => $request->quantity,
+            ];
+            session(['cart' => $cart]);
+        }
+
+        return redirect()->back()->with('success', 'Produkt bol pridaný do košíka.');
     }
 
     /**

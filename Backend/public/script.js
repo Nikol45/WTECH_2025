@@ -52,9 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
         profileMenu.innerHTML = '';
         if (isLoggedIn) {
             profileMenu.innerHTML = `
-                <li><a class="dropdown-item" href="Profil-udaje.html">Môj profil</a></li>
-                <li><a class="dropdown-item" href="Profil-historia.html">Objednávky</a></li>
-                <li><a class="dropdown-item" href="Profil-recenzie.html">Recenzie</a></li>
+                <li><a class="dropdown-item" href="${routes.profile}">Môj profil</a></li>
+                <li><a class="dropdown-item" href="${routes.profileHistory}">Objednávky</a></li>
+                <li><a class="dropdown-item" href="${routes.profileReviews}">Recenzie</a></li>
                 <li><a class="dropdown-item" href="#" id="logoutLink">Odhlásiť</a></li>
             `;
         } else {
@@ -128,11 +128,11 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileProfileMenu.innerHTML = '';
             if (isLoggedIn) {
                 mobileProfileMenu.innerHTML = `
-                <li class="mb-3 fw-bold fs-5"><a href="Profil-udaje.html">Môj profil</a></li>
-                <li class="mb-3 fw-bold fs-5"><a href="Profil-historia.html">Objednávky</a></li>
-                <li class="mb-3 fw-bold fs-5"><a href="Profil-recenzie.html">Recenzie</a></li>
-                <li class="mb-3 fw-bold fs-5"><a href="#" id="mobileLogoutLink">Odhlásiť</a></li>
-                `;
+                <li class="mb-3 fw-bold fs-5" ><a href="${routes.profile}">Môj profil</a></li>
+                <li class="mb-3 fw-bold fs-5" ><a href="${routes.profileHistory}">Objednávky</a></li>
+                <li class="mb-3 fw-bold fs-5" ><a href="${routes.profileReviews}">Recenzie</a></li>
+                <li class="mb-3 fw-bold fs-5" ><a href="#" id="logoutLink">Odhlásiť</a></li>
+            `;
             }
             else {
                 mobileProfileMenu.innerHTML = `
@@ -143,6 +143,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     updateMobileProfileMenu();
+
+    //aby po zatvoreni sidebaru sa resetol padding a overflow
+    const offcanvasEl = document.getElementById('mobileMenu');
+    offcanvasEl.addEventListener('hidden.bs.offcanvas', () => {
+        document.body.style.paddingRight = '';
+        document.body.style.overflow = '';
+    });
 
     document.addEventListener('click', (e) => {
         if (e.target && e.target.id === 'mobileLoginLink') {

@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Str; @endphp
 <header>
     <!-- Pop-up modály pre prihlásenie a registráciu -->
     <div class="modal-container">
@@ -227,177 +228,92 @@
         </div>
     </div>
 
-    <!-- Top bar navigačný: logo, vyhľadávanie, ikonky -->
-    <nav class="top-bar py-3">
-        <div class="container-fluid custom-fluid">
-            <div class="d-flex flex-wrap align-items-center justify-content-between">
-                <!-- Logo -->
-                <a href="HomePage.html" class="d-flex align-items-center flex-shrink-0 me-3 text-decoration-none custom-logo">
-                    <img src="images/logo.png" alt="Logo" width="30" height="30" class="me-2">
-                    <h2 class="mb-0 custom-logo">Zdvora.sk</h2>
-                </a>
-                <!-- Search -->
-                <div class="custom-search-container d-flex justify-content-start flex-grow-1 mx-3 my-2 my-md-0">
-                    <form class="position-relative">
-                        <input type="text" class="form-control pe-5" placeholder="Vyhľadávanie...">
-                        <button class="btn custom-button position-absolute top-50 end-0 translate-middle-y me-2 p-0" type="submit">
-                            <span class="material-icons">search</span>
-                        </button>
-                    </form>
-                </div>
-                <!-- Ikonky -->
-                <div class="custom-ikonky d-flex justify-content-end align-items-center gap-3 mt-2 mt-md-0 flex-shrink-0 ms-3">
-                    <a href="Profil-oblubene.html" class="btn custom-button p-0 ms-2">
-                        <span class="material-icons">favorite</span>
-                    </a>
-                    <a href="ShoppingCart1_items.html" class="btn custom-button p-0 ms-2">
-                        <span class="material-icons">shopping_cart</span>
-                    </a>
-                    <div class="dropdown text-center ms-2">
-                        <button class="btn custom-button p-0" id="profileBtn">
-                            <span class="material-icons">account_circle</span>
-                        </button>
-                        <ul class="dropdown-menu custom-dropdown-menu" id="profileMenu"></ul>
-                    </div>
-                </div>
+<!-- Top bar navigačný: logo, vyhľadávanie, ikonky -->
+<nav class="top-bar py-3">
+    <div class="container-fluid custom-fluid">
+        <div class="d-flex flex-wrap align-items-center justify-content-between">
 
-                <!-- Hamburger menu -->
-                <button class="btn custom-button d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
-                    <span class="material-icons">menu</span>
-                </button>
+            <!-- Logo -->
+            <a href="{{ route('homepage') }}" class="d-flex align-items-center flex-shrink-0 me-3 text-decoration-none custom-logo">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" width="30" height="30" class="me-2">
+                <h2 class="mb-0 custom-logo">Zdvora.sk</h2>
+            </a>
+
+            <!-- Search -->
+            <div class="custom-search-container d-flex justify-content-start flex-grow-1 mx-3 my-2 my-md-0">
+                <form action="{{ route('products.search') }}" method="GET" class="position-relative">
+                    <input type="text" name="q" class="form-control pe-5" placeholder="Vyhľadávanie..." value="{{ request('q') }}">
+                    <button class="btn custom-button position-absolute top-50 end-0 translate-middle-y me-2 p-0" type="submit">
+                        <span class="material-icons">search</span>
+                    </button>
+                </form>
             </div>
-        </div>
-    </nav>
-    
-    <!-- Sidebar miesto ikoniek -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
-        <div class="offcanvas-header">
-            <h2 class="offcanvas-title fw-bold" id="mobileMenuLabel">Menu</h2>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <form class="mb-3">
-                <input type="text" class="form-control" placeholder="Vyhľadávanie...">
-                <button class="btn custom-button subcategory-btn mt-2" type="submit">Hľadať</button>
-            </form>
-            <ul class="list-unstyled">
-                <li class="mb-3 fw-bold fs-5"><a href="Profil-oblubene.html">Obľúbené</a></li>
-                <li class="mb-3 fw-bold fs-5"><a href="ShoppingCart1_items.html">Košík</a></li>
-                <ul class="list-unstyled" id="mobileProfileMenu"></ul>
-            </ul>
+
+            <!-- Ikonky -->
+            <div class="custom-ikonky d-flex justify-content-end align-items-center gap-3 mt-2 mt-md-0 flex-shrink-0 ms-3">
+                <a href="{{ route('favourites.index') }}" class="btn custom-button p-0 ms-2">
+                    <span class="material-icons">favorite</span>
+                </a>
+                <a href="{{ route('cart-items.index') }}" class="btn custom-button p-0 ms-2">
+                    <span class="material-icons">shopping_cart</span>
+                </a>
+                <div class="dropdown text-center ms-2">
+                    <button class="btn custom-button p-0" id="profileBtn">
+                        <span class="material-icons">account_circle</span>
+                    </button>
+                    <ul class="dropdown-menu custom-dropdown-menu" id="profileMenu"></ul>
+                </div>
+            </div>
+
+            <!-- Hamburger menu -->
+            <button class="btn custom-button d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
+                <span class="material-icons">menu</span>
+            </button>
         </div>
     </div>
+</nav>
 
-    <!-- Kategórie -->
-    <div class="categories-bar custom-fluid" id="categoriesBar">
-        <div class="categories-container">
-          <ul class="categories-list list-unstyled">
-            <!-- Kategória 1 -->
-            <li class="category-item">
-              <a href="ProductListing.html">
-                <button class="btn category-btn">
-                  <img src="images/category/fruit.png" alt="Ovocie">
-                  <br>
-                  <span>OVOCIE</span>
-                </button>
-              </a>
-            </li>
-            <!-- Kategória 2 -->
-            <li class="category-item">
-              <a href="ProductListing.html">
-                <button class="btn category-btn">
-                  <img src="images/category/vegetable.png" alt="Zelenina">
-                  <br>
-                  <span>ZELENINA</span>
-                </button>
-              </a>
-            </li>
-            <!-- Kategória 3 -->
-            <li class="category-item">
-              <a href="ProductListing.html">
-                <button class="btn category-btn">
-                  <img src="images/category/cheese.png" alt="Mliečne výrobky">
-                  <br>
-                  <span>MLIEČNE VÝROBKY</span>
-                </button>
-              </a>
-            </li>
-            <!-- Kategória 4 -->
-            <li class="category-item">
-              <a href="ProductListing.html">
-                <button class="btn category-btn">
-                  <img src="images/category/meat.png" alt="Mäsové výrobky">
-                  <br>
-                  <span>MÄSOVÉ VÝROBKY</span>
-                </button>
-              </a>
-            </li>
-            <!-- Kategória 5 -->
-            <li class="category-item">
-              <a href="ProductListing.html">
-                <button class="btn category-btn">
-                  <img src="images/category/bread.png" alt="Pečivo a obilniny">
-                  <br>
-                  <span>PEČIVO A OBILNINY</span>
-                </button>
-              </a>
-            </li>
-            <!-- Kategória 6 -->
-            <li class="category-item">
-              <a href="ProductListing.html">
-                <button class="btn category-btn">
-                  <img src="images/category/drink.png" alt="Domáce nápoje">
-                  <br>
-                  <span>DOMÁCE NÁPOJE</span>
-                </button>
-              </a>
-            </li>
-            <!-- Kategória 7 -->
-            <li class="category-item">
-              <a href="ProductListing.html">
-                <button class="btn category-btn">
-                  <img src="images/category/honey.png" alt="Včelie produkty">
-                  <br>
-                  <span>VČELIE PRODUKTY</span>
-                </button>
-              </a>
-            </li>
-            <!-- Kategória 8 -->
-            <li class="category-item">
-              <a href="ProductListing.html">
-                <button class="btn category-btn">
-                  <img src="images/category/herb.png" alt="Bylinky">
-                  <br>
-                  <span>BYLINKY</span>
-                </button>
-              </a>
-            </li>
-            <!-- Kategória 9 -->
-            <li class="category-item">
-              <a href="ProductListing.html">
-                <button class="btn category-btn">
-                  <img src="images/category/marmalade.png" alt="Zaváraniny">
-                  <br>
-                  <span>DOMÁCE ZAVÁRANINY</span>
-                </button>
-              </a>
-            </li>
-            <!-- Kategória 10 -->
-            <li class="category-item">
-              <a href="ProductListing.html">
-                <button class="btn category-btn">
-                  <img src="images/category/brmbrm.png" alt="Pestovanie">
-                  <br>
-                  <span>PESTOVANIE</span>
-                </button>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <!-- Toggle button -->
-    <button class="toggle-btn" id="toggleCategoriesBtn">
-        <img src="images/icons/arrow-pull.png" alt="↑" width="16" height="16">
-    </button>
+<!-- Sidebar miesto ikoniek -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+    <div class="offcanvas-header">
+        <h2 class="offcanvas-title fw-bold" id="mobileMenuLabel">Menu</h2>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <form action="{{ route('products.search') }}" method="GET" class="mb-3">
+            <input type="text" name="q" class="form-control" placeholder="Vyhľadávanie..." value="{{ request('q') }}">
+            <button class="btn custom-button subcategory-btn mt-2" type="submit">Hľadať</button>
+        </form>
+        <ul class="list-unstyled">
+            <li class="mb-3 fw-bold fs-5"><a href="{{ route('favourites.index') }}">Obľúbené</a></li>
+            <li class="mb-3 fw-bold fs-5"><a href="{{ route('cart-items.index') }}">Košík</a></li>
+            <ul class="list-unstyled" id="mobileProfileMenu"></ul>
+        </ul>
+    </div>
+</div>
+
+<!-- Kategórie -->
+<div class="categories-bar custom-fluid" id="categoriesBar">
+    <div class="categories-container">
+        <ul class="categories-list list-unstyled">
+            @foreach($navCategories as $category)
+                <li class="category-item">
+                    <a href="{{ route('products.index', ['category' => $category->id]) }}">
+                        <button class="btn category-btn">
+                            <img src="{{ asset('images/category/' . strtolower(Str::slug($category->name, '_')) . '.png') }}" alt="{{ $category->name }}">
+                            <br>
+                            <span>{{ mb_strtoupper($category->name) }}</span>
+                        </button>
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+</div>
+
+<!-- Toggle button -->
+<button class="toggle-btn" id="toggleCategoriesBtn">
+    <img src="{{ asset('images/icons/arrow-pull.png') }}" alt="↑" width="16" height="16">
+</button>
 
 </header>

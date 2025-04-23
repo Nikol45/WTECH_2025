@@ -20,8 +20,8 @@ class ImageSeeder extends Seeder
      */
     public function run(): void {   
         Product::with('category')->get()->each(function ($product) {
-            $categoryName = \Illuminate\Support\Str::slug($product->category->name, '_');
-            $name = strtolower(str_replace(' ', '_', $product->name));
+            $categoryName = Str::slug($product->category->name, '_');
+            $name = Str::slug(strtolower($product->name), '_');
 
             Image::create([
                 'imageable_id' => $product->id,

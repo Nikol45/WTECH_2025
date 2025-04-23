@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 
@@ -62,5 +63,14 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function search(Request $request) {
+        $query = $request->input('q');
+        $products = Product::where('name', 'ILIKE', '%' . $query . '%')->paginate(24);
+        return view('products.index', [
+            'products' => $products,
+            'query' => $query,
+        ]);
     }
 }

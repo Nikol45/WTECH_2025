@@ -24,7 +24,7 @@ class ProductSeeder extends Seeder
                 if ($subcategory->subsubcategories->count()) {
                     foreach ($subcategory->subsubcategories as $subsubcategory) {
                         Product::create ([
-                            'name' => Str::slug("{$subcategory->name} " . lcfirst($subsubcategory->name), '_'),
+                            'name' => "{$subcategory->name} " . lcfirst($subsubcategory->name),
                             'description' => fake()->sentence(3),
                             'category_id' => $category->id,
                             'subcategory_id' => $subcategory->id,
@@ -36,7 +36,7 @@ class ProductSeeder extends Seeder
                 
                 else {
                     Product::create ([
-                        'name' => Str::slug($subcategory->name, '_'),
+                        'name' => $subcategory->name,
                         'description' => fake()->paragraph(5),
                         'category_id' => $category->id,
                         'subcategory_id' => $subcategory->id,

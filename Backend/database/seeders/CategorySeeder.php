@@ -38,9 +38,9 @@ class CategorySeeder extends Seeder
 
             'Zelenina' => [
                 'Zemiaky' => ['Mozart', 'Sunita', 'Agria'],
-                'Cibule',
-                'Mrkvy',
-                'Tekvice',
+                'Cibuľa',
+                'Mrkva',
+                'Tekvica',
                 'Reďkovky',
                 'Papriky' => ['Červené', 'Žlté', 'Zelené'],
                 'Paradajky' => ['Cherry', 'Roma', 'Býčie srdce'],
@@ -50,26 +50,26 @@ class CategorySeeder extends Seeder
             'Mliečne výrobky' => [
                 'Mlieko' => ['Kravské', 'Kozie', 'Ovčie'],
                 'Vajcia',
-                'Syry',
-                'Jogurty',
+                'Syr',
+                'Jogurt',
                 'Tvaroh'
             ],
 
             'Mäsové výrobky' => [
                 'Kuracie' => ['Prsia', 'Stehná'],
                 'Hovädzie' => ['Sviečkovica', 'Steaky'],
-                'Bravčové'
+                'Bravčové mäso'
             ],
 
             'Pečivo a obilniny' => [
                 'Múka' => ['Pšeničná', 'Špaldová', 'Ražná'],
-                'Chleby' => ['Kváskový', 'Ražný'],
+                'Chlieb' => ['Kváskový', 'Ražný'],
                 'Bagety'
             ],
 
             'Domáce nápoje' => [
-                'Džúsy' => ['Pomarančové', 'Jablkové', 'Broskyňové'],
-                'Syrupy'        => ['Bazové', 'Malinové'],
+                'Džús' => ['Pomarančový', 'Jablkový', 'Broskyňový'],
+                'Syrup' => ['Bazový', 'Malinový'],
             ],
 
             'Včelie produkty' => [
@@ -81,20 +81,23 @@ class CategorySeeder extends Seeder
             ],
 
             'Bylinky' => [
-                'Varenie' => ['Bazalka', 'Tymián', 'Oregano', 'Rozmarín', 'Medvedí cesnak'],
-                'Čaje' => ['Mäta', 'Harmanček', 'Medovka'],
-                'Liečivé'
+                'Bazalka', 
+                'Tymián', 
+                'Oregano', 
+                'Rozmarín', 
+                'Medvedí cesnak',
+                'Čaj' => ['Mäta', 'Harmanček', 'Medovka'],
             ],
 
             'Domáce zaváraniny' => [
-                'Džemy' => ['Marhuľové', 'Jahodové', 'Malinové'],
-                'Kompóty' => ['Broskyňové', 'Slivkové'],
+                'Džem' => ['Marhuľový', 'Jahodový', 'Malinový'],
+                'Kompót' => ['Broskyňový', 'Slivkový'],
             ],
 
             'Pestovanie' => [
                 'Semená' => ['Ovocie', 'Zelenina', 'Bylinky', 'Kvetiny'],
-                'Hnojivá',
-                'Sadenice'
+                'Hnojivo',
+                'Sadenica'
             ],
         ];
 

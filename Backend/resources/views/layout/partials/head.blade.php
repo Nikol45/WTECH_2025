@@ -8,4 +8,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="{{ asset('style.css') }}">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const routes = {
+        profile: "{{ route('profile.index') }}",
+        profileHistory: "{{ route('profile-history.index') }}",
+        profileReviews: "{{ route('profile-reviews.index') }}",
+    };
+</script>
 <script src="{{ asset('script.js') }}" defer></script>
