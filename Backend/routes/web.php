@@ -146,13 +146,21 @@ Route::get('/test-delivery', function () {
 
     return redirect()->route('cart-delivery.index');
 });
+
+
+use Illuminate\Support\Carbon;
+
 Route::get('/test-cart-packages', function () {
+    // Nastavíme fake balíky s expected_delivery_date (napr. dnes + 3 dni)
+    $baseDate = Carbon::now()->addDays(3)->format('Y-m-d');
+
     Session::put('cart.packages', [
         [
             'farm_id' => 1,
             'farm_name' => 'Včelí raj',
             'only_personal' => true,
             'total_price' => 15.92,
+            'expected_delivery_date' => $baseDate,
             'products' => [
                 [
                     'name' => 'Kvetový med 500g',
@@ -179,6 +187,7 @@ Route::get('/test-cart-packages', function () {
             'farm_name' => 'FruitLand',
             'only_personal' => false,
             'total_price' => 24.98,
+            'expected_delivery_date' => $baseDate,
             'products' => [
                 [
                     'name' => 'Jablká Evelina 1kg',
@@ -214,7 +223,9 @@ Route::get('/test-cart-packages', function () {
         ],
     ]);
 
+    // Vymažeme staré záznamy o doprave
     Session::forget('cart.delivery');
 
+    // Presmeruj na výber dopravy
     return redirect()->route('cart-delivery.index');
 });

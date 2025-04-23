@@ -77,8 +77,8 @@
 
         <div id="delivery-prices"
              @foreach ($deliveryMethods as $key => $label)
-                 data-price-{{ $key }}="{{ number_format(App\Http\Controllers\CartDeliveryController::DELIVERY_METHODS[$key]['price'], 2, ',', ' ') }}"
-                 data-eta-{{ $key }}="{{ App\Http\Controllers\CartDeliveryController::DELIVERY_METHODS[$key]['eta'] }}"
+                 data-price-{{ $key }}="{{ number_format($deliveryMethods[$key]['price'], 2, ',', ' ') }}"
+                data-eta-{{ $key }}="{{ $deliveryMethods[$key]['eta'] }}"
              @endforeach
         ></div>
 
@@ -98,7 +98,7 @@
                            value="{{ $value }}"
                     {{ (old('deliveryMethod') ?? $selectedDelivery) === $value ? 'checked' : '' }}
 
-                    <label class="form-check-label" for="delivery_{{ $value }}">{{ $label }}</label>
+                    <label class="form-check-label" for="delivery_{{ $value }}">{{ $label['label'] }}</label>
                 </div>
             @endforeach
 
