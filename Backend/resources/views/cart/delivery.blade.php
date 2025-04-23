@@ -12,17 +12,14 @@
             <span class="me-1">←</span> Späť na údaje
         </a>
 
-
         <h2 class="fw-bold mb-4">Vyberte spôsob dopravy</h2>
 
         {{-- ---------- ZÁSIELKY Z FARIEM ---------- --}}
         @foreach ($packages as $package)
             <div class="package-products border rounded-3 p-3 pt-4 mb-4">
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h5 class="fw-bold mb-0">Zásielka z&nbsp;farmy {{ $package['farm_name'] }}</h5>
-                    @if(!empty($package['note']))
-                        <div class="text-muted mx-2">{{ $package['note'] }}</div>
-                    @endif
+                    <h5 class="fw-bold mb-0">Zásielka z farmy {{ $package['farm_name'] }}</h5>
+                    @if($package['only_personal'] ?? false)<div class="text-danger small">Doručenie nie je možné, len osobný odber.</div>@endif
                 </div>
 
                 {{-- Karusel produktov --}}
@@ -48,7 +45,7 @@
                                             <h5 class="card-title truncate-ellipsis px-2">{{ $product['name'] }}</h5>
                                             <div class="d-flex align-items-center justify-content-between px-2 mb-2">
                                                 <span class="price fw-bold">{{ $product['price'] }}</span>
-                                                <span class="counter">{{ $product['quantity'] }}</span>
+                                                <span class="counter">{{ $product['quantity'] }}ks</span>
                                             </div>
                                         </div>
                                     </div>
@@ -59,14 +56,7 @@
                     </div>
                 </div>
 
-                <div class="my-2 mx-3 d-flex justify-content-between align-items-center">
-                    <button class="btn btn-outline-secondary btn-sm p-2 px-3 d-flex align-items-center" disabled>
-                        {{ $package['delivery_label'] }}
-                        <img src="{{ asset('images/icons/locker.png') }}" alt="lock" class="small-icon ms-3">
-                    </button>
-
-                    <h5 class="fw-bold mb-0">Dokopy: {{ $package['total_price'] }}</h5>
-                </div>
+                <h5 class="fw-bold mb-0 my-2 mx-3 text-end">Dokopy: {{ $package['total_price'] }}</h5>
             </div>
         @endforeach
 
@@ -76,6 +66,22 @@
             <span class="fw-bold">{{ $totalWithoutDelivery }}</span>
         </h5>
         <hr class="mt-4" />
+
+{{--        <div id="delivery-prices"--}}
+{{--             data-gls-standard="{{ App\Http\Controllers\CartDeliveryController::deliveryPrices()['GLS_STANDARD'] }}"--}}
+{{--             data-gls-express="{{ App\Http\Controllers\CartDeliveryController::deliveryPrices()['GLS_EXPRESS'] }}"--}}
+{{--             data-personal="{{ App\Http\Controllers\CartDeliveryController::deliveryPrices()['PERSONAL'] }}"--}}
+{{--             data-cod="{{ App\Http\Controllers\CartDeliveryController::deliveryPrices()['COD'] }}"--}}
+{{--             data-total="{{ $totalWithoutDelivery }}">--}}
+{{--        </div>--}}
+
+        <div id="delivery-prices"
+             @foreach ($deliveryMethods as $key => $label)
+                 data-price-{{ $key }}="{{ number_format(App\Http\Controllers\CartDeliveryController::DELIVERY_METHODS[$key]['price'], 2, ',', ' ') }}"
+                 data-eta-{{ $key }}="{{ App\Http\Controllers\CartDeliveryController::DELIVERY_METHODS[$key]['eta'] }}"
+             @endforeach
+        ></div>
+
 
         {{-- ---------- FORMULÁR – DOPRAVA + PLATBA ---------- --}}
         <form method="POST" action="{{ route('cart-delivery.store') }}">
@@ -97,15 +103,16 @@
             @endforeach
 
             {{-- Info o doprave --}}
-            <div id="deliveryRow" class="border p-3 mb-4 {{ $selectedDelivery ? '' : 'd-none' }}">
-                <p class="mb-1">Cena dopravy: <strong>{{ $deliveryPrice }}</strong></p>
-                <p class="text-muted my-2">Predpokladaný dátum doručenia: {{ $deliveryEta }}</p>
+            <div id="deliveryRow" class="border p-3 mb-4 d-none">
+                <p class="mb-1">Cena dopravy: <strong class="delivery-price"></strong></p>
+                <p class="text-muted my-2">Predpokladaný dátum doručenia: <span class="delivery-eta"></span></p>
             </div>
 
             {{-- === Platba === --}}
-            <h5 class="fw-bold mb-3">Vyberte spôsob platby</h5>
+            <h5 class="fw-bold my-3">Vyberte spôsob platby</h5>
             @foreach($paymentMethods as $value => $label)
-                <div class="form-check mb-2">
+                <div id="wrapper_payment_{{ $value }}"
+                class="form-check mb-2 {{ in_array($value, ['cash_on_delivery', 'cash_on_pickup']) ? 'd-none' : '' }}">
                     <input class="form-check-input"
                            type="radio"
                            name="paymentMethod"
@@ -120,18 +127,17 @@
             <div id="priceRow" class="border p-3 my-3 {{ $showPriceRow ? '' : 'd-none' }}">
                 <p class="mb-1">Cena tovaru: <strong>{{ $totalWithoutDelivery }}</strong></p>
                 <p class="mb-1 {{ !$deliveryPrice ? 'd-none' : '' }}" id="price_deliveryRow">
-                    Cena dopravy: <strong>{{ $deliveryPrice }}</strong>
+                    Cena dopravy: <strong class="delivery-price"></strong>
                     <span class="text-warning mx-3 {{ !$showDeliveryWarning ? 'd-none' : '' }}" id="delivery_warningRow">
                         Pozor! v košíku sú aj zásielky len na osobný odber.
                     </span>
                 </p>
 
                 <p class="mb-1 {{ $selectedPayment !== 'cash_on_delivery' ? 'd-none' : '' }}" id="price_dobierkaRow">
-                    Cena za dobierku: <strong>{{ $codPrice }}</strong>
+                    Cena za dobierku:
+                    <strong class="dobierka-price">{{ number_format(\App\Http\Controllers\CartDeliveryController::COD_PRICE, 2, ',', ' ') }} €</strong>
                 </p>
-
-
-                <p class="mb-0">Celkom: <strong>{{ $grandTotal }}</strong></p>
+                <p class="mb-0">Celkom: <strong id="grand-total" data-base="{{ floatval(str_replace(',', '.', $totalWithoutDelivery)) }}">{{ $totalWithoutDelivery }}</strong> €</p>
             </div>
 
             {{-- Tlačidlo: pokračovať --}}

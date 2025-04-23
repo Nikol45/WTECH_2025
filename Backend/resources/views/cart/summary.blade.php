@@ -15,12 +15,11 @@
         </a>
 
         <div class="row g-4">
-            {{-- ---------- ĽAVÝ STĹPEC – OSOBNÉ ÚDAJE ---------- --}}
+            {{-- Ľavý stĺpec: col-12 na mobiloch, col-md-8 na desktopoch --}}
             <div class="col-12 col-md-6">
                 <div class="p-3 border-0 shadow-sm">
                     <h5 class="fw-bold mb-3">Osobné údaje</h5>
 
-                    {{-- Základné údaje --}}
                     <div class="ms-2 mb-3">
                         <p class="mb-1"><strong>Meno:</strong> {{ $customer['name'] }}</p>
                         <p class="mb-1"><strong>Email:</strong> {{ $customer['email'] }}</p>
@@ -31,8 +30,8 @@
                     {{-- Fakturačná adresa --}}
                     <h6 class="fw-bold ms-2">Fakturačná adresa</h6>
                     <div class="ms-2 mb-3">
-                        <p class="mb-1">{{ $billing['street'] }}</p>
-                        <p class="mb-1">{{ $billing['zip'] }} {{ $billing['city'] }}, {{ $billing['country'] }}</p>
+                        <p class="mb-1">{{ $billing['street'] ?? '' }}</p>
+                        <p class="mb-1">{{ $billing['zip'] ?? '' }} {{ $billing['city'] ?? '' }}, {{ $billing['country'] ?? '' }}</p>
                     </div>
                     <hr class="my-3"/>
 
@@ -40,8 +39,8 @@
                     @isset($deliveryAddress)
                         <h6 class="fw-bold ms-2">Dodacia adresa</h6>
                         <div class="ms-2 mb-3">
-                            <p class="mb-1">{{ $deliveryAddress['street'] }}</p>
-                            <p class="mb-1">{{ $deliveryAddress['zip'] }} {{ $deliveryAddress['city'] }}, {{ $deliveryAddress['country'] }}</p>
+                            <p class="mb-1">{{ $deliveryAddress['street'] ?? '' }}</p>
+                            <p class="mb-1">{{ $deliveryAddress['zip'] ?? '' }} {{ $deliveryAddress['city'] ?? '' }}, {{ $deliveryAddress['country'] ?? '' }}</p>
                         </div>
                         <hr class="my-3"/>
                     @endisset
@@ -52,12 +51,14 @@
                         <div class="ms-2 mb-3">
                             <p class="mb-1">IČO: {{ $company['ico'] }}</p>
                             <p class="mb-1">Názov spoločnosti: {{ $company['name'] }}</p>
-                            @isset($company['vat'])<p class="mb-1">IČ DPH: {{ $company['vat'] }}</p>@endisset
+                            @isset($company['vat'])
+                                <p class="mb-1">IČ DPH: {{ $company['vat'] }}</p>
+                            @endisset
                         </div>
                         <hr class="my-3"/>
                     @endisset
 
-                    {{-- Poznámka pre kuriéra (ak existuje) --}}
+                    {{-- Poznámka pre kuriéra --}}
                     @isset($note)
                         <h6 class="fw-bold ms-2">Poznámka pre kuriéra</h6>
                         <div class="ms-2 mb-3">
@@ -69,12 +70,11 @@
                 </div>
             </div>
 
-            {{-- ---------- PRAVÝ STĹPEC – SUMARIZÁCIA OBJEDNÁVKY ---------- --}}
+            {{-- Pravý stĺpec: col-12 na mobiloch, col-md-4 na desktopoch --}}
             <div class="col-12 col-md-6">
                 <div class="border-0 shadow-sm">
                     <h5 class="fw-bold mb-3">Sumarizácia objednávky</h5>
 
-                    {{-- Zásielky podľa fariem --}}
                     @foreach($farms as $farm)
                         <div class="p-3 bg-light mb-3 rounded-2">
                             <strong>{{ $farm['name'] }}</strong>
@@ -88,8 +88,11 @@
 
                             <p class="mb-0 mt-3 text-muted">
                                 <em>Doprava: {{ $farm['shipping'] }}</em>
-                                <span class="float-end">{{ $farm['shipping_price'] }}</span>
+                                <span class="float-end">
+                            {{ Str::lower($farm['shipping']) === 'osobný odber' ? $farm['shipping_price'] : '- €' }}
+                                </span>
                             </p>
+
                         </div>
                     @endforeach
 
@@ -100,7 +103,6 @@
                         <h5 class="fw-bold mt-3">Celkom na úhradu: {{ $summary['total'] }}</h5>
                     </div>
 
-                    {{-- Odoslať objednávku --}}
                     <form method="POST" action="{{ route('cart-summary.store') }}">
                         @csrf
                         <button class="btn btn-primary w-100 mt-3">

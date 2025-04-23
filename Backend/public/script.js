@@ -201,10 +201,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const deliveryGlsEx = document.querySelector('input[id="delivery_GLS_express"]');
     const deliveryPersonal = document.querySelector('input[id="delivery_personal"]');
 
-    const payDobierkaWrapper = document.getElementById('payDobierkaWrapper');
+    const payDobierkaWrapper = document.getElementById('wrapper_payment_cash_on_delivery');
+    const payPickupWrapper = document.getElementById('wrapper_payment_cash_on_pickup');
     const priceDeliveryRow = document.getElementById('price_deliveryRow');
     const priceDobierkaRow = document.getElementById('price_dobierkaRow');
+    const payPickup = document.querySelector('input[name="paymentMethod"][value="cash_on_pickup"]');
     const payDobierka = document.querySelector('input[name="paymentMethod"][value="cash_on_delivery"]');
+
     const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
 
     function updateDeliveryDisplay() {
@@ -216,16 +219,37 @@ document.addEventListener('DOMContentLoaded', () => {
             priceRow.classList.remove('d-none');
             priceDeliveryRow.classList.remove('d-none');
             payDobierkaWrapper.classList.remove('d-none');
+            payPickupWrapper.classList.add('d-none');
         } else if (isPersonal) {
             deliveryRow.classList.add('d-none');
             priceRow.classList.remove('d-none');
             priceDeliveryRow.classList.add('d-none');
             payDobierkaWrapper.classList.add('d-none');
+            payPickupWrapper.classList.remove('d-none');
+            payDobierka.checked = false;
         } else {
             deliveryRow.classList.add('d-none');
             priceRow.classList.add('d-none');
             priceDeliveryRow.classList.add('d-none');
             payDobierkaWrapper.classList.add('d-none');
+            payPickupWrapper.classList.add('d-none');
+            payPickup.checked = false;
+        }
+        const pricesEl = document.getElementById('delivery-prices');
+        const selected = document.querySelector('input[name="deliveryMethod"]:checked')?.value;
+
+        if (selected && pricesEl) {
+            const price = pricesEl.getAttribute(`data-price-${selected}`);
+            const eta = pricesEl.getAttribute(`data-eta-${selected}`);
+
+            const priceElem = document.querySelector('#deliveryRow .delivery-price');
+            const etaElem = document.querySelector('#deliveryRow .delivery-eta');
+
+            const summaryPriceElem = document.querySelector('#price_deliveryRow .delivery-price');
+
+            if (priceElem) priceElem.textContent = price + ' €';
+            if (etaElem) etaElem.textContent = eta;
+            if (summaryPriceElem) summaryPriceElem.textContent = price + ' €';
         }
 
         // Obnov zobrazenie dobierky
@@ -238,7 +262,24 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             priceDobierkaRow.classList.add('d-none');
         }
+
+        // ===== Prepočet Celkom =====
+        const grandTotalElem = document.getElementById('grand-total');
+        if (grandTotalElem) {
+            const base = parseFloat(grandTotalElem.dataset.base) || 0;
+
+            const deliveryText = document.querySelector('#price_deliveryRow .delivery-price')?.textContent?.trim();
+            const delivery = deliveryText ? parseFloat(deliveryText.replace('€', '').replace(',', '.')) : 0;
+
+            const codText = document.querySelector('#price_dobierkaRow .dobierka-price')?.textContent?.trim();
+            const cod = (payDobierka.checked && codText) ? parseFloat(codText.replace('€', '').replace(',', '.')) : 0;
+
+            const sum = base + delivery + cod;
+
+            grandTotalElem.textContent = sum.toFixed(2).replace('.', ',');
+        }
     }
+
 
     [deliveryGlsSt, deliveryGlsEx, deliveryPersonal].forEach(input => {
         input?.addEventListener('change', updateDeliveryDisplay);
@@ -248,6 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
         radio.addEventListener('change', updateDobierkaDisplay);
     });
 
+    updateDeliveryDisplay()
 
     // ============= SCROLLOVANIE SEKCII PRODUKTOV ==============
 
