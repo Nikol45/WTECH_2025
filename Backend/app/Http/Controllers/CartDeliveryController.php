@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
+use App\Models\CartItem;
 
 class CartDeliveryController extends Controller
 {
@@ -14,7 +18,7 @@ class CartDeliveryController extends Controller
     private const PRICE_PERSONAL     = 0.00;
     public  const COD_PRICE          = 0.85;
 
-    // Generované pri volaní bootDeliveryMethods()
+    // Dynamicky plnené podľa balíkov
     public static array $DELIVERY_METHODS = [];
 
     private const PAYMENT_METHODS = [
@@ -23,26 +27,78 @@ class CartDeliveryController extends Controller
         'cash_on_delivery' => 'Dobierka',
         'cash_on_pickup'   => 'Platba v hotovosti',
     ];
-
-    public function index()
+    public function index(): View
     {
-        $cart           = Session::get('cart', []);
-        $packages       = $cart['packages'] ?? [];
-        $savedDelivery  = $cart['delivery'] ?? [];
+        if (Auth::check()) {
+            /* Prihlásený používateľ – košík z DB ---------------------- */
+            $userId = Auth::id();
 
-        // Inicializuj metódy dopravy aj s eta podľa balíkov
+            $cartItems = CartItem::with('farmProduct.farm')
+                ->where('user_id', $userId)
+                ->get();
+
+            $packages = $cartItems->groupBy(fn($item) => $item->farmProduct->farm->id)
+                ->map(function ($items, $farmId) {
+                    $farm = $items->first()->farmProduct->farm;
+                    $expectedDate = now()->addDays($farm->avg_delivery_time ?? 2)->toDateString();
+
+                    return [
+                        'farm_id'                => $farmId,
+                        'farm_name'              => $farm->name,
+                        'only_personal'          => !$farm->delivery_available,
+                        'expected_delivery_date' => $expectedDate,
+                        'total_price'            => $items->sum(fn($item) =>
+                            $item->farmProduct->price_sell_quantity * $item->quantity
+                        ),
+                        'products'               => [], // prihlásený používateľ ich nepotrebuje v tomto kroku
+                    ];
+                })
+                ->values()
+                ->toArray();
+
+            $savedDelivery = Session::get('cart.delivery', []);
+        } else {
+            /* Hosť – košík v session ---------------------------------- */
+            $cart          = Session::get('cart', []);
+            $packagesRaw   = $cart['packages'] ?? [];
+            $savedDelivery = $cart['delivery'] ?? [];
+
+            $packages = collect($packagesRaw)->map(function ($pkg) {
+                $farm = \App\Models\Farm::find($pkg['farm_id']);
+                $products = $pkg['products'] ?? [];
+
+                $total = collect($products)->sum(function ($p) {
+                    $price = floatval(str_replace(',', '.', str_replace(' €', '', $p['price'] ?? '0')));
+                    return $price * ($p['quantity'] ?? 1);
+                });
+
+                return [
+                    'farm_id'                => $farm->id,
+                    'farm_name'              => $farm->name,
+                    'only_personal'          => !$farm->delivery_available,
+                    'expected_delivery_date' => $pkg['expected_delivery_date'] ?? now()->addDays($farm->avg_delivery_time ?? 3)->toDateString(),
+                    'total_price'            => round($total, 2),
+                    'products'               => $products,
+                ];
+            })->toArray();
+        }
+
+        // Inicializuj metódy dopravy podľa balíkov
         self::bootDeliveryMethods($packages);
 
         $selectedDelivery = $savedDelivery['deliveryMethod'] ?? null;
-        $selectedPayment  = $savedDelivery['paymentMethod'] ?? null;
+        $selectedPayment  = $savedDelivery['paymentMethod']  ?? null;
 
-        $totalValue    = collect($packages)->sum(fn($pkg) => $pkg['total_price'] ?? 0);
+        $totalValue    = collect($packages)->sum(fn($p) => $p['total_price'] ?? 0);
         $deliveryValue = $this->getDeliveryPrice($selectedDelivery);
         $codValue      = $this->getCodPrice($selectedPayment);
         $grandTotal    = $totalValue + $deliveryValue + $codValue;
 
-        $showDeliveryWarning = collect($packages)
-            ->contains(fn($pkg) => $pkg['only_personal'] ?? false);
+        $showDeliveryWarning = collect($packages)->contains(
+            fn($p) => $p['only_personal'] ?? false
+        );
+
+        $onlyPersonalAvailable = collect($packages)->every(fn($p) => $p['only_personal'] ?? false);
 
         return view('cart.delivery', [
             'packages'              => $packages,
@@ -57,17 +113,64 @@ class CartDeliveryController extends Controller
             'deliveryEta'           => $this->getDeliveryEta($selectedDelivery),
             'showPriceRow'          => $selectedDelivery && $selectedPayment,
             'showDeliveryWarning'   => $showDeliveryWarning,
+            'onlyPersonalAvailable' => $onlyPersonalAvailable,
         ]);
     }
-
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        $validated      = $this->validateInput($request);
-        $packages       = Session::get('cart.packages', []);
-        $deliveryMethod = $validated['deliveryMethod'];
-        $paymentMethod  = $validated['paymentMethod'];
+        if (Auth::check()) {
+            $userId = Auth::id();
 
-        self::bootDeliveryMethods($packages);
+            $cartItems = CartItem::with('farmProduct.farm')
+                ->where('user_id', $userId)
+                ->get();
+
+            $packages = $cartItems->groupBy(fn($item) => $item->farmProduct->farm->id)
+                ->map(function ($items, $farmId) {
+                    $farm = $items->first()->farmProduct->farm;
+                    $expectedDate = now()->addDays($farm->avg_delivery_time ?? 2)->toDateString();
+
+                    return [
+                        'farm_id'                => $farmId,
+                        'farm_name'              => $farm->name,
+                        'only_personal'          => !$farm->delivery_available,
+                        'expected_delivery_date' => $expectedDate,
+                        'total_price'            => $items->sum(fn($item) =>
+                            $item->farmProduct->price_sell_quantity * $item->quantity
+                        ),
+                    ];
+                })
+                ->values()
+                ->toArray();
+        } else {
+            $cart           = Session::get('cart', []);
+            $packagesRaw    = $cart['packages'] ?? [];
+
+            $packages = collect($packagesRaw)->map(function ($pkg) {
+                $farm = \App\Models\Farm::find($pkg['farm_id']);
+                $products = $pkg['products'] ?? [];
+
+                $total = collect($products)->sum(function ($p) {
+                    $price = floatval(str_replace(',', '.', str_replace(' €', '', $p['price'] ?? '0')));
+                    return $price * ($p['quantity'] ?? 1);
+                });
+
+                return [
+                    'farm_id'                => $farm->id,
+                    'farm_name'              => $farm->name,
+                    'only_personal'          => !$farm->delivery_available,
+                    'expected_delivery_date' => $pkg['expected_delivery_date'] ?? now()->addDays($farm->avg_delivery_time ?? 3)->toDateString(),
+                    'total_price'            => round($total, 2),
+                    'products'               => $products,
+                ];
+            })->toArray();
+        }
+
+        self::bootDeliveryMethods($packages); // musí byť pred validáciou
+
+        $validated = $this->validateInput($request);
+        $deliveryMethod = $validated['deliveryMethod'] ?? (collect($packages)->every(fn($p) => $p['only_personal']) ? 'personal' : null);
+        $paymentMethod  = $validated['paymentMethod'];
 
         $deliveryValue = $this->getDeliveryPrice($deliveryMethod);
         $codValue      = $this->getCodPrice($paymentMethod);
@@ -91,7 +194,8 @@ class CartDeliveryController extends Controller
         return redirect()->route('cart-summary.index');
     }
 
-    public function update(Request $request)
+    // Update deleguje na store pre RESTful konzistenciu
+    public function update(Request $request): RedirectResponse
     {
         return $this->store($request);
     }
@@ -102,13 +206,6 @@ class CartDeliveryController extends Controller
             'deliveryMethod' => 'required|string|in:' . implode(',', array_keys(self::$DELIVERY_METHODS)),
             'paymentMethod'  => 'required|string|in:' . implode(',', array_keys(self::PAYMENT_METHODS)),
         ]);
-    }
-
-    private function getDeliveryLabels(): array
-    {
-        return collect(self::$DELIVERY_METHODS)->mapWithKeys(
-            fn($data, $key) => [$key => $data['label']]
-        )->toArray();
     }
 
     private function getDeliveryPrice(?string $method): float
@@ -131,13 +228,19 @@ class CartDeliveryController extends Controller
         return number_format($value, 2, ',', ' ') . ' €';
     }
 
-    // ===== Inicializácia DELIVERY_METHODS s dynamickým eta =====
     public static function bootDeliveryMethods(array $packages): void
     {
         $baseDate = collect($packages)
             ->pluck('expected_delivery_date')
             ->filter()
-            ->map(fn($d) => Carbon::parse($d))
+            ->map(static function ($d) {
+                try {
+                    return Carbon::parse($d);
+                } catch (\Throwable $e) {
+                    return null;
+                }
+            })
+            ->filter()
             ->sort()
             ->first();
 
@@ -151,12 +254,12 @@ class CartDeliveryController extends Controller
 
         self::$DELIVERY_METHODS = [
             'GLS_standard' => [
-                'label' => 'Doručenie na adresu cez GLS Standard',
+                'label' => 'Doručenie na adresu cez GLS standard',
                 'price' => self::PRICE_GLS_STANDARD,
                 'eta'   => $etaStandard,
             ],
             'GLS_express' => [
-                'label' => 'Doručenie na adresu cez GLS Express',
+                'label' => 'Doručenie na adresu cez GLS express',
                 'price' => self::PRICE_GLS_EXPRESS,
                 'eta'   => $etaExpress,
             ],
