@@ -13,6 +13,15 @@
         <div class="products-carousel-container">
             <div class="products-row" id="{{ $id }}">
                 @foreach ($products ?? [] as $product)
+
+                @php
+                    $ratingVal = $product['rating'] ?? 0;
+                    $rounded   = round($ratingVal * 2) / 2;
+                    $fullStars = floor($rounded);
+                    $halfStars = ($rounded - $fullStars) === 0.5 ? 1 : 0;
+                    $emptyStars = 5 - $fullStars - $halfStars;
+                @endphp
+
                     <div class="col">
                         <div class="card text-start p-3">
                             <div class="mb-3">
@@ -25,9 +34,9 @@
                             </div>
 
                             <div class="card-body">
-                            <a href="{{ route('farm-products.show', $product['id']) }}" class="text-decoration-none">
-                                <h5 class="card-title truncate-ellipsis px-2">{{ $product['name'] }}</h5>
-                            </a>
+                                <a href="{{ route('farm-products.show', $product['id']) }}" class="text-decoration-none">
+                                    <h5 class="card-title truncate-ellipsis px-2">{{ $product['name'] }}</h5>
+                                </a>
 
                                 <div class="price-container">
                                     <span class="price fw-bold px-2">{{ $product['price'] }}</span>
@@ -37,13 +46,20 @@
                                     <span class="price-per">{{ $product['price_per'] }}</span>
                                 </div>
 
-                                <div class="stars mb-3 mt-3">
-                                    @for ($i = 0; $i < 5; $i++)
-                                        <span class="material-icons star {{ $i < $product['rating'] ? 'filled' : 'empty' }}">
-                                            {{ $i < $product['rating'] ? 'star' : 'star_outline' }}
-                                        </span>
+                                <div class="stars mb-2 mt-2">
+                                    @for($i = 0; $i < $fullStars; $i++)
+                                    <span class="material-icons star filled">star</span>
                                     @endfor
-                                    <span class="star-count ms-2">({{ $product['rating'] }})</span>
+
+                                    @if($halfStars)
+                                    <span class="material-icons star half-filled">star_half</span>
+                                    @endif
+
+                                    @for($i = 0; $i < $emptyStars; $i++)
+                                    <span class="material-icons star empty">star_outline</span>
+                                    @endfor
+
+                                    <span class="star-count ms-2">({{ $ratingVal }})</span>
                                 </div>
 
                                 <div class="d-flex align-items-center gap-2 mt-2">

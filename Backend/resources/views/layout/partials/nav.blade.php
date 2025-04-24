@@ -241,7 +241,7 @@
 
             <!-- Search -->
             <div class="custom-search-container d-flex justify-content-start flex-grow-1 mx-3 my-2 my-md-0">
-                <form action="{{ route('products.search') }}" method="GET" class="position-relative">
+                <form action="{{ route('products.index') }}" method="GET" class="position-relative">
                     <input type="text" name="q" class="form-control pe-5" placeholder="Vyhľadávanie..." value="{{ request('q') }}">
                     <button class="btn custom-button position-absolute top-50 end-0 translate-middle-y me-2 p-0" type="submit">
                         <span class="material-icons">search</span>
@@ -280,7 +280,7 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <form action="{{ route('products.search') }}" method="GET" class="mb-3">
+        <form action="{{ route('products.index') }}" method="GET" class="mb-3">
             <input type="text" name="q" class="form-control" placeholder="Vyhľadávanie..." value="{{ request('q') }}">
             <button class="btn custom-button subcategory-btn mt-2" type="submit">Hľadať</button>
         </form>
@@ -296,15 +296,21 @@
 <div class="categories-bar custom-fluid" id="categoriesBar">
     <div class="categories-container">
         <ul class="categories-list list-unstyled">
-            @foreach($navCategories as $category)
-                <li class="category-item">
-                    <a href="{{ route('products.index', ['category' => $category->id]) }}">
-                        <button class="btn category-btn">
-                            <img src="{{ asset('images/category/' . strtolower(Str::slug($category->name, '_')) . '.png') }}" alt="{{ $category->name }}">
-                            <br>
-                            <span>{{ mb_strtoupper($category->name) }}</span>
-                        </button>
-                    </a>
+            @foreach ($navCategories as $category)
+                <li class="category-item dropdown-holder">
+                    <button  class="btn category-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{ asset('images/category/' . strtolower(Str::slug($category->name, '_')) . '.png') }}" alt="{{ $category->name }}">
+                        <br>
+                        <span>{{ mb_strtoupper($category->name) }}</span>
+                    </button>
+
+                    @if ($category->subcategories->isNotEmpty())
+                        <ul class="dropdown-menu">
+                            @foreach ($category->subcategories as $sub)
+                                <li><a  class="dropdown-item" href="{{ route('products.index', ['subcategory' => $sub->id]) }}">{{ $sub->name }}</a></li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </li>
             @endforeach
         </ul>

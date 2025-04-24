@@ -14,6 +14,6 @@ class FarmProductSeeder extends Seeder
      */
     public function run(): void
     {
-        FarmProduct::factory(400)->create();
+        FarmProduct::factory(1000)->create();
     }
 }

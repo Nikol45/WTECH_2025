@@ -55,9 +55,10 @@ class HomeController extends Controller
         return $products->map(function ($fp) {
             $image = $fp->product->image;
 
-            $price = number_format($fp->price_sell_quantity, 2) . ' €';
-            $original = $fp->discount_percentage ? number_format($fp->price_sell_quantity * (100 + $fp->discount_percentage) / 100, 2) . ' €' : null;
-
+            $effective = $fp->price_sell_quantity * (100 - ($fp->discount_percentage ?? 0)) / 100;
+            $price = number_format($effective, 2) . ' €';
+            $original = $fp->discount_percentage ? number_format($fp->price_sell_quantity, 2) . ' €' : null;
+            
             return [
                 'id' => $fp->id,
                 'name' => $fp->product->name,

@@ -214,26 +214,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const isGLS = deliveryGlsSt?.checked || deliveryGlsEx?.checked;
         const isPersonal = deliveryPersonal?.checked;
 
-        if (isGLS) {
-            deliveryRow.classList.remove('d-none');
-            priceRow.classList.remove('d-none');
-            priceDeliveryRow.classList.remove('d-none');
-            payDobierkaWrapper.classList.remove('d-none');
-            payPickupWrapper.classList.add('d-none');
-        } else if (isPersonal) {
-            deliveryRow.classList.add('d-none');
-            priceRow.classList.remove('d-none');
-            priceDeliveryRow.classList.add('d-none');
-            payDobierkaWrapper.classList.add('d-none');
-            payPickupWrapper.classList.remove('d-none');
-            payDobierka.checked = false;
-        } else {
-            deliveryRow.classList.add('d-none');
-            priceRow.classList.add('d-none');
-            priceDeliveryRow.classList.add('d-none');
-            payDobierkaWrapper.classList.add('d-none');
-            payPickupWrapper.classList.add('d-none');
-            payPickup.checked = false;
+        if (deliveryRow && priceRow && priceDeliveryRow && payDobierkaWrapper && payPickupWrapper && payDobierka && payPickup) {
+            if (isGLS) {
+                deliveryRow.classList.remove('d-none');
+                priceRow.classList.remove('d-none');
+                priceDeliveryRow.classList.remove('d-none');
+                payDobierkaWrapper.classList.remove('d-none');
+                payPickupWrapper.classList.add('d-none');
+            } else if (isPersonal) {
+                deliveryRow.classList.add('d-none');
+                priceRow.classList.remove('d-none');
+                priceDeliveryRow.classList.add('d-none');
+                payDobierkaWrapper.classList.add('d-none');
+                payPickupWrapper.classList.remove('d-none');
+                payDobierka.checked = false;
+            } else {
+                deliveryRow.classList.add('d-none');
+                priceRow.classList.add('d-none');
+                priceDeliveryRow.classList.add('d-none');
+                payDobierkaWrapper.classList.add('d-none');
+                payPickupWrapper.classList.add('d-none');
+                payPickup.checked = false;
+            }
         }
         const pricesEl = document.getElementById('delivery-prices');
         const selected = document.querySelector('input[name="deliveryMethod"]:checked')?.value;
@@ -257,10 +259,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateDobierkaDisplay() {
-        if (payDobierka?.checked) {
-            priceDobierkaRow.classList.remove('d-none');
-        } else {
-            priceDobierkaRow.classList.add('d-none');
+        if (payDobierka && priceDobierkaRow) {
+            if (payDobierka?.checked) {
+                priceDobierkaRow.classList.remove('d-none');
+            } else {
+                priceDobierkaRow.classList.add('d-none');
+            }
         }
 
         // ===== Prepočet Celkom =====
@@ -886,13 +890,13 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', updatePlaceholders);
 
     //nastavenie posledne kliknutej stranky na aktivnu
-    document.querySelectorAll('.pagination .page-item').forEach(pageItem => {
+    /*document.querySelectorAll('.pagination .page-item').forEach(pageItem => {
         pageItem.addEventListener('click', function(e) {
             e.preventDefault();
             document.querySelectorAll('.pagination .page-item').forEach(item => item.classList.remove('active'));
             this.classList.add('active');
         });
-    });
+    });*/
 
     //===================== Product Detail ===========================//
 
@@ -1006,5 +1010,18 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    //pridanie a odstranenie classy submenu-open pre dropdowns kategorii
+    document.querySelectorAll('#categoriesBar .dropdown-toggle')
+        .forEach(btn=>{
+            btn.addEventListener('shown.bs.dropdown', () => {
+                document.getElementById('categoriesBar')
+                        .classList.add('submenu-open');
+            });
+            btn.addEventListener('hidden.bs.dropdown', () => {
+                document.getElementById('categoriesBar')
+                        .classList.remove('submenu-open');
+            });
+        });
 
 });

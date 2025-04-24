@@ -21,7 +21,7 @@ class FarmFactory extends Factory
     {
 
         $userId = \App\Models\User::where('admin_account', true)->inRandomOrder()->value('id');
-        $deliveryAvailable = $this->faker->boolean;
+        $deliveryAvailable = $this->faker->boolean(66);
 
         return [
             'user_id' => $userId,

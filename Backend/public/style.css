@@ -268,6 +268,34 @@ body.offcanvas-backdrop {
     margin-bottom: 0;
 }
 
+.categories-bar .dropdown-menu{ /*po dosiahnuti vysky 60vh aby mal scrollbar drodpown pre subcategories*/
+    max-height:60vh;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+}
+
+.categories-bar .dropdown-menu::-webkit-scrollbar{
+    width:6px;
+}
+
+.categories-bar .dropdown-menu::-webkit-scrollbar-thumb{
+    background:#bbb;
+    border-radius:3px;
+}
+
+.categories-bar.submenu-open{  /*ked je otvorene submenu tak aby sa necropplo*/
+    overflow:visible !important;
+    z-index:1070;
+}
+
+.category-item.dropdown-holder{
+    position:relative;
+}
+
+.categories-bar .dropdown-menu{
+    z-index:1080;
+}
+
 @media (min-width: 1200px) {  /* vsetkych 10 kategorii v jednom riadku*/
     .categories-list {
         grid-template-columns: repeat(10, 1fr);
@@ -496,6 +524,10 @@ body.offcanvas-backdrop {
     overflow: hidden;
     color: #FFD700;
     white-space: nowrap;
+}
+
+.stars-listing .material-icons .star.filled, .stars-listing .material-icons .star.half-filled{
+    color: #FFD700 !important;
 }
 
 .star-count {  /*pocet recenzii s danymi hviezdami v sekciach produktov*/
@@ -743,6 +775,7 @@ body.offcanvas-backdrop {
     font-size: 14px;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+    min-height: auto;
 }
 
 .filter-title {  /*nadpis sekcie filtrov*/
@@ -768,8 +801,8 @@ body.offcanvas-backdrop {
 }
 
 .filter-buttons {  /*obal na tie dve tlacidla*/
-    height: 35px;
     width: 100% !important;
+    align-content: flex-start;
 }
 
 .form-select {  /*zoradenie form*/
@@ -860,6 +893,7 @@ body.offcanvas-backdrop {
     color: var(--green-dark-muted) !important;
     border-radius: 0.375rem;
 }
+
 
 /* ---- PRODUCT DETAIL ---- */
 
