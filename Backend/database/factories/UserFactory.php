@@ -39,12 +39,13 @@ class UserFactory extends Factory
             'company_id' => $company ? $company->id : null,
             'icon_id' => $iconId,
             'name' => $this->faker->name,
+            'nickname' => $this->faker->unique()->userName,
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
             'password' => Hash::make(fake()->password()),
             'remember_token' => Str::random(10),
-            'phone_number' => $this->faker->unique()->phoneNumber,
-            'admin_account' => $this->faker->boolean(30)
+            'phone_number' => $this->faker->unique()->numerify('+421 ### ### ###'),
+            'has_admin_account' => $this->faker->boolean(30)
         ];
     }
 

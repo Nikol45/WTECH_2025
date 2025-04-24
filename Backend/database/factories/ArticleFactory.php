@@ -19,7 +19,7 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
 
-        $userId = \App\Models\User::where('admin_account', true)->inRandomOrder()->value('id');
+        $userId = \App\Models\User::where('has_admin_account', true)->inRandomOrder()->value('id');
 
         return [
             'user_id' => $userId,

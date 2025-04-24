@@ -239,9 +239,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    [deliveryGlsSt, deliveryGlsEx, deliveryPersonal].forEach(input => {
-        input.addEventListener('change', updateDeliveryDisplay);
-    });
+    if (deliveryGlsSt && deliveryGlsEx && deliveryPersonal) {
+        [deliveryGlsSt, deliveryGlsEx, deliveryPersonal].forEach(input => {
+            input.addEventListener('change', updateDeliveryDisplay);
+        });
+    }
 
     const payDobierka = document.getElementById('payDobierka');
     const price_dobierkaRow = document.getElementById('price_dobierkaRow');
@@ -852,13 +854,13 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', updatePlaceholders);
 
     //nastavenie posledne kliknutej stranky na aktivnu
-    document.querySelectorAll('.pagination .page-item').forEach(pageItem => {
+    /*document.querySelectorAll('.pagination .page-item').forEach(pageItem => {
         pageItem.addEventListener('click', function(e) {
             e.preventDefault();
             document.querySelectorAll('.pagination .page-item').forEach(item => item.classList.remove('active'));
             this.classList.add('active');
         });
-    });
+    });*/
 
     //===================== Product Detail ===========================//
 
@@ -875,31 +877,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    //funkcia tlacidiel na zmenu mnozstva pre kg aj pre ks
-    document.querySelectorAll('.quantity').forEach(container => {
-        const qtyInput = container.querySelector('.quantity-input-kg');
-        const btnPlus = container.querySelector('.plus');
-        const btnMinus = container.querySelector('.minus');
-
-        if (btnPlus && qtyInput) {
-            btnPlus.addEventListener('click', () => {
-                let currentValue = parseFloat(qtyInput.value) || 1;
-                qtyInput.value = (currentValue + 1).toFixed(2);
-            });
-        }
-
-        if (btnMinus && qtyInput) {
-            btnMinus.addEventListener('click', () => {
-                let currentValue = parseFloat(qtyInput.value) || 1;
-                if (currentValue > 1) {
-                    qtyInput.value = (currentValue - 1).toFixed(2);
-                }
-            });
-        }
-    });
+    //funkcia tlacidiel na zmenu mnozstva
 
     document.querySelectorAll('.quantity').forEach(container => {
-        const qtyInput = container.querySelector('.quantity-input-ks');
+        const qtyInput = container.querySelector('.integer-only');
         const btnPlus = container.querySelector('.plus');
         const btnMinus = container.querySelector('.minus');
 
@@ -920,32 +901,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    //zaokruhlenie na 2 desatiny pre kg a na 0 desatin pre ks
-    document.querySelectorAll('.quantity-input-kg').forEach(input => {
-        input.addEventListener('change', () => {
-            let value = parseFloat(input.value);
-            if (!isNaN(value)) {
-                input.value = value.toFixed(2);
-            }
-        });
-    });
-
-    document.querySelectorAll('.quantity-input-ks').forEach(input => {
+    document.querySelectorAll('.integer-only').forEach(input => {
         input.addEventListener('change', () => {
             let value = parseFloat(input.value);
             if (!isNaN(value)) {
                 input.value = value.toFixed(0);
-            }
-        });
-    });
-
-    //zmena textu v tlacidle pri vybrati ks alebo kg
-    document.querySelectorAll('.product-detail-dropdown .dropdown-item').forEach(item => {
-        item.addEventListener('click', (e) => {
-            const selectedText = e.target.textContent.trim();
-            const dropdownToggle = e.target.closest('.dropdown').querySelector('.dropdown-toggle');
-            if (dropdownToggle) {
-                dropdownToggle.textContent = selectedText;
             }
         });
     });

@@ -105,12 +105,15 @@
                             Použiť filter
                         </button>
 
-                        <a href="{{ route('products.index', request()->only(['subcategory','q'])) }}"
+                        <a href="{{ route('products.index', request()->only(['category','subcategory','q'])) }}"
                         class="btn custom-button filter-button">
                             Zrušiť
                         </a>
                     </div>
 
+                    @if(request('category'))
+                        <input type="hidden" name="category" value="{{ request('category') }}">
+                    @endif
                     @if(request('subcategory'))
                         <input type="hidden" name="subcategory" value="{{ request('subcategory') }}">
                     @endif

@@ -20,7 +20,7 @@ class FarmFactory extends Factory
     public function definition(): array
     {
 
-        $userId = \App\Models\User::where('admin_account', true)->inRandomOrder()->value('id');
+        $userId = \App\Models\User::where('has_admin_account', true)->inRandomOrder()->value('id');
         $deliveryAvailable = $this->faker->boolean(66);
 
         return [

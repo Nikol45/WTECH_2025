@@ -34,7 +34,7 @@
                             </div>
 
                             <div class="card-body">
-                                <a href="{{ route('farm-products.show', $product['id']) }}" class="text-decoration-none">
+                                <a href="{{ route('products.show', $product['id']) }}" class="text-decoration-none">
                                     <h5 class="card-title truncate-ellipsis px-2">{{ $product['name'] }}</h5>
                                 </a>
 

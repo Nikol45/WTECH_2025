@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\FarmProduct;
 use Illuminate\Http\Request;
+use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Subsubcategory;
 use App\Models\Article;
@@ -18,6 +19,7 @@ class ProductController extends Controller
      */
     public function index(Request $request) {
         $search = trim((string) $request->input('q', ''));
+        $clickedCat = $request->integer('category');  
         $clickedSubCat = $request->integer('subcategory');
         $selectedSubs  = $request->input('subcategories', []);
 
@@ -44,6 +46,12 @@ class ProductController extends Controller
                                                 ->where('subcategory_id', $clickedSubCat));
                     });
             })
+
+            ->when($clickedCat,
+                fn($q) => $q->whereHas('product',
+                    fn($qq) => $qq->where('category_id',$clickedCat)
+                )
+            )
 
             ->when($selectedSubs   !== [],
                 fn ($q) => $q->whereIn('product_id',
@@ -109,6 +117,10 @@ class ProductController extends Controller
             $headline = 'Výsledky pre kategóriu „'.
                         optional(Subcategory::find($clickedSubCat))->name.'“';
         }
+        elseif ($clickedCat) {
+            $headline = 'Výsledky pre kategóriu „'.
+                        optional(Category::find($clickedCat))->name.'“';
+        }
 
         $articles = Article::with(['user.farms', 'image'])
             ->inRandomOrder()
@@ -118,7 +130,7 @@ class ProductController extends Controller
         return view('products.index', compact(
             'products', 'filterSubsubs', 'selectedSubs',
             'priceMin', 'priceMax', 'rating',
-            'discountOnly', 'search', 'clickedSubCat', 'headline'
+            'discountOnly', 'search', 'clickedSubCat', 'clickedCat', 'headline'
         ), ['articles' => $this->mapArticles($articles)]);
     }
 
@@ -155,9 +167,53 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
-    {
-        //
+    public function show(FarmProduct $farmProduct) {
+        $farmProduct->load([
+            'product.category',
+            'product.subcategory',
+            'product.subsubcategory',
+            'product.image',
+            'images',
+            'farm',
+            'reviews'
+        ]);
+
+        $photos = $farmProduct->images->pluck('path')->toArray();
+        array_unshift($photos, $farmProduct->product->image->path);
+
+        $farmOptions = FarmProduct::with('farm')
+            ->where('product_id', $farmProduct->product_id)
+            ->get();
+
+        $selectedQuantity = $farmProduct->sell_quantity;
+        $units = $farmProduct->unit;
+        $farmOptions->each(function($fp){
+            $fp->distance = rand(1, 100);
+        });
+
+        $allReviews = $farmProduct->reviews;
+        $avgRating = $allReviews->avg('rating') ?? 0;
+        $countByStar = $allReviews
+            ->groupBy(fn($r) => (int) round($r->rating))
+            ->map
+            ->count()
+            ->toArray();
+
+        foreach (range(1,5) as $r) {
+            $countByStar[$r] = $countByStar[$r] ?? 0;
+        }
+
+        $rounded = round($avgRating * 2) / 2;
+        $fullStars = floor($rounded);
+        $halfStars = ($rounded - $fullStars) === 0.5 ? 1 : 0;
+        $emptyStars = 5 - $fullStars - $halfStars;
+
+        $articles = Article::with(['user.farms', 'image'])
+            ->inRandomOrder()
+            ->limit(10)
+            ->get();
+
+        return view('products.show', compact('farmProduct','photos','farmOptions', 'selectedQuantity', 'units', 'avgRating','countByStar','allReviews', 'fullStars','halfStars','emptyStars'), ['articles' => $this->mapArticles($articles)]);
     }
 
     /**
