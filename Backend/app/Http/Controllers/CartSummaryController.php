@@ -15,8 +15,6 @@ class CartSummaryController extends Controller
 {
     public function index()
     {
-        // Dáta z košíka
-
         $items    = Session::get('cart.items', []);
         $form     = Session::get('cart.form', []);
         $delivery = Session::get('cart.delivery', [
@@ -27,24 +25,20 @@ class CartSummaryController extends Controller
             'cod'           => 0.0,
         ]);
 
-        // Skupiny položiek podľa farmy
         $grouped = collect($items)->groupBy('farm_id');
-
         $farms = [];
+
         foreach ($grouped as $farmId => $farmItems) {
             $farm = Farm::find($farmId);
-            if (!$farm) {
-                continue; // neexistujúca farma
-            }
+            if (!$farm) continue;
 
-            // Zoznam položiek farmy
             $list = $farmItems->map(fn ($item) => [
                 'quantity' => $item['quantity'] ?? 1,
                 'label'    => $item['label']    ?? '',
                 'price'    => $this->formatPrice($item['price']),
             ])->toArray();
 
-            // Doprava pre farmu
+            $totalPrice = collect($farmItems)->sum(fn ($item) => ($item['price'] ?? 0) * ($item['quantity'] ?? 1));
             $methodKey = $delivery['methods'][$farmId] ?? 'personal';
 
             $shippingLabel = $methodKey === 'personal' || !$farm->delivery_available
@@ -55,7 +49,6 @@ class CartSummaryController extends Controller
                 ? $this->formatPrice(0.0)
                 : '- €';
 
-            // Pridaj do výstupu pre túto farmu
             $farms[] = [
                 'name'           => $farm->name,
                 'items'          => $list,
@@ -64,9 +57,8 @@ class CartSummaryController extends Controller
             ];
         }
 
-        // Súhrn cien
         $withoutVat    = collect($items)->sum('price');
-        $shippingTotal = collect($delivery['prices'])->max(); // kedže mame jedneho kuriera
+        $shippingTotal = collect($delivery['prices'])->max();
         $codTotal      = $delivery['cod'] ?? 0.0;
         $total         = $withoutVat + $shippingTotal + $codTotal;
 
@@ -77,29 +69,22 @@ class CartSummaryController extends Controller
             'total'       => $this->formatPrice($total),
         ];
 
-        // Informácie o zákazníkovi a adresách
-        $customer        = [
+        $customer = [
             'name'  => $form['name']  ?? '',
             'email' => $form['email'] ?? '',
             'phone' => $form['phone'] ?? '',
         ];
+
         $billing         = $form['billing_address']  ?? [];
         $deliveryAddress = $form['delivery_address'] ?? null;
         $company         = $form['company']          ?? null;
         $note            = $form['note']             ?? null;
-
-        // Dobierka?
-        $isCod = ($delivery['paymentMethod'] ?? null) === 'cash_on_delivery';
+        $isCod           = ($delivery['paymentMethod'] ?? null) === 'cash_on_delivery';
 
         return view('cart.summary', compact(
-            'farms',
-            'summary',
-            'customer',
-            'billing',
-            'deliveryAddress',
-            'company',
-            'note',
-            'isCod'
+            'farms', 'summary', 'customer',
+            'billing', 'deliveryAddress', 'company',
+            'note', 'isCod'
         ));
     }
 
@@ -108,57 +93,71 @@ class CartSummaryController extends Controller
         $items    = Session::get('cart.items', []);
         $form     = Session::get('cart.form', []);
         $delivery = Session::get('cart.delivery', [
-            'methods' => [],
-            'prices'  => [],
-            'cod'     => 0.0,
+            'methods' => [], 'prices' => [], 'cod' => 0.0
         ]);
-        $paymentMethod = $delivery['paymentMethod'] ?? '';
 
         /** ---------- Adresy ---------- */
         $billingData = $form['billing_address'] ?? [];
+
         $billingAddr = Address::create([
-            'street'        => $billingData['street']        ?? null,
-            'street_number' => $billingData['street_number'] ?? null,
-            'zip_code'      => $billingData['zip']           ?? null,
-            'city'          => $billingData['city']          ?? null,
-            'country'       => $billingData['country']       ?? null,
+            'street'        => $billingData['street'] ?? '',
+            'street_number' => $billingData['street_number'] ?? '',
+            'zip_code'      => $billingData['zip'] ?? '',
+            'city'          => $billingData['city'] ?? '',
+            'country'       => $billingData['country'] ?? '',
             'address_type'  => 'billing',
         ]);
 
+    // Ak nie je zadaná doručovacia adresa → použije sa billing adresa
         $deliveryAddr = null;
         if (!empty($form['delivery_address'])) {
-            $delData     = $form['delivery_address'];
+            $delData = $form['delivery_address'];
             $deliveryAddr = Address::create([
-                'street'        => $delData['street']        ?? null,
-                'street_number' => $delData['street_number'] ?? null,
-                'zip_code'      => $delData['zip']           ?? null,
-                'city'          => $delData['city']          ?? null,
-                'country'       => $delData['country']       ?? null,
+                'street'        => $delData['street'] ?? '',
+                'street_number' => $delData['street_number'] ?? '',
+                'zip_code'      => $delData['zip'] ?? '',
+                'city'          => $delData['city'] ?? '',
+                'country'       => $delData['country'] ?? '',
                 'address_type'  => 'delivery',
             ]);
+        } else {
+            $deliveryAddr = $billingAddr;
         }
 
         /** ---------- Spoločnosť ---------- */
         $companyModel = null;
-        if (!empty($form['company'])) {
+        if (!empty($form['company']) && !empty($form['company']['name'])) {
             $compData = $form['company'];
+
             $companyModel = Company::create([
-                'name'   => $compData['name'] ?? null,
-                'ico'    => $compData['ico']  ?? null,
-                'ic_dph' => $compData['vat']  ?? null,
+                'name'   => $compData['name'],
+                'ico'    => $compData['ico']  ?? '',
+                'ic_dph' => $compData['vat']  ?? '',
             ]);
         }
+
+        // Mapovanie fancy názvov na DB enum hodnoty
+        $paymentMap = [
+            'card_online'      => 'online',
+            'bank_transfer'    => 'transfer',
+            'cash_on_delivery' => 'cash',
+            'cash_on_pickup'   => 'cash',
+        ];
+
+        $rawPayment = $delivery['paymentMethod'] ?? 'cash';
+        $mappedPayment = $paymentMap[$rawPayment] ?? 'cash';
+
 
         /** ---------- Objednávka ---------- */
         $order = Order::create([
             'user_id'             => Auth::id(),
             'billing_address_id'  => $billingAddr->id,
-            'delivery_address_id' => $deliveryAddr->id  ?? null,
-            'company_id'          => $companyModel->id  ?? null,
-            'payment_type'        => $paymentMethod,
-            'delivery_type'       => $form['delivery_type'] ?? null,
-            'note'                => $form['note'] ?? null,
-            'total_price'         => collect($items)->sum('price')
+            'delivery_address_id' => $deliveryAddr?->id,
+            'company_id'          => $companyModel?->id,
+            'payment_type'        => $mappedPayment,
+            'delivery_type'       => $form['delivery_type'] ?? 'in_person',
+            'note'                => $form['note'] ?? '',
+            'total_price'         => collect($items)->sum(fn($item) => ($item['price'] ?? 0) * ($item['quantity'] ?? 1))
                 + collect($delivery['prices'])->sum()
                 + ($delivery['cod'] ?? 0.0),
         ]);
@@ -172,12 +171,12 @@ class CartSummaryController extends Controller
             $package = $order->packages()->create([
                 'farm_id'                => $farmId,
                 'price'                  => $pricePerFarm,
-                'expected_delivery_date' => Carbon::now(), // prispôsobiť podľa logiky farmy
+                'expected_delivery_date' => Carbon::now(),
                 'status'                 => 'pending',
             ]);
 
             foreach ($farmItems as $item) {
-                $package->items()->create([
+                $package->order_items()->create([
                     'farm_product_id'    => $item['farm_product_id'] ?? $item['id'],
                     'quantity'           => $item['quantity'] ?? 1,
                     'price_when_ordered' => $item['price'],
@@ -185,16 +184,20 @@ class CartSummaryController extends Controller
             }
         }
 
-        /** ---------- Vyčistenie košíka ---------- */
         Session::forget('cart');
 
         return redirect()
-            ->route('orders.index')
+            ->route('cart.confirmation')
             ->with('success', 'Objednávka bola úspešne odoslaná.');
     }
 
-    private function formatPrice(float $value): string
+    public function confirmation()
     {
-        return number_format($value, 2, ',', ' ') . ' €';
+        return view('cart.confirmation');
+    }
+
+    private function formatPrice(float|null $value): string
+    {
+        return number_format($value ?? 0.0, 2, ',', ' ') . ' €';
     }
 }

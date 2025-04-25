@@ -13,6 +13,11 @@ class Company extends Model
     public function users() {
         return $this->hasMany(Account::class, 'company_id');
     }
+    protected $fillable = [
+        'name',
+        'ico',
+        'ic_dph',
+    ];
 
     public function orders() {
         return $this->hasMany(Order::class);

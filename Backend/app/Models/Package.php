@@ -10,6 +10,14 @@ class Package extends Model
     /** @use HasFactory<\Database\Factories\PackageFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'farm_id',
+        'price',
+        'expected_delivery_date',
+        'status',
+        'order_id', // ak používaš tiež mass assignment pri balíkoch ručne
+    ];
+
     public function order() {
         return $this->belongsTo(Order::class);
     }

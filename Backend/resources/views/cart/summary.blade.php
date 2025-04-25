@@ -28,8 +28,8 @@
                 {{-- Fakturačná adresa --}}
                 <h6 class="fw-bold ms-2">Fakturačná adresa</h6>
                 <div class="ms-2 mb-3">
-                    <p class="mb-1">{{ $billing['street'] ?? '' }}</p>
-                    <p class="mb-1">{{ $billing['zip'] ?? '' }} {{ $billing['city'] ?? '' }}, {{ $billing['country'] ?? '' }}</p>
+                    <p class="mb-1">{{ $billing['street'] ?? 'Ulica, číslo domu' }}</p>
+                    <p class="mb-1">{{ $billing['zip'] ?? 'PSČ' }} {{ $billing['city'] ?? 'Mesto' }}, {{ $billing['country'] ?? 'Krajina' }}</p>
                 </div>
                 <hr class="my-3"/>
 
@@ -47,10 +47,10 @@
                 @isset($company)
                     <h6 class="fw-bold ms-2">Nákup na firmu</h6>
                     <div class="ms-2 mb-3">
-                        <p class="mb-1">IČO: {{ $company['ico'] }}</p>
-                        <p class="mb-1">Názov spoločnosti: {{ $company['name'] }}</p>
+                        <p class="mb-1">IČO: {{ $company['ico'] ?? 'nezadané' }}</p>
+                        <p class="mb-1">Názov spoločnosti: {{ $company['name'] ?? 'nezadané'}}</p>
                         @isset($company['vat'])
-                            <p class="mb-1">IČ DPH: {{ $company['vat'] }}</p>
+                            <p class="mb-1">IČ DPH: {{ $company['vat'] ?? 'nezadané'}} </p>
                         @endisset
                     </div>
                     <hr class="my-3"/>

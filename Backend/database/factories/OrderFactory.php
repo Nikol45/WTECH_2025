@@ -24,7 +24,7 @@ class OrderFactory extends Factory
             'user_id' => User::inRandomOrder()->value('id'),
             'billing_address_id' => Address::factory()->state(['address_type' => 'billing'])->create()->id,
             'delivery_address_id' => Address::factory()->state(['address_type' => 'delivery'])->create()->id,
-            'company_id' => Company::factory()->create()->id, 
+            'company_id' => Company::factory()->create()->id,
             'total_price' => null,
             'payment_type' => $this->faker->randomElement(['online', 'transfer', 'cash']),
             'delivery_type' => $this->faker->randomElement(['in_person', 'express', 'standard']),

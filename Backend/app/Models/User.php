@@ -21,6 +21,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'nickname', // ak máš prezývku
+        'admin_account',
+        'icon_id',
+        'billing_address_id',
+        'delivery_address_id',
+        'company_id',
     ];
 
     /**

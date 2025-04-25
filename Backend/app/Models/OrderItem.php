@@ -10,6 +10,13 @@ class OrderItem extends Model
     /** @use HasFactory<\Database\Factories\OrderItemFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'farm_product_id',
+        'package_id',
+        'quantity',
+        'price_when_ordered',
+    ];
+
     public function farm_product() {
         return $this->belongsTo(FarmProduct::class);
     }

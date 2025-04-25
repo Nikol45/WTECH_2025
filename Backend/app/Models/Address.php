@@ -7,18 +7,30 @@ use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
-    /** @use HasFactory<\Database\Factories\AddressFactory> */
     use HasFactory;
 
-    public function billingusers() {
+    // Povolené atribúty pre mass assignment
+    protected $fillable = [
+        'street',
+        'street_number',
+        'zip_code',
+        'city',
+        'country',
+        'address_type',
+    ];
+
+    public function billingusers()
+    {
         return $this->hasMany(Account::class, 'billing_address_id');
     }
 
-    public function deliveryusers() {
+    public function deliveryusers()
+    {
         return $this->hasMany(Account::class, 'delivery_address_id');
     }
 
-    public function farm() {
+    public function farm()
+    {
         return $this->hasOne(Farm::class);
     }
 

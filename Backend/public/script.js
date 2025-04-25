@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // =================== MODAL FUNKCIE ===================
-    // Funkcie na ovládanie zobrazenia / skrytia modálov
-
     window.openModal = function(modalId) {
         const modal = document.getElementById(modalId);
         const overlay = document.getElementById("overlayBackground");
@@ -25,149 +22,127 @@ document.addEventListener('DOMContentLoaded', () => {
         window.openModal(nextModalId);
     };
 
-    // Zatvorenie modálu, ak klikneme mimo (priamo na jeho wrapper)
-    // Týka sa .custom-modal, nie overlay-u.
-    document.querySelectorAll(".custom-modal").forEach(modal => {
-        modal.addEventListener("click", function(e) {
-            if (e.target === modal) {
-                modal.classList.add("d-none");
-                const overlay = document.getElementById("overlayBackground");
-                if (overlay) overlay.classList.add("d-none");
-            }
-        });
-    });
+    // ======== STAV PRIHLÁSENIA & ELEMENTY ========
+    let isLoggedIn = window.isLoggedIn || false;
+    const overlay            = document.getElementById('overlayBackground');
+    const profileBtn         = document.getElementById('profileBtn');
+    const profileMenu        = document.getElementById('profileMenu');
+    const mobileMenuEl       = document.getElementById('mobileMenu');
+    const mobileProfileMenu  = document.getElementById('mobileProfileMenu');
 
+    // ======== OTVORENIE / ZATVORENIE MODÁLOV ========
+    function openModal(id)  { document.getElementById(id).classList.remove('d-none'); overlay.classList.remove('d-none'); }
+    function closeModal(id) { document.getElementById(id).classList.add('d-none');    overlay.classList.add('d-none');    }
 
-    // =================== PROFILOVÉ DROPDOWN MENU ===================
-    const profileBtn = document.getElementById('profileBtn');
-    const profileMenu = document.getElementById('profileMenu');
-
-    // Simulácia stavu prihlásenia používateľa
-    let isLoggedIn = false;
-
-    // Funkcia na aktualizáciu obsahu menu podľa stavu prihlásenia
-    function updateProfileMenu() {
-        profileMenu.classList.remove('show');
-
-        profileMenu.innerHTML = '';
-        if (isLoggedIn) {
-            profileMenu.innerHTML = `
-                <li><a class="dropdown-item" href="${routes.profile}">Môj profil</a></li>
-                <li><a class="dropdown-item" href="${routes.profileHistory}">Objednávky</a></li>
-                <li><a class="dropdown-item" href="${routes.profileReviews}">Recenzie</a></li>
-                <li><a class="dropdown-item" href="#" id="logoutLink">Odhlásiť</a></li>
-            `;
-        } else {
-            profileMenu.innerHTML = `
-                <li><a class="dropdown-item" href="#" id="loginLink">Prihlásiť sa</a></li>
-            `;
-        }
+    // ======== AKTUALIZÁCIA MENU (desktop + mobil) ========
+    function updateMenus() {
+        // desktop
+        profileMenu.innerHTML = isLoggedIn
+            ? `
+            <li><a class="dropdown-item" href="${routes.profile}">Môj profil</a></li>
+            <li><a class="dropdown-item" href="${routes.profileHistory}">Objednávky</a></li>
+            <li><a class="dropdown-item" href="${routes.profileReviews}">Recenzie</a></li>
+            <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">Odhlásiť</a>
+</li>`
+            : `<li><a class="dropdown-item" href="#" id="loginLink">Prihlásiť sa</a></li>`;
+        // mobil
+        mobileProfileMenu.innerHTML = isLoggedIn
+            ? `
+            <li class="mb-3 fw-bold fs-5"><a href="${routes.profile}">Môj profil</a></li>
+            <li class="mb-3 fw-bold fs-5"><a href="${routes.profileHistory}">Objednávky</a></li>
+            <li class="mb-3 fw-bold fs-5"><a href="${routes.profileReviews}">Recenzie</a></li>
+            <li class="mb-3 fw-bold fs-5"><a href="#" id="logoutLink">Odhlásiť</a></li>`
+            : `<li class="mb-3 fw-bold fs-5"><a href="#" id="loginLink">Prihlásiť sa</a></li>`;
     }
-    // Inicializácia (len ak existuje profileMenu)
-    if (profileMenu) {
-        updateProfileMenu();
-    }
+    updateMenus();
 
-    // Kliknutie na tlačidlo profilu (ak existuje)
-    if (profileBtn && profileMenu) {
-        profileBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            profileMenu.classList.toggle('show');
-        });
-    }
+    // ======== AJAX FORMY (login + registration) ========
+    function handleAjaxForm(formId, modalId, errorsId) {
+        const form = document.getElementById(formId);
+        const errs = document.getElementById(errorsId);
+        if (!form || !errs) return;
 
-    // Zatvorenie dropdown menu, ak klikneme mimo
-    document.addEventListener('click', (e) => {
-        // zatvoriť menu, ak klik nie je na (profileMenu) ani (profileBtn)
-        if (profileMenu && profileBtn) {
-            if (!profileMenu.contains(e.target) && !profileBtn.contains(e.target)) {
-                profileMenu.classList.remove('show');
-            }
-        }
-    });
-
-    // Delegovanie kliknutí v dropdown menu
-    document.addEventListener('click', (e) => {
-        // Prihlásiť sa
-        if (e.target && e.target.id === 'loginLink') {
+        form.addEventListener('submit', async e => {
             e.preventDefault();
-            isLoggedIn = true;
-            updateProfileMenu();
-            // Otvoríme popup pre prihlasenie
-            openModal('loginModal');
-        }
-        // Odhlásiť
-        if (e.target && e.target.id === 'logoutLink') {
-            e.preventDefault();
-            isLoggedIn = false;
-            updateProfileMenu();
-        }
-    });
+            errs.textContent = '';
+            const data = new FormData(form);
 
-    //na otvorenie login pop up z hamburger menu
-    const mobileProfileLink = document.getElementById('mobileProfileLink');
-    if (mobileProfileLink) {
-        mobileProfileLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            const offcanvas = document.getElementById('mobileMenu');
-            if (offcanvas) {
-                const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvas);
-                if (bsOffcanvas) {
-                    bsOffcanvas.hide();
+            try {
+                const res = await fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': data.get('_token'),
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: data
+                });
+
+                if (res.ok) {
+                    isLoggedIn = true;
+                    updateMenus();
+                    closeModal(modalId);
+                    location.reload();
+
+                } else if (res.status === 422) {
+                    const json = await res.json();
+                    errs.textContent = Object.values(json.errors || {}).flat().join(' ');
+                } else {
+                    const json = await res.json().catch(() => ({}));
+                    errs.textContent = json.error || json.message || 'Neočakávaná chyba.';
                 }
+            } catch {
+                errs.textContent = 'Chyba pripojenia na server.';
             }
-            openModal('loginModal');
         });
     }
+    handleAjaxForm('loginForm',        'loginModal',        'loginErrors');
+    handleAjaxForm('registrationForm', 'registrationModal', 'registrationErrors');
 
-    const mobileProfileMenu = document.getElementById('mobileProfileMenu');
+    // ======== AJAX LOGOUT ========
 
-    //na zmenenie moznosti hamburger menu podla prihlasenia
-    function updateMobileProfileMenu() {
-        if (mobileProfileMenu) {
-            mobileProfileMenu.innerHTML = '';
-            if (isLoggedIn) {
-                mobileProfileMenu.innerHTML = `
-                <li class="mb-3 fw-bold fs-5" ><a href="${routes.profile}">Môj profil</a></li>
-                <li class="mb-3 fw-bold fs-5" ><a href="${routes.profileHistory}">Objednávky</a></li>
-                <li class="mb-3 fw-bold fs-5" ><a href="${routes.profileReviews}">Recenzie</a></li>
-                <li class="mb-3 fw-bold fs-5" ><a href="#" id="logoutLink">Odhlásiť</a></li>
-            `;
-            }
-            else {
-                mobileProfileMenu.innerHTML = `
-                <li class="mb-3 fw-bold fs-5"><a href="#" id="mobileLoginLink">Prihlásiť sa</a></li>
-                `;
-            }
+    profileBtn?.addEventListener('click', e => {
+        e.stopPropagation();
+        profileMenu.classList.toggle('show');
+    });
+
+    // ======== EVENT DELEGATION ========
+    document.addEventListener('click', e => {
+        const id = e.target.id;
+        // desktop: toggle dropdown
+        // login
+        if (id === 'loginLink') {
+            e.preventDefault();
+            openModal('loginModal');
         }
-    }
 
-    updateMobileProfileMenu();
+        // hamburger – otvorenie login modal
+        if (id === 'mobileProfileLink') {
+            e.preventDefault();
+            bootstrap.Offcanvas.getInstance(mobileMenuEl)?.hide();
+            openModal('loginModal');
+        }
+    });
 
-    //aby po zatvoreni sidebaru sa resetol padding a overflow
-    const offcanvasEl = document.getElementById('mobileMenu');
-    offcanvasEl.addEventListener('hidden.bs.offcanvas', () => {
+    // zatváranie dropdownu klikom mimo
+    document.addEventListener('click', e => {
+        if (!profileMenu.contains(e.target) && !profileBtn.contains(e.target)) {
+            profileMenu.classList.remove('show');
+        }
+    });
+
+    // zatvorenie modálu klikom mimo wrapper
+    document.querySelectorAll('.custom-modal').forEach(modal =>
+        modal.addEventListener('click', e => {
+            if (e.target === modal) closeModal(modal.id);
+        })
+    );
+
+    // reset štýlov po zatvorení offcanvas (hamburger)
+    mobileMenuEl?.addEventListener('hidden.bs.offcanvas', () => {
         document.body.style.paddingRight = '';
         document.body.style.overflow = '';
     });
 
-    document.addEventListener('click', (e) => {
-        if (e.target && e.target.id === 'mobileLoginLink') {
-            e.preventDefault();
-            isLoggedIn = true;
-            updateMobileProfileMenu();
-            const offcanvas = document.getElementById('mobileMenu');
-            const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvas);
-            if (bsOffcanvas) bsOffcanvas.hide();
-            openModal('loginModal');
-        }
-
-        if (e.target && e.target.id === 'mobileLogoutLink') {
-            e.preventDefault();
-            isLoggedIn = false;
-            updateMobileProfileMenu();
-        }
-    });
 
     // =================== TOGGLE KATEGÓRIÍ ===================
     const toggleBtn = document.getElementById('toggleCategoriesBtn');
@@ -178,6 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleBtn.classList.toggle('rotated-arrow');
         });
     }
+
     // =================== TOGGLE DODACEJ ADRESY ===================
     const differentAddress = document.getElementById('differentAddress');
     const deliveryAddressSection = document.getElementById('deliveryAddressSection');
@@ -190,7 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
 
     // =================== TOGGLE FIRMY ===================
     const companyCheck = document.getElementById('companyCheck');
@@ -209,55 +184,104 @@ document.addEventListener('DOMContentLoaded', () => {
     // =================== ZOBRAZENIE SUMÁRIÁLNEHO RIADKU DOPRAVY ===================
     const deliveryRow = document.getElementById('deliveryRow');
     const priceRow = document.getElementById('priceRow');
-    const deliveryGlsSt = document.getElementById('deliveryGlsSt');
-    const deliveryGlsEx = document.getElementById('deliveryGlsEx');
-    const deliveryPersonal = document.getElementById('deliveryPersonal');
 
-    const payDobierkaWrapper = document.getElementById('payDobierkaWrapper');
+    const deliveryGlsSt = document.querySelector('input[id="delivery_GLS_standard"]');
+    const deliveryGlsEx = document.querySelector('input[id="delivery_GLS_express"]');
+    const deliveryPersonal = document.querySelector('input[id="delivery_personal"]');
+
+    const payDobierkaWrapper = document.getElementById('wrapper_payment_cash_on_delivery');
+    const payPickupWrapper = document.getElementById('wrapper_payment_cash_on_pickup');
     const priceDeliveryRow = document.getElementById('price_deliveryRow');
+    const priceDobierkaRow = document.getElementById('price_dobierkaRow');
+    const payPickup = document.querySelector('input[name="paymentMethod"][value="cash_on_pickup"]');
+    const payDobierka = document.querySelector('input[name="paymentMethod"][value="cash_on_delivery"]');
+
+    const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
 
     function updateDeliveryDisplay() {
-        const isGLS = deliveryGlsSt.checked || deliveryGlsEx.checked;
-        const isPersonal = deliveryPersonal.checked;
+        const isGLS = deliveryGlsSt?.checked || deliveryGlsEx?.checked;
+        const isPersonal = deliveryPersonal?.checked;
 
-        if (isGLS) {
-            deliveryRow.classList.remove('d-none');
-            priceRow.classList.remove('d-none');
-            priceDeliveryRow.classList.remove('d-none');
-            payDobierkaWrapper.classList.remove('d-none');
-        } else if (isPersonal) {
-            deliveryRow.classList.add('d-none');
-            priceRow.classList.remove('d-none');
-            priceDeliveryRow.classList.add('d-none');
-            payDobierkaWrapper.classList.add('d-none');
-        } else {
-            deliveryRow.classList.add('d-none');
-            priceRow.classList.add('d-none');
-            priceDeliveryRow.classList.add('d-none');
-            payDobierkaWrapper.classList.add('d-none');
+        if (deliveryRow && priceRow && priceDeliveryRow && payDobierkaWrapper && payPickupWrapper && payDobierka && payPickup) {
+            if (isGLS) {
+                deliveryRow.classList.remove('d-none');
+                priceRow.classList.remove('d-none');
+                priceDeliveryRow.classList.remove('d-none');
+                payDobierkaWrapper.classList.remove('d-none');
+                payPickupWrapper.classList.add('d-none');
+            } else if (isPersonal) {
+                deliveryRow.classList.add('d-none');
+                priceRow.classList.remove('d-none');
+                priceDeliveryRow.classList.add('d-none');
+                payDobierkaWrapper.classList.add('d-none');
+                payPickupWrapper.classList.remove('d-none');
+                payDobierka.checked = false;
+            } else {
+                deliveryRow.classList.add('d-none');
+                priceRow.classList.add('d-none');
+                priceDeliveryRow.classList.add('d-none');
+                payDobierkaWrapper.classList.add('d-none');
+                payPickupWrapper.classList.add('d-none');
+                payPickup.checked = false;
+            }
+        }
+        const pricesEl = document.getElementById('delivery-prices');
+        const selected = document.querySelector('input[name="deliveryMethod"]:checked')?.value;
+
+        if (selected && pricesEl) {
+            const price = pricesEl.getAttribute(`data-price-${selected}`);
+            const eta = pricesEl.getAttribute(`data-eta-${selected}`);
+
+            const priceElem = document.querySelector('#deliveryRow .delivery-price');
+            const etaElem = document.querySelector('#deliveryRow .delivery-eta');
+
+            const summaryPriceElem = document.querySelector('#price_deliveryRow .delivery-price');
+
+            if (priceElem) priceElem.textContent = price + ' €';
+            if (etaElem) etaElem.textContent = eta;
+            if (summaryPriceElem) summaryPriceElem.textContent = price + ' €';
+        }
+
+        // Obnov zobrazenie dobierky
+        updateDobierkaDisplay();
+    }
+
+    function updateDobierkaDisplay() {
+        if (payDobierka && priceDobierkaRow) {
+            if (payDobierka?.checked) {
+                priceDobierkaRow.classList.remove('d-none');
+            } else {
+                priceDobierkaRow.classList.add('d-none');
+            }
+        }
+
+        // ===== Prepočet Celkom =====
+        const grandTotalElem = document.getElementById('grand-total');
+        if (grandTotalElem) {
+            const base = parseFloat(grandTotalElem.dataset.base) || 0;
+
+            const deliveryText = document.querySelector('#price_deliveryRow .delivery-price')?.textContent?.trim();
+            const delivery = deliveryText ? parseFloat(deliveryText.replace('€', '').replace(',', '.')) : 0;
+
+            const codText = document.querySelector('#price_dobierkaRow .dobierka-price')?.textContent?.trim();
+            const cod = (payDobierka.checked && codText) ? parseFloat(codText.replace('€', '').replace(',', '.')) : 0;
+
+            const sum = base + delivery + cod;
+
+            grandTotalElem.textContent = sum.toFixed(2).replace('.', ',');
         }
     }
 
 
-    if (deliveryGlsSt && deliveryGlsEx && deliveryPersonal) {
-        [deliveryGlsSt, deliveryGlsEx, deliveryPersonal].forEach(input => {
-            input.addEventListener('change', updateDeliveryDisplay);
-        });
-    }
+    [deliveryGlsSt, deliveryGlsEx, deliveryPersonal].forEach(input => {
+        input?.addEventListener('change', updateDeliveryDisplay);
+    });
 
-    const payDobierka = document.getElementById('payDobierka');
-    const price_dobierkaRow = document.getElementById('price_dobierkaRow');
+    paymentRadios.forEach(radio => {
+        radio.addEventListener('change', updateDobierkaDisplay);
+    });
 
-    if (payDobierka && price_dobierkaRow) {
-        payDobierka.addEventListener('change', () => {
-            if (payDobierka.checked) {
-                price_dobierkaRow.classList.remove('d-none');
-
-            } else {
-                price_dobierkaRow.classList.add('d-none');
-            }
-        });
-    }
+    updateDeliveryDisplay()
 
     // ============= SCROLLOVANIE SEKCII PRODUKTOV ==============
 
@@ -927,10 +951,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (checkAll) {
         checkAll.addEventListener('change', function(){
             document
-              .querySelectorAll('input[name="items[]"]')
-              .forEach(cb => cb.checked = this.checked);
-          });
-        
+                .querySelectorAll('input[name="items[]"]')
+                .forEach(cb => cb.checked = this.checked);
+        });
+
     }
 
     //pridanie a odstranenie classy submenu-open pre dropdowns kategorii
@@ -938,62 +962,62 @@ document.addEventListener('DOMContentLoaded', () => {
         .forEach(btn=>{
             btn.addEventListener('shown.bs.dropdown', () => {
                 document.getElementById('categoriesBar')
-                        .classList.add('submenu-open');
+                    .classList.add('submenu-open');
             });
             btn.addEventListener('hidden.bs.dropdown', () => {
                 document.getElementById('categoriesBar')
-                        .classList.remove('submenu-open');
+                    .classList.remove('submenu-open');
             });
         });
 
-        const token = document.querySelector('meta[name="csrf-token"]').content;
+    const token = document.querySelector('meta[name="csrf-token"]').content;
 
-        function formatMoney(n) {
-          return n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        }
-      
-        function recalcGrandTotal() {
-          let sum = 0;
-          document.querySelectorAll('.quantity-input').forEach(input => {
+    function formatMoney(n) {
+        return n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function recalcGrandTotal() {
+        let sum = 0;
+        document.querySelectorAll('.quantity-input').forEach(input => {
             const unitPrice = parseFloat(input.dataset.unitPrice);
             const qty       = parseInt(input.value) || 0;
             sum += unitPrice * qty;
-          });
-          document.getElementById('cart-grand-total').textContent = formatMoney(sum);
-        }
-      
-        function updateLineTotal(fpid, qty) {
-          const unitPrice = parseFloat(
+        });
+        document.getElementById('cart-grand-total').textContent = formatMoney(sum);
+    }
+
+    function updateLineTotal(fpid, qty) {
+        const unitPrice = parseFloat(
             document.querySelector(`.quantity-input[data-fpid="${fpid}"]`).dataset.unitPrice
-          );
-          const total = unitPrice * qty;
-          const span  = document.querySelector(`.line-total[data-fpid="${fpid}"]`);
-          span.textContent = formatMoney(total) + ' €';
-        }
-      
-        function updateCartQty(fpid, qty) {
-          fetch(`/cart-items/${fpid}`, {
+        );
+        const total = unitPrice * qty;
+        const span  = document.querySelector(`.line-total[data-fpid="${fpid}"]`);
+        span.textContent = formatMoney(total) + ' €';
+    }
+
+    function updateCartQty(fpid, qty) {
+        fetch(`/cart-items/${fpid}`, {
             method: 'PATCH',
             headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-TOKEN': token
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': token
             },
             body: JSON.stringify({ quantity: qty })
-          })
-          .then(res => res.json())
-          .then(json => {
-            if (json.success) {
-              updateLineTotal(fpid, qty);
-              recalcGrandTotal();
-            } else {
-              console.error('Cart update failed');
-            }
-          });
-        }
-      
-        // wire up plus/minus
-        document.querySelectorAll('.quantity-button').forEach(btn => {
-          btn.addEventListener('click', () => {
+        })
+            .then(res => res.json())
+            .then(json => {
+                if (json.success) {
+                    updateLineTotal(fpid, qty);
+                    recalcGrandTotal();
+                } else {
+                    console.error('Cart update failed');
+                }
+            });
+    }
+
+    // wire up plus/minus
+    document.querySelectorAll('.quantity-button').forEach(btn => {
+        btn.addEventListener('click', () => {
             const fpid  = btn.dataset.fpid;
             const input = document.querySelector(`.quantity-input[data-fpid="${fpid}"]`);
             let qty     = parseInt(input.value) || 1;
@@ -1001,17 +1025,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (qty < 1) qty = 1;
             input.value = qty;
             updateCartQty(fpid, qty);
-          });
         });
-      
-        // manual edits
-        document.querySelectorAll('.quantity-input').forEach(input => {
-          input.addEventListener('change', () => {
+    });
+
+    // manual edits
+    document.querySelectorAll('.quantity-input').forEach(input => {
+        input.addEventListener('change', () => {
             let qty = parseInt(input.value) || 1;
             if (qty < 1) qty = 1;
             input.value = qty;
             updateCartQty(input.dataset.fpid, qty);
-          });
         });
-
+    });
 });

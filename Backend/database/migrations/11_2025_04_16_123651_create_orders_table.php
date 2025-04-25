@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('billing_address_id');
             $table->unsignedBigInteger('delivery_address_id');
             $table->unsignedBigInteger('company_id')->nullable();
@@ -47,7 +47,6 @@ return new class extends Migration
                 ->onDelete('cascade');
         });
     }
-
     /**
      * Reverse the migrations.
      */

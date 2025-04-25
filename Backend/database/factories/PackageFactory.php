@@ -24,7 +24,7 @@ class PackageFactory extends Factory
             'farm_id' => Farm::inRandomOrder()->value('id'),
             'price' => null,
             'expected_delivery_date' => $this->faker->dateTimeBetween('+2 days', '+2 weeks'),
-            'status' => $this->faker->randomElement(['waiting', 'confirmed', 'shipped', 'delivered']),
+            'status' => $this->faker->randomElement(['pending', 'shipped', 'delivered', 'cancelled']),
         ];
     }
 }

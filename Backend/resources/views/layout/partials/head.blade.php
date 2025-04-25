@@ -1,5 +1,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <title>Zdvora.sk | @yield('title', 'Domov')</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,8 +14,8 @@
 <script>
     const routes = {
         profile: "{{ route('profile.index') }}",
-        profileHistory: "{{ route('profile-history.index') }}",
-        profileReviews: "{{ route('profile-reviews.index') }}",
+        profileHistory: "{{ route('profile.history') }}",
+        profileReviews: "{{ route('profile.reviews') }}",
     };
 </script>
 <script src="{{ asset('script.js') }}" defer></script>

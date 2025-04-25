@@ -33,7 +33,7 @@ class CartDeliveryController extends Controller
             /* Prihlásený používateľ – košík z DB ---------------------- */
             $userId = Auth::id();
 
-            $cartItems = CartItem::with('farmProduct.farm')
+            $cartItems = CartItem::with('farm_product.farm')
                 ->where('user_id', $userId)
                 ->get();
 
@@ -121,7 +121,7 @@ class CartDeliveryController extends Controller
         if (Auth::check()) {
             $userId = Auth::id();
 
-            $cartItems = CartItem::with('farmProduct.farm')
+            $cartItems = CartItem::with('farm_product.farm')
                 ->where('user_id', $userId)
                 ->get();
 

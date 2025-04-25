@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->decimal('price', 8, 2)->nullable();
             $table->date('expected_delivery_date');
-            $table->enum('status', ['waiting', 'confirmed', 'shipped', 'delivered']);
+            $table->enum('status', ['pending', 'shipped', 'delivered', 'cancelled']);
 
             $table->timestamps();
 
