@@ -15,6 +15,9 @@ return new class extends Migration
             $table->increments('id');
 
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('billing_address_id');
+            $table->unsignedBigInteger('delivery_address_id');
+            $table->unsignedBigInteger('company_id')->nullable();
 
             $table->decimal('total_price', 8, 2)->nullable();
             $table->enum('payment_type', ['online', 'transfer', 'cash']);
@@ -26,6 +29,21 @@ return new class extends Migration
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
+                ->onDelete('cascade');
+
+            $table->foreign('billing_address_id')
+                ->references('id')
+                ->on('addresses')
+                ->onDelete('cascade');
+
+            $table->foreign('delivery_address_id')
+                ->references('id')
+                ->on('addresses')
+                ->onDelete('cascade');
+
+            $table->foreign('company_id')
+                ->references('id')
+                ->on('companies')
                 ->onDelete('cascade');
         });
     }

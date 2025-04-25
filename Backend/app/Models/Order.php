@@ -17,4 +17,16 @@ class Order extends Model
     public function packages() {
         return $this->hasMany(Package::class);
     }
+
+    public function billingAddress() {
+        return $this->belongsTo(Address::class, 'billing_address_id');
+    }
+
+    public function deliveryAddress() {
+        return $this->belongsTo(Address::class, 'delivery_address_id');
+    }
+
+    public function company() {
+        return $this->belongsTo(Company::class);
+    }
 }

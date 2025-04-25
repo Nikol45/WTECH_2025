@@ -31,11 +31,16 @@ Route::get('/', function () {
 Route::get('/', [HomeController::class, 'homepage'])->name('homepage');
 Route::get('/favourites', [FavouriteController::class, 'index'])->name('favourites.index');
 Route::get('/cart-items', [CartItemController::class, 'index'])->name('cart-items.index');
+Route::post('cart-items', [CartItemController::class,'store'])->name('cart.store');
+Route::delete('/cart-items',[CartItemController::class,'destroy'])->name('cart.destroy');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/{farm_product}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/profile-history', [ProfileHistoryController::class, 'index'])->name('profile-history.index');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 Route::get('/profile-reviews', [ProfileReviewsController::class, 'index'])->name('profile-reviews.index');
+Route::patch('cart-items/{farm_product}',
+    [CartItemController::class,'update'])
+  ->name('cart.updateQuantity');
 
 Route::resource('addresses', AddressController::class);
 Route::resource('articles', ArticleController::class);

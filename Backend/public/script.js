@@ -880,7 +880,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //funkcia tlacidiel na zmenu mnozstva
 
     document.querySelectorAll('.quantity').forEach(container => {
-        const qtyInput = container.querySelector('.integer-only');
+        const qtyInput = container.querySelector('input[name="quantity"]');
         const btnPlus = container.querySelector('.plus');
         const btnMinus = container.querySelector('.minus');
 
@@ -925,12 +925,12 @@ document.addEventListener('DOMContentLoaded', () => {
     //oznacenie vsetkych produktov naraz
     const checkAll = document.getElementById('checkAllCart');
     if (checkAll) {
-        checkAll.addEventListener('change', () => {
-            const allCheckboxes = document.querySelectorAll('input.form-check-input[type="checkbox"]:not(#checkAllCart)');
-            allCheckboxes.forEach(chk => {
-                chk.checked = checkAll.checked;
-            });
-        });
+        checkAll.addEventListener('change', function(){
+            document
+              .querySelectorAll('input[name="items[]"]')
+              .forEach(cb => cb.checked = this.checked);
+          });
+        
     }
 
     //pridanie a odstranenie classy submenu-open pre dropdowns kategorii
@@ -944,6 +944,74 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('categoriesBar')
                         .classList.remove('submenu-open');
             });
+        });
+
+        const token = document.querySelector('meta[name="csrf-token"]').content;
+
+        function formatMoney(n) {
+          return n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+      
+        function recalcGrandTotal() {
+          let sum = 0;
+          document.querySelectorAll('.quantity-input').forEach(input => {
+            const unitPrice = parseFloat(input.dataset.unitPrice);
+            const qty       = parseInt(input.value) || 0;
+            sum += unitPrice * qty;
+          });
+          document.getElementById('cart-grand-total').textContent = formatMoney(sum);
+        }
+      
+        function updateLineTotal(fpid, qty) {
+          const unitPrice = parseFloat(
+            document.querySelector(`.quantity-input[data-fpid="${fpid}"]`).dataset.unitPrice
+          );
+          const total = unitPrice * qty;
+          const span  = document.querySelector(`.line-total[data-fpid="${fpid}"]`);
+          span.textContent = formatMoney(total) + ' €';
+        }
+      
+        function updateCartQty(fpid, qty) {
+          fetch(`/cart-items/${fpid}`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-TOKEN': token
+            },
+            body: JSON.stringify({ quantity: qty })
+          })
+          .then(res => res.json())
+          .then(json => {
+            if (json.success) {
+              updateLineTotal(fpid, qty);
+              recalcGrandTotal();
+            } else {
+              console.error('Cart update failed');
+            }
+          });
+        }
+      
+        // wire up plus/minus
+        document.querySelectorAll('.quantity-button').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const fpid  = btn.dataset.fpid;
+            const input = document.querySelector(`.quantity-input[data-fpid="${fpid}"]`);
+            let qty     = parseInt(input.value) || 1;
+            qty += btn.classList.contains('plus') ? 1 : -1;
+            if (qty < 1) qty = 1;
+            input.value = qty;
+            updateCartQty(fpid, qty);
+          });
+        });
+      
+        // manual edits
+        document.querySelectorAll('.quantity-input').forEach(input => {
+          input.addEventListener('change', () => {
+            let qty = parseInt(input.value) || 1;
+            if (qty < 1) qty = 1;
+            input.value = qty;
+            updateCartQty(input.dataset.fpid, qty);
+          });
         });
 
 });

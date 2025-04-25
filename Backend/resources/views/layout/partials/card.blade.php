@@ -83,6 +83,7 @@
                 <form action="{{ route('cart-items.store') }}" method="POST" class="w-100">
                     @csrf
                     <input type="hidden" name="farm_product_id" value="{{ $id }}">
+                    <input type="hidden" name="quantity" value="1">
                     <button type="submit" class="btn custom-button btn-pridat-do-kosika w-100">Pridať do košíka</button>
                 </form>
                 <button class="btn custom-button favorite-btn">

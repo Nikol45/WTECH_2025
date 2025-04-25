@@ -123,23 +123,27 @@
 			@endif
 
 			{{-- Pridanie do košíka --}}
-			<div class="quantity add-to-cart-container d-flex align-items-center gap-2 flex-wrap">
-				<button class="quantity-button minus btn custom-button" id="qtyMinus8">−</button>
-				<input type="number" id="productQty8" min="1" step="1" value="1" class="form-control text-center integer-only">
-				<button class="quantity-button plus btn custom-button" id="qtyPlus8">+</button>
-				<span class="fs-5 mx-3">Počet balení</span>
-				<button class="btn custom-button favorite-btn">
-					<span class="material-icons">favorite_border</span>
-				</button>
+			<form action="{{ route('cart-items.store') }}" method="POST" class="quantity add-to-cart-container d-flex align-items-center gap-2 flex-wrap">
+				@csrf
+				<input type="hidden" name="farm_product_id" value="{{ $farmProduct->id }}">
 
-				<form action="{{ route('cart-items.store') }}" method="POST">
-					@csrf
-					<input type="hidden" name="farm_product_id" value="{{ $farmProduct->id }}">
-					<button class="btn custom-button btn-pridat-do-kosika mt-0" type="submit">
-						Pridať do košíka
-					</button>
-				</form>
-			</div>
+				<button type="button" class="quantity-button minus btn custom-button">−</button>
+
+				<input
+					type="number"
+					name="quantity"
+					id="productQty"
+					class="form-control text-center integer-only"
+					min="1" step="1"
+					value="1"
+				>
+
+				<button type="button" class="quantity-button plus btn custom-button">+</button>
+
+				<button type="submit" class="btn custom-button btn-pridat-do-kosika mt-0">
+					Pridať do košíka
+				</button>
+			</form>
 		</div>
 	</div>
 
