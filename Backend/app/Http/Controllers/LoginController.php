@@ -17,7 +17,7 @@ class LoginController extends Controller
 
         $loginField = filter_var($data['email_or_username'], FILTER_VALIDATE_EMAIL)
             ? 'email'
-            : 'name';
+            : 'nickname';
 
         $credentials = [
             $loginField => $data['email_or_username'],

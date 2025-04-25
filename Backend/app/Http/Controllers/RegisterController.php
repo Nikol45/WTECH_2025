@@ -14,7 +14,7 @@ class RegisterController extends Controller
         try {
             // Validácia vstupov
             $data = $request->validate([
-                'name'     => 'required|string|min:3',
+                'nickname' => 'required|string|min:3',
                 'email'    => 'required|email|unique:users,email',
                 'password' => 'required|string|min:8|confirmed',
                 'terms'    => 'required|accepted',
@@ -22,7 +22,7 @@ class RegisterController extends Controller
 
             // Vytvorenie používateľa
             $user = User::create([
-                'name'     => $data['name'],
+                'nickname'     => $data['nickname'],
                 'email'    => $data['email'],
                 'password' => Hash::make($data['password']),
             ]);

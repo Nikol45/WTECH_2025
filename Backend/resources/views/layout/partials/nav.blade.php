@@ -126,7 +126,7 @@
                 <span class="input-group-text icon-wrapper border-end-0">
                     <span class="material-icons">person_outline</span>
                 </span>
-                            <input type="text" name="name"
+                            <input type="text" name="nickname"
                                    class="form-control border-start-0 input-custom"
                                    placeholder="Používateľské meno"
                                    required>
