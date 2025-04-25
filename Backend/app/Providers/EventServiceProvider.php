@@ -17,7 +17,6 @@ class EventServiceProvider extends ServiceProvider
         Login::class => [
             MergeSessionCartIntoDatabase::class,
         ],
-        // … any other events/listeners
     ];
 
     /**
@@ -30,10 +29,6 @@ class EventServiceProvider extends ServiceProvider
         //
     }
 
-    /**
-     * If you’d like Laravel to auto-discover events in your `Listeners` folder,
-     * you can turn this on. Otherwise leave it returning `false`.
-     */
     public function shouldDiscoverEvents(): bool
     {
         return false;

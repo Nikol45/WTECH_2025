@@ -6,23 +6,62 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\Order;
+use App\Models\FarmProduct;
 use App\Models\Farm;
 use App\Models\Address;
 use App\Models\Company;
+use App\Models\CartItem;
 use Carbon\Carbon;
 
 class CartSummaryController extends Controller
 {
-    public function index()
-    {
-        $items    = Session::get('cart.items', []);
+    public function index() {
+
+        if (Auth::check()) {
+            $items = CartItem::with(['farm_product.farm', 'farm_product.product'])
+                ->where('user_id', Auth::id())
+                ->get()
+                ->map(function (CartItem $ci) {
+                    $fp = $ci->farm_product;
+                    $unitPrice = $fp->discount_percentage ? $fp->price_sell_quantity * (100 - $fp->discount_percentage) / 100 : $fp->price_sell_quantity;
+
+                    return [
+                        'farm_id' => $fp->farm_id,
+                        'quantity' => $ci->quantity,
+                        'label' => $fp->product->name,
+                        'price' => $unitPrice,
+                    ];
+                })
+                ->toArray();
+        }
+        else {
+            $session = Session::get('cart.items', []);  // [ fp_id => qty, … ]
+            if (empty($session)) {
+                $items = [];
+            } else {
+                $fps = FarmProduct::with(['farm','product'])
+                       ->whereIn('id', array_keys($session))
+                       ->get();
+    
+                $items = $fps->map(function($fp) use($session) {
+                    return [
+                        'farm_id'         => $fp->farm_id,
+                        'farm_product_id' => $fp->id,
+                        'quantity'        => $session[$fp->id],
+                        'label'           => $fp->product->name,
+                        'price'           => $fp->price_sell_quantity,
+                    ];
+                })->toArray();
+            }
+        }
+
         $form     = Session::get('cart.form', []);
         $delivery = Session::get('cart.delivery', [
-            'methods'       => [],
-            'prices'        => [],
-            'deliveryMethod'=> null,
+            'methods' => [],
+            'prices' => [],
+            'deliveryMethod' => null,
             'paymentMethod' => null,
-            'cod'           => 0.0,
+            'cod' => 0.0,
         ]);
 
         $grouped = collect($items)->groupBy('farm_id');
@@ -30,67 +69,85 @@ class CartSummaryController extends Controller
 
         foreach ($grouped as $farmId => $farmItems) {
             $farm = Farm::find($farmId);
-            if (!$farm) continue;
+            if (! $farm) {
+                continue;
+            }
 
-            $list = $farmItems->map(fn ($item) => [
-                'quantity' => $item['quantity'] ?? 1,
-                'label'    => $item['label']    ?? '',
-                'price'    => $this->formatPrice($item['price']),
+            $list = $farmItems->map(fn($item) => [
+                'quantity' => $item['quantity'],
+                'label' => $item['label'],
+                'price' => $this->formatPrice($item['price']),
             ])->toArray();
 
-            $totalPrice = collect($farmItems)->sum(fn ($item) => ($item['price'] ?? 0) * ($item['quantity'] ?? 1));
+            $totalPrice = collect($farmItems)
+                ->sum(fn($item) => ($item['price'] ?? 0) * ($item['quantity'] ?? 1));
+
             $methodKey = $delivery['methods'][$farmId] ?? 'personal';
 
-            $shippingLabel = $methodKey === 'personal' || !$farm->delivery_available
-                ? 'Osobný odber'
-                : ucfirst(str_replace('_', ' ', $methodKey));
+            $shippingLabel = $methodKey === 'personal' || ! $farm->delivery_available ? 'Osobný odber' : ucfirst(str_replace('_', ' ', $methodKey));
 
-            $shippingPrice = $methodKey === 'personal' || !$farm->delivery_available
-                ? $this->formatPrice(0.0)
-                : '- €';
+            $shippingPrice = $methodKey === 'personal' || ! $farm->delivery_available ? $this->formatPrice(0.0) : $this->formatPrice($delivery['prices'][$farmId] ?? 0);
 
             $farms[] = [
-                'name'           => $farm->name,
-                'items'          => $list,
-                'shipping'       => $shippingLabel,
+                'name' => $farm->name,
+                'items' => $list,
+                'shipping' => $shippingLabel,
                 'shipping_price' => $shippingPrice,
             ];
         }
 
-        $withoutVat    = collect($items)->sum('price');
-        $shippingTotal = collect($delivery['prices'])->max();
-        $codTotal      = $delivery['cod'] ?? 0.0;
-        $total         = $withoutVat + $shippingTotal + $codTotal;
+        $shippingTotal = collect($delivery['prices'])->max() ?? 0;
+        $codTotal = $delivery['cod'] ?? 0;
+        $total = (collect($items)->sum(fn($i) => $i['quantity']*$i['price'])) + $shippingTotal + $codTotal;
+        $withoutVat = $total/1.2;
 
         $summary = [
             'without_vat' => $this->formatPrice($withoutVat),
-            'shipping'    => $this->formatPrice($shippingTotal),
-            'cod'         => $this->formatPrice($codTotal),
-            'total'       => $this->formatPrice($total),
+            'shipping' => $this->formatPrice($shippingTotal),
+            'cod' => $this->formatPrice($codTotal),
+            'total' => $this->formatPrice($total),
         ];
 
         $customer = [
-            'name'  => $form['name']  ?? '',
+            'name' => $form['name']  ?? '',
             'email' => $form['email'] ?? '',
             'phone' => $form['phone'] ?? '',
         ];
 
-        $billing         = $form['billing_address']  ?? [];
+        $billing = $form['billing_address']  ?? [];
         $deliveryAddress = $form['delivery_address'] ?? null;
-        $company         = $form['company']          ?? null;
-        $note            = $form['note']             ?? null;
-        $isCod           = ($delivery['paymentMethod'] ?? null) === 'cash_on_delivery';
+        $company = $form['company'] ?? null;
+        $note = $form['note'] ?? null;
+        $isCod = ($delivery['paymentMethod'] ?? null) === 'cash_on_delivery';
 
-        return view('cart.summary', compact(
-            'farms', 'summary', 'customer',
-            'billing', 'deliveryAddress', 'company',
-            'note', 'isCod'
-        ));
+        return view('cart.summary', compact('farms', 'summary', 'customer', 'billing', 'deliveryAddress', 'company','note', 'isCod'));
     }
 
     public function store(Request $request)
     {
-        $items    = Session::get('cart.items', []);
+        if (Auth::check()) {
+            $items = CartItem::with('farm_product.farm', 'farm_product.product')
+                ->where('user_id', Auth::id())
+                ->get()
+                ->map(fn(CartItem $ci) => [
+                    'farm_id'         => $ci->farm_product->farm_id,
+                    'farm_product_id' => $ci->farm_product_id,
+                    'quantity'        => $ci->quantity,
+                    'price'           => $ci->farm_product->price_sell_quantity,
+                ])->toArray();
+        } else {
+            $raw = Session::get('cart.items', []);           // [ fp_id => qty, … ]
+            $fps = FarmProduct::with('farm')
+                             ->whereIn('id', array_keys($raw))
+                             ->get();
+    
+            $items = $fps->map(fn($fp) => [
+                'farm_id'         => $fp->farm_id,
+                'farm_product_id' => $fp->id,
+                'quantity'        => $raw[$fp->id],
+                'price'           => $fp->price_sell_quantity,
+            ])->toArray();
+        }
         $form     = Session::get('cart.form', []);
         $delivery = Session::get('cart.delivery', [
             'methods' => [], 'prices' => [], 'cod' => 0.0
@@ -200,4 +257,4 @@ class CartSummaryController extends Controller
     {
         return number_format($value ?? 0.0, 2, ',', ' ') . ' €';
     }
-}
+} 

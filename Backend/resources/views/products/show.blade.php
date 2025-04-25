@@ -140,14 +140,12 @@
 
 				<button type="button" class="quantity-button plus btn custom-button">+</button>
 
-				<button type="submit" class="btn custom-button btn-pridat-do-kosika mt-0">
-					Pridať do košíka
-				</button>
+				<button type="submit" class="btn custom-button btn-pridat-do-kosika mt-0 mx-4">Pridať do košíka</button>
 			</form>
 		</div>
 	</div>
 
-	{{-- Farms carousel --}}
+	{{-- Vyber farmy --}}
 	<div class="row mt-5">
 		<h2 class="mb-3">Vyberte si farmu</h2>
 		<div class="arrows-around position-relative mt-4">
@@ -287,7 +285,6 @@
 			</div>
 			@endforeach
 
-      		{{-- “Show more” if you need pagination here --}}
     	</div>
   	</section>
 

@@ -877,15 +877,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updatePlaceholders();
     window.addEventListener('resize', updatePlaceholders);
 
-    //nastavenie posledne kliknutej stranky na aktivnu
-    /*document.querySelectorAll('.pagination .page-item').forEach(pageItem => {
-        pageItem.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelectorAll('.pagination .page-item').forEach(item => item.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });*/
-
     //===================== Product Detail ===========================//
 
     const mainImage = document.getElementById('mainImage');
@@ -902,7 +893,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     //funkcia tlacidiel na zmenu mnozstva
-
     document.querySelectorAll('.quantity').forEach(container => {
         const qtyInput = container.querySelector('input[name="quantity"]');
         const btnPlus = container.querySelector('.plus');
@@ -970,6 +960,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+    //funkcie na dynamicky update total ceny a ceny bez dph
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
     function formatMoney(n) {
@@ -980,10 +971,13 @@ document.addEventListener('DOMContentLoaded', () => {
         let sum = 0;
         document.querySelectorAll('.quantity-input').forEach(input => {
             const unitPrice = parseFloat(input.dataset.unitPrice);
-            const qty       = parseInt(input.value) || 0;
+            const qty = parseInt(input.value) || 0;
             sum += unitPrice * qty;
         });
         document.getElementById('cart-grand-total').textContent = formatMoney(sum);
+
+        const noDph = sum / 1.2;
+        document.getElementById('cart-no-dph').textContent = formatMoney(noDph);
     }
 
     function updateLineTotal(fpid, qty) {
@@ -1015,12 +1009,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // wire up plus/minus
+    //tlacidla plus minus v kosiku
     document.querySelectorAll('.quantity-button').forEach(btn => {
         btn.addEventListener('click', () => {
             const fpid  = btn.dataset.fpid;
             const input = document.querySelector(`.quantity-input[data-fpid="${fpid}"]`);
-            let qty     = parseInt(input.value) || 1;
+            let qty = parseInt(input.value) || 1;
             qty += btn.classList.contains('plus') ? 1 : -1;
             if (qty < 1) qty = 1;
             input.value = qty;
@@ -1028,7 +1022,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // manual edits
+    //ked pouzivatel manualne zada mnozstvo
     document.querySelectorAll('.quantity-input').forEach(input => {
         input.addEventListener('change', () => {
             let qty = parseInt(input.value) || 1;

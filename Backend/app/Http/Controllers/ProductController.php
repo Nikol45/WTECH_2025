@@ -177,7 +177,7 @@ class ProductController extends Controller
             'farm',
             'reviews'
         ]);
-
+        
         $photos = $farmProduct->images->pluck('path')->toArray();
         array_unshift($photos, $farmProduct->product->image->path);
 

@@ -95,6 +95,8 @@ class CartFormController extends Controller
 
         return [
             'name'  => trim($v['first_name'] . ' ' . $v['last_name']),
+            'first_name' => $v['first_name'],
+            'last_name'  => $v['last_name'],
             'email' => $v['email'],
             'phone' => $v['phone'],
 

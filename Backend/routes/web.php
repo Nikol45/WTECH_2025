@@ -34,9 +34,12 @@ Route::get('/', function () {
 
 Route::get('/', [HomeController::class, 'homepage'])->name('homepage');
 Route::get('/cart-items', [CartItemController::class, 'index'])->name('cart-items.index');
+Route::post('cart-items', [CartItemController::class,'store'])->name('cart.store');
+Route::delete('/cart-items',[CartItemController::class,'destroy'])->name('cart.destroy');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-Route::get('/product-detail', [ProductController::class, 'show'])->name('products.show');
+Route::get('/products/{farm_product}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/cart/confirmation', [CartSummaryController::class, 'confirmation'])->name('cart.confirmation');
+Route::patch('cart-items/{farm_product}', [CartItemController::class,'update'])->name('cart.updateQuantity');
 
 Route::get('/favourites', [FavouriteController::class, 'index'])->name('favourites.index');
 
