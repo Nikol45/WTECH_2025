@@ -4,7 +4,10 @@
 
     $imgPath = $item->product->image->path;
     $imgAlt = $item->product->image->name;
-    $name = $item->product->name;
+    $name = $item->product->name . (
+            $item->unit === 'ks' && (int)$item->sell_quantity === 1
+            ? '' : ' ' . ($item->unit === 'ks' ? (int)$item->sell_quantity : $item->sell_quantity) . ' ' . $item->unit
+        );
 
     $original = number_format($item->price_sell_quantity, 2) . ' €';
 

@@ -35,7 +35,12 @@
 
                             <div class="card-body">
                                 <a href="{{ route('products.show', $product['id']) }}" class="text-decoration-none">
-                                    <h5 class="card-title truncate-ellipsis px-2">{{ $product['name'] }}</h5>
+                                    <h5 class="card-title truncate-ellipsis px-2">
+                                        {{ $product['name'] }}
+                                        @if ($product['unit'] !== 'ks' || (int) $product['sell_quantity'] !== 1)
+                                            {{ ' ' . ($product['unit'] === 'ks' ? (int) $product['sell_quantity'] : $product['sell_quantity']) . ' ' . $product['unit'] }}
+                                        @endif
+                                    </h5>
                                 </a>
 
                                 <div class="price-container">

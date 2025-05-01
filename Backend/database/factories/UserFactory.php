@@ -28,9 +28,9 @@ class UserFactory extends Factory
     public function definition(): array
     {
 
-        $billingAddress = $this->faker->boolean(50) ? Address::factory()->state(['address_type' => 'billing'])->create() : null;
-        $deliveryAddress = $this->faker->boolean(40) ? Address::factory()->state(['address_type' => 'delivery'])->create() : null;
-        $company = $this->faker->boolean(30) ? Company::factory()->create() : null;
+        $billingAddress = $this->faker->boolean(70) ? Address::factory()->state(['address_type' => 'billing'])->create() : null;
+        $deliveryAddress = $this->faker->boolean(70) ? Address::factory()->state(['address_type' => 'delivery'])->create() : null;
+        $company = $this->faker->boolean(10) ? Company::factory()->create() : null;
         $iconId = Icon::inRandomOrder()->value('id');
 
         return [
@@ -45,7 +45,7 @@ class UserFactory extends Factory
             'password' => Hash::make(fake()->password()),
             'remember_token' => Str::random(10),
             'phone_number' => $this->faker->unique()->numerify('+421 ### ### ###'),
-            'has_admin_account' => $this->faker->boolean(30)
+            'has_admin_account' => $this->faker->boolean(20)
         ];
     }
 

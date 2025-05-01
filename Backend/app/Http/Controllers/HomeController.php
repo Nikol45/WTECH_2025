@@ -58,7 +58,7 @@ class HomeController extends Controller
             $effective = $fp->price_sell_quantity * (100 - ($fp->discount_percentage ?? 0)) / 100;
             $price = number_format($effective, 2) . ' €';
             $original = $fp->discount_percentage ? number_format($fp->price_sell_quantity, 2) . ' €' : null;
-            
+
             return [
                 'id' => $fp->id,
                 'name' => $fp->product->name,
@@ -70,7 +70,9 @@ class HomeController extends Controller
                 'discount' => $fp->discount_percentage,
                 'rating' => $fp->rating ?? 0,
                 'location' => $fp->farm->name . ', ' . ($fp->farm->address->city ?? ''),
-                'farm_id' => $fp->farm->id
+                'farm_id' => $fp->farm->id,
+                'sell_quantity' => $fp->sell_quantity,
+                'unit' => $fp->unit
             ];
         });
     }
@@ -79,7 +81,7 @@ class HomeController extends Controller
         return $articles->map(function ($article) {
             $farms = $article->user->farms;
             $randomFarmName = $farms->isNotEmpty() ? $farms->random()->name : '';
-    
+
             return [
                 'title' => $article->title,
                 'image' => $article->image->path,
