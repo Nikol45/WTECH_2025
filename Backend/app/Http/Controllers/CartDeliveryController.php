@@ -185,27 +185,56 @@ class CartDeliveryController extends Controller
                 ->values()
                 ->toArray();
         } else {
-            $cart           = Session::get('cart.items', []);
-            $packagesRaw    = $cart['packages'] ?? [];
+            $sessionCart = Session::get('cart.items', []);
+        $fps = FarmProduct::with('farm')
+             ->whereIn('id', array_keys($sessionCart))
+             ->get();
 
-            $packages = collect($packagesRaw)->map(function ($pkg) {
-                $farm = \App\Models\Farm::find($pkg['farm_id']);
-                $products = $pkg['products'] ?? [];
+        $cartItems = $fps->map(fn($fp) => [
+            'farm_product' => $fp,
+            'quantity'     => $sessionCart[$fp->id] ?? 0,
+        ]);
 
-                $total = collect($products)->sum(function ($p) {
-                    $price = floatval(str_replace(',', '.', str_replace(' €', '', $p['price'] ?? '0')));
-                    return $price * ($p['quantity'] ?? 1);
-                });
+        $packages = $cartItems
+            ->groupBy(fn($ci) => $ci['farm_product']->farm->id)
+            ->map(function($items, $farmId) {
+                $farm = $items->first()['farm_product']->farm;
+                $expectedDate = now()
+                    ->addDays($farm->avg_delivery_time ?? 2)
+                    ->toDateString();
+
+                $products = $items->map(fn($ci) => [
+                    'id'       => $ci['farm_product']->id,
+                    'image'    => $ci['farm_product']->product->image->path,
+                    'name'     => $ci['farm_product']->product->name,
+                    'price'    => number_format(
+                        ($unit = $ci['farm_product']->discount_percentage
+                            ? $ci['farm_product']->price_sell_quantity * (100 - $ci['farm_product']->discount_percentage)/100
+                            : $ci['farm_product']->price_sell_quantity
+                        ), 2, ',', ' '
+                    ) . ' €',
+                    'quantity' => $ci['quantity'],
+                ])->toArray();
+
+                $total = $items->sum(fn($ci) =>
+                    $ci['quantity'] * (
+                      $ci['farm_product']->discount_percentage
+                        ? $ci['farm_product']->price_sell_quantity * (100 - $ci['farm_product']->discount_percentage)/100
+                        : $ci['farm_product']->price_sell_quantity
+                    )
+                );
 
                 return [
-                    'farm_id'                => $farm->id,
-                    'farm_name'              => $farm->name,
-                    'only_personal'          => !$farm->delivery_available,
-                    'expected_delivery_date' => $pkg['expected_delivery_date'] ?? now()->addDays($farm->avg_delivery_time ?? 3)->toDateString(),
-                    'total_price'            => round($total, 2),
-                    'products'               => $products,
+                    'farm_id'                 => $farmId,
+                    'farm_name'               => $farm->name,
+                    'only_personal'           => ! $farm->delivery_available,
+                    'expected_delivery_date'  => $expectedDate,
+                    'total_price'             => round($total, 2),
+                    'products'                => $products,
                 ];
-            })->toArray();
+            })
+            ->values()
+            ->toArray();
         }
 
         self::bootDeliveryMethods($packages); // musí byť pred validáciou
