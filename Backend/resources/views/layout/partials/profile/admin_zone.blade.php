@@ -78,25 +78,56 @@
                                             <div class="col-sm-5">
                                                 <img src="{{ $farm->image ? asset($farm->image) : asset('images/empty.png') }}" alt="{{ $farm->name }}" class="img-fluid rounded">
                                             </div>
-                                            <div class="col-sm-6 overflow-hidden">
+                                            <div class="col-sm-7 overflow-hidden">
                                                 <h5 class="card-title truncate-ellipsis mt-sm-4">{{ $farm->name }}</h5>
-                                                <h6 class="card-location truncate-ellipsis text-muted">{{ $farm->location }}</h6>
+                                                <h6 class="card-location truncate-ellipsis text-muted">{{ $farm->address->city }}</h6>
                                             </div>
                                         </div>
                                     </a>
 
                                     <!-- Akcie -->
                                     <div class="d-flex flex-column gap-2 align-items-center">
-                                        <a href="{{ route('farms.edit', $farm->id) }}" class="btn custom-button" title="Upraviť">
+                                        {{-- MODAL EDIT – farma --}}
+                                        <button class="btn custom-button"
+                                                title="Upraviť"
+                                                onclick="openEditModal({
+                                                    title: 'Upraviť farmu',
+                                                    submitUrl: '{{ route('farms.update', $farm->id) }}',
+                                                    method: 'PUT',
+                                                    enctype: 'multipart/form-data',
+                                                    fields: [
+                                                        { label: 'Obrázok', name: 'image', type: 'file' },
+
+                                                        { label: 'Názov farmy', name: 'name',
+                                                          value: `{{ $farm->name }}`, required: true },
+
+                                                        { label: 'Popis', name: 'description', type: 'textarea',
+                                                          value: `{{ $farm->description }}` },
+
+                                                        { label: 'Ulica',        name: 'street',
+                                                          value: `{{ $farm->address->street }}`, required: true },
+                                                        { label: 'Číslo domu',   name: 'street_number',
+                                                          value: `{{ $farm->address->street_number }}`, required: true },
+                                                        { label: 'Mesto',        name: 'city',
+                                                          value: `{{ $farm->address->city }}`,   required: true },
+                                                        { label: 'PSČ',          name: 'zip_code',
+                                                          value: `{{ $farm->address->zip_code }}`, required: true },
+                                                        { label: 'Krajina',      name: 'country',
+                                                          value: `{{ $farm->address->country }}`, required: true }
+                                                    ]
+                                                })">
                                             <span class="material-symbols-outlined">edit_square</span>
-                                        </a>
-                                        <form method="POST" action="{{ route('farms.destroy', $farm->id) }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn custom-button" title="Zmazať">
-                                                <span class="material-icons">delete</span>
-                                            </button>
-                                        </form>
+                                        </button>
+
+                                        {{-- DELETE - potvrdenie --}}
+                                        <button class="btn custom-button" title="Zmazať"
+                                                onclick="openConfirmModal({
+                                                    title: 'Zmazať farmu',
+                                                    text : 'Naozaj chcete zmazať farmu &quot;{{ $farm->name }}&quot;?',
+                                                    submitUrl: '{{ route('farms.destroy', $farm->id) }}'
+                                                })">
+                                            <span class="material-icons">delete</span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -170,21 +201,48 @@
                                             </a>
                                             <div class="d-flex align-items-center gap-2">
                                                 <span class="material-icons">account_circle</span>
-                                                <span class="text-muted">{{ $article->author_name ?? 'Autor neznámy' }}</span>
+                                                @php
+                                                    $fullName = $article->user->name ?? 'Autor neznámy';
+                                                    $parts = explode(' ', $fullName);
+                                                    $firstLetter = mb_substr($parts[0], 0, 1);
+                                                    $lastName = end($parts);
+                                                @endphp
+
+                                                <span class="text-muted">{{ $firstLetter }}. {{ $lastName }}</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-column gap-2 align-items-center">
-                                        <a href="{{ route('articles.edit', $article->id) }}" class="btn btn-light border" title="Upraviť">
+                                        {{-- MODAL EDIT – článok --}}
+                                        <button class="btn btn-light border"
+                                                title="Upraviť"
+                                                onclick="openEditModal({
+                                                    title: 'Upraviť článok',
+                                                    submitUrl: '{{ route('articles.update', $article->id) }}',
+                                                    method: 'PUT',
+                                                    enctype: 'multipart/form-data',
+                                                    fields: [
+                                                        { label: 'Nadpis',  name: 'title',
+                                                          value: `{{ $article->title }}`,  required: true },
+
+                                                        { label: 'Text',    name: 'text',  type: 'textarea',
+                                                          value: @json($article->text),    required: true },
+
+                                                        { label: 'Obrázok', name: 'image', type: 'file' }
+                                                    ]
+                                                })">
                                             <span class="material-symbols-outlined">edit_square</span>
-                                        </a>
-                                        <form method="POST" action="{{ route('articles.destroy', $article->id) }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-light border" title="Zmazať">
-                                                <span class="material-icons">delete</span>
-                                            </button>
-                                        </form>
+                                        </button>
+
+                                        {{-- DELETE - potvrdenie --}}
+                                        <button class="btn btn-light border" title="Zmazať"
+                                                onclick="openConfirmModal({
+                                                    title: 'Zmazať článok',
+                                                    text : 'Naozaj chcete zmazať článok &quot;{{ $article->title }}&quot;?',
+                                                    submitUrl: '{{ route('articles.destroy', $article->id) }}'
+                                                })">
+                                            <span class="material-icons">delete</span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -304,3 +362,5 @@
         @endif
     </div>
 </div>
+
+@include('layout.partials.confirm_popup')

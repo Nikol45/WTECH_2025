@@ -1031,4 +1031,21 @@ document.addEventListener('DOMContentLoaded', () => {
             updateCartQty(input.dataset.fpid, qty);
         });
     });
+
+
+    window.openConfirmModal = function ({title, text, submitUrl}) {
+        const modalEl   = document.getElementById('confirmModal');
+        const bsModal   = bootstrap.Modal.getOrCreateInstance(modalEl);
+
+        // vyplň texty
+        document.getElementById('confirmModalTitle').innerText = title || 'Potvrdenie';
+        document.getElementById('confirmModalText').innerText  = text  || 'Naozaj chcete pokračovať?';
+
+        // nastav akčnú url
+        const form = document.getElementById('confirmModalForm');
+        form.action = submitUrl;
+
+        bsModal.show();
+    };
+
 });

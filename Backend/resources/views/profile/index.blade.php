@@ -41,7 +41,7 @@
         <div class="row mb-1 g-4">
             <div class="col-md-4">
                 <p class="fw-bold mb-1">Meno:</p>
-                <p class="mb-0">{{ $user->name }}</p>
+                <p class="mb-1">{{ $user->name }}</p>
                 <a href="#" class="text-primary" onclick="openEditModal({
                     title: 'Zmeniť meno',
                     submitUrl: '{{ route('profile.update.name') }}',
@@ -52,7 +52,7 @@
             </div>
             <div class="col-md-4">
                 <p class="fw-bold mb-1">Email:</p>
-                <p class="mb-0">{{ $user->email }}</p>
+                <p class="mb-1">{{ $user->email }}</p>
                 <a href="#" class="text-primary" onclick="openEditModal({
                     title: 'Zmeniť email',
                     submitUrl: '{{ route('profile.update.email') }}',
@@ -63,7 +63,7 @@
             </div>
             <div class="col-md-4">
                 <p class="fw-bold mb-1">Telefónne číslo:</p>
-                <p class="mb-0">{{ $user->phone_number }}</p>
+                <p class="mb-1">{{ $user->phone_number }}</p>
                 <a href="#" class="text-primary" onclick="openEditModal({
                     title: 'Zmeniť číslo',
                     submitUrl: '{{ route('profile.update.phone') }}',
@@ -80,10 +80,10 @@
                 {{-- Fakturačná adresa --}}
                 <div class="mt-5">
                     <h5 class="fw-bold mb-3">Fakturačná adresa</h5>
-                    <p class="mb-0">Ulica: {{ $user->billingAddress->street ?? '' }}</p>
-                    <p class="mb-0">Číslo domu: {{ $user->billingAddress->street_number ?? '' }}</p>
-                    <p class="mb-0">Mesto: {{ $user->billingAddress->city ?? '' }}</p>
-                    <p class="mb-0">PSČ: {{ $user->billingAddress->zip_code ?? '' }}</p>
+                    <p class="mb-1">Ulica: {{ $user->billingAddress->street ?? '' }}</p>
+                    <p class="mb-1">Číslo domu: {{ $user->billingAddress->street_number ?? '' }}</p>
+                    <p class="mb-1">Mesto: {{ $user->billingAddress->city ?? '' }}</p>
+                    <p class="mb-1">PSČ: {{ $user->billingAddress->zip_code ?? '' }}</p>
                     <p class="mb-2">Krajina: {{ $user->billingAddress->country ?? '' }}</p>
                     <a href="#" class="text-primary" onclick="openEditModal({
                         title: 'Upraviť fakturačnú adresu',
@@ -101,10 +101,10 @@
                 {{-- Dodacia adresa --}}
                 <div class="mt-5">
                     <h5 class="fw-bold mb-3">Dodacia adresa</h5>
-                    <p class="mb-0">Ulica: {{ $user->deliveryAddress->street ?? '' }}</p>
-                    <p class="mb-0">Číslo domu: {{ $user->deliveryAddress->street_number ?? '' }}</p>
-                    <p class="mb-0">Mesto: {{ $user->deliveryAddress->city ?? '' }}</p>
-                    <p class="mb-0">PSČ: {{ $user->deliveryAddress->zip_code ?? '' }}</p>
+                    <p class="mb-1">Ulica: {{ $user->deliveryAddress->street ?? '' }}</p>
+                    <p class="mb-1">Číslo domu: {{ $user->deliveryAddress->street_number ?? '' }}</p>
+                    <p class="mb-1">Mesto: {{ $user->deliveryAddress->city ?? '' }}</p>
+                    <p class="mb-1">PSČ: {{ $user->deliveryAddress->zip_code ?? '' }}</p>
                     <p class="mb-2">Krajina: {{ $user->deliveryAddress->country ?? '' }}</p>
                     <a href="#" class="text-primary" onclick="openEditModal({
                         title: 'Upraviť dodaciu adresu',
@@ -122,8 +122,8 @@
                 {{-- Firemné údaje --}}
                 <div class="mt-5">
                     <h5 class="fw-bold mb-3">Nákup na firmu</h5>
-                    <p class="mb-0">Názov spoločnosti: {{ $user->company->name ?? '' }}</p>
-                    <p class="mb-0">IČO: {{ $user->company->ico ?? '' }}</p>
+                    <p class="mb-1">Názov spoločnosti: {{ $user->company->name ?? '' }}</p>
+                    <p class="mb-1">IČO: {{ $user->company->ico ?? '' }}</p>
                     <p class="mb-2">IČ DPH: {{ $user->company->vat ?? '' }}</p>
                     <a href="#" class="text-primary" onclick="openEditModal({
                         title: 'Firemné údaje',
@@ -158,7 +158,7 @@
                 <div class="row mb-5 g-4">
                     <div class="col-md-4">
                         <p class="fw-bold mb-1">Meno:</p>
-                        <p class="mb-0">{{ $user->name }}</p>
+                        <p class="mb-1">{{ $user->name }}</p>
                         <a href="#" class="text-primary" onclick="openEditModal({
                             title: 'Zmeniť meno',
                             submitUrl: '{{ route('profile.update.name') }}',
@@ -169,7 +169,7 @@
                     </div>
                     <div class="col-md-4">
                         <p class="fw-bold mb-1">Email:</p>
-                        <p class="mb-0">{{ $user->email }}</p>
+                        <p class="mb-1">{{ $user->email }}</p>
                         <a href="#" class="text-primary" onclick="openEditModal({
                             title: 'Zmeniť email',
                             submitUrl: '{{ route('profile.update.email') }}',
@@ -180,7 +180,7 @@
                     </div>
                     <div class="col-md-4">
                         <p class="fw-bold mb-1">Telefónne číslo:</p>
-                        <p class="mb-0">{{ $user->phone_number }}</p>
+                        <p class="mb-1">{{ $user->phone_number }}</p>
                         <a href="#" class="text-primary" onclick="openEditModal({
                             title: 'Zmeniť číslo',
                             submitUrl: '{{ route('profile.update.phone') }}',
@@ -196,10 +196,10 @@
                     {{-- Fakturačná adresa --}}
                     <div class="col-md-4">
                         <h5 class="fw-bold mb-3">Fakturačná adresa</h5>
-                        <p class="mb-0">Ulica: {{ $user->billingAddress->street ?? '' }}</p>
-                        <p class="mb-0">Číslo domu: {{ $user->billingAddress->street_number ?? '' }}</p>
-                        <p class="mb-0">Mesto: {{ $user->billingAddress->city ?? '' }}</p>
-                        <p class="mb-0">PSČ: {{ $user->billingAddress->zip_code ?? '' }}</p>
+                        <p class="mb-1">Ulica: {{ $user->billingAddress->street ?? '' }}</p>
+                        <p class="mb-1">Číslo domu: {{ $user->billingAddress->street_number ?? '' }}</p>
+                        <p class="mb-1">Mesto: {{ $user->billingAddress->city ?? '' }}</p>
+                        <p class="mb-1">PSČ: {{ $user->billingAddress->zip_code ?? '' }}</p>
                         <p class="mb-2">Krajina: {{ $user->billingAddress->country ?? '' }}</p>
                         <a href="#" class="text-primary" onclick="openEditModal({
                             title: 'Upraviť fakturačnú adresu',
@@ -217,10 +217,10 @@
                     {{-- Dodacia adresa --}}
                     <div class="col-md-4">
                         <h5 class="fw-bold mb-3">Dodacia adresa</h5>
-                        <p class="mb-0">Ulica: {{ $user->deliveryAddress->street ?? '' }}</p>
-                        <p class="mb-0">Číslo domu: {{ $user->deliveryAddress->street_number ?? '' }}</p>
-                        <p class="mb-0">Mesto: {{ $user->deliveryAddress->city ?? '' }}</p>
-                        <p class="mb-0">PSČ: {{ $user->deliveryAddress->zip_code ?? '' }}</p>
+                        <p class="mb-1">Ulica: {{ $user->deliveryAddress->street ?? '' }}</p>
+                        <p class="mb-1">Číslo domu: {{ $user->deliveryAddress->street_number ?? '' }}</p>
+                        <p class="mb-1">Mesto: {{ $user->deliveryAddress->city ?? '' }}</p>
+                        <p class="mb-1">PSČ: {{ $user->deliveryAddress->zip_code ?? '' }}</p>
                         <p class="mb-2">Krajina: {{ $user->deliveryAddress->country ?? '' }}</p>
                         <a href="#" class="text-primary" onclick="openEditModal({
                             title: 'Upraviť dodaciu adresu',
@@ -238,8 +238,8 @@
                     {{-- Firemné údaje --}}
                     <div class="col-md-4">
                         <h5 class="fw-bold mb-3">Nákup na firmu</h5>
-                        <p class="mb-0">Názov spoločnosti: {{ $user->company->name ?? '' }}</p>
-                        <p class="mb-0">IČO: {{ $user->company->ico ?? '' }}</p>
+                        <p class="mb-1">Názov spoločnosti: {{ $user->company->name ?? '' }}</p>
+                        <p class="mb-1">IČO: {{ $user->company->ico ?? '' }}</p>
                         <p class="mb-2">IČ DPH: {{ $user->company->vat ?? '' }}</p>
                         <a href="#" class="text-primary" onclick="openEditModal({
                             title: 'Firemné údaje',
