@@ -233,7 +233,7 @@ class CartSummaryController extends Controller
             ]);
 
             foreach ($farmItems as $item) {
-                $package->orderItems()->create([
+                $package->order_items()->create([
                     'farm_product_id'    => $item['farm_product_id'] ?? $item['id'],
                     'quantity'           => $item['quantity'] ?? 1,
                     'price_when_ordered' => $item['price'],

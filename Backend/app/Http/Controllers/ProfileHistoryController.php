@@ -15,7 +15,7 @@ class ProfileHistoryController extends Controller
     {
         $orders = Order::with([
             'packages.farm',
-            'packages.orderItems.farmProduct.product',
+            'packages.order_items.farm_product.product',
         ])
             ->where('user_id', Auth::id())
             ->latest()
@@ -27,11 +27,14 @@ class ProfileHistoryController extends Controller
     /** „Objednať znova“ – vloží položky späť do košíka */
     public function reorder(Order $order)
     {
-        $this->authorize('view', $order);       // používateľ musí byť majiteľ
+        // Kontrola, či používateľ je vlastník objednávky
+        if ($order->user_id !== auth()->id()) {
+            abort(403);
+        }
 
         DB::transaction(function () use ($order) {
             foreach ($order->packages as $package) {
-                foreach ($package->orderItems as $item) {
+                foreach ($package->order_items as $item) {
                     CartItem::updateOrCreate(
                         [
                             'user_id'         => $order->user_id,

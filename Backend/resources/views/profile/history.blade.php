@@ -23,22 +23,37 @@
             <h3 class="fw-bold fs-5 mb-3">Zásielka č. {{ $order->number }}</h3>
 
             {{-- Položky objednávky --}}
-            @foreach($order->items as $item)
-                <div class="row mb-3 align-items-center">
-                    <div class="col-auto">
-                        <img src="{{ asset($item->product->image_url) }}" alt="{{ $item->product->name }}" class="img-fluid rounded" style="max-width:80px;">
+            @foreach($order->packages as $package)
+                @foreach($package->order_items as $item)
+                    @php
+                        $product = $item->farm_product->product ?? null;
+                        $farm    = $item->farm_product->farm ?? null;
+                    @endphp
+
+                    <div class="row mb-3 align-items-center">
+                        <div class="col-auto">
+                            <img src="{{ asset($product->image->path ?? 'images/placeholder.png') }}"
+                                 alt="{{ $product->name ?? 'Produkt' }}"
+                                 class="img-fluid rounded"
+                                 style="max-width:80px;">
+                        </div>
+                        <div class="col">
+                            <p class="mb-1 fw-bold">{{ $product->name ?? 'Neznámy produkt' }}</p>
+                            <p class="mb-0 text-muted">
+                                Farma: {{ $farm->name ?? 'neznáma' }},
+                                {{ $farm->address->city ?? 'bez adresy' }}
+                            </p>
+                        </div>
+                        <div class="col-auto">
+                <span class="badge bg-light text-dark px-3 py-2">
+                    {{ $item->quantity }} {{ $item->unit_label }}
+                </span>
+                        </div>
+                        <div class="col-auto">
+                            <p class="fs-5 mb-0">{{ ($item->total_price) }}</p>
+                        </div>
                     </div>
-                    <div class="col">
-                        <p class="mb-1 fw-bold">{{ $item->product->name }}</p>
-                        <p class="mb-0 text-muted">Farma: {{ $item->product->farm->name }}, {{ $item->product->farm->city }}</p>
-                    </div>
-                    <div class="col-auto">
-                        <span class="badge bg-light text-dark px-3 py-2">{{ $item->quantity }} {{ $item->unit_label }}</span>
-                    </div>
-                    <div class="col-auto">
-                        <p class="fs-5 mb-0">{{ currency($item->total_price) }}</p>
-                    </div>
-                </div>
+                @endforeach
             @endforeach
 
             {{-- Súhrn objednávky (číslo, dátum, cena, reorder) --}}
@@ -48,8 +63,8 @@
                     <span>{{ $order->created_at->format('j.n.Y') }}</span>
                 </div>
                 <div class="d-flex align-items-center gap-3">
-                    <span class="fw-bold">Cena: {{ currency($order->total_price) }}</span>
-                    <form action="{{ route('orders.reorder', $order) }}" method="POST">
+                    <span class="fw-bold">Cena: {{ ($order->total_price) }}</span>
+                    <form action="{{ route('profile.history.reorder', $order) }}" method="POST">
                         @csrf
                         <button class="btn btn-secondary">Objednať znova</button>
                     </form>

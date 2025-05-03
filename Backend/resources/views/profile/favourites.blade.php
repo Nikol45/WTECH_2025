@@ -35,7 +35,9 @@
 
                     $id        = $fp->id;
                     $farmId    = $fp->farm->id ?? null;
-                    $imgPath   = $fp->product->image->path ?? asset('images/placeholder.png');
+                    $imgPath = $fp->product->image?->path
+                                    ? asset($fp->product->image->path)
+                                    : asset('images/placeholder.png');
                     $imgAlt    = $fp->product->image->name ?? $fp->product->name;
                     $name      = $fp->product->name .
                                  ($fp->unit === 'ks' && (int)$fp->sell_quantity === 1

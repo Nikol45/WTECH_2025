@@ -12,8 +12,8 @@ class ProfileReviewsController extends Controller
     public function index()
     {
         $reviews = Review::with([
-            'farmProduct.product',
-            'farmProduct.farm',
+            'farm_product.product',
+            'farm_product.farm',
         ])
             ->where('user_id', Auth::id())
             ->latest()
