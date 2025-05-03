@@ -55,7 +55,7 @@ class ArticleController extends Controller
     public function edit(Article $article)
     {
         // môžeme skontrolovať, či práve prihlásený používateľ je autor,
-        // prípadne použiť Gate/Policy
+        // prípadne použiť Gate/Policy
         $this->authorize('update', $article);
 
         return view('articles.edit', compact('article'));

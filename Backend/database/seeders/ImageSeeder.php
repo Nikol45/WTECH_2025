@@ -18,7 +18,7 @@ class ImageSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void {   
+    public function run(): void {
         Product::with('category')->get()->each(function ($product) {
             $categoryName = Str::slug($product->category->name, '_');
             $name = Str::slug(strtolower($product->name), '_');

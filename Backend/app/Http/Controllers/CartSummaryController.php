@@ -42,7 +42,7 @@ class CartSummaryController extends Controller
                 $fps = FarmProduct::with(['farm','product'])
                        ->whereIn('id', array_keys($session))
                        ->get();
-    
+
                 $items = $fps->map(function($fp) use($session) {
                     return [
                         'farm_id'         => $fp->farm_id,
@@ -140,7 +140,7 @@ class CartSummaryController extends Controller
             $fps = FarmProduct::with('farm')
                              ->whereIn('id', array_keys($raw))
                              ->get();
-    
+
             $items = $fps->map(fn($fp) => [
                 'farm_id'         => $fp->farm_id,
                 'farm_product_id' => $fp->id,
@@ -233,7 +233,7 @@ class CartSummaryController extends Controller
             ]);
 
             foreach ($farmItems as $item) {
-                $package->order_items()->create([
+                $package->orderItems()->create([
                     'farm_product_id'    => $item['farm_product_id'] ?? $item['id'],
                     'quantity'           => $item['quantity'] ?? 1,
                     'price_when_ordered' => $item['price'],
@@ -257,4 +257,4 @@ class CartSummaryController extends Controller
     {
         return number_format($value ?? 0.0, 2, ',', ' ') . ' €';
     }
-} 
+}

@@ -112,7 +112,7 @@ class CartItemController extends Controller
             }
             session()->put('cart.items', $cart);
         }
-        
+
 
         return back()->with('success', 'Produkt pridaný do košíka.');
     }

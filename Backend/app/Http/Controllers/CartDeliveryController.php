@@ -49,7 +49,7 @@ class CartDeliveryController extends Controller
                     $products = $items->map(function ($ci) {
                         $fp = $ci->farm_product;
                         $unitPrice = $fp->discount_percentage ? $fp->price_sell_quantity * (100 - $fp->discount_percentage) / 100 : $fp->price_sell_quantity;
-            
+
                         return [
                             'id' => $fp->id,
                             'image' => $fp->product->image->path,
@@ -58,7 +58,7 @@ class CartDeliveryController extends Controller
                             'quantity' => $ci->quantity,
                         ];
                     })->toArray();
-            
+
                     return [
                         'farm_id' => $farmId,
                         'farm_name' => $farm->name,
@@ -72,14 +72,14 @@ class CartDeliveryController extends Controller
                 ->toArray();
 
             $savedDelivery = Session::get('cart.delivery', []);
-        } 
+        }
         else {
             /* Hosť – košík v session */
             $sessionCart = Session::get('cart.items', []);
             $fps = FarmProduct::with('farm','product.image')
                 ->whereIn('id', array_keys($sessionCart))
                 ->get();
-            
+
             $cartItems = $fps->map(function($fp) use($sessionCart) {
                 return [
                     'farm_product' => $fp,
@@ -98,7 +98,7 @@ class CartDeliveryController extends Controller
                     $products = $items->map(function($ci) {
                         $fp = $ci['farm_product'];
                         $unitPrice = $fp->discount_percentage ? $fp->price_sell_quantity * (100 - $fp->discount_percentage)/100 : $fp->price_sell_quantity;
-                        
+
                         return [
                             'id' => $fp->id,
                             'image' => $fp->product->image->path,
@@ -157,7 +157,7 @@ class CartDeliveryController extends Controller
             'onlyPersonalAvailable' => $onlyPersonalAvailable,
         ]);
     }
-    
+
     public function store(Request $request): RedirectResponse
     {
         if (Auth::check()) {

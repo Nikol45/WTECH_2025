@@ -10,7 +10,7 @@
                     title: 'Zmeniť avatar',
                     submitUrl: '{{ route('profile.update.icon') }}',
                     fields: [{
-                        // pošleme priamo HTML grid s ikonami
+                        // pošleme priamo HTML grid s ikonami
                         html: `
                             <div class='d-flex flex-wrap gap-2 justify-content-center'>
                                 @foreach(\App\Models\Icon::all() as $icon)

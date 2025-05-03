@@ -4,8 +4,10 @@
 
 @section('content')
     {{-- Tabs --}}
-    @include('layout.partials.cart_steps', ['active' => 'form'])
-
+    @include('layout.partials.nav_steps', [
+        'context' => 'cart',
+        'active'  => 'form'
+    ])
     {{-- Späť do košíka --}}
     <a href="{{ route('cart-items.index') }}" class="d-inline-flex align-items-center mb-4 text-decoration-none text-dark">
         <span class="me-1">←</span> Späť do košíka

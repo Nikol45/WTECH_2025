@@ -10,6 +10,11 @@ class Favourite extends Model
     /** @use HasFactory<\Database\Factories\FavouriteFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'farm_product_id',
+    ];
+
     public function farm_product() {
         return $this->belongsTo(FarmProduct::class);
     }

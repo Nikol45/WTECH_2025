@@ -19,12 +19,12 @@ class Address extends Model
         'address_type',
     ];
 
-    public function billingusers()
+    public function billingUsers()
     {
         return $this->hasMany(Account::class, 'billing_address_id');
     }
 
-    public function deliveryusers()
+    public function deliveryUsers()
     {
         return $this->hasMany(Account::class, 'delivery_address_id');
     }

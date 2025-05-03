@@ -11,7 +11,7 @@ class StoreFavouriteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreFavouriteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'farm_product_id' => 'required|exists:farm_products,id',
         ];
     }
+
 }

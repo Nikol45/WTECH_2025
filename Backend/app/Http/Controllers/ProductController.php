@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function index(Request $request) {
         $search = trim((string) $request->input('q', ''));
-        $clickedCat = $request->integer('category');  
+        $clickedCat = $request->integer('category');
         $clickedSubCat = $request->integer('subcategory');
         $selectedSubs  = $request->input('subcategories', []);
 
@@ -60,12 +60,12 @@ class ProductController extends Controller
             )
 
             ->when($priceMin !== null, fn($q) => $q->whereRaw(
-                '(price_sell_quantity * (100 - COALESCE(discount_percentage,0)) / 100) >= ?', 
+                '(price_sell_quantity * (100 - COALESCE(discount_percentage,0)) / 100) >= ?',
                 [$priceMin]
             ))
 
             ->when($priceMax !== null, fn($q) => $q->whereRaw(
-                '(price_sell_quantity * (100 - COALESCE(discount_percentage,0)) / 100) <= ?', 
+                '(price_sell_quantity * (100 - COALESCE(discount_percentage,0)) / 100) <= ?',
                 [$priceMax]
             ))
 
@@ -99,11 +99,11 @@ class ProductController extends Controller
             $filterSubsubs = Subsubcategory::where('subcategory_id', $parentId)
                                            ->orderBy('name')
                                            ->get();
-        
+
         }
         else {
             $ids = $products->pluck('product.subsubcategory.id')->filter()->unique();
-    
+
             $filterSubsubs = Subsubcategory::whereIn('id', $ids)
                                            ->orderBy('name')
                                            ->get();
@@ -138,7 +138,7 @@ class ProductController extends Controller
         return $articles->map(function ($article) {
             $farms = $article->user->farms;
             $randomFarmName = $farms->isNotEmpty() ? $farms->random()->name : '';
-    
+
             return [
                 'title' => $article->title,
                 'image' => $article->image->path,
@@ -177,7 +177,7 @@ class ProductController extends Controller
             'farm',
             'reviews'
         ]);
-        
+
         $photos = $farmProduct->images->pluck('path')->toArray();
         array_unshift($photos, $farmProduct->product->image->path);
 

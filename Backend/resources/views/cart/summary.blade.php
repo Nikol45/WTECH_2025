@@ -4,8 +4,10 @@
 
 @section('content')
     {{-- ---------- KROKY KOŠÍKA (tabs) ---------- --}}
-    @include('layout.partials.cart_steps', ['active' => 'summary'])
-
+    @include('layout.partials.nav_steps', [
+        'context' => 'cart',
+        'active'  => 'summary'
+    ])
     {{-- ---------- SPÄŤ NA DORUČENIE A PLATBU ---------- --}}
     <a href="{{ route('cart-delivery.index') }}"
        class="d-inline-flex align-items-center mb-4 text-decoration-none text-dark">

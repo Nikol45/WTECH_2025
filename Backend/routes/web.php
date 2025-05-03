@@ -9,7 +9,7 @@ use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\FarmController;
 use App\Http\Controllers\FarmProductController;
-use App\Http\Controllers\FavouriteController;
+use App\Http\Controllers\ProfileFavouriteController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
@@ -22,6 +22,9 @@ use App\Http\Controllers\CartSummaryController;
 use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProfileHistoryController;
+use App\Http\Controllers\ProfileReviewsController;
+
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\GuestController;
@@ -41,14 +44,34 @@ Route::get('/products/{farm_product}', [ProductController::class, 'show'])->name
 Route::get('/cart/confirmation', [CartSummaryController::class, 'confirmation'])->name('cart.confirmation');
 Route::patch('cart-items/{farm_product}', [CartItemController::class,'update'])->name('cart.updateQuantity');
 
-Route::get('/favourites', [FavouriteController::class, 'index'])->name('favourites.index');
+Route::get('/favourites', [ProfileFavouriteController::class, 'index'])->name('favourites.index');
 
 Route::prefix('profile')->name('profile.')->group(function () {
-    Route::get('/', [ProfileController::class, 'index'])->name('index');
     Route::get('/history', [ProfileHistoryController::class, 'index'])->name('history');
-    Route::get('/favourites', [FavouriteController::class, 'index'])->name('favourites');
+    Route::get('/favourites', [ProfileFavouriteController::class, 'index'])->name('favourites');
     Route::get('/reviews', [ProfileReviewsController::class, 'index'])->name('reviews');
 });
+
+Route::prefix('profile')->middleware('auth')->group(function () {
+    Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
+    Route::post('view/admin', [ProfileController::class, 'viewAsAdmin'])->name('profile.admin');
+    Route::post('view/customer', [ProfileController::class, 'viewAsCustomer'])->name('profile.customer');
+    Route::post('admin/create', [ProfileController::class, 'createAdmin'])->name('profile.admin.create');
+});
+
+Route::middleware('auth')->prefix('profile')->name('profile.')->group(function () {
+    Route::get('/history', [ProfileHistoryController::class, 'index'])->name('history');
+    Route::post('/history/{order}/reorder', [ProfileHistoryController::class, 'reorder'])->name('history.reorder');
+
+    Route::get('/favourites', [ProfileFavouriteController::class, 'index'])->name('favourites');
+    Route::post('/favourites', [ProfileFavouriteController::class, 'store'])->name('favourites.store');
+    Route::delete('/favourites/{review}', [ProfileFavouriteController::class, 'store'])->name('favourites.destroy');
+
+    Route::get('/reviews', [ProfileReviewsController::class, 'index'])->name('reviews');
+    Route::patch('/reviews/{review}', [ProfileReviewsController::class, 'update'])->name('reviews.update');
+    Route::delete('/reviews/{review}', [ProfileReviewsController::class, 'destroy'])->name('reviews.destroy');
+});
+
 
 Route::prefix('profile/update')->name('profile.update.')->middleware('auth')->group(function () {
     Route::post('/name', [ProfileController::class, 'updateName'])->name('name');
@@ -60,13 +83,6 @@ Route::prefix('profile/update')->name('profile.update.')->middleware('auth')->gr
     Route::post('/company', [ProfileController::class, 'updateCompany'])->name('company');
     Route::post('/nickname', [ProfileController::class, 'updateNickname'])->name('nickname');
     Route::post('/icon', [ProfileController::class, 'updateIcon'])->name('icon');
-});
-
-Route::prefix('profile')->middleware('auth')->group(function () {
-    Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
-    Route::post('view/admin', [ProfileController::class, 'viewAsAdmin'])->name('profile.admin');
-    Route::post('view/customer', [ProfileController::class, 'viewAsCustomer'])->name('profile.customer');
-    Route::post('admin/create', [ProfileController::class, 'createAdmin'])->name('profile.admin.create');
 });
 
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
@@ -84,7 +100,6 @@ Route::resource('cart-items', CartItemController::class);
 Route::resource('companies', CompanyController::class);
 Route::resource('farms', FarmController::class);
 Route::resource('farm-products', FarmProductController::class);
-Route::resource('favourites', FavouriteController::class);
 Route::resource('images', ImageController::class);
 Route::resource('orders', OrderController::class);
 Route::resource('order-items', OrderItemController::class);

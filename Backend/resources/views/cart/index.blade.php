@@ -2,7 +2,11 @@
 @section('title','Váš košík')
 @section('content')
 
-@include('layout.partials.cart_steps',['active'=>'items'])
+
+@include('layout.partials.nav_steps', [
+    'context' => 'cart',
+    'active'  => 'items'
+])
 
 @if($cartByFarm->isEmpty())
   	<p>Váš košík je prázdny.</p>
@@ -80,7 +84,7 @@
 				</div>
 			</div>
 		@endforeach
-	
+
 		@php
 		$grand = collect($cartByFarm)
 			->flatten(1)

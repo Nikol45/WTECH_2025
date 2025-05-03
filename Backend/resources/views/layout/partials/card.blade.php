@@ -89,9 +89,15 @@
                     <input type="hidden" name="quantity" value="1">
                     <button type="submit" class="btn custom-button btn-pridat-do-kosika w-100">Pridať do košíka</button>
                 </form>
-                <button class="btn custom-button favorite-btn">
-                    <span class="material-icons">favorite_border</span>
-                </button>
+
+                <form action="{{ route('profile.favourites.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="farm_product_id" value="{{ $id }}">
+                    <button type="submit" class="btn custom-button favorite-btn p-2"
+                            title="Pridať do obľúbených">
+                        <span class="material-icons">favorite_border</span>
+                    </button>
+                </form>
             </div>
         </div>
     </div>
