@@ -47,7 +47,7 @@ class FarmFactory extends Factory
             'Hrejivé Slnečnice', 'Dobrý Koreň', 'Chrumkavé Záhony'
         ];
 
-        $userId = \App\Models\User::where('has_admin_account', true)->inRandomOrder()->value('id');
+        $userId = \App\Models\User::where('is_admin', true)->inRandomOrder()->value('id');
         $deliveryAvailable = $this->faker->boolean(70);
 
         return [

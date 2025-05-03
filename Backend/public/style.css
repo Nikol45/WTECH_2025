@@ -1473,3 +1473,7 @@ body.offcanvas-backdrop {
 .text-muted .small {
     font-size: 0.85rem;
 }
+
+.border-primary {
+    border-color: var(--teal-dark) !important;
+}

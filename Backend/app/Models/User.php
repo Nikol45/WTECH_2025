@@ -19,14 +19,15 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'nickname',
         'email',
         'password',
-        'nickname', // ak máš prezývku
-        'admin_account',
+        'is_admin',
         'icon_id',
         'billing_address_id',
         'delivery_address_id',
         'company_id',
+        'phone_number',
     ];
 
     /**

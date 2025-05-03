@@ -49,6 +49,35 @@ Route::prefix('profile')->name('profile.')->group(function () {
     Route::get('/favourites', [FavouriteController::class, 'index'])->name('favourites');
     Route::get('/reviews', [ProfileReviewsController::class, 'index'])->name('reviews');
 });
+
+Route::prefix('profile/update')->name('profile.update.')->middleware('auth')->group(function () {
+    Route::post('/name', [ProfileController::class, 'updateName'])->name('name');
+    Route::post('/email', [ProfileController::class, 'updateEmail'])->name('email');
+    Route::post('/phone', [ProfileController::class, 'updatePhone'])->name('phone');
+    Route::post('/password', [ProfileController::class, 'updatePassword'])->name('password');
+    Route::post('/billing', [ProfileController::class, 'updateBillingAddress'])->name('billing');
+    Route::post('/delivery', [ProfileController::class, 'updateDeliveryAddress'])->name('delivery');
+    Route::post('/company', [ProfileController::class, 'updateCompany'])->name('company');
+    Route::post('/nickname', [ProfileController::class, 'updateNickname'])->name('nickname');
+    Route::post('/icon', [ProfileController::class, 'updateIcon'])->name('icon');
+});
+
+Route::prefix('profile')->middleware('auth')->group(function () {
+    Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
+    Route::post('view/admin', [ProfileController::class, 'viewAsAdmin'])->name('profile.admin');
+    Route::post('view/customer', [ProfileController::class, 'viewAsCustomer'])->name('profile.customer');
+    Route::post('admin/create', [ProfileController::class, 'createAdmin'])->name('profile.admin.create');
+});
+
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::post('/farm/store',    [ProfileController::class, 'storeFarm'   ])->name('farm.store');
+    Route::post('/article/store', [ProfileController::class, 'storeArticle'])->name('article.store');
+    Route::post('/review/store',  [ProfileController::class, 'storeReview' ])->name('review.store');
+
+});
+
+Route::post('/admin/review/{review}/reply', [ProfileController::class, 'replyToReview'])->name('admin.review.reply');
+
 Route::resource('addresses', AddressController::class);
 Route::resource('articles', ArticleController::class);
 Route::resource('cart-items', CartItemController::class);
@@ -70,16 +99,7 @@ Route::post('/login',    [LoginController::class,    'login'])->name('login');
 Route::post('/logout',   [LoginController::class,    'logout'])->name('logout')->middleware('web');
 Route::get ('/guest',    [GuestController::class,    'browseAsGuest'])->name('guest.browse');
 
-
-
 Route::view('/obchodne-podmienky', 'static.terms')->name('terms');
-// web.php
-Route::middleware('auth')->group(function(){
-    Route::get('profile', [ProfileController::class,'index'])->name('profile.index');
-    Route::post('profile/view/admin',    [ProfileController::class,'viewAsAdmin'])   ->name('profile.admin');
-    Route::post('profile/view/customer', [ProfileController::class,'viewAsCustomer'])->name('profile.customer');
-});
-
 
 //testers
 Route::get('/test-cart', function () {

@@ -45,7 +45,7 @@ class UserFactory extends Factory
             'password' => Hash::make(fake()->password()),
             'remember_token' => Str::random(10),
             'phone_number' => $this->faker->unique()->numerify('+421 ### ### ###'),
-            'has_admin_account' => $this->faker->boolean(20)
+            'is_admin' => $this->faker->boolean(20)
         ];
     }
 

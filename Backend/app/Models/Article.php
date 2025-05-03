@@ -10,6 +10,13 @@ class Article extends Model
     /** @use HasFactory<\Database\Factories\ArticleFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'text',
+        'image',
+        'user_id',
+    ];
+
     public function image() {
         return $this->morphOne(Image::class, 'imageable');
     }

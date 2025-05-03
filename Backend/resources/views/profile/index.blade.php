@@ -7,6 +7,25 @@
 @section('title', 'Môj profil')
 
 @section('content')
+
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @elseif(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @elseif($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     {{-- Tabs --}}
     @include('layout.partials.profile.profile_tabs', ['active' => 'profile'])
 
@@ -19,21 +38,39 @@
         <h2 class="fw-bold my-4">Môj profil</h2>
 
         {{-- Osobné údaje --}}
-        <div class="row mb-5 g-4">
+        <div class="row mb-1 g-4">
             <div class="col-md-4">
                 <p class="fw-bold mb-1">Meno:</p>
                 <p class="mb-0">{{ $user->name }}</p>
-                <a href="#" class="text-primary">Zmeniť meno</a>
+                <a href="#" class="text-primary" onclick="openEditModal({
+                    title: 'Zmeniť meno',
+                    submitUrl: '{{ route('profile.update.name') }}',
+                    fields: [
+                        { label: 'Meno', name: 'name', type: 'text', value: '{{ $user->name }}' }
+                    ]
+                })">Zmeniť meno</a>
             </div>
             <div class="col-md-4">
                 <p class="fw-bold mb-1">Email:</p>
                 <p class="mb-0">{{ $user->email }}</p>
-                <a href="#" class="text-primary">Zmeniť email</a>
+                <a href="#" class="text-primary" onclick="openEditModal({
+                    title: 'Zmeniť email',
+                    submitUrl: '{{ route('profile.update.email') }}',
+                    fields: [
+                        { label: 'Email', name: 'email', type: 'email', value: '{{ $user->email }}' }
+                    ]
+                })">Zmeniť email</a>
             </div>
             <div class="col-md-4">
                 <p class="fw-bold mb-1">Telefónne číslo:</p>
                 <p class="mb-0">{{ $user->phone_number }}</p>
-                <a href="#" class="text-primary">Zmeniť číslo</a>
+                <a href="#" class="text-primary" onclick="openEditModal({
+                    title: 'Zmeniť číslo',
+                    submitUrl: '{{ route('profile.update.phone') }}',
+                    fields: [
+                        { label: 'Telefónne číslo', name: 'phone_number', type: 'text', value: '{{ $user->phone_number }}' }
+                    ]
+                })">Zmeniť číslo</a>
             </div>
         </div>
 
@@ -41,38 +78,66 @@
 
             <div class="col-md-3 mt-3">
                 {{-- Fakturačná adresa --}}
-                <div class="col-md-4">
+                <div class="mt-5">
                     <h5 class="fw-bold mb-3">Fakturačná adresa</h5>
-                    <p class="mb-0">Ulica: {{ $user->billing_address->street ?? '-' }}</p>
-                    <p class="mb-0">Číslo domu: {{ $user->billing_address->street_number ?? '-' }}</p>
-                    <p class="mb-0">Mesto: {{ $user->billing_address->city ?? '-' }}</p>
-                    <p class="mb-0">PSČ: {{ $user->billing_address->zip ?? '-' }}</p>
-                    <p class="mb-2">Krajina: {{ $user->billing_address->country ?? '-' }}</p>
-                    <a href="#" class="text-primary">Zmeniť údaje</a>
+                    <p class="mb-0">Ulica: {{ $user->billingAddress->street ?? '' }}</p>
+                    <p class="mb-0">Číslo domu: {{ $user->billingAddress->street_number ?? '' }}</p>
+                    <p class="mb-0">Mesto: {{ $user->billingAddress->city ?? '' }}</p>
+                    <p class="mb-0">PSČ: {{ $user->billingAddress->zip_code ?? '' }}</p>
+                    <p class="mb-2">Krajina: {{ $user->billingAddress->country ?? '' }}</p>
+                    <a href="#" class="text-primary" onclick="openEditModal({
+                        title: 'Upraviť fakturačnú adresu',
+                        submitUrl: '{{ route('profile.update.billing') }}',
+                        fields: [
+                            { label: 'Ulica', name: 'street', value: '{{ $user->billingAddress->street ?? '' }}' },
+                            { label: 'Číslo domu', name: 'street_number', value: '{{ $user->billingAddress->street_number ?? '' }}' },
+                            { label: 'Mesto', name: 'city', value: '{{ $user->billingAddress->city ?? '' }}' },
+                            { label: 'PSČ', name: 'zip_code', value: '{{ $user->billingAddress->zip_code ?? '' }}' },
+                            { label: 'Krajina', name: 'country', value: '{{ $user->billingAddress->country ?? '' }}' }
+                        ]
+                    })">Zmeniť údaje</a>
                 </div>
 
                 {{-- Dodacia adresa --}}
-                <div class="col-md-4">
+                <div class="mt-5">
                     <h5 class="fw-bold mb-3">Dodacia adresa</h5>
-                    <p class="mb-0">Ulica: {{ $user->delivery_address->street ?? '-' }}</p>
-                    <p class="mb-0">Číslo domu: {{ $user->delivery_address->street_number ?? '-' }}</p>
-                    <p class="mb-0">Mesto: {{ $user->delivery_address->city ?? '-' }}</p>
-                    <p class="mb-0">PSČ: {{ $user->delivery_address->zip ?? '-' }}</p>
-                    <p class="mb-2">Krajina: {{ $user->delivery_address->country ?? '-' }}</p>
-                    <a href="#" class="text-primary">Zmeniť údaje</a>
+                    <p class="mb-0">Ulica: {{ $user->deliveryAddress->street ?? '' }}</p>
+                    <p class="mb-0">Číslo domu: {{ $user->deliveryAddress->street_number ?? '' }}</p>
+                    <p class="mb-0">Mesto: {{ $user->deliveryAddress->city ?? '' }}</p>
+                    <p class="mb-0">PSČ: {{ $user->deliveryAddress->zip_code ?? '' }}</p>
+                    <p class="mb-2">Krajina: {{ $user->deliveryAddress->country ?? '' }}</p>
+                    <a href="#" class="text-primary" onclick="openEditModal({
+                        title: 'Upraviť dodaciu adresu',
+                        submitUrl: '{{ route('profile.update.delivery') }}',
+                        fields: [
+                            { label: 'Ulica', name: 'street', value: '{{ $user->deliveryAddress->street ?? '' }}' },
+                            { label: 'Číslo domu', name: 'street_number', value: '{{ $user->deliveryAddress->street_number ?? '' }}' },
+                            { label: 'Mesto', name: 'city', value: '{{ $user->deliveryAddress->city ?? '' }}' },
+                            { label: 'PSČ', name: 'zip_code', value: '{{ $user->deliveryAddress->zip_code ?? '' }}' },
+                            { label: 'Krajina', name: 'country', value: '{{ $user->deliveryAddress->country ?? '' }}' }
+                        ]
+                    })">Zmeniť údaje</a>
                 </div>
 
                 {{-- Firemné údaje --}}
-                <div class="col-md-4">
+                <div class="mt-5">
                     <h5 class="fw-bold mb-3">Nákup na firmu</h5>
-                    <p class="mb-0">Názov spoločnosti: {{ $user->company->name ?? '-' }}</p>
-                    <p class="mb-0">IČO: {{ $user->company->ico ?? '-' }}</p>
-                    <p class="mb-2">IČ DPH: {{ $user->company->vat ?? '-' }}</p>
-                    <a href="#" class="text-primary">Zmeniť údaje</a>
+                    <p class="mb-0">Názov spoločnosti: {{ $user->company->name ?? '' }}</p>
+                    <p class="mb-0">IČO: {{ $user->company->ico ?? '' }}</p>
+                    <p class="mb-2">IČ DPH: {{ $user->company->vat ?? '' }}</p>
+                    <a href="#" class="text-primary" onclick="openEditModal({
+                        title: 'Firemné údaje',
+                        submitUrl: '{{ route('profile.update.company') }}',
+                        fields: [
+                            { label: 'Názov spoločnosti', name: 'name', value: '{{ $user->company->name ?? '' }}' },
+                            { label: 'IČO', name: 'ico', value: '{{ $user->company->ico ?? '' }}' },
+                            { label: 'IČ DPH', name: 'ic_dph', value: '{{ $user->company->vat ?? '' }}' }
+                        ]
+                    })">Zmeniť údaje</a>
                 </div>
             </div>
             {{-- pravý panel: admin-zone ak view=admin, inak sidebar zákazníka --}}
-            <div class="col-md-9 p-2">
+            <div class="col-md-9 p-2 mt-5">
                     @include('layout.partials.profile.admin_zone', [
                         'farms'    => $farms,
                         'articles' => $articles,
@@ -81,6 +146,8 @@
             </div>
 
         </div>
+
+
     @else
         <div class="row align-items-stretch">
             {{-- ľavý panel: vždy col-md-9 pre customer alebo col-md-3 pre admin-view --}}
@@ -92,17 +159,35 @@
                     <div class="col-md-4">
                         <p class="fw-bold mb-1">Meno:</p>
                         <p class="mb-0">{{ $user->name }}</p>
-                        <a href="#" class="text-primary">Zmeniť meno</a>
+                        <a href="#" class="text-primary" onclick="openEditModal({
+                            title: 'Zmeniť meno',
+                            submitUrl: '{{ route('profile.update.name') }}',
+                            fields: [
+                                { label: 'Meno', name: 'name', type: 'text', value: '{{ $user->name }}' }
+                            ]
+                        })">Zmeniť meno</a>
                     </div>
                     <div class="col-md-4">
                         <p class="fw-bold mb-1">Email:</p>
                         <p class="mb-0">{{ $user->email }}</p>
-                        <a href="#" class="text-primary">Zmeniť email</a>
+                        <a href="#" class="text-primary" onclick="openEditModal({
+                            title: 'Zmeniť email',
+                            submitUrl: '{{ route('profile.update.email') }}',
+                            fields: [
+                                { label: 'Email', name: 'email', type: 'email', value: '{{ $user->email }}' }
+                            ]
+                        })">Zmeniť email</a>
                     </div>
                     <div class="col-md-4">
                         <p class="fw-bold mb-1">Telefónne číslo:</p>
                         <p class="mb-0">{{ $user->phone_number }}</p>
-                        <a href="#" class="text-primary">Zmeniť číslo</a>
+                        <a href="#" class="text-primary" onclick="openEditModal({
+                            title: 'Zmeniť číslo',
+                            submitUrl: '{{ route('profile.update.phone') }}',
+                            fields: [
+                                { label: 'Telefónne číslo', name: 'phone_number', type: 'text', value: '{{ $user->phone_number }}' }
+                            ]
+                        })">Zmeniť číslo</a>
                     </div>
                 </div>
 
@@ -111,32 +196,60 @@
                     {{-- Fakturačná adresa --}}
                     <div class="col-md-4">
                         <h5 class="fw-bold mb-3">Fakturačná adresa</h5>
-                        <p class="mb-0">Ulica: {{ $user->billing_address->street ?? '-' }}</p>
-                        <p class="mb-0">Číslo domu: {{ $user->billing_address->street_number ?? '-' }}</p>
-                        <p class="mb-0">Mesto: {{ $user->billing_address->city ?? '-' }}</p>
-                        <p class="mb-0">PSČ: {{ $user->billing_address->zip ?? '-' }}</p>
-                        <p class="mb-2">Krajina: {{ $user->billing_address->country ?? '-' }}</p>
-                        <a href="#" class="text-primary">Zmeniť údaje</a>
+                        <p class="mb-0">Ulica: {{ $user->billingAddress->street ?? '' }}</p>
+                        <p class="mb-0">Číslo domu: {{ $user->billingAddress->street_number ?? '' }}</p>
+                        <p class="mb-0">Mesto: {{ $user->billingAddress->city ?? '' }}</p>
+                        <p class="mb-0">PSČ: {{ $user->billingAddress->zip_code ?? '' }}</p>
+                        <p class="mb-2">Krajina: {{ $user->billingAddress->country ?? '' }}</p>
+                        <a href="#" class="text-primary" onclick="openEditModal({
+                            title: 'Upraviť fakturačnú adresu',
+                            submitUrl: '{{ route('profile.update.billing') }}',
+                            fields: [
+                                { label: 'Ulica', name: 'street', value: '{{ $user->billingAddress->street ?? '' }}' },
+                                { label: 'Číslo domu', name: 'street_number', value: '{{ $user->billingAddress->street_number ?? '' }}' },
+                                { label: 'Mesto', name: 'city', value: '{{ $user->billingAddress->city ?? '' }}' },
+                                { label: 'PSČ', name: 'zip_code', value: '{{ $user->billingAddress->zip_code ?? '' }}' },
+                                { label: 'Krajina', name: 'country', value: '{{ $user->billingAddress->country ?? '' }}' }
+                            ]
+                        })">Zmeniť údaje</a>
                     </div>
 
                     {{-- Dodacia adresa --}}
                     <div class="col-md-4">
                         <h5 class="fw-bold mb-3">Dodacia adresa</h5>
-                        <p class="mb-0">Ulica: {{ $user->delivery_address->street ?? '-' }}</p>
-                        <p class="mb-0">Číslo domu: {{ $user->delivery_address->street_number ?? '-' }}</p>
-                        <p class="mb-0">Mesto: {{ $user->delivery_address->city ?? '-' }}</p>
-                        <p class="mb-0">PSČ: {{ $user->delivery_address->zip ?? '-' }}</p>
-                        <p class="mb-2">Krajina: {{ $user->delivery_address->country ?? '-' }}</p>
-                        <a href="#" class="text-primary">Zmeniť údaje</a>
+                        <p class="mb-0">Ulica: {{ $user->deliveryAddress->street ?? '' }}</p>
+                        <p class="mb-0">Číslo domu: {{ $user->deliveryAddress->street_number ?? '' }}</p>
+                        <p class="mb-0">Mesto: {{ $user->deliveryAddress->city ?? '' }}</p>
+                        <p class="mb-0">PSČ: {{ $user->deliveryAddress->zip_code ?? '' }}</p>
+                        <p class="mb-2">Krajina: {{ $user->deliveryAddress->country ?? '' }}</p>
+                        <a href="#" class="text-primary" onclick="openEditModal({
+                            title: 'Upraviť dodaciu adresu',
+                            submitUrl: '{{ route('profile.update.delivery') }}',
+                            fields: [
+                                { label: 'Ulica', name: 'street', value: '{{ $user->deliveryAddress->street ?? '' }}' },
+                                { label: 'Číslo domu', name: 'street_number', value: '{{ $user->deliveryAddress->street_number ?? '' }}' },
+                                { label: 'Mesto', name: 'city', value: '{{ $user->deliveryAddress->city ?? '' }}' },
+                                { label: 'PSČ', name: 'zip_code', value: '{{ $user->deliveryAddress->zip_code ?? '' }}' },
+                                { label: 'Krajina', name: 'country', value: '{{ $user->deliveryAddress->country ?? '' }}' }
+                            ]
+                        })">Zmeniť údaje</a>
                     </div>
 
                     {{-- Firemné údaje --}}
                     <div class="col-md-4">
                         <h5 class="fw-bold mb-3">Nákup na firmu</h5>
-                        <p class="mb-0">Názov spoločnosti: {{ $user->company->name ?? '-' }}</p>
-                        <p class="mb-0">IČO: {{ $user->company->ico ?? '-' }}</p>
-                        <p class="mb-2">IČ DPH: {{ $user->company->vat ?? '-' }}</p>
-                        <a href="#" class="text-primary">Zmeniť údaje</a>
+                        <p class="mb-0">Názov spoločnosti: {{ $user->company->name ?? '' }}</p>
+                        <p class="mb-0">IČO: {{ $user->company->ico ?? '' }}</p>
+                        <p class="mb-2">IČ DPH: {{ $user->company->vat ?? '' }}</p>
+                        <a href="#" class="text-primary" onclick="openEditModal({
+                            title: 'Firemné údaje',
+                            submitUrl: '{{ route('profile.update.company') }}',
+                            fields: [
+                                { label: 'Názov spoločnosti', name: 'name', value: '{{ $user->company->name ?? '' }}' },
+                                { label: 'IČO', name: 'ico', value: '{{ $user->company->ico ?? '' }}' },
+                                { label: 'IČ DPH', name: 'ic_dph', value: '{{ $user->company->vat ?? '' }}' }
+                            ]
+                        })">Zmeniť údaje</a>
                     </div>
                 </div>
             </div>
@@ -150,11 +263,20 @@
 
     {{-- Tlačidlá --}}
     <div class="d-flex flex-wrap gap-3 mb-5">
-        <a href="#" class="btn btn-secondary">Zmeniť heslo {{-- route('profile.password') --}}</a>
-        <form action="#" method="POST"> {{-- route('logout') --}}
+        <a href="#" class="btn btn-secondary" onclick="openEditModal({
+            title: 'Zmeniť heslo',
+            submitUrl: '{{ route('profile.update.password') }}',
+            fields: [
+                { label: 'Aktuálne heslo', name: 'current_password', type: 'password' },
+                { label: 'Nové heslo', name: 'password', type: 'password' },
+                { label: 'Zopakovať heslo', name: 'password_confirmation', type: 'password' }
+            ]
+        })">Zmeniť heslo</a>
+        <form action="{{ route('logout') }}" method="POST">
             @csrf
             <button class="btn btn-secondary">Odhlásiť sa</button>
         </form>
+
     </div>
 
     {{-- Prepínanie účtu --}}
@@ -166,13 +288,34 @@
                 <button class="btn btn-secondary">Prepnúť na zákaznícky účet</button>
             </form>
         @else
-            <h3 class="fw-bold mb-3">Chcete sa stať našim partnerom?</h3>
-            <form action="{{ route('profile.admin') }}" method="POST">
-                @csrf
-                <button class="btn btn-secondary">Prepnúť na administrátorský účet</button>
-            </form>
+            @if ($user->is_admin)
+                <h3 class="fw-bold mb-3">Chcete pokračovať ako admin?</h3>
+
+                <form action="{{ route('profile.admin') }}" method="POST">
+                    @csrf
+                    <button class="btn btn-secondary">Prepnúť na administrátorský účet</button>
+                </form>
+            @else
+                <h3 class="fw-bold mb-3">Chcete sa stať našim partnerom?</h3>
+
+                <button class="btn btn-secondary"
+                        onclick="openEditModal({
+                            title: 'Vytvoriť administrátorský účet',
+                            submitUrl: '{{ route('profile.admin.create') }}',
+                            fields: [
+                                { label: 'Zobrazované meno', name: 'name', placeholder: 'Zobrazované meno' }
+                            ]
+                        })">
+                    Vytvoriť administrátorský účet
+                </button>
+
+            @endif
         @endif
     </div>
+
+
+    {{-- Pop-up pre editáciu --}}
+    @include('layout.partials.edit_popup')
 
     {{-- Bannery --}}
     @include('layout.partials.ads-section')

@@ -26,7 +26,7 @@ return new class extends Migration
             $table->unsignedBigInteger('icon_id')->nullable();
 
             $table->string('phone_number')->nullable();
-            $table->boolean('has_admin_account')->default(false);
+            $table->boolean('is_admin')->default(false);
 
             $table->timestamps();
 

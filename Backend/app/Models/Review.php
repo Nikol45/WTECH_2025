@@ -10,6 +10,14 @@ class Review extends Model
     /** @use HasFactory<\Database\Factories\ReviewFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'farm_product_id',
+        'rating',
+        'content',
+        'reply',
+    ];
+
     public function farm_product() {
         return $this->belongsTo(FarmProduct::class);
     }
