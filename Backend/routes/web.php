@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Session;
-
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CartItemController;
@@ -14,7 +12,6 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\PackageController;
-use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartFormController;
 use App\Http\Controllers\CartDeliveryController;
@@ -68,6 +65,7 @@ Route::middleware('auth')->prefix('profile')->name('profile.')->group(function (
     Route::delete('/favourites/{review}', [ProfileFavouriteController::class, 'store'])->name('favourites.destroy');
 
     Route::get('/reviews', [ProfileReviewsController::class, 'index'])->name('reviews');
+    Route::post('/reviews', [ProfileReviewsController::class, 'store'])->name('reviews.store'); // nový záznam
     Route::patch('/reviews/{review}', [ProfileReviewsController::class, 'update'])->name('reviews.update');
     Route::delete('/reviews/{review}', [ProfileReviewsController::class, 'destroy'])->name('reviews.destroy');
 });
@@ -89,7 +87,6 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::post('/farm/store',    [ProfileController::class, 'storeFarm'   ])->name('farm.store');
     Route::post('/article/store', [ProfileController::class, 'storeArticle'])->name('article.store');
     Route::post('/review/store',  [ProfileController::class, 'storeReview' ])->name('review.store');
-
 });
 
 Route::post('/admin/review/{review}/reply', [ProfileController::class, 'replyToReview'])->name('admin.review.reply');
@@ -104,7 +101,6 @@ Route::resource('images', ImageController::class);
 Route::resource('orders', OrderController::class);
 Route::resource('order-items', OrderItemController::class);
 Route::resource('packages', PackageController::class);
-Route::resource('reviews', ReviewController::class);
 Route::resource('cart-form',  CartFormController::class);
 Route::resource('cart-delivery',  CartDeliveryController::class);
 Route::resource('cart-summary',  CartSummaryController::class);
@@ -116,91 +112,14 @@ Route::get ('/guest',    [GuestController::class,    'browseAsGuest'])->name('gu
 
 Route::view('/obchodne-podmienky', 'static.terms')->name('terms');
 
+Route::resource('reviews', ProfileReviewsController::class)
+    ->only(['store', 'update', 'destroy'])
+    ->middleware('auth');
+
 //testers
-Route::get('/test-cart', function () {
-    $farmIds = [1, 2];
-    $farms = Farm::whereIn('id', $farmIds)->get()->keyBy('id');
-
-    $productPresets = [
-        1 => [
-            [
-                'farm_product_id' => 1,
-                'name'     => 'Kvetový med 500g',
-                'price'    => '5,50 €',
-                'quantity' => 2,
-            ],
-            [
-                'farm_product_id' => 2,
-                'name'     => 'Včelí vosk 200g',
-                'price'    => '2,96 €',
-                'quantity' => 1,
-            ],
-            [
-                'farm_product_id' => 3,
-                'name'     => 'Vlašské orechy lúpané 150g',
-                'price'    => '4,45 €',
-                'quantity' => 1,
-            ],
-        ],
-        2 => [
-            [
-                'farm_product_id' => 4,
-                'name'     => 'Jablká Evelina 1kg',
-                'price'    => '3,50 €',
-                'quantity' => 5,
-            ],
-            [
-                'farm_product_id' => 5,
-                'name'     => 'Hrušky Konferencia',
-                'price'    => '4,00 €',
-                'quantity' => 2,
-            ],
-            [
-                'farm_product_id' => 6,
-                'name'     => 'Broskyne 500g',
-                'price'    => '3,20 €',
-                'quantity' => 1,
-            ],
-            [
-                'farm_product_id' => 7,
-                'name'     => 'Hrozno ružové 300g',
-                'price'    => '2,10 €',
-                'quantity' => 1,
-            ],
-            [
-                'farm_product_id' => 8,
-                'name'     => 'Čučoriedky 125g',
-                'price'    => '2,80 €',
-                'quantity' => 1,
-            ],
-        ],
-    ];
-
-    $items = [];
-
-    foreach ($productPresets as $farmId => $products) {
-        $farm = $farms[$farmId] ?? null;
-        if (!$farm) continue;
-
-        foreach ($products as $product) {
-            $price = floatval(str_replace(',', '.', str_replace(' €', '', $product['price'])));
-            $items[] = [
-                'farm_product_id' => $product['farm_product_id'],
-                'farm_id'         => $farm->id,
-                'label'           => $product['name'],
-                'quantity'        => $product['quantity'],
-                'price'           => $price,
-            ];
-        }
-    }
-
-    Session::put('cart.items', $items);
-
-    return redirect()->route('cart-form.index');
-});
-
 Route::get('/test-login', function () {
-    $user = \App\Models\User::findOrFail(3);
+    $user = \App\Models\User::where('is_admin', true)->skip(2)->firstOrFail(); // vezme prveho admina, ->skip(1) pre druheho
     Auth::login($user);
     return redirect()->route('profile.index');
 });
+

@@ -87,6 +87,27 @@ class ReviewFactory extends Factory
             'Zvláštna vôňa aj chuť. Možno starší kus.',
         ];
 
+        $positiveReplies = [
+            'Ďakujeme za vašu spätnú väzbu! Teší nás, že ste boli spokojní.',
+            'Sme radi, že ste si našli čas na hodnotenie. Ďakujeme!',
+            'Vaša spokojnosť je pre nás prioritou. Ďakujeme za pozitívnu recenziu!',
+            'Teší nás, že ste si užili náš produkt. Ďakujeme za vašu podporu!',
+        ];
+
+        $neutralReplies = [
+            'Ďakujeme za vašu spätnú väzbu. Budeme sa snažiť zlepšiť.',
+            'Vaša recenzia je pre nás cenná. Ďakujeme za váš názor.',
+            'Sme radi, že ste si našli čas na hodnotenie. Vaša spätná väzba nám pomôže.',
+            'Ďakujeme za vašu recenziu. Budeme sa snažiť zlepšiť naše služby.',
+        ];
+
+        $negativeReplies = [
+            'Ďakujeme za vašu spätnú väzbu. Ospravedlňujeme sa za nepríjemnosti.',
+            'Je nám ľúto, že ste mali zlú skúsenosť. Budeme sa snažiť zlepšiť.',
+            'Vaša recenzia je pre nás cenná. Ďakujeme za váš názor.',
+            'Ospravedlňujeme sa za nepríjemnosti. Vaša spätná väzba nám pomôže.',
+        ];
+
         // Urči hodnotenie
         $rating = $this->faker->boolean(80)
             ? $this->faker->randomElement([4.0, 4.5, 5.0])
@@ -96,12 +117,17 @@ class ReviewFactory extends Factory
         if ($rating >= 4.0) {
             $title = $this->faker->randomElement($positiveTitles);
             $text = $this->faker->randomElement($positiveTexts);
+            $reply = $this->faker->randomElement($positiveReplies);
+
         } elseif ($rating >= 3.0) {
             $title = $this->faker->randomElement($neutralTitles);
             $text = $this->faker->randomElement($neutralTexts);
+            $reply = $this->faker->randomElement($neutralReplies);
+
         } else {
             $title = $this->faker->randomElement($negativeTitles);
             $text = $this->faker->randomElement($negativeTexts);
+            $reply = $this->faker->randomElement($negativeReplies);
         }
 
         return [
@@ -110,6 +136,7 @@ class ReviewFactory extends Factory
             'title' => $title,
             'rating' => $rating,
             'text' => $text,
+            'reply' => $this->faker->boolean(40) ? $reply : null,
         ];
     }
 }

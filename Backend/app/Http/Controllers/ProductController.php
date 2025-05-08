@@ -213,7 +213,8 @@ class ProductController extends Controller
             ->limit(10)
             ->get();
 
-        return view('products.show', compact('farmProduct','photos','farmOptions', 'selectedQuantity', 'units', 'avgRating','countByStar','allReviews', 'fullStars','halfStars','emptyStars'), ['articles' => $this->mapArticles($articles)]);
+        $currentUser = auth()->user();
+        return view('products.show', compact('farmProduct','photos','farmOptions', 'selectedQuantity', 'units', 'avgRating','countByStar','allReviews', 'fullStars','halfStars','emptyStars','currentUser'), ['articles' => $this->mapArticles($articles)]);
     }
 
     /**

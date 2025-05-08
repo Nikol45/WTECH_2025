@@ -504,6 +504,10 @@ body.offcanvas-backdrop {
     color: #bbb;
 }
 
+.star.selectable  {
+    cursor:pointer; user-select:none;
+}
+
 .filter-block .star.filled {  /*zelene hviezdy vo filter sekcii*/
     color: var(--green-dark-muted);
 }
@@ -1478,4 +1482,8 @@ body.offcanvas-backdrop {
 
 .border-primary {
     border-color: var(--teal-dark) !important;
+}
+
+.scrollable {
+    scroll-margin-top: 40px;
 }

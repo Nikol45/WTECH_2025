@@ -59,8 +59,10 @@ class ProfileController extends Controller
         if ($user->is_admin) {
             $data['farms']    = Farm::whereUserId($user->id)->get();
             $data['articles'] = Article::whereUserId($user->id)->get();
-            $data['reviews']  = Review::whereUserId($user->id)
-                ->with('farm_product')
+            $data['reviews']  = Review::whereHas('farm_product.farm', function ($q) use ($user) {
+                $q->where('user_id', $user->id);
+            })
+                ->with('farm_product.product.image', 'farm_product.farm')
                 ->latest()
                 ->take(5)
                 ->get();
@@ -189,7 +191,6 @@ class ProfileController extends Controller
         return back()->with('success', 'Firemné údaje boli uložené.');
     }
 
-
     public function updateNickname(Request $r)
     {
         $r->validate(['nickname' => 'required|string|max:50']);
@@ -223,14 +224,15 @@ class ProfileController extends Controller
     }
 
 
-    /* ----------- uloženie farmy z modalu ----------- */
+    /* ---------- Admin funkcie ---------- */
+
     public function storeFarm(Request $r)
     {
         $data = $r->validate([
             'name'           => 'required|string|max:255',
             'description'    => 'nullable|string',
             'image'          => 'nullable|image|max:2048',
-            // adresa
+
             'street'         => 'required|string|max:255',
             'street_number'  => 'required|string|max:32',
             'city'           => 'required|string|max:255',
@@ -238,7 +240,6 @@ class ProfileController extends Controller
             'country'        => 'required|string|max:255',
         ]);
 
-        // 1. adresa
         $address = Address::create([
             'street'        => $data['street'],
             'street_number' => $data['street_number'],
@@ -248,7 +249,6 @@ class ProfileController extends Controller
             'address_type'  => 'farm',
         ]);
 
-        // 2. farma
         $farm = Farm::create([
             'user_id'    => $r->user()->id,
             'address_id' => $address->id,
@@ -256,7 +256,6 @@ class ProfileController extends Controller
             'description'=> $data['description'] ?? null,
         ]);
 
-        // 3. obrázok ak existuje
         if ($r->hasFile('image')) {
             $path = $r->file('image')->store('farms', 'public');
             $farm->image()->create(['path' => $path]);
@@ -265,8 +264,6 @@ class ProfileController extends Controller
         return back()->with('success', 'Farma bola pridaná.');
     }
 
-
-    /* ----------- uloženie článku ----------- */
     public function storeArticle(Request $r)
     {
         $data = $r->validate([
@@ -291,14 +288,13 @@ class ProfileController extends Controller
         return back()->with('success', 'Článok bol pridaný.');
     }
 
-
-    /* ----------- uloženie recenzie ----------- */
     public function storeReview(Request $r)
     {
         $data = $r->validate([
             'farm_product_id' => 'required|exists:farm_products,id',
+            'title'           => 'required|string|max:255',
+            'text'            => 'required|string',
             'rating'          => 'required|integer|between:1,5',
-            'content'         => 'required|string',
         ]);
 
         $data['user_id'] = $r->user()->id;
@@ -310,8 +306,9 @@ class ProfileController extends Controller
 
     public function replyToReview(Request $r, Review $review)
     {
-        // overenie, že ide o farmára danej farmy
-        $this->authorize('reply', $review);
+        if ($review->farm_product->farm->user_id !== $r->user()->id) {
+            abort(403, 'Nemáte oprávnenie odpovedať na túto recenziu.');
+        }
 
         $r->validate([
             'reply' => 'required|string|max:1000',

@@ -251,40 +251,63 @@
 
       		{{-- Zoznam recenzií --}}
 			@foreach($allReviews as $rev)
-			<div class="border-top pt-3 mt-3">
-				<div class="d-flex justify-content-between align-items-center mb-1">
-					<h3 class="review-title fw-bold">{{ $rev->title }}</h3>
-					@php
-					$rounded   = round($rev->rating * 2) / 2;
-					$fullStars = floor($rounded);
-					$halfStar  = ($rounded - $fullStars) === 0.5 ? 1 : 0;
-					$emptyStars= 5 - $fullStars - $halfStar;
-					@endphp
+                <div id="review{{ $rev->id }}" class="border-top pt-3 mt-4 scrollable">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <h3 class="review-title fw-bold">{{ $rev->title }}</h3>
+                        @php
+                        $rounded   = round($rev->rating * 2) / 2;
+                        $fullStars = floor($rounded);
+                        $halfStar  = ($rounded - $fullStars) === 0.5 ? 1 : 0;
+                        $emptyStars= 5 - $fullStars - $halfStar;
+                        @endphp
 
-					<div class="stars mb-0">
-						@for ($i = 0; $i < $fullStars; $i++)
-							<span class="material-icons star filled">star</span>
-						@endfor
+                        <div class="stars mb-0">
+                            @for ($i = 0; $i < $fullStars; $i++)
+                                <span class="material-icons star filled">star</span>
+                            @endfor
 
-						@if ($halfStar)
-							<span class="material-icons star half-filled">star_half</span>
-						@endif
+                            @if ($halfStar)
+                                <span class="material-icons star half-filled">star_half</span>
+                            @endif
 
-						@for ($i = 0; $i < $emptyStars; $i++)
-							<span class="material-icons star empty">star_outline</span>
-						@endfor
-					</div>
-				</div>
-				<div class="d-flex gap-2">
-					<img src="{{ asset(optional($rev->user->icon)->path ?? 'images/profile.png') }}" alt="Profilová fotka" height="21" width="21">
-					<h4 class="text-muted mb-2">
-						<small>{{ $rev->user->name }} | {{ $rev->created_at->format('j.n.Y') }}</small>
-					</h4>
-				</div>
-				<p class="review-text">{{ $rev->text }}</p>
-			</div>
+                            @for ($i = 0; $i < $emptyStars; $i++)
+                                <span class="material-icons star empty">star_outline</span>
+                            @endfor
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <img src="{{ asset(optional($rev->user->icon)->path ?? 'images/profile.png') }}" alt="Profilová fotka" height="21" width="21">
+                        <h4 class="text-muted mb-2">
+                            <small>{{ $rev->user->name }} | {{ $rev->created_at->format('j.n.Y') }}</small>
+                        </h4>
+                    </div>
+                    <p class="review-text">{{ $rev->text }}</p>
+                </div>
+
+                @if($rev->reply)
+                    <div class="mt-3 p-3 border-start border-4 border-success bg-light rounded">
+                        {{-- autor farmy --}}
+                        <div class="d-flex gap-2 align-items-center mb-1">
+                            <img src="{{ asset(optional($rev->farm_product->farm->user->icon)->path ?? 'images/profile.png') }}"
+                                 alt="Farmár" width="21" height="21">
+                            <strong>{{ $rev->farm_product->farm->user->name}} (farmár)</strong>
+                        </div>
+                        <p class="mb-0">{{ $rev->reply}}</p>
+                    </div>
+                @endif
+
+                {{-- Ak je prihlásený používateľ vlastník farmy a recenzia ešte nemá odpoveď --}}
+                @if(isset($currentUser) && $currentUser->id === $farmProduct->farm->user_id && !$rev->reply)
+                    <form action="{{ route('admin.review.reply', $rev->id) }}" method="POST" class="mt-3">
+                        @csrf
+                        <div class="mb-2">
+                            <label for="reply_{{ $rev->id }}" class="form-label">Vaša odpoveď:</label>
+                            <textarea id="reply_{{ $rev->id }}" name="reply" class="form-control" rows="2" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-outline-primary">Odoslať odpoveď</button>
+                    </form>
+                @endif
 			@endforeach
-
     	</div>
   	</section>
 

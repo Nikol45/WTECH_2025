@@ -12,17 +12,13 @@ class FarmController extends Controller
     /* ====== LISTING ====== */
     public function index()
     {
-        $farms = Farm::where('user_id', Auth::id())->latest()->paginate(12);
-        return view('farms.index', compact('farms'));
+
     }
 
-    /* ====== FORM – CREATE ====== */
     public function create()
     {
-        return view('farms.create');
     }
 
-    /* ====== STORE ====== */
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -39,7 +35,7 @@ class FarmController extends Controller
             'country'       => 'required|string|max:255',
         ]);
 
-        /* 1️⃣  uložíme adresu */
+        /* uložíme adresu */
         $address = Address::create([
             'street'        => $data['street'],
             'street_number' => $data['street_number'],
@@ -49,7 +45,7 @@ class FarmController extends Controller
             'address_type'  => 'farm',
         ]);
 
-        /* 2️⃣  pripravíme dáta pre farmu */
+        /* pripravíme dáta pre farmu */
         unset(
             $data['street'], $data['street_number'],
             $data['city'],   $data['zip_code'], $data['country']
@@ -68,23 +64,19 @@ class FarmController extends Controller
         return back()->with('success', "Farma „{$farm->name}“ bola pridaná.");
     }
 
-    /* ====== SHOW ====== */
     public function show(Farm $farm)
     {
-        return view('farms.show', compact('farm'));
     }
 
-    /* ====== FORM – EDIT ====== */
     public function edit(Farm $farm)
     {
-        $this->authorize('update', $farm);
-        return view('farms.edit', compact('farm'));
     }
 
-    /* ====== UPDATE ====== */
     public function update(Request $request, Farm $farm)
     {
-        $this->authorize('update', $farm);
+        if ($farm->user_id !== auth()->id()) {
+            abort(403);
+        }
 
         $data = $request->validate([
             'name'        => 'required|string|max:255',
@@ -98,7 +90,6 @@ class FarmController extends Controller
             'country'       => 'required|string|max:255',
         ]);
 
-        /* adresa – aktualizuj */
         $farm->address->update([
             'street'        => $data['street'],
             'street_number' => $data['street_number'],
@@ -119,18 +110,19 @@ class FarmController extends Controller
 
         $farm->update($data);
 
+        if ($request->ajax()) {
+            return response()->json(['success' => true, 'message' => "Farma „{$farm->name}“ bola upravená."]);
+        }
+
         return back()->with('success', "Farma „{$farm->name}“ bola upravená.");
     }
 
-    /* ====== DESTROY ====== */
     public function destroy(Farm $farm)
     {
         if ($farm->user_id !== auth()->id()) {
             abort(403);
         }
-        // ak chceš, môžeš zmazať aj adresu / obrázok
         $farm->delete();
-
         return back()->with('success', 'Farma bola vymazaná.');
     }
 }

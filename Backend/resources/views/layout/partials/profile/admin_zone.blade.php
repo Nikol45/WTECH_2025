@@ -76,7 +76,7 @@
                                     <a href="{{ route('farms.show', $farm->id) }}" class="admin-card p-3 flex-grow-1">
                                         <div class="row g-sm-4">
                                             <div class="col-sm-5">
-                                                <img src="{{ $farm->image ? asset($farm->image) : asset('images/empty.png') }}" alt="{{ $farm->name }}" class="img-fluid rounded">
+                                                <img src="{{ asset(optional($farm->image)->path) }}" alt="{{ $farm->name }}" class="img-fluid rounded">
                                             </div>
                                             <div class="col-sm-7 overflow-hidden">
                                                 <h5 class="card-title truncate-ellipsis mt-sm-4">{{ $farm->name }}</h5>
@@ -99,21 +99,21 @@
                                                         { label: 'Obrázok', name: 'image', type: 'file' },
 
                                                         { label: 'Názov farmy', name: 'name',
-                                                          value: `{{ $farm->name }}`, required: true },
+                                                          value: '{{ $farm->name }}', required: true },
 
                                                         { label: 'Popis', name: 'description', type: 'textarea',
-                                                          value: `{{ $farm->description }}` },
+                                                          value: '{{ $farm->description }}' },
 
                                                         { label: 'Ulica',        name: 'street',
-                                                          value: `{{ $farm->address->street }}`, required: true },
+                                                          value: '{{ $farm->address->street }}', required: true },
                                                         { label: 'Číslo domu',   name: 'street_number',
-                                                          value: `{{ $farm->address->street_number }}`, required: true },
+                                                          value: '{{ $farm->address->street_number }}', required: true },
                                                         { label: 'Mesto',        name: 'city',
-                                                          value: `{{ $farm->address->city }}`,   required: true },
+                                                          value: '{{ $farm->address->city }}',   required: true },
                                                         { label: 'PSČ',          name: 'zip_code',
-                                                          value: `{{ $farm->address->zip_code }}`, required: true },
+                                                          value: '{{ $farm->address->zip_code }}', required: true },
                                                         { label: 'Krajina',      name: 'country',
-                                                          value: `{{ $farm->address->country }}`, required: true }
+                                                          value: '{{ $farm->address->country }}', required: true }
                                                     ]
                                                 })">
                                             <span class="material-symbols-outlined">edit_square</span>
@@ -194,7 +194,7 @@
                             <div class="col flex-shrink-0">
                                 <div class="d-flex align-items-start gap-2">
                                     <div class="card text-start p-3">
-                                        <img src="{{ $article->image ? asset($article->image) : asset('images/empty.png') }}" alt="article image" class="card-img">
+                                        <img src="{{ $article->image ? asset($article->image->path) : asset('images/empty.png') }}" alt="article image" class="card-img">
                                         <div class="card-body mt-2">
                                             <a href="{{ route('articles.show', $article->id) }}" class="text-decoration-none">
                                                 <h5 class="card-title truncate-ellipsis">{{ $article->title }}</h5>
@@ -223,7 +223,7 @@
                                                     enctype: 'multipart/form-data',
                                                     fields: [
                                                         { label: 'Nadpis',  name: 'title',
-                                                          value: `{{ $article->title }}`,  required: true },
+                                                          value: '{{ $article->title }}',  required: true },
 
                                                         { label: 'Text',    name: 'text',  type: 'textarea',
                                                           value: @json($article->text),    required: true },
@@ -262,7 +262,7 @@
         @if($reviews->isEmpty())
             <div class="text-center text-muted py-5">
                 <i class="material-icons fs-1 d-block mb-2">reviews</i>
-                <p class="mb-3">Zatiaľ nemáte žiadne recenzie.</p>
+                <p class="mb-3">Zatiaľ nemáte žiadne recenzie na svoje produkty.</p>
             </div>
         @else
             <div class="arrows-around position-relative mt-4">
@@ -283,11 +283,11 @@
                                     <div class="w-100 text-center">
                                         <small class="text-muted">{{ $review->created_at->format('j. n. Y') }}</small>
                                     </div>
-                                    <img src="{{ asset($review->farm_product->image) }}" alt="{{ $review->farm_product->name }}" class="img-fluid rounded mt-2" style="width: 80px;">
+                                    <img src="{{ asset($review->farm_product->product->image->path) }}" alt="{{ $review-> farm_product->product->name }}" class="img-fluid rounded mt-2" style="width: 80px;">
                                     <a href="{{ route('products.show', $review->farm_product_id) }}" class="card-title truncate-ellipsis d-block">
-                                        {{ $review->farm_product->name }} {{ $review->quantity }}g
+                                        {{ $review-> farm_product->product->name }} {{ $review->quantity }}
                                     </a>
-                                    <p>{{ $review->content }}</p>
+                                    <p>{{ $review->text }}</p>
                                     <div class="d-flex justify-content-center align-items-center">
                                         @for($i=1; $i<=5; $i++)
                                             <span class="material-icons star {{ $i <= $review->rating ? 'filled' : 'empty' }}">
@@ -316,13 +316,13 @@
                             </div>
                             {{-- Desktop view --}}
                             <div class="col flex-shrink-0 desktop-only">
-                                <div class="admin-card p-3 d-flex flex-row align-items-start">
-                                    <img src="{{ asset($review->farm_product->image) }}" alt="{{ $review->farm_product->name }}" class="img-fluid rounded me-3" style="width: 80px;">
+                                <div class="admin-card p-3 d-flex flex-row align-items-center">
+                                    <img src="{{ asset($review->farm_product->product->image->path) }}" alt="{{ $review-> farm_product->product->name }}" class="img-fluid rounded me-1" style="width: 80px;">
                                     <div class="flex-grow-1">
                                         <a href="{{ route('products.show', $review->farm_product_id) }}" class="card-title truncate-ellipsis d-block">
-                                            {{ $review->farm_product->name }} {{ $review->quantity }}g
+                                            {{ $review-> farm_product->product->name }}
                                         </a>
-                                        <p class="mb-2">{{ $review->content }}</p>
+                                        <p class="mb-2">{{ $review->title }}</p>
                                         <div class="d-flex align-items-center mb-2">
                                             @for($i=1; $i<=5; $i++)
                                                 <span class="material-icons star {{ $i <= $review->rating ? 'filled' : 'empty' }}">
@@ -332,16 +332,9 @@
                                         </div>
                                     </div>
                                     <div class="d-flex flex-column align-items-end text-end ms-auto my-2">
-                                        @if(!$review->reply && $review->farm_product->farm->user_id === auth()->id())
-                                            <a href="#" class="btn btn-outline-primary btn-sm my-2"
-                                               onclick="openEditModal({
-                                               title: 'Odpovedať na recenziu',
-                                               submitUrl: '{{ route('admin.review.reply', $review->id) }}',
-                                               fields: [
-                                                   { label: 'Vaša odpoveď', name: 'reply', type: 'textarea', required: true }
-                                               ]
-                                           })">
-                                                Odpovedať
+                                        @if(!$review->reply && $review-> farm_product->farm->user_id === auth()->id())
+                                            <a href="{{ route('products.show', $review->farm_product_id) }}#review{{ $review->id }}" class="btn btn-outline-primary btn-sm my-2">
+                                                 Odpovedať
                                             </a>
                                             <small class="text-danger">Čaká na odpoveď</small>
                                         @elseif($review->reply)

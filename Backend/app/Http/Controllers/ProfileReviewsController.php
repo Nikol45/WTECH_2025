@@ -12,8 +12,8 @@ class ProfileReviewsController extends Controller
     public function index()
     {
         $reviews = Review::with([
-            'farm_product.product',
-            'farm_product.farm',
+            'farm_product.product.image', // obrázok produktu
+            'farm_product.farm',          // názov farmy
         ])
             ->where('user_id', Auth::id())
             ->latest()
@@ -22,26 +22,54 @@ class ProfileReviewsController extends Controller
         return view('profile.reviews', compact('reviews'));
     }
 
-    /** Aktualizácia recenzie z modalu */
-    public function update(Request $request, Review $review)
+    public function store(Request $request)
     {
-        $this->authorize('update', $review);
-
-        $data = $request->validate([
-            'title'  => 'required|string|max:255',
-            'rating' => 'required|integer|min:1|max:5',
-            'text'   => 'required|string',
+        $validated = $request->validate([
+            'farm_product_id' => ['required', 'exists:farm_products,id'],
+            'title'           => ['required', 'string', 'max:255'],
+            'rating'          => [
+                'required',
+                'numeric',
+                Rule::in([1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5])
+            ],
+            'text'            => ['required', 'string'],
         ]);
 
-        $review->update($data);
+        $validated['user_id'] = Auth::id();
+
+        Review::create($validated);
+
+        return back()->with('success', 'Recenzia bola pridaná.');
+    }
+
+    /** Aktualizácia recenzie z modalu (PATCH) */
+    public function update(Request $request, Review $review)
+    {
+        if ($review->user_id !== Auth::id()) {
+            abort(403, 'Nemáte oprávnenie upraviť túto recenziu.');
+        }
+
+        $validated = $request->validate([
+            'title'  => ['required', 'string', 'max:255'],
+            'rating' => [
+                'required',
+                'numeric',
+                Rule::in([1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5])
+            ],
+            'text'   => ['required', 'string'],
+        ]);
+
+        $review->update($validated);
 
         return back()->with('success', 'Recenzia bola upravená.');
     }
 
-    /** Zmazanie recenzie */
+    /** Zmazanie recenzie (DELETE) */
     public function destroy(Review $review)
     {
-        $this->authorize('delete', $review);
+        if ($review->user_id !== Auth::id()) {
+            abort(403, 'Nemáte oprávnenie zmazať túto recenziu.');
+        }
 
         $review->delete();
 

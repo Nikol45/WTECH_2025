@@ -14,7 +14,8 @@ class Review extends Model
         'user_id',
         'farm_product_id',
         'rating',
-        'content',
+        'title',
+        'text',
         'reply',
     ];
 
