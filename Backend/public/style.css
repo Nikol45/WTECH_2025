@@ -1451,6 +1451,15 @@ body.offcanvas-backdrop {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
+.card.unavailable {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.card.unavailable .edit-button {
+    pointer-events: auto;
+}
+
 .card-img {
     display: block;
     max-height: 150px;

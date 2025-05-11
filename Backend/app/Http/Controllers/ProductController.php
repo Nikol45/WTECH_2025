@@ -31,6 +31,7 @@ class ProductController extends Controller
         $sort = $request->input('sort','');
 
         $products = FarmProduct::with(['product.subsubcategory', 'farm'])
+            ->where('availability', true)
             ->when($search !== '',
                 fn ($q) => $q->whereHas('product',
                     fn ($qq) => $qq->where('name', 'ILIKE', "%{$search}%")
@@ -183,6 +184,7 @@ class ProductController extends Controller
 
         $farmOptions = FarmProduct::with('farm')
             ->where('product_id', $farmProduct->product_id)
+            ->where('availability', true)
             ->get();
 
         $selectedQuantity = $farmProduct->sell_quantity;

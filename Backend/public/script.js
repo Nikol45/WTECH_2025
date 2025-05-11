@@ -309,6 +309,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const arrowRight8 = document.getElementById('arrowRight8');
     const arrowLeft8 = document.getElementById('arrowLeft8');
 
+    const carouselRow9 = document.getElementById('carouselRow9');
+    const arrowRight9 = document.getElementById('arrowRight9');
+    const arrowLeft9 = document.getElementById('arrowLeft9');
+
+    const carouselRow10 = document.getElementById('carouselRow10');
+    const arrowRight10 = document.getElementById('arrowRight10');
+    const arrowLeft10 = document.getElementById('arrowLeft10');
+
+    const carouselRow11 = document.getElementById('carouselRow11');
+    const arrowRight11 = document.getElementById('arrowRight11');
+    const arrowLeft11 = document.getElementById('arrowLeft11');
+
     //pre sekciu clankov
     const carouselRow4 = document.getElementById('carouselRow4');
     const arrowRight4 = document.getElementById('arrowRight4');
@@ -633,6 +645,162 @@ document.addEventListener('DOMContentLoaded', () => {
             carouselRow8.addEventListener('transitionend', function handler(e) {
                 if (e.propertyName === 'transform') {
                     carouselRow8.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
+        });
+    }
+
+    if (arrowRight9 && carouselRow9) {
+        arrowRight9.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            carouselRow9.style.transform = 'translateX(-25%)';
+
+            carouselRow9.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    const firstCol = carouselRow9.querySelector('.col');
+                    carouselRow9.appendChild(firstCol);
+
+                    carouselRow9.style.transition = 'none';
+                    carouselRow9.style.transform = 'none';
+
+                    carouselRow9.offsetHeight;
+
+                    carouselRow9.style.transition = 'transform 0.3s ease';
+
+                    carouselRow9.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
+        });
+    }
+
+    if (arrowLeft9 && carouselRow9) {
+        arrowLeft9.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            const allCols = carouselRow9.querySelectorAll('.col');
+            const lastCol = allCols[allCols.length - 1];
+            carouselRow9.insertBefore(lastCol, allCols[0]);
+
+            carouselRow9.style.transition = 'none';
+            carouselRow9.style.transform = 'translateX(-25%)';
+
+            carouselRow9.offsetHeight;
+
+            carouselRow9.style.transition = 'transform 0.3s ease';
+            carouselRow9.style.transform = 'none';
+
+            carouselRow9.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    carouselRow9.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
+        });
+    }
+
+    if (arrowRight10 && carouselRow10) {
+        arrowRight10.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            carouselRow10.style.transform = 'translateX(-25%)';
+
+            carouselRow10.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    const firstCol = carouselRow10.querySelector('.col');
+                    carouselRow10.appendChild(firstCol);
+
+                    carouselRow10.style.transition = 'none';
+                    carouselRow10.style.transform = 'none';
+
+                    carouselRow10.offsetHeight;
+
+                    carouselRow10.style.transition = 'transform 0.3s ease';
+
+                    carouselRow10.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
+        });
+    }
+
+    if (arrowLeft10 && carouselRow10) {
+        arrowLeft10.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            const allCols = carouselRow10.querySelectorAll('.col');
+            const lastCol = allCols[allCols.length - 1];
+            carouselRow10.insertBefore(lastCol, allCols[0]);
+
+            carouselRow10.style.transition = 'none';
+            carouselRow10.style.transform = 'translateX(-25%)';
+
+            carouselRow10.offsetHeight;
+
+            carouselRow10.style.transition = 'transform 0.3s ease';
+            carouselRow10.style.transform = 'none';
+
+            carouselRow10.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    carouselRow10.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
+        });
+    }
+
+    if (arrowRight11 && carouselRow11) {
+        arrowRight11.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            carouselRow11.style.transform = 'translateX(-25%)';
+
+            carouselRow11.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    const firstCol = carouselRow11.querySelector('.col');
+                    carouselRow11.appendChild(firstCol);
+
+                    carouselRow11.style.transition = 'none';
+                    carouselRow11.style.transform = 'none';
+
+                    carouselRow11.offsetHeight;
+
+                    carouselRow11.style.transition = 'transform 0.3s ease';
+
+                    carouselRow11.removeEventListener('transitionend', handler);
+                    isAnimating = false;
+                }
+            });
+        });
+    }
+
+    if (arrowLeft11 && carouselRow11) {
+        arrowLeft11.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            const allCols = carouselRow11.querySelectorAll('.col');
+            const lastCol = allCols[allCols.length - 1];
+            carouselRow11.insertBefore(lastCol, allCols[0]);
+
+            carouselRow11.style.transition = 'none';
+            carouselRow11.style.transform = 'translateX(-25%)';
+
+            carouselRow11.offsetHeight;
+
+            carouselRow11.style.transition = 'transform 0.3s ease';
+            carouselRow11.style.transform = 'none';
+
+            carouselRow11.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    carouselRow11.removeEventListener('transitionend', handler);
                     isAnimating = false;
                 }
             });
@@ -1047,5 +1215,254 @@ document.addEventListener('DOMContentLoaded', () => {
 
         bsModal.show();
     };
+
+    function confirmDeleteProduct(route) {
+        document.getElementById('confirmModalText').innerText =
+            'Naozaj chcete tento produkt vymazať? Túto akciu nie je možné vrátiť späť.';
+        document.getElementById('confirmModalForm').action = route;
+    
+        const confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'));
+        confirmModal.show();
+    }
+
+    function enforceIntegerForKs(selectId, inputId) {
+        const saleType = document.getElementById(selectId);
+        const amountInput = document.getElementById(inputId);
+
+        if (!saleType || !amountInput) return;
+
+        function updateStep() {
+            if (saleType.value === 'ks') {
+                amountInput.step = '1';
+                amountInput.min = '1';
+                amountInput.value = Math.floor(parseFloat(amountInput.value || 1));
+            } else {
+                amountInput.step = '0.01';
+                amountInput.min = '0.01';
+            }
+        }
+
+        saleType.addEventListener('change', updateStep);
+        amountInput.addEventListener('input', () => {
+            if (saleType.value === 'ks') {
+                amountInput.value = amountInput.value.replace(/[^\d]/g, '');
+                if (amountInput.value === '') amountInput.value = '1';
+            }
+        });
+
+        updateStep(); // initial call
+    }
+
+    enforceIntegerForKs('edit_sale_type', 'edit_amount');
+    enforceIntegerForKs('sale_type', 'amount');
+
+    //Otvorenie modalu na editovanie produktov farmy
+    window.openEditProductModal = function (id, action, deleteRoute) {
+        const btn = event.currentTarget;
+
+        openModal('editProductModal');
+    
+        const form = document.getElementById('editProductForm');
+        form.action = action;
+
+        document.getElementById('editDeleteBtn').onclick = () => {
+            confirmDeleteProduct(deleteRoute);
+        };
+    
+        document.getElementById('edit_name').value          = btn.dataset.name;
+        document.getElementById('edit_price').value         = btn.dataset.price;
+        document.getElementById('edit_sale_type').value     = btn.dataset.saleType;
+        document.getElementById('edit_amount').value        = btn.dataset.amount;
+        document.getElementById('edit_discount').value      = btn.dataset.discount;
+        document.getElementById('edit_description').value   = btn.dataset.description;
+        document.getElementById('edit_unavailable').checked = btn.dataset.unavailable === '1';
+    
+        const images = JSON.parse(btn.dataset.images || '[]');
+        loadEditModalImages(images);
+    };
+
+    const fileInput = document.getElementById('hiddenFileInput');
+    const addImageBtn = document.getElementById('addImageBtn');
+    const previewContainer = document.getElementById('image-preview');
+    const hiddenInputsContainer = document.getElementById('hiddenInputsContainer');
+    const form = document.querySelector('#newProductModal form');
+
+    if (!fileInput || !addImageBtn || !previewContainer || !hiddenInputsContainer || !form) return;
+
+    let allFiles = [];
+
+    addImageBtn.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    form.addEventListener('submit', function () {
+        hiddenInputsContainer.innerHTML = '';
+
+        if (!allFiles.length) return; // no files selected
+
+        allFiles.forEach(file => {
+            const dt = new DataTransfer();
+            dt.items.add(file);
+
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.name = 'images[]';
+            input.files = dt.files;
+            input.classList.add('d-none');
+
+            hiddenInputsContainer.appendChild(input);
+        });
+    });
+
+    const editForm = document.querySelector('#editProductForm');
+    const fileInput2 = document.getElementById('editHiddenFileInput');
+    const addImageBtn2 = document.getElementById('editAddImageBtn');
+    const newPreview = document.getElementById('edit-image-preview');
+    const existingPreview = document.getElementById('existing-image-preview');
+    const hiddenInputsContainer2 = document.getElementById('editHiddenInputsContainer');
+
+    if (!editForm || !fileInput2 || !addImageBtn2 || !newPreview || !existingPreview || !hiddenInputsContainer2) return;
+
+    let newFiles = [];
+
+    let removedImageIds = new Set();
+
+    // This function will be called to load existing images dynamically
+    window.loadEditModalImages = function(images) {
+        existingPreview.innerHTML = '';
+        images.forEach(img => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'position-relative';
+
+            const image = document.createElement('img');
+            image.src = img.path;
+            image.className = 'img-thumbnail';
+            image.style.width = '100px';
+            image.style.height = '100px';
+            image.style.objectFit = 'cover';
+
+            const button = document.createElement('button');
+            button.innerText = '×';
+            button.className = 'btn btn-sm btn-danger position-absolute';
+            button.style.top = '-8px';
+            button.style.right = '-8px';
+            button.type = 'button';
+            button.addEventListener('click', () => {
+                removedImageIds.add(img.id);
+                wrapper.remove();
+            });
+
+            wrapper.appendChild(image);
+            wrapper.appendChild(button);
+            existingPreview.appendChild(wrapper);
+        });
+    };
+
+    addImageBtn2.addEventListener('click', () => {
+        fileInput2.click();
+    });
+
+    editForm.addEventListener('submit', function (e) {
+        hiddenInputsContainer2.innerHTML = '';
+
+        // Validate allFiles
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+        const invalid = newFiles.some(f => !allowedTypes.includes(f.type));
+
+        if (invalid) {
+            e.preventDefault();
+            alert('Všetky súbory musia byť obrázky (jpg, jpeg, png, webp).');
+            return;
+        }
+
+        // Total images after remove check
+        const totalRemaining = existingPreview.querySelectorAll('img').length + newFiles.length;
+        if (totalRemaining < 2) {
+            e.preventDefault();
+            alert('Produkt musí mať aspoň 2 fotky.');
+            return;
+        }
+
+        // Append all new files
+        newFiles.forEach(file => {
+            const dt = new DataTransfer();
+            dt.items.add(file);
+
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.name = 'images[]';
+            input.files = dt.files;
+            input.classList.add('d-none');
+
+            hiddenInputsContainer2.appendChild(input);
+        });
+
+        // Append removed image IDs
+        removedImageIds.forEach(id => {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'remove_images[]';
+            input.value = id;
+            hiddenInputsContainer2.appendChild(input);
+        });
+    });
+
+    fileInput.addEventListener('change', () => {
+        const newFiles = Array.from(fileInput.files);
+    
+        newFiles.forEach(file => {
+            allFiles.push(file);
+            appendPreviewImage(file, previewContainer, allFiles);
+        });
+    
+        fileInput.value = '';
+    });
+
+    fileInput2.addEventListener('change', () => {
+        const files = Array.from(fileInput2.files);
+        console.log("Selected files:", files);
+    
+        files.forEach(file => {
+            newFiles.push(file);
+            console.log("Appending file to preview:", file.name);
+            appendPreviewImage(file, newPreview, newFiles);
+        });
+    
+        fileInput2.value = '';
+    });
+    
+    function appendPreviewImage(file, container, fileArray) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'position-relative';
+    
+        const img = document.createElement('img');
+        img.className = 'img-thumbnail';
+        img.style.width = '100px';
+        img.style.height = '100px';
+        img.style.objectFit = 'cover';
+    
+        const button = document.createElement('button');
+        button.innerText = '×';
+        button.className = 'btn btn-sm btn-danger position-absolute';
+        button.style.top = '-8px';
+        button.style.right = '-8px';
+        button.type = 'button';
+    
+        button.addEventListener('click', () => {
+            const index = fileArray.indexOf(file);
+            if (index !== -1) fileArray.splice(index, 1);
+            wrapper.remove();
+        });
+    
+        const reader = new FileReader();
+        reader.onload = e => {
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    
+        wrapper.appendChild(img);
+        wrapper.appendChild(button);
+        container.appendChild(wrapper);
+    }
 
 });

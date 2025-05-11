@@ -1,3 +1,6 @@
+@php
+    $canEdit = $canEdit ?? false;
+@endphp
 <section class="my-5">
     <h2>{{ $title }}</h2>
 
@@ -23,12 +26,35 @@
                 @endphp
 
                     <div class="col">
-                        <div class="card text-start p-3">
-                            <div class="mb-3">
+                        <div class="card text-start p-3 {{ !$product['availability'] ? 'unavailable' : '' }}">
+                            <div class="horna-polka mb-3">
                                 <img src="{{ asset($product['image']) }}" alt="{{ $product['alt'] }}" class="img-half-cover">
-                                @if (!empty($product['discount']))
+                                @if (!empty($product['discount']) && !$canEdit)
                                     <div class="discount">
                                         <span class="discount-text">-{{ $product['discount'] }}%</span>
+                                    </div>
+                                @endif
+
+                                @if($canEdit && !$product['availability'])
+                                    <div class="badge bg-secondary position-absolute top-0 start-0 m-2">Nedostupné</div>
+                                @endif
+
+                                @if($canEdit && !empty($product['edit_route']))
+                                    @php $productObj = (object) $product; @endphp
+                                    <div class="edit">
+                                        <button
+                                            class="edit-button custom-button w-100"
+                                            onclick="openEditProductModal({{ $productObj->id }}, '{{ $product['edit_route'] }}', '{{ $product['delete_route'] }}')"
+                                            data-name="{{ $productObj->name }}"
+                                            data-price="{{ $productObj->price_per_unit }}"
+                                            data-sale-type="{{ $productObj->unit }}"
+                                            data-amount="{{ $productObj->sell_quantity }}"
+                                            data-discount="{{ $productObj->discount }}"
+                                            data-description="{{ $productObj->description }}"
+                                            data-unavailable="{{ $productObj->availability ? '0' : '1' }}"
+                                            data-images='@json($productObj->images->map(fn($img) => ['id' => $img->id, 'path' => asset($img->path)]))'>
+                                            <span class="material-icons">edit</span>
+                                        </button>
                                     </div>
                                 @endif
                             </div>
@@ -67,12 +93,14 @@
                                     <span class="star-count ms-2">({{ $ratingVal }})</span>
                                 </div>
 
+                                @if(!$canEdit)
                                 <div class="d-flex align-items-center gap-2 mt-2">
                                     <a href="{{ route('farms.show', $product['farm_id']) }}" class="d-flex align-items-center truncate-ellipsis gap-2 text-decoration-none">
                                         <span class="material-icons">location_on</span>
                                         <span class="card-location truncate-ellipsis">{{ $product['location'] }}</span>
                                     </a>
                                 </div>
+                                @endif
 
                                 <div class="d-flex align-items-center gap-2">
                                     <form action="{{ route('cart-items.store') }}" method="POST" class="w-100">

@@ -10,6 +10,19 @@ class FarmProduct extends Model
     /** @use HasFactory<\Database\Factories\FarmProductFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'farm_id',
+        'product_id',
+        'sell_quantity',
+        'price_sell_quantity',
+        'price_per_unit',
+        'unit',
+        'discount_percentage',
+        'farm_specific_description',
+        'availability',
+        'rating'
+    ];
+
     public function images() {
         return $this->morphMany(Image::class, 'imageable');
     }

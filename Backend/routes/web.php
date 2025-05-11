@@ -91,6 +91,11 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
 Route::post('/admin/review/{review}/reply', [ProfileController::class, 'replyToReview'])->name('admin.review.reply');
 
+Route::get('farms/{farm}', [FarmController::class, 'show'])->name('farms.show');
+Route::delete('/products/{product}', [FarmProductController::class, 'destroy'])->name('products.destroy');
+Route::put('/products/{product}', [FarmProductController::class, 'update'])->name('products.update');
+
+Route::resource('farms.products', FarmProductController::class)->shallow();
 Route::resource('addresses', AddressController::class);
 Route::resource('articles', ArticleController::class);
 Route::resource('cart-items', CartItemController::class);

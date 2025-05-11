@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CartItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,6 +41,27 @@ class LoginController extends Controller
 
         // 4) Regenerácia session pri úspechu
         $request->session()->regenerate();
+
+        $sessionCart = session('cart.items', []);
+        $userId = Auth::id();
+
+        foreach ($sessionCart as $fpId => $quantity) {
+            $fpId = (int) $fpId;
+            if (!is_numeric($fpId)) continue;
+
+            $item = CartItem::firstOrNew([
+                'user_id' => $userId,
+                'farm_product_id' => $fpId,
+            ]);
+
+            $item->quantity = $item->exists
+                ? $item->quantity + $quantity
+                : $quantity;
+
+            $item->save();
+        }
+
+        session()->forget('cart.items');
 
         // 5) Odpoveď – JSON pre AJAX, alebo back so značkou úspechu pre non-AJAX
         if ($request->expectsJson()) {

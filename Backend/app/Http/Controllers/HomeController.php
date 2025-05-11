@@ -14,16 +14,19 @@ class HomeController extends Controller
 {
     public function homepage() {
         $recommended = FarmProduct::with(['product', 'farm'])
+        ->where('availability', true)
         ->inRandomOrder()
         ->limit(20)
         ->get();
 
         $newest = FarmProduct::with(['product', 'farm'])
+            ->where('availability', true)
             ->orderByDesc('updated_at')
             ->limit(20)
             ->get();
 
         $discounted = FarmProduct::with(['product', 'farm'])
+            ->where('availability', true)
             ->whereNotNull('discount_percentage')
             ->orderByDesc('discount_percentage')
             ->limit(20)
@@ -33,6 +36,7 @@ class HomeController extends Controller
         $seasonalProductIds = Product::whereIn('name', $seasonalNames)->pluck('id');
 
         $seasonal = FarmProduct::with(['product', 'farm'])
+            ->where('availability', true)
             ->whereIn('product_id', $seasonalProductIds)
             ->limit(20)
             ->get();
@@ -72,7 +76,8 @@ class HomeController extends Controller
                 'location' => $fp->farm->name . ', ' . ($fp->farm->address->city ?? ''),
                 'farm_id' => $fp->farm->id,
                 'sell_quantity' => $fp->sell_quantity,
-                'unit' => $fp->unit
+                'unit' => $fp->unit,
+                'availability' => $fp->availability
             ];
         });
     }

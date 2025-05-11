@@ -97,7 +97,7 @@
 
 		<div class="suhrn d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between gap-3 mb-4">
 			<div>
-				<h4 class="fw-bold">Celkom na úhradu:<span id="cart-grand-total">{{ number_format($grand,2) }}</span> €</h4>
+				<h4 class="fw-bold">Celkom na úhradu: <span id="cart-grand-total">{{ number_format($grand,2) }}</span> €</h4>
 				<div class="text-muted fs-5">Cena bez DPH: <span id="cart-no-dph">{{ number_format($noDPH,2) }}</span> €</div>
 			</div>
 			<a href="{{ route('cart-form.index') }}" class="btn custom-button btn-pridat-do-kosika px-4 py-2">Prejsť k údajom</a>

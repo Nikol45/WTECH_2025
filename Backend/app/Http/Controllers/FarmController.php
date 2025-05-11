@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Farm;
 use App\Models\Address;
+use App\Models\FarmProduct;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -65,7 +67,52 @@ class FarmController extends Controller
     }
 
     public function show(Farm $farm)
-    {
+    {  
+        $avgDeliveryTime   = $farm->avg_delivery_time;
+        $minDeliveryPrice  = $farm->min_delivery_price;
+        $deliveryAvailable = (bool)$farm->delivery_available;
+    
+
+        $ratedFps = $farm->farm_products
+            ->filter(fn($fp) => $fp->reviews->count() > 0);
+    
+        if ($ratedFps->isEmpty()) {
+            $farmRating = 0;
+        } else {
+            $perProductAverages = $ratedFps
+                ->map(fn($fp) => $fp->reviews->avg('rating'));
+            $farmRating = round($perProductAverages->avg(), 2);
+        }
+
+        $distance = rand(1, 50);
+
+        $farmProducts = $farm
+            ->farm_products()
+            ->with('product.category')
+            ->get();
+
+        $tags = $farmProducts
+            ->pluck('product.category')
+            ->filter()
+            ->unique('id')
+            ->values();
+
+        $byTag = $tags->mapWithKeys(function($cat) use($farmProducts) {
+            return [
+                $cat->id => $farmProducts
+                    ->filter(fn($fp) => optional($fp->product->category)->id === $cat->id)
+            ];
+        });
+
+        $productNames = Product::distinct()
+                           ->orderBy('name')
+                           ->pluck('name');
+
+        $canEdit = auth()->check()
+        && auth()->user()->is_admin
+        && auth()->id() === $farm->user_id;
+
+    return view('farm', compact('farm','avgDeliveryTime', 'minDeliveryPrice', 'deliveryAvailable', 'farmRating', 'tags','byTag', 'canEdit', 'distance', 'productNames'));
     }
 
     public function edit(Farm $farm)
