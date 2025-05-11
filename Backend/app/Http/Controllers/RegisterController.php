@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\CartItem;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,6 +30,27 @@ class RegisterController extends Controller
 
             // Prihlásenie
             Auth::login($user);
+
+            $sessionCart = session('cart.items', []);
+            $userId = Auth::id();
+
+            foreach ($sessionCart as $fpId => $quantity) {
+                $fpId = (int) $fpId;
+                if (!is_numeric($fpId)) continue;
+
+                $item = CartItem::firstOrNew([
+                    'user_id' => $userId,
+                    'farm_product_id' => $fpId,
+                ]);
+
+                $item->quantity = $item->exists
+                    ? $item->quantity + $quantity
+                    : $quantity;
+
+                $item->save();
+            }
+
+            session()->forget('cart.items');
 
             // AJAX odpoveď
             if ($request->expectsJson()) {

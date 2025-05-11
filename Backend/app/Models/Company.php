@@ -10,14 +10,15 @@ class Company extends Model
     /** @use HasFactory<\Database\Factories\CompanyFactory> */
     use HasFactory;
 
-    public function users() {
-        return $this->hasMany(Account::class, 'company_id');
-    }
     protected $fillable = [
         'name',
         'ico',
         'ic_dph',
     ];
+
+    public function users() {
+        return $this->hasMany(Account::class, 'company_id');
+    }
 
     public function orders() {
         return $this->hasMany(Order::class);
