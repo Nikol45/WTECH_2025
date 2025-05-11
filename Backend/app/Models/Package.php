@@ -15,7 +15,7 @@ class Package extends Model
         'price',
         'expected_delivery_date',
         'status',
-        'order_id', // ak používaš tiež mass assignment pri balíkoch ručne
+        'order_id',
     ];
 
     public function order() {

@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    /** @use HasFactory<\Database\Factories\ArticleFactory> */
     use HasFactory;
 
     protected $fillable = [

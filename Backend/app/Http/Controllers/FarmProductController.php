@@ -15,17 +15,11 @@ use App\Http\Requests\UpdateFarmProductRequest;
 
 class FarmProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(FarmProduct $farmProduct)
     {
         //
@@ -56,7 +50,6 @@ class FarmProductController extends Controller
 
         $product = Product::where('name', $data['name'])->firstOrFail();
 
-        // Calculate price per unit
         $priceSellQuantity = $data['price_per_unit'] * $data['amount'];
 
         $finalPrice = round($priceSellQuantity, 2);
@@ -66,7 +59,6 @@ class FarmProductController extends Controller
                 ->withInput();
         }
 
-        // Create the FarmProduct
         $farmProduct = $farm->farm_products()->create([
             'product_id'                => $product->id,
             'sell_quantity'            => $data['amount'],
@@ -147,8 +139,7 @@ class FarmProductController extends Controller
         if ($request->has('unavailable')) {
             $product->availability = false;
             $product->save();
-        
-            // Remove it from all carts
+
             \App\Models\CartItem::where('farm_product_id', $product->id)->delete();
         } else {
             $product->availability = true;
@@ -166,14 +157,12 @@ class FarmProductController extends Controller
             $img?->delete();
         }
 
-        // Ensure that remaining + new >= 2
         $remaining = $product->images()->count();
         $newCount = $request->hasFile('images') ? count($request->file('images')) : 0;
         if (($remaining + $newCount) < 2) {
             return back()->withErrors(['images' => 'Produkt musí mať aspoň 2 fotky.']);
         }
 
-        // Save new images
         if ($request->hasFile('images')) {
             $uploadPath = public_path('images/farm_products');
             if (!file_exists($uploadPath)) mkdir($uploadPath, 0775, true);
@@ -196,15 +185,12 @@ class FarmProductController extends Controller
     {
         foreach ($product->images as $img) {
 
-            // full absolute path – the same logic you used on upload
             $absolutePath = public_path($img->path);
-    
-            // delete the file if it’s still there
+
             if (File::exists($absolutePath)) {
-                File::delete($absolutePath);         // or unlink($absolutePath);
+                File::delete($absolutePath);
             }
     
-            // remove the row from the images table
             $img->delete();
         }
 

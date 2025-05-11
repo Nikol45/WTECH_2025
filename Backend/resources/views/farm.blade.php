@@ -9,7 +9,7 @@
              class="w-100" alt="{{ $farm->name }}">
     </div>
 
-    {{-- Farm Info --}}
+    {{-- Farma info --}}
     <div class="farm-info mb-4">
         <h2 class="fw-bold d-inline-block me-3 mb-3">{{ $farm->name }}</h2>
 
@@ -29,7 +29,7 @@
             {{ $farm->address->city }}, {{ $distance }} km
         </span>
 
-        {{-- star rating --}}
+        {{-- Hviezdicky --}}
         <div class="d-flex yes-wrap h-gaps align-items-center mb-3">
             {{-- (you can drop the location icon if you don’t have it) --}}
             <div class="d-flex align-items-center gap-2">
@@ -58,11 +58,11 @@
             </div>
         </div>
 
-        {{-- description --}}
+        {{-- Popis --}}
         <p>{{ $farm->description }}</p>
     </div>
 
-    {{-- Category Tabs --}}
+    {{-- Kategorie --}}
     <div class="mb-5 d-flex flex-wrap gap-2">
         @foreach($tags as $tag)
             @php
@@ -79,7 +79,7 @@
         @endforeach
     </div>
 
-    {{-- Admin “New” --}}
+    {{-- Novy produkt --}}
     @if(auth()->check() && auth()->user()->is_admin)
     <div class="new mb-4">
         <button class="edit-button custom-button w-100" onclick="openModal('newProductModal')">
@@ -93,10 +93,8 @@
         $isAdmin = auth()->check() && auth()->user()->is_admin;
     @endphp
 
-    {{-- Each category section --}}
     @foreach($tags as $tag)
         @php
-            // Massage your FarmProduct models into the shape the partial expects
             $products = collect($byTag[$tag->id] ?? [])->map(function($fp) use($canEdit) {
                 $image = $fp->product->image;
 
@@ -175,30 +173,28 @@
                 enctype="multipart/form-data">
             @csrf
 
-            {{-- Photos --}}
+            {{-- Fotkz --}}
             <h5 class="fw-bold text-center mb-3">Nahrať fotky produktu</h5>
 
-            {{-- Preview of selected images --}}
+            {{-- Preview --}}
             <div id="image-preview" class="d-flex flex-wrap gap-2 mb-3"></div>
 
-            {{-- Hidden real file input --}}
+            {{-- Skryty file input --}}
             <input type="file"
                 id="hiddenFileInput"
                 accept="image/*"
                 multiple
                 class="d-none">
 
-            {{-- Add image button --}}
             <div class="upload-section d-flex align-items-center gap-2 mb-4">
                 <button class="btn custom-button subcategory-btn" type="button" id="addImageBtn">
                     Pridať
                 </button>
             </div>
 
-            {{-- Place hidden copies of all selected files here before submit --}}
+            {{-- kontajner na skryte kopie files --}}
             <div id="hiddenInputsContainer"></div>
 
-            {{-- Show error (in case validation fails) --}}
             @error('images.*')
                 <div class="invalid-feedback d-block">{{ $message }}</div>
             @enderror
@@ -207,7 +203,7 @@
                 <div class="invalid-feedback d-block">{{ $message }}</div>
             @enderror
 
-            {{-- Name --}}
+            {{-- Meno --}}
             <div class="mb-3">
                 <label class="form-label">Názov produktu</label>
                 <select name="name"
@@ -227,7 +223,7 @@
                 @enderror
             </div>
 
-            {{-- Price --}}
+            {{-- Cena --}}
             <div class="mb-3">
             <label class="form-label">Cena (€/jednotka)</label>
             <input type="number"
@@ -240,7 +236,7 @@
                     @enderror
             </div>
 
-            {{-- Sale type --}}
+            {{-- Typ predaja --}}
             <div class="mb-3">
             <label class="form-label">Typ predaja</label>
             <select name="sale_type" class="form-select">
@@ -250,7 +246,7 @@
             </select>
             </div>
 
-            {{-- Amount --}}
+            {{-- Množstvo v balení --}}
             <div class="mb-3">
             <label class="form-label">Predávané množstvo</label>
             <input type="number"
@@ -264,7 +260,7 @@
                     @enderror
             </div>
 
-            {{-- Discount --}}
+            {{-- Zľava --}}
             <div class="mb-3">
             <label class="form-label">Zľava (%)</label>
             <input type="number"
@@ -276,7 +272,7 @@
                     @enderror
             </div>
 
-            {{-- Description --}}
+            {{-- Popis --}}
             <div class="mb-3">
             <label class="form-label">Popis produktu</label>
             <textarea name="description"
@@ -327,34 +323,27 @@
             @csrf
             @method('PUT')
 
-            {{-- Photos: you can fill existing previews with JS if you like --}}
             <h5 class="fw-bold text-center mb-3">Upraviť fotky produktu</h5>
 
             <div id="existing-image-preview" class="d-flex flex-wrap gap-2 mb-3">
-                {{-- Will be populated with JS --}}
             </div>
 
-            {{-- Preview of newly selected images --}}
             <div id="edit-image-preview" class="d-flex flex-wrap gap-2 mb-3"></div>
 
-            {{-- Hidden real input --}}
             <input type="file"
                 id="editHiddenFileInput"
                 accept="image/*"
                 multiple
                 class="d-none">
 
-            {{-- Button to trigger input --}}
             <div class="upload-section d-flex align-items-center gap-2 mb-4">
                 <button class="btn custom-button subcategory-btn" type="button" id="editAddImageBtn">
                     Pridať
                 </button>
             </div>
 
-            {{-- Container for hidden inputs --}}
             <div id="editHiddenInputsContainer"></div>
 
-            {{-- Name --}}
             <div class="mb-3">
             <label class="form-label">Názov produktu</label>
             <input id="edit_name"
@@ -368,7 +357,6 @@
                     @enderror
             </div>
 
-            {{-- Price --}}
             <div class="mb-3">
             <label class="form-label">Cena (€/jednotka)</label>
             <input id="edit_price"
@@ -382,7 +370,6 @@
                     @enderror
             </div>
 
-            {{-- Sale type --}}
             <div class="mb-3">
             <label class="form-label">Typ predaja</label>
             <select id="edit_sale_type" name="sale_type" class="form-select">
@@ -392,7 +379,6 @@
             </select>
             </div>
 
-            {{-- Amount --}}
             <div class="mb-3">
             <label class="form-label">Predávané množstvo</label>
             <input id="edit_amount"
@@ -406,7 +392,6 @@
                     @enderror
             </div>
 
-            {{-- Discount --}}
             <div class="mb-3">
             <label class="form-label">Zľava (%)</label>
             <input id="edit_discount"
@@ -419,7 +404,6 @@
                     @enderror
             </div>
 
-            {{-- Description --}}
             <div class="mb-3">
             <label class="form-label">Popis produktu</label>
             <textarea id="edit_description"

@@ -27,9 +27,6 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mb-5">
             @foreach ($favourites as $item)
                 @php
-                    /* -----------------------------------------------------------
-                       Príprava pre kartičku
-                    ----------------------------------------------------------- */
                     $fp   = $item->farm_product;            // skratka pre prehľadnosť
                     if (!$fp) continue;                    // ak by chýbal vzťah
 

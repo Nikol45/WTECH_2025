@@ -153,7 +153,7 @@
 
 @else
     <div class="row align-items-stretch">
-        {{-- ľavý panel: vždy col-md-9 pre customer alebo col-md-3 pre admin-view --}}
+        {{-- ľavý panel --}}
         <div class="col-md-{{ $view === 'admin' ? '3' : '9' }}">
             <h2 class="fw-bold my-4">Môj profil</h2>
 
@@ -317,7 +317,6 @@
 </div>
 
 
-{{-- Pop-up pre editáciu --}}
 @include('layout.partials.edit_popup')
 
 {{-- Bannery --}}

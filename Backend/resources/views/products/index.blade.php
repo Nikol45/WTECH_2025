@@ -3,7 +3,7 @@
 @section('title', 'Zoznam produktov')
 
 @section('content')
-        <!-- Back to homepage -->
+        <!-- Naspäť -->
         <div class="row mb-2">
             <div class="col-12 d-flex align-items-center flex-wrap gap-2">
                 <a href="{{ route('homepage') }}"
@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <!-- Page Content -->
+        <!-- Filter a main sekcia -->
         <div class="row">
 
             <aside class="filter-section col-12 col-sm-4 col-lg-3 col-xl-2 mb-4 mb-md-0">
@@ -123,7 +123,7 @@
                 </form>
             </aside>
 
-            <!-- Product Grid -->
+            <!-- Produkty -->
             <div class="product-listing col-12 col-lg-9 col-xl-10 px-4">
                 <div class="d-flex flex-wrap position-relative justify-content-between mb-4 mt-3 gap-2">
                     <h2 class="fw-bold">Zoznam produktov</h2>

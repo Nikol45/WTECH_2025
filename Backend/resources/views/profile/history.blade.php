@@ -4,7 +4,7 @@
 
 @section('content')
 
-    {{-- Navigačné tabuľky profilu (desktop & mobile) --}}
+    {{-- Navigačné tabulkz profilu --}}
     @include('layout.partials.nav_steps', [
         'context' => 'profile',
         'active'  => 'history'
@@ -56,7 +56,7 @@
                 @endforeach
             @endforeach
 
-            {{-- Súhrn objednávky (číslo, dátum, cena, reorder) --}}
+            {{-- Súhrn objednávky --}}
             <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
                 <div>
                     <span class="me-4">č. {{ $order->number }}</span>

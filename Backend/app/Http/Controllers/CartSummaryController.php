@@ -35,7 +35,7 @@ class CartSummaryController extends Controller
                 ->toArray();
         }
         else {
-            $session = Session::get('cart.items', []);  // [ fp_id => qty, … ]
+            $session = Session::get('cart.items', []);
             if (empty($session)) {
                 $items = [];
             } else {
@@ -136,7 +136,7 @@ class CartSummaryController extends Controller
                     'price'           => $ci->farm_product->price_sell_quantity,
                 ])->toArray();
         } else {
-            $raw = Session::get('cart.items', []);           // [ fp_id => qty, … ]
+            $raw = Session::get('cart.items', []);
             $fps = FarmProduct::with('farm')
                              ->whereIn('id', array_keys($raw))
                              ->get();
@@ -165,7 +165,7 @@ class CartSummaryController extends Controller
             'address_type'  => 'billing',
         ]);
 
-    // Ak nie je zadaná doručovacia adresa → použije sa billing adresa
+    // Ak nie je zadaná doručovacia adresa použije sa billing adresa
         $deliveryAddr = null;
         if (!empty($form['delivery_address'])) {
             $delData = $form['delivery_address'];

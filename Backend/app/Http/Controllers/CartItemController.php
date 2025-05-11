@@ -12,9 +12,6 @@ use App\Http\Requests\UpdateCartItemRequest;
 
 class CartItemController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request) {
         if (Auth::check()) {  //prihlásený používateľ
             $dbItems = CartItem::with(['farm_product.product.image','farm_product.farm'])
@@ -56,17 +53,11 @@ class CartItemController extends Controller
         return view('cart.index', ['cart'=>$cart, 'cartByFarm' => $cartByFarm]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request) {
         $data = $request->validate([
             'farm_product_id' => 'required|int|exists:farm_products,id',
@@ -117,31 +108,17 @@ class CartItemController extends Controller
         return back()->with('success', 'Produkt pridaný do košíka.');
     }
 
-
-    /**
-     * Display the specified resource.
-     */
     public function show(CartItem $cartItem)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(CartItem $cartItem)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
 
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Request $request) {
         $ids = $request->input('items', []);
 

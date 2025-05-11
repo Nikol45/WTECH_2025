@@ -265,7 +265,6 @@ class CartDeliveryController extends Controller
         return redirect()->route('cart-summary.index');
     }
 
-    // Update deleguje na store pre RESTful konzistenciu
     public function update(Request $request): RedirectResponse
     {
         return $this->store($request);
@@ -319,8 +318,8 @@ class CartDeliveryController extends Controller
             $etaExpress  = 'dd.mm. – dd.mm.';
             $etaStandard = 'dd.mm. – dd.mm.';
         } else {
-            $etaExpress  = self::formatEtaRange($baseDate, 0, 2); // napr. 13.06. – 15.06.
-            $etaStandard = self::formatEtaRange($baseDate, 2, 3); // napr. 15.06. – 18.06.
+            $etaExpress  = self::formatEtaRange($baseDate, 0, 2);
+            $etaStandard = self::formatEtaRange($baseDate, 2, 3);
         }
 
         self::$DELIVERY_METHODS = [

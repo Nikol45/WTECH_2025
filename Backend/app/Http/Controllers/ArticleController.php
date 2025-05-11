@@ -32,7 +32,7 @@ class ArticleController extends Controller
             'image' => 'nullable|image|max:2048',
         ]);
 
-        $data['user_id'] = Auth::id();                       // autor článku
+        $data['user_id'] = Auth::id();
 
         // ak prišiel súbor -> uložíme
         if ($request->hasFile('image')) {
@@ -55,7 +55,6 @@ class ArticleController extends Controller
     public function edit(Article $article)
     {
         // môžeme skontrolovať, či práve prihlásený používateľ je autor,
-        // prípadne použiť Gate/Policy
         $this->authorize('update', $article);
 
         return view('articles.edit', compact('article'));
@@ -72,7 +71,7 @@ class ArticleController extends Controller
             'image' => 'nullable|image|max:2048',
         ]);
 
-        // nový súbor -> starý môžeme vymazať (ak chceš)
+        // nový súbor
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')
                 ->store('articles', 'public');

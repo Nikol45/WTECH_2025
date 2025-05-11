@@ -39,7 +39,7 @@ class LoginController extends Controller
                 ->with('openModal', 'loginModal');
         }
 
-        // 4) Regenerácia session pri úspechu
+        // Regenerácia session pri úspechu
         $request->session()->regenerate();
 
         $sessionCart = session('cart.items', []);
@@ -63,7 +63,7 @@ class LoginController extends Controller
 
         session()->forget('cart.items');
 
-        // 5) Odpoveď – JSON pre AJAX, alebo back so značkou úspechu pre non-AJAX
+        // Odpoveď
         if ($request->expectsJson()) {
             return response()->json(['success' => true]);
         }

@@ -3,7 +3,7 @@
 @section('title', 'Domov')
 
 @section('content')
-    {{-- Hero Section --}}
+    {{-- Hero sekcia --}}
     <div class="hero-section py-5">
         <div class="container-fluid custom-fluid">
             <div class="row align-items-center">
@@ -62,7 +62,7 @@
         'products' => $seasonalProducts
     ])
 
-    {{-- Articles Section --}}
+    {{-- Clanky --}}
     @include('layout.partials.article-section', [
         'title' => 'Mohlo by vás zaujímať',
         'id' => 'carouselRow4',
@@ -70,6 +70,6 @@
         'id_arrow_right' => 'arrowRight4',
     ])
 
-    {{-- Ads Section --}}
+    {{-- Reklamy --}}
     @include('layout.partials.ads-section')
 @endsection

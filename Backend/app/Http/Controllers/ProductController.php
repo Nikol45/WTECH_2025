@@ -14,9 +14,6 @@ use App\Http\Requests\UpdateProductRequest;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request) {
         $search = trim((string) $request->input('q', ''));
         $clickedCat = $request->integer('category');
@@ -148,26 +145,16 @@ class ProductController extends Controller
         });
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreProductRequest $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(FarmProduct $farmProduct) {
         $farmProduct->load([
             'product.category',
@@ -219,25 +206,16 @@ class ProductController extends Controller
         return view('products.show', compact('farmProduct','photos','farmOptions', 'selectedQuantity', 'units', 'avgRating','countByStar','allReviews', 'fullStars','halfStars','emptyStars','currentUser'), ['articles' => $this->mapArticles($articles)]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Product $product)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateProductRequest $request, Product $product)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Product $product)
     {
         //

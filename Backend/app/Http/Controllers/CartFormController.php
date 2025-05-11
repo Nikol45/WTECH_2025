@@ -41,9 +41,7 @@ class CartFormController extends Controller
 
     // ----------------- SÚKROMNÉ METÓDY -----------------
 
-    /**
-     * Overí vstupné dáta z formulára.
-     */
+    /*Overí vstupné dáta z formulára.*/
     private function validateInput(Request $request): array
     {
         $differentAddress = boolval($request->input('different_address'));
@@ -80,9 +78,7 @@ class CartFormController extends Controller
         ]);
     }
 
-    /**
-     * Z validovaných polí zloží štruktúru cart.form.
-     */
+    /*Z validovaných polí zloží štruktúru cart.form.*/
     private function buildCartFormData(array $v): array
     {
         $deliveryAddress = [

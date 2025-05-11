@@ -1,17 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CartItemController;
-use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\FarmController;
 use App\Http\Controllers\FarmProductController;
 use App\Http\Controllers\ProfileFavouriteController;
-use App\Http\Controllers\ImageController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
-use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartFormController;
 use App\Http\Controllers\CartDeliveryController;
@@ -96,16 +91,11 @@ Route::delete('/products/{product}', [FarmProductController::class, 'destroy'])-
 Route::put('/products/{product}', [FarmProductController::class, 'update'])->name('products.update');
 
 Route::resource('farms.products', FarmProductController::class)->shallow();
-Route::resource('addresses', AddressController::class);
 Route::resource('articles', ArticleController::class);
 Route::resource('cart-items', CartItemController::class);
-Route::resource('companies', CompanyController::class);
 Route::resource('farms', FarmController::class);
 Route::resource('farm-products', FarmProductController::class);
-Route::resource('images', ImageController::class);
-Route::resource('orders', OrderController::class);
 Route::resource('order-items', OrderItemController::class);
-Route::resource('packages', PackageController::class);
 Route::resource('cart-form',  CartFormController::class);
 Route::resource('cart-delivery',  CartDeliveryController::class);
 Route::resource('cart-summary',  CartSummaryController::class);

@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileReviewsController extends Controller
 {
-    /** Zoznam recenzií prihláseného používateľa */
+    /* Zoznam recenzií prihláseného používateľa */
     public function index()
     {
         $reviews = Review::with([
-            'farm_product.product.image', // obrázok produktu
-            'farm_product.farm',          // názov farmy
+            'farm_product.product.image',
+            'farm_product.farm',
         ])
             ->where('user_id', Auth::id())
             ->latest()
@@ -42,7 +42,6 @@ class ProfileReviewsController extends Controller
         return back()->with('success', 'Recenzia bola pridaná.');
     }
 
-    /** Aktualizácia recenzie z modalu (PATCH) */
     public function update(Request $request, Review $review)
     {
         if ($review->user_id !== Auth::id()) {
@@ -63,8 +62,7 @@ class ProfileReviewsController extends Controller
 
         return back()->with('success', 'Recenzia bola upravená.');
     }
-
-    /** Zmazanie recenzie (DELETE) */
+    
     public function destroy(Review $review)
     {
         if ($review->user_id !== Auth::id()) {

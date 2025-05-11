@@ -57,10 +57,10 @@ class RegisterController extends Controller
                 return response()->json(['success' => true], 200);
             }
 
-            // Klasický redirect
+            // redirect
             return redirect()->route('homepage');
         } catch (\Throwable $e) {
-            // Pri výnimke: pošli chybu cez JSON (napr. 500)
+            // Pri výnimke: pošli chybu cez JSON
             if ($request->expectsJson()) {
                 return response()->json([
                     'message' => 'Server error',

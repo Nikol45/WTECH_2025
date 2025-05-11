@@ -1,7 +1,7 @@
 @php use Illuminate\Support\Str; @endphp
 <header>
     <script>
-        window.isLoggedIn = @json(Auth::check()); // zatial najlepsie riesenie
+        window.isLoggedIn = @json(Auth::check());
         window.routes = {
             logout: @json(route('logout'))
         };
@@ -10,7 +10,7 @@
         @csrf
     </form>
 
-    <!-- Pop-up modály pre prihlásenie a registráciu -->
+    <!-- modaly pre prihlásenie a registráciu -->
     <div class="modal-container">
         @auth
             <form id="logoutForm" action="{{ route('logout') }}" method="POST" class="d-none">

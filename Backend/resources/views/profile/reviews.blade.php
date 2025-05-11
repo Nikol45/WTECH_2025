@@ -4,7 +4,7 @@
 
 @section('content')
 
-    {{-- Navigačné tabuľky profilu (desktop & mobile) --}}
+    {{-- Navigačné tabulkz profilu --}}
     @include('layout.partials.nav_steps', [
         'context' => 'profile',
         'active'  => 'reviews'
@@ -67,7 +67,7 @@
                             <span class="material-symbols-outlined">edit_square</span>
                         </button>
 
-                        {{-- DELETE confirm --}}
+                        {{-- potvrdenie --}}
                         <button class="btn custom-button"
                                 title="Zmazať recenziu"
                                 onclick="openConfirmModal({
@@ -80,7 +80,7 @@
                     </div>
                 </div>
 
-                {{-- Obrázok + názov produktu ---------------------------------------- --}}
+                {{-- Obrázok + názov produktu --}}
                 <div class="d-flex align-items-center gap-3 mb-3">
                     <img src="{{ asset($review->farm_product->product->image->path) }}"
                          alt="Produkt" class="rounded" style="height: 80px;">
@@ -90,7 +90,7 @@
                     </div>
                 </div>
 
-                {{-- Titulok + text na ľavej strane; dátum vpravo --------------------- --}}
+                {{-- Titulok + text na ľavej strane; dátum vpravo --}}
                 <div class="d-flex justify-content-between align-items-end mx-3">
                     <div>
                         <p class="fw-bold mb-1">{{ $review->title }}</p>

@@ -9,7 +9,6 @@ class Address extends Model
 {
     use HasFactory;
 
-    // Povolené atribúty pre mass assignment
     protected $fillable = [
         'street',
         'street_number',

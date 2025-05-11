@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class ProfileHistoryController extends Controller
 {
-    /** Zoznam objednávok prihláseného používateľa */
+    /* Zoznam objednávok prihláseného používateľa */
     public function index()
     {
         $orders = Order::with([
@@ -24,10 +24,9 @@ class ProfileHistoryController extends Controller
         return view('profile.history', compact('orders'));
     }
 
-    /** „Objednať znova“ – vloží položky späť do košíka */
+    /* vloží položky späť do košíka */
     public function reorder(Order $order)
     {
-        // Kontrola, či používateľ je vlastník objednávky
         if ($order->user_id !== auth()->id()) {
             abort(403);
         }
