@@ -1,5 +1,5 @@
 @php
-    $context = $context   ?? 'profile'; // cart / profile
+    $context = $context   ?? 'cart'; // cart / profile
     $active  = $active    ?? '';
 
     $map = [

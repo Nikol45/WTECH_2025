@@ -56,6 +56,27 @@
                     Pridať farmu
                 </button>
             </div>
+
+            <button class="btn btn-outline-primary"
+                onclick="openEditModal({
+                    title: 'Pridať farmu',
+                    submitUrl: '{{ route('admin.farm.store') }}',
+                    enctype: 'multipart/form-data',
+                    fields: [
+                        { label: 'Obrázok', name: 'image', type: 'file', accept: 'image/*', required: true },
+                        { label: 'Názov farmy', name: 'name', required: true },
+                        { label: 'Popis', name: 'description', type: 'textarea' },
+                        { label: 'Ulica', name: 'street', required: true },
+                        { label: 'Číslo domu', name: 'street_number', required: true },
+                        { label: 'Mesto', name: 'city', required: true },
+                        { label: 'PSČ', name: 'zip_code', required: true },
+                        { label: 'Krajina', name: 'country', required: true }
+                    ]
+                })">
+                Pridať farmu
+            </button>
+
+
         @else
             {{-- Carousel --}}
             <div class="arrows-around position-relative mt-4">
@@ -78,47 +99,15 @@
                                             <div class="col-sm-5">
                                                 <img src="{{ asset(optional($farm->image)->path) }}" alt="{{ $farm->name }}" class="img-fluid rounded">
                                             </div>
-                                            <div class="col-sm-7 overflow-hidden">
-                                                <h5 class="card-title truncate-ellipsis mt-sm-4">{{ $farm->name }}</h5>
-                                                <h6 class="card-location truncate-ellipsis text-muted">{{ $farm->address->city }}</h6>
+                                            <div class="col-sm-7 d-flex flex-column justify-content-center overflow-hidden">
+                                                <h5 class="card-title truncate-ellipsis mt-sm-2 mb-1">{{ $farm->name }}</h5>
+                                                <h6 class="card-location truncate-ellipsis text-muted m-0">{{ $farm->address->city }}</h6>
                                             </div>
                                         </div>
                                     </a>
 
                                     <!-- Akcie -->
                                     <div class="d-flex flex-column gap-2 align-items-center">
-                                        {{-- MODAL EDIT – farma --}}
-                                        <button class="btn custom-button"
-                                                title="Upraviť"
-                                                onclick="openEditModal({
-                                                    title: 'Upraviť farmu',
-                                                    submitUrl: '{{ route('farms.update', $farm->id) }}',
-                                                    method: 'PUT',
-                                                    enctype: 'multipart/form-data',
-                                                    fields: [
-                                                        { label: 'Obrázok', name: 'image', type: 'file' },
-
-                                                        { label: 'Názov farmy', name: 'name',
-                                                          value: '{{ $farm->name }}', required: true },
-
-                                                        { label: 'Popis', name: 'description', type: 'textarea',
-                                                          value: '{{ $farm->description }}' },
-
-                                                        { label: 'Ulica',        name: 'street',
-                                                          value: '{{ $farm->address->street }}', required: true },
-                                                        { label: 'Číslo domu',   name: 'street_number',
-                                                          value: '{{ $farm->address->street_number }}', required: true },
-                                                        { label: 'Mesto',        name: 'city',
-                                                          value: '{{ $farm->address->city }}',   required: true },
-                                                        { label: 'PSČ',          name: 'zip_code',
-                                                          value: '{{ $farm->address->zip_code }}', required: true },
-                                                        { label: 'Krajina',      name: 'country',
-                                                          value: '{{ $farm->address->country }}', required: true }
-                                                    ]
-                                                })">
-                                            <span class="material-symbols-outlined">edit_square</span>
-                                        </button>
-
                                         {{-- DELETE - potvrdenie --}}
                                         <button class="btn custom-button" title="Zmazať"
                                                 onclick="openConfirmModal({

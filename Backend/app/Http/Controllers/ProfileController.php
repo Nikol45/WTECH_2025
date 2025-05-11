@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 class ProfileController extends Controller
 {
@@ -226,20 +227,21 @@ class ProfileController extends Controller
 
     /* ---------- Admin funkcie ---------- */
 
-    public function storeFarm(Request $r)
+    public function storeFarm(Request $request)
     {
-        $data = $r->validate([
-            'name'           => 'required|string|max:255',
-            'description'    => 'nullable|string',
-            'image'          => 'nullable|image|max:2048',
+        $data = $request->validate([
+            'name'        => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'image'       => 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
 
-            'street'         => 'required|string|max:255',
-            'street_number'  => 'required|string|max:32',
-            'city'           => 'required|string|max:255',
-            'zip_code'       => 'required|string|max:16',
-            'country'        => 'required|string|max:255',
+            'street'        => 'required|string|max:255',
+            'street_number' => 'required|string|max:32',
+            'city'          => 'required|string|max:255',
+            'zip_code'      => 'required|string|max:16',
+            'country'       => 'required|string|max:255',
         ]);
 
+        // Adresa
         $address = Address::create([
             'street'        => $data['street'],
             'street_number' => $data['street_number'],
@@ -249,16 +251,30 @@ class ProfileController extends Controller
             'address_type'  => 'farm',
         ]);
 
+        // Farma
         $farm = Farm::create([
-            'user_id'    => $r->user()->id,
-            'address_id' => $address->id,
-            'name'       => $data['name'],
-            'description'=> $data['description'] ?? null,
+            'user_id'     => $request->user()->id,
+            'address_id'  => $address->id,
+            'name'        => $data['name'],
+            'description' => $data['description'] ?? null,
         ]);
 
-        if ($r->hasFile('image')) {
-            $path = $r->file('image')->store('farms', 'public');
-            $farm->image()->create(['path' => $path]);
+        // Obrázok
+        if ($request->hasFile('image')) {
+            $file     = $request->file('image');
+            $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
+
+            $uploadPath = public_path('images/farms');
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0775, true);
+            }
+
+            $file->move($uploadPath, $filename);
+
+            $farm->image()->create([
+                'name' => $filename,
+                'path' => 'images/farms/' . $filename,
+            ]);
         }
 
         return back()->with('success', 'Farma bola pridaná.');

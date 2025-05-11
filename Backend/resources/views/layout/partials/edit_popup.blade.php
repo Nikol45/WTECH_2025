@@ -60,7 +60,7 @@
 </div>
 
 <script>
-    (function () {
+    (() => {
         /* ========== Hviezdičky ========== */
         const ratingField = document.getElementById('ratingField');
         const ratingInput = document.getElementById('ratingInput');
@@ -69,120 +69,128 @@
 
         const refreshStars = val => {
             stars.forEach(star => {
-                const idx = +star.dataset.index;          // 1‒5
-                star.classList.remove('filled','half-filled','empty');
-
-                if (val >= idx) {
-                    star.textContent = 'star';
-                    star.classList.add('filled');
-                } else if (val >= idx - 0.5) {
-                    star.textContent = 'star_half';
-                    star.classList.add('half-filled');
-                } else {
-                    star.textContent = 'star_outline';
-                    star.classList.add('empty');
-                }
+                const i = +star.dataset.index;
+                star.textContent = val >= i       ? 'star'
+                    :  val >= i - 0.5 ? 'star_half'
+                        : 'star_outline';
             });
         };
-
-        /* klik – rozozná ľavú / pravú polovicu ikony */
         stars.forEach(star =>
             star.addEventListener('click', e => {
-                const rect = star.getBoundingClientRect();
-                const idx  = +star.dataset.index;
-                const isLeftHalf = (e.clientX - rect.left) < rect.width / 2;
-                const newVal = isLeftHalf ? idx - 0.5 : idx;
-
-                ratingInput.value = newVal;
-                refreshStars(newVal);
+                const {left, width} = star.getBoundingClientRect();
+                const i  = +star.dataset.index;
+                ratingInput.value = (e.clientX - left) < width / 2 ? i - .5 : i;
+                refreshStars(+ratingInput.value);
             })
         );
 
-        /* ========== Otváranie modalu ========== */
-        window.openEditModal = function (config = {}) {
+        /* ========== Otváranie modálu ========== */
+        window.openEditModal = cfg => {
             const modal  = document.getElementById('editModal');
             const title  = document.getElementById('editModalTitle');
             const form   = document.getElementById('editModalForm');
             const fields = document.getElementById('dynamicFields');
 
-            /* Header + form atribúty */
-            title.textContent = config.title || 'Upraviť údaje';
-            form.action  = config.submitUrl || '#';
-            form.method  = config.method   || 'POST';
-            form.enctype = config.enctype  || 'multipart/form-data';
+            /* hlavička + atribúty formulára */
+            title.textContent = cfg.title   ?? 'Upraviť údaje';
+            form.action       = cfg.submitUrl ?? '#';
+            form.method       = cfg.method  ?? 'POST';
+            form.enctype      = cfg.enctype ?? 'multipart/form-data';
 
-            // method spoofing pre PUT, PATCH, DELETE
-            const methodInput = form.querySelector('input[name="_method"]');
-            if (config.method && config.method.toUpperCase() !== 'POST') {
-                if (!methodInput) {
-                    const spoof = document.createElement('input');
-                    spoof.type  = 'hidden';
-                    spoof.name  = '_method';
-                    spoof.value = config.method;
+            /* method spoofing */
+            let spoof = form.querySelector('[name=_method]');
+            if (cfg.method && cfg.method.toUpperCase() !== 'POST') {
+                if (!spoof) {
+                    spoof = document.createElement('input');
+                    spoof.type = 'hidden'; spoof.name = '_method';
                     form.appendChild(spoof);
-                } else {
-                    methodInput.value = config.method;
                 }
-            } else if (methodInput) {
-                methodInput.remove();
-            }
+                spoof.value = cfg.method;
+            } else if (spoof) spoof.remove();
 
             /* CSRF */
-            form.querySelector('input[name="_token"]').value =
-                document.querySelector('meta[name="csrf-token"]')?.content || '';
+            form.querySelector('[name=_token]').value =
+                document.querySelector('meta[name=csrf-token]')?.content || '';
 
-            /* Reset */
-            fields.innerHTML = '';
-            ratingField.classList.add('d-none');
+            /* reset */
+            fields.innerHTML = ''; ratingField.classList.add('d-none');
 
-            /* Generovanie polí */
-            (config.fields || []).forEach(field => {
-                /* ----- rating ----- */
-                if (field.name === 'rating') {
-                    ratingLabel.textContent = field.label || 'Počet hviezdičiek';
-                    ratingInput.min   = field.min  ?? 1;
-                    ratingInput.max   = field.max  ?? 5;
-                    ratingInput.step  = field.step ?? 0.5;
-                    ratingInput.value = field.value ?? 0;
+            /* ========= dynamické polia ========= */
+            (cfg.fields ?? []).forEach(f => {
+                /* rating */
+                if (f.name === 'rating') {
+                    ratingLabel.textContent = f.label ?? 'Počet hviezdičiek';
+                    Object.assign(ratingInput, {min: f.min ?? 1, max: f.max ?? 5,
+                        step: f.step ?? .5,
+                        value: f.value ?? 0});
                     refreshStars(+ratingInput.value);
-                    ratingField.classList.remove('d-none');
-                    return;
+                    return ratingField.classList.remove('d-none');
                 }
 
-                /* ----- ostatné vstupy ----- */
-                const wrap  = document.createElement('div');
-                wrap.className = 'mb-3';
-
-                /* label */
-                const label = document.createElement('label');
-                label.className = 'form-label';
-                label.setAttribute('for', field.name);
-                label.textContent = field.label || field.name;
+                /* obal + label */
+                const wrap  = Object.assign(document.createElement('div'),
+                    {className: 'mb-3'});
+                const label = Object.assign(document.createElement('label'),
+                    {className: 'form-label', htmlFor: f.name,
+                        textContent: f.label ?? f.name});
                 wrap.appendChild(label);
 
                 /* input / textarea */
-                let input;
-                if (field.type === 'textarea') {
-                    input = document.createElement('textarea');
-                    input.className = 'form-control input-custom';
-                    input.id   = field.name;
-                    input.name = field.name;
-                    input.required = !!field.required;
-                    input.textContent = field.value ?? '';
+                let inp;
+                if (f.type === 'textarea') {
+                    inp = Object.assign(document.createElement('textarea'),
+                        {className: 'form-control', id: f.name, name: f.name,
+                            rows: 4, required: !!f.required, textContent: f.value ?? ''});
                 } else {
-                    input = document.createElement('input');
-                    input.className = 'form-control input-custom';
-                    input.type  = field.type || 'text';
-                    input.id    = field.name;
-                    input.name  = field.name;
-                    input.required = !!field.required;
-                    if (field.type !== 'file') input.value = field.value ?? '';
+                    inp = document.createElement('input');
+                    inp.className = 'form-control';
+                    inp.id   = f.name;
+                    inp.name = f.name;
+                    inp.type = f.type || 'text';
+                    if (f.required)   inp.required = true;
+                    if (f.accept)     inp.accept   = f.accept;
+                    if (f.multiple)   inp.multiple = true;
+                    if (f.step)       inp.step     = f.step;
+                    if (f.min !== undefined) inp.min = f.min;
+
+                    if (f.type === 'checkbox') {
+                        inp.classList.remove('form-control');
+                        if (f.value) inp.checked = true;
+                        // label  za checkboxom
+                        wrap.classList.add('form-check');
+                        label.classList.add('form-check-label');
+                        inp.classList.add('form-check-input');
+                        wrap.prepend(inp);
+                        fields.appendChild(wrap);
+                        return;
+                    }
+
+                    if (f.type !== 'file') inp.value = f.value ?? '';
                 }
-                wrap.appendChild(input);
+                wrap.appendChild(inp);
+
+                /* náhľad pre file input */
+                if (inp.type === 'file') {
+                    const preview = Object.assign(document.createElement('div'),
+                        {id: `${f.name}-preview`,
+                            className: 'd-flex flex-wrap gap-2 mt-2'});
+                    wrap.appendChild(preview);
+
+                    inp.addEventListener('change', () => {
+                        preview.innerHTML = '';
+                        [...inp.files].forEach(file => {
+                            const img = new Image();
+                            img.src   = URL.createObjectURL(file);
+                            img.style = 'width:120px;height:120px;object-fit:cover;' +
+                                'border:1px solid #ddd;border-radius:.5rem';
+                            preview.appendChild(img);
+                        });
+                    });
+                }
                 fields.appendChild(wrap);
             });
 
-            /* Zobraz modal */
+            /* zobraziť modál */
             modal.classList.remove('d-none');
             document.getElementById('overlayBackground')?.classList.remove('d-none');
         };
